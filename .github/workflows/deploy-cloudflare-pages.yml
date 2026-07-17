@@ -33,5 +33,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: 12692198cc65e285f21581a842d3107e
           command: pages deploy web/dist --project-name=redesign --branch=main
