@@ -1,0 +1,432 @@
+---
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+---
+
+<Mainlayout title="Request a Quote">
+  <!-- Hero -->
+  <section class="rq-hero">
+    <div class="rq-hero__content container">
+      <div class="page-grid rq-hero__grid">
+        <div class="rq-hero__left">
+          <p class="rq-hero__breadcrumb">
+            <span class="rq-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>REQUEST A QUOTE
+          </p>
+          <h1 class="rq-hero__title">request a quote</h1>
+        </div>
+        <div class="rq-hero__right">
+          <p class="rq-hero__desc">
+            Looking for a reusable packaging solution? Share a few details about your application and our team will review your requirements and prepare a customized quote tailored to your needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form + Image -->
+  <section class="rq-form">
+    <div class="container">
+      <div class="rq-form__layout">
+        <div class="rq-form__side">
+          <p class="rq-form__eyebrow label">REQUEST A QUOTE</p>
+          <form class="rq-form__fields" aria-label="Request a quote">
+            <div class="rq-form__row rq-form__row--half">
+              <div class="rq-form__field">
+                <label class="rq-form__label">FIRST NAME</label>
+                <input type="text" class="rq-form__input" placeholder="First" />
+              </div>
+              <div class="rq-form__field">
+                <label class="rq-form__label">LAST NAME</label>
+                <input type="text" class="rq-form__input" placeholder="Last" />
+              </div>
+            </div>
+            <div class="rq-form__field">
+              <label class="rq-form__label">COMPANY NAME</label>
+              <input type="text" class="rq-form__input" placeholder="Company" />
+            </div>
+            <div class="rq-form__field">
+              <label class="rq-form__label">EMAIL</label>
+              <input type="email" class="rq-form__input" placeholder="Email" />
+            </div>
+            <div class="rq-form__row rq-form__row--half">
+              <div class="rq-form__field">
+                <label class="rq-form__label">PHONE</label>
+                <input type="tel" class="rq-form__input" placeholder="Phone" />
+              </div>
+              <div class="rq-form__field">
+                <label class="rq-form__label">QUANTITY</label>
+                <input type="text" class="rq-form__input" placeholder="Quantity" />
+              </div>
+            </div>
+            <div class="rq-form__field">
+              <label class="rq-form__label">PRODUCTS OF INTEREST</label>
+              <div class="rq-form__select">
+                <div class="rq-form__tags">
+                  <span class="rq-form__tag">
+                    Uni-Pak
+                    <button type="button" class="rq-form__tag-x" aria-label="Remove Uni-Pak">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </button>
+                  </span>
+                  <span class="rq-form__tag">
+                    Uni-Directional Pallet
+                    <button type="button" class="rq-form__tag-x" aria-label="Remove Uni-Directional Pallet">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </button>
+                  </span>
+                </div>
+                <svg class="rq-form__select-caret" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M0.5 0V10.14L10.64 0" stroke="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="rq-form__field">
+              <label class="rq-form__label">MARKET</label>
+              <div class="rq-form__select">
+                <div class="rq-form__tags">
+                  <span class="rq-form__tag">
+                    fast moving consumer goods
+                    <button type="button" class="rq-form__tag-x" aria-label="Remove fast moving consumer goods">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </button>
+                  </span>
+                  <span class="rq-form__tag">
+                    automotive
+                    <button type="button" class="rq-form__tag-x" aria-label="Remove automotive">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </button>
+                  </span>
+                </div>
+                <svg class="rq-form__select-caret" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M0.5 0V10.14L10.64 0" stroke="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="rq-form__field rq-form__field--last">
+              <label class="rq-form__label">ANY OTHER QUESTIONS?</label>
+              <textarea class="rq-form__input rq-form__textarea" placeholder="Additional Info"></textarea>
+            </div>
+            <button type="submit" class="rq-form__submit">Submit</button>
+          </form>
+        </div>
+        <div class="rq-form__media">
+          <img
+            src={formImg.src}
+            alt="Forklift operating among stacked Shuert reusable pallets in a warehouse"
+            class="rq-form__img"
+            width={formImg.width}
+            height={formImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  const form = document.querySelector('.rq-form__fields');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .rq-hero {
+    background: var(--c-black);
+    padding-top: clamp(120px, 12.5vw, 216px);
+    padding-bottom: clamp(1.5rem, 2.55vw, 44px);
+  }
+
+  .rq-hero__content {
+    width: 100%;
+  }
+
+  .rq-hero__grid {
+    align-items: end;
+  }
+
+  .rq-hero__left {
+    grid-column: 1 / 8;
+    padding-bottom: clamp(0.75rem, 1.56vw, 27px);
+  }
+
+  .rq-hero__breadcrumb {
+    margin: 0 0 33px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .rq-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .rq-hero__title {
+    margin: 0;
+    font: var(--w-semibold) clamp(2rem, 4.28vw, 4.625rem) / 0.81 var(--ff-s);
+    color: var(--c-white);
+    text-transform: lowercase;
+  }
+
+  .rq-hero__right {
+    grid-column: 8 / -1;
+    padding-left: clamp(0px, 3.59vw, 62px);
+  }
+
+  .rq-hero__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-white);
+    max-width: 520px;
+  }
+
+  /* ================================================================
+     FORM SECTION
+     ================================================================ */
+  .rq-form {
+    background: #1b1b1b;
+    padding: clamp(3rem, 4.8vw, 83px) 0 clamp(3rem, 4.34vw, 75px);
+  }
+
+  .rq-form__layout {
+    display: grid;
+    align-items: start;
+  }
+
+  .rq-form__eyebrow {
+    margin: 0 0 clamp(2rem, 2.6vw, 45px);
+    color: var(--c-white);
+    letter-spacing: 1.54px;
+  }
+
+  .rq-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .rq-form__row--half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .rq-form__label {
+    display: block;
+    margin-bottom: 14px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .rq-form__input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: 400 16px / 22px var(--ff-r);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .rq-form__input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .rq-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .rq-form__textarea {
+    height: 106px;
+    padding: 18px;
+    resize: none;
+  }
+
+  /* ---- Multi-select dropdowns ---- */
+
+  .rq-form__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 7px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  .rq-form__tags {
+    display: flex;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .rq-form__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 12px;
+    background: var(--c-white);
+    border-radius: 50px;
+    font: var(--w-semibold) 16px / 1 var(--ff-s);
+    color: var(--c-black);
+    white-space: nowrap;
+  }
+
+  .rq-form__tag-x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .rq-form__select-caret {
+    flex-shrink: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* ---- Submit ---- */
+
+  .rq-form__submit {
+    align-self: flex-start;
+    padding: 15px 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .rq-form__submit:hover {
+    opacity: 0.85;
+  }
+
+  .rq-form__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  /* ---- Image ---- */
+
+  .rq-form__media {
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: -17px;
+  }
+
+  .rq-form__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 48% 40%;
+    display: block;
+  }
+
+  /* ================================================================
+     DESKTOP (≥ 1728px)
+     ================================================================ */
+  @media (min-width: 1728px) {
+    .rq-form__layout {
+      grid-template-columns: 710px 789px;
+      column-gap: 99px;
+    }
+
+    .rq-form__media {
+      width: 789px;
+      max-width: none;
+      aspect-ratio: 789 / 860;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (1025px – 1727px)
+     ================================================================ */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .rq-form__layout {
+      grid-template-columns: minmax(0, 710fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 6.4vw, 99px);
+    }
+
+    .rq-form__media {
+      aspect-ratio: 789 / 860;
+    }
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .rq-hero__left {
+      grid-column: 1 / -1;
+      padding-bottom: 0;
+    }
+
+    .rq-hero__right {
+      grid-column: 1 / -1;
+      padding-left: 0;
+      margin-top: 1.25rem;
+    }
+
+    .rq-hero__desc {
+      max-width: none;
+    }
+
+    .rq-form {
+      padding: 3rem 0 3.5rem;
+    }
+
+    .rq-form__layout {
+      grid-template-columns: 1fr;
+      row-gap: 2.5rem;
+    }
+
+    .rq-form__media {
+      margin-top: 0;
+      max-width: 600px;
+      aspect-ratio: 789 / 860;
+    }
+
+    .rq-form__eyebrow {
+      margin-bottom: 1.75rem;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .rq-hero {
+      padding-top: 110px;
+    }
+
+    .rq-form__row--half {
+      grid-template-columns: 1fr;
+    }
+
+    .rq-form__fields {
+      gap: 18px;
+    }
+  }
+</style>

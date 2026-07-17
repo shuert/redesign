@@ -1,0 +1,130 @@
+---
+import type { ImageMetadata } from 'astro:assets';
+
+interface Props {
+  href: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  eyebrow: string;
+  eyebrowVariant?: 'plain' | 'pill';
+  title: string;
+  cta: string;
+}
+
+const {
+  href,
+  image,
+  imageAlt,
+  eyebrow,
+  eyebrowVariant = 'plain',
+  title,
+  cta,
+} = Astro.props;
+---
+
+<div class:list={['explore-card', eyebrowVariant === 'pill' && 'explore-card--pill-eyebrow']}>
+  <img
+    class="explore-card__img"
+    src={image.src}
+    alt={imageAlt}
+    width={image.width}
+    height={image.height}
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="explore-card__scrim" aria-hidden="true"></div>
+  <div class="explore-card__content">
+    <span class:list={['explore-card__eyebrow', eyebrowVariant === 'pill' && 'explore-card__eyebrow--pill']}>
+      {eyebrow}
+    </span>
+    <p class="explore-card__title">{title}</p>
+    <a href={href} class="button button-primary explore-card__cta">{cta}</a>
+  </div>
+</div>
+
+<style>
+  .explore-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: clamp(17.5rem, 42vw, 31.25rem);
+    border-radius: var(--r-img);
+    overflow: hidden;
+    color: inherit;
+    cursor: default;
+  }
+
+  .explore-card__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .explore-card__scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0.35) 55%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+  }
+
+  .explore-card__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+
+  @media (min-width: 48.0625rem) {
+    .explore-card__content {
+      padding: 1.75rem 2rem 2rem;
+    }
+  }
+
+  .explore-card__eyebrow {
+    font: var(--w-bold) 0.875rem/1 var(--ff-s);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .explore-card__eyebrow--pill {
+    padding: 0.5rem 0.75rem;
+    border-radius: 624.9375rem;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .explore-card--pill-eyebrow .explore-card__content {
+    gap: 1rem;
+  }
+
+  .explore-card__title {
+    margin: 0;
+    max-width: 22rem;
+    font: var(--w-medium) clamp(1.125rem, 2vw, 1.375rem) / 1.35 var(--ff-r);
+    color: var(--c-white);
+  }
+
+  .explore-card__cta {
+    margin-top: 0.25rem;
+    text-decoration: none;
+  }
+
+  @media (max-width: 48rem) {
+    .explore-card__title {
+      max-width: none;
+    }
+  }
+</style>

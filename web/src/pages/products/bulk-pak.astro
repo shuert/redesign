@@ -1,0 +1,2009 @@
+---
+import Mainlayout from '../../layouts/Mainlayout.astro';
+
+// Hero
+import headerBg from '../../assets/product/bulkpak/259c9bdcdb238c1771dea7de9b2929304415730b.png';
+import productMain from '../../assets/product/bulkpak/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
+import thumb2 from '../../assets/product/bulkpak/58f62c3211f617be370d1308b95b96a04c4d49f2.png';
+import thumb3 from '../../assets/product/bulkpak/ee85d38ea644974f53a0ee1be60350167d1aeaeb.png';
+import thumb4 from '../../assets/product/bulkpak/e99f7092f3bc7644f4af943bdfd66ecbb45be0c4.png';
+import regMark from '../../assets/product/bulkpak/403b6db3da16d106b5aa34a84d31b84964a0c318.svg?url';
+import arrowLeft from '../../assets/product/bulkpak/abff48ce9e906836ba7c7455b9bcb761cb081819.svg?url';
+import arrowRight from '../../assets/product/bulkpak/ace057969575dd73641ee7d72883898b53d3fbbb.svg?url';
+import downloadIcon from '../../assets/product/bulkpak/70353c936ccd078ce845eb18bc2986a95f96449d.svg?url';
+
+// Technical features carousel
+import featCastle from '../../assets/product/bulkpak/d280539f1e956a7dca9fab036dd9648ff1e73d44.png';
+import featRackable from '../../assets/product/bulkpak/904864a78cdf36ac4c53e34723ae669024ba953e.png';
+import featFlowable from '../../assets/product/bulkpak/c55653fe1ed43409c4faeccbf02cb5344e07dbf5.png';
+import featSlide from '../../assets/product/bulkpak/dc99178ae2ca5ece0c57995b2143ffeb06509eec.png';
+import featTwin from '../../assets/product/bulkpak/12f92938ad4da8853a6ddcd6594f98d47cabb7f6.png';
+
+// Proven in the field logos
+import logoAmazon from '../../assets/product/bulkpak/02f92f6d22d008d15ced403e5b2f35f182438c7e.svg?url';
+import logoCocaCola from '../../assets/product/bulkpak/b4b0c594f7a8ce5d9c3ad2ece874f00f27e0b099.svg?url';
+import logoTesla from '../../assets/product/bulkpak/6af663dec056d2db87f1f6019b8799995a77db59.svg?url';
+
+// Markets
+import marketAuto from '../../assets/product/bulkpak/69c891b2aca4ffc8464f7fade40f9f22cb5f3137.png';
+import marketFmcg from '../../assets/product/bulkpak/d2b7b887297f6112c7c91b004f49ae9dd4153efe.png';
+import marketAutomation from '../../assets/product/bulkpak/faee7a1bbe05c82ec1462f3dd77c86525e27666a.png';
+
+// Logistics
+import truck from '../../assets/product/bulkpak/18a2bdb895df8c9d2c24a3b0051138826bd1a79c.png';
+
+// Specs wordmark
+import uniPakWordmark from '../../assets/product/bulkpak/365718496e1bee9db1886c91fe227df090029176.svg?url';
+
+// Related products
+import relatedImg from '../../assets/product/bulkpak/cb92ee5b1e8e00c11df46aa095fe04df48b93143.png';
+
+// Request a quote
+import quoteImg from '../../assets/product/bulkpak/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+
+const aboutText =
+  'The most sustainable, versatile, durable, and cost-effective closed-loop material handling system on the market. Each Uni-Pak is built to last, with a ten-year life expectancy, hundreds of trips, and can be fully recycled at the end of its life. Designed to be space-efficient, ergonomic, and strong, it lowers total ownership costs while offering a customizable solution for your unique shipping needs.';
+
+const thumbnails = [
+  { img: productMain, alt: 'Bulk-Pak product view 1' },
+  { img: thumb2, alt: 'Bulk-Pak product view 2' },
+  { img: thumb3, alt: 'Bulk-Pak product view 3' },
+  { img: thumb4, alt: 'Bulk-Pak product view 4' },
+];
+
+const features = [
+  { tag: 'Castle Sleeve', img: featCastle, desc: 'Uni-Pak pallet is available with optional drain holes in the legs.' },
+  { tag: 'Rackable', img: featRackable, desc: 'Added knitting between the thermoformed layers for added durability.' },
+  { tag: 'Flowable', img: featFlowable, desc: 'Lid is secured to the sleeve via four injection-molded slide locks, ensuring a tight, reliable closure throughout the supply chain.' },
+  { tag: 'Slide Locks', img: featSlide, desc: 'Lid is secured to the sleeve via four injection-molded slide locks, ensuring a tight, reliable closure throughout the supply chain.' },
+  { tag: 'Twin Sheet Thermoformed Plastic', img: featTwin, desc: 'Small blurb about the specific capability.' },
+] as const;
+
+const FEATURES_AUTOPLAY_MS = 3000;
+const firstFeature = features[0];
+const lastFeature = features[features.length - 1];
+
+const proven = [
+  {
+    logo: logoAmazon,
+    logoAlt: 'Amazon',
+    logoW: 135,
+    logoH: 41,
+    title: 'Sustainable Shipping',
+    desc: 'Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna. Lobortis amet orci faucibus risus. Bibendum cursus cursus elementum adipiscing arcu aliquam leo posuere non. A sit quam convallis laoreet. Donec purus purus nec ornare facilisis turpis ultricies dui vestibulum. Quisque felis nec morbi odio dui sapien.',
+  },
+  {
+    logo: logoCocaCola,
+    logoAlt: 'Coca-Cola',
+    logoW: 135,
+    logoH: 41,
+    title: 'Custom and Durable',
+    desc: 'Lorem ipsum dolor sit amet consectetur. Eget a sit massa dui pellentesque sodales ornare. Vivamus eget tellus parturient sodales. Leo amet volutpat suscipit natoque congue blandit massa adipiscing. Id amet suspendisse vel tincidunt semper sit. Adipiscing arcu volutpat tincidunt vitae tempor eget dolor. Tristique sollicitudin in vestibulum luctus. Sit neque nunc et morbi vel pharetra dui suspendisse. Malesuada pharetra sit sed tellus scelerisque mattis. Natoque a volutpat fermentum nullam viverra nam.',
+  },
+  {
+    logo: logoTesla,
+    logoAlt: 'Tesla',
+    logoW: 135,
+    logoH: 18,
+    title: 'Large but Light',
+    desc: 'Lorem ipsum dolor sit amet consectetur. Lorem elit donec egestas pellentesque tincidunt. Venenatis lectus quis pulvinar nunc in at et lorem. Purus rhoncus consectetur auctor volutpat dui posuere felis aliquet. Suspendisse ut varius et placerat semper amet. At posuere congue tellus porta aliquet odio.',
+  },
+];
+
+const marketsDesc =
+  'Lorem ipsum dolor sit amet consectetur. Ut purus non urna sagittis scelerisque eu. Sem a amet viverra lectus egestas sed nibh amet facilisis. Tincidunt ullamcorper vulputate id nisi ut massa. Blandit pharetra a nibh nunc arcu.';
+
+const markets = [
+  { label: 'Automotive', img: marketAuto, desc: marketsDesc },
+  { label: 'Mast Moving Consumer Goods', img: marketFmcg, desc: marketsDesc },
+  { label: 'Automation', img: marketAutomation, desc: marketsDesc },
+];
+
+const related = [
+  { name: 'snap-pak', size: '29”x23”  —  90”x48”', img: relatedImg },
+  { name: 'uni-pak', size: '29”x23”  —  90”x48”', img: relatedImg },
+  { name: 'uni-pak', size: '29”x23”  —  90”x48”', img: relatedImg },
+];
+
+// Specs table
+const specColGroups = ['ERECT', 'COLLAPSED (NO KIT)', 'RETURN RATIO'];
+const specCols = ['OD DIM.', 'MARKET', 'ID LENGTH', 'ID WIDTH', 'PAL WT.', 'COV WT.'];
+const firstRow = ['29 x 23', 'NA', '26.94', '20.94', '6.88', '4.68', '168', '252', '528', '570', '1/3.1', '1/2.3'];
+const naRow = ['29 x 23', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA'];
+const specRows = [firstRow, ...Array.from({ length: 16 }, () => naRow)];
+---
+
+<Mainlayout title="Bulk-Pak" mainClass="bp">
+  <!-- ============================== HERO HEADER ============================== -->
+  <section class="bp-header">
+    <div class="bp-header__bg" aria-hidden="true">
+      <img
+        src={headerBg.src}
+        alt=""
+        width={headerBg.width}
+        height={headerBg.height}
+        class="bp-header__img"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="bp-header__gradient"></div>
+    </div>
+    <div class="container bp-header__inner">
+      <p class="bp-header__crumb">
+        <span class="bp-header__crumb-dim">HOME&ensp;/&ensp;ALL PRODUCTS&ensp;/&ensp;</span>BULK-PAK
+      </p>
+      <h1 class="bp-header__title detail-xl text-white">
+        bulk-pak<img src={regMark} alt="" class="bp-header__reg" width="18" height="23" />
+      </h1>
+
+      <div class="bp-header__meta">
+        <span class="bp-header__dims">48”x40” &amp; 48”x45”</span>
+        <div class="bp-toggle" role="group" aria-label="Unit system">
+          <button type="button" class="bp-toggle__btn is-active" data-unit="imperial">Imperial</button>
+          <button type="button" class="bp-toggle__btn" data-unit="metric">Metric</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== OVERVIEW ============================== -->
+  <section class="bp-overview">
+    <div class="bp-overview__media">
+      <img
+        id="bp-gallery-main"
+        src={productMain.src}
+        alt="Bulk-Pak product render"
+        width={productMain.width}
+        height={productMain.height}
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <button type="button" class="bp-gallery__nav bp-gallery__nav--prev" aria-label="Previous image">
+      <img src={arrowLeft} alt="" width="50" height="50" />
+    </button>
+    <button type="button" class="bp-gallery__nav bp-gallery__nav--next" aria-label="Next image">
+      <img src={arrowRight} alt="" width="50" height="50" />
+    </button>
+
+    <div class="bp-gallery__thumbs" role="tablist" aria-label="Product views">
+      {thumbnails.map((t, i) => (
+        <button type="button" class:list={['bp-gallery__thumb', { 'is-active': i === 0 }]} data-src={t.img.src} aria-label={t.alt}>
+          <img src={t.img.src} alt="" width={t.img.width} height={t.img.height} loading="lazy" decoding="async" />
+        </button>
+      ))}
+    </div>
+
+    <div class="bp-about">
+      <p class="bp-eyebrow bp-about__eyebrow">ABOUT BULK-PAK</p>
+      <p class="bp-about__desc">{aboutText}</p>
+    </div>
+
+    <div class="bp-overview__actions">
+      <a href="#request-a-quote" class="bp-btn bp-btn--dark bp-overview__cta">Request a Quote</a>
+      <a href="#" class="bp-btn bp-btn--outline bp-overview__download">
+        Download Technical Sheet
+        <img src={downloadIcon} alt="" width="14" height="15" class="bp-btn__icon" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================== TECHNICAL FEATURES ============================== -->
+  <section
+    class="bp-features"
+    id="bp-features-carousel"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Technical features"
+    style={`--bp-autoplay-ms: ${FEATURES_AUTOPLAY_MS}ms`}
+  >
+    <div class="container">
+      <hr class="bp-rule" />
+      <header class="bp-section__head">
+        <p class="bp-eyebrow bp-eyebrow--dim">FEATURES</p>
+        <h2 class="bp-section__title">Technical Features</h2>
+      </header>
+    </div>
+
+    <div class="bp-swiper__viewport" id="bp-features-rail" aria-live="polite">
+      <div class="bp-swiper__track" data-carousel-swiper-track>
+        <!-- Clone of last slide (peeks on the left of slide 0) -->
+        <article class="bp-swiper__slide bp-feat" aria-hidden="true" data-carousel-clone>
+          <img src={lastFeature.img.src} alt="" width={lastFeature.img.width} height={lastFeature.img.height} loading="eager" decoding="async" />
+          <div class="bp-feat__gradient" aria-hidden="true"></div>
+          <span class="bp-feat__tag">{lastFeature.tag}</span>
+          <p class="bp-feat__desc">{lastFeature.desc}</p>
+        </article>
+        {
+          features.map((f, si) => (
+            <article
+              class:list={['bp-swiper__slide', 'bp-feat', { 'is-active': si === 0 }]}
+              data-carousel-swiper-slide
+              data-carousel-slide-index={si}
+              aria-hidden={si !== 0}
+            >
+              <img src={f.img.src} alt={si === 0 ? f.tag : ''} width={f.img.width} height={f.img.height} loading="eager" decoding="async" />
+              <div class="bp-feat__gradient" aria-hidden="true" />
+              <span class="bp-feat__tag">{f.tag}</span>
+              <p class="bp-feat__desc">{f.desc}</p>
+            </article>
+          ))
+        }
+        <!-- Clone of first slide (peeks on the right of last slide) -->
+        <article class="bp-swiper__slide bp-feat" aria-hidden="true" data-carousel-clone>
+          <img src={firstFeature.img.src} alt="" width={firstFeature.img.width} height={firstFeature.img.height} loading="eager" decoding="async" />
+          <div class="bp-feat__gradient" aria-hidden="true"></div>
+          <span class="bp-feat__tag">{firstFeature.tag}</span>
+          <p class="bp-feat__desc">{firstFeature.desc}</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="container bp-swiper__controls">
+      <div class="bp-swiper__controls-inner">
+        <div class="bp-swiper__arrows">
+          <button type="button" class="bp-swiper__arrow" aria-label="Previous slide" data-carousel-prev>
+            <svg class="bp-swiper__arrow-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M14 7l-5 5 5 5"></path>
+            </svg>
+          </button>
+          <button type="button" class="bp-swiper__arrow" aria-label="Next slide" data-carousel-next>
+            <svg class="bp-swiper__arrow-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M10 7l5 5-5 5"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="bp-swiper__dots-wrap">
+          <div class="bp-swiper__dots" role="presentation" data-carousel-dots>
+            <div class="bp-swiper__dots-track" data-carousel-dots-track>
+              <div class="bp-swiper__dots-row">
+                {
+                  features.map((_, i) => (
+                    <div class="bp-swiper__dot-slot" data-carousel-slot={i}>
+                      <div class:list={['bp-swiper__dot-grow', { 'is-active': i === 0 }]}>
+                        <span class="bp-swiper__dot-grow-fill" data-carousel-grow-fill />
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PROVEN IN THE FIELD ============================== -->
+  <section class="bp-proven">
+    <div class="container">
+      <hr class="bp-rule" />
+      <header class="bp-section__head bp-section__head--proven">
+        <p class="bp-eyebrow bp-eyebrow--dim">IN USE</p>
+        <h2 class="bp-section__title">Proven in the field.</h2>
+      </header>
+      <div class="page-grid bp-proven__grid">
+        {proven.map((p) => (
+          <article class="bp-proven__col">
+            <div class="bp-proven__logo-slot">
+              <img src={p.logo} alt={p.logoAlt} class="bp-proven__logo" style={`width:${p.logoW}px;height:${p.logoH}px`} width={p.logoW} height={p.logoH} />
+            </div>
+            <h3 class="bp-proven__title">{p.title}</h3>
+            <p class="bp-proven__desc">{p.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== MARKETS ============================== -->
+  <section class="bp-markets">
+    <div class="container">
+      <hr class="bp-rule" />
+      <header class="bp-section__head">
+        <p class="bp-eyebrow bp-eyebrow--dim">MARKETS</p>
+        <h2 class="bp-section__title">How our products are used</h2>
+      </header>
+      <div class="bp-markets__grid">
+        {markets.map((m) => (
+          <article class="bp-market">
+            <div class="bp-market__media">
+              <img src={m.img.src} alt={m.label} width={m.img.width} height={m.img.height} loading="lazy" decoding="async" />
+              <span class="bp-market__label">{m.label}</span>
+            </div>
+            <p class="bp-market__desc">{m.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== LOGISTICS FEATURES ============================== -->
+  <section class="bp-logistics">
+    <div class="container">
+      <hr class="bp-rule" />
+      <div class="page-grid bp-logistics__head">
+        <header class="bp-logistics__heading">
+          <p class="bp-eyebrow bp-eyebrow--dim">FEATURES</p>
+          <h2 class="bp-section__title">Logistics Features</h2>
+        </header>
+        <p class="bp-logistics__desc">
+          Lorem ipsum dolor sit amet consectetur. Viverra eget vestibulum fames aliquet venenatis suspendisse porttitor. Fringilla commodo purus id eget. Imperdiet amet eget vestibulum urna tempus arcu. Nisl cursus justo volutpat ultricies elit blandit porttitor urna. Ut sagittis enim volutpat vitae. Habitasse montes non sed fringilla turpis et.
+        </p>
+      </div>
+      <div class="bp-logistics__media">
+        <img src={truck.src} alt="Shuert branded delivery truck" width={truck.width} height={truck.height} loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PRODUCT SYSTEM DATA ============================== -->
+  <section class="bp-specs">
+    <div class="container bp-specs__inner">
+      <header class="bp-section__head bp-section__head--specs">
+        <p class="bp-eyebrow bp-eyebrow--dim">SPECIFICATIONS</p>
+        <h2 class="bp-section__title">Product System Data</h2>
+      </header>
+
+      <div class="bp-toggle bp-toggle--cream bp-specs__toggle" role="group" aria-label="Specs view">
+        <button type="button" class="bp-toggle__btn is-active">Specs</button>
+        <button type="button" class="bp-toggle__btn">Schematic</button>
+      </div>
+
+      <div class="page-grid bp-specs__body">
+        <div class="bp-specs__intro">
+          <img src={uniPakWordmark} alt="Uni-Pak" class="bp-specs__wordmark" width="191" height="57" />
+          <p class="bp-specs__desc">
+            Lorem ipsum dolor sit amet consectetur. Viverra eget vestibulum fames aliquet venenatis suspendisse porttitor. Fringilla commodo purus id eget. Imperdiet amet eget vestibulum urna tempus arcu. Nisl cursus justo volutpat ultricies elit blandit porttitor urna. Ut sagittis enim volutpat vitae. Habitasse montes non sed fringilla turpis et.
+          </p>
+        </div>
+
+        <div class="bp-specs__scroll">
+          <table class="bp-table">
+            <thead>
+              <tr class="bp-table__group-row">
+                <th colspan="6"></th>
+                {specColGroups.map((g) => (
+                  <th colspan="2" class="bp-table__group">{g}</th>
+                ))}
+              </tr>
+              <tr class="bp-table__head-row">
+                {specCols.map((c) => (
+                  <th>{c}</th>
+                ))}
+                <th>2 HIGH</th><th>3 HIGH</th>
+                <th>2 HIGH</th><th>3 HIGH</th>
+                <th>2 HIGH</th><th>3 HIGH</th>
+              </tr>
+            </thead>
+            <tbody>
+              {specRows.map((row) => (
+                <tr>
+                  {row.map((cell) => (
+                    <td>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== OTHER SIMILAR PRODUCTS ============================== -->
+  <section class="bp-related">
+    <div class="container">
+      <header class="bp-section__head bp-section__head--related">
+        <p class="bp-eyebrow bp-eyebrow--dim">RELATED</p>
+        <h2 class="bp-section__title">Other Similar Products</h2>
+      </header>
+      <div class="bp-related__grid">
+        {related.map((r) => (
+          <a class="bp-related__card" href="#">
+            <div class="bp-related__media">
+              <img src={r.img.src} alt={r.name} width={r.img.width} height={r.img.height} loading="lazy" decoding="async" />
+            </div>
+            <div class="bp-related__text">
+              <h3 class="bp-related__name">{r.name}</h3>
+              <p class="bp-related__size">{r.size}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="bp-related__cta">
+        <a href="/products" class="bp-btn bp-btn--dark">See All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== REQUEST A QUOTE ============================== -->
+  <section class="bp-quote" id="request-a-quote">
+    <div class="container">
+      <div class="bp-quote__grid">
+        <div class="bp-quote__left">
+          <p class="bp-eyebrow">REQUEST A QUOTE</p>
+          <h2 class="bp-quote__title">
+            Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque.
+          </h2>
+
+          <form class="bp-form" aria-label="Request a quote">
+            <div class="bp-form__row">
+              <div class="bp-field">
+                <label class="bp-label" for="bp-first">FIRST NAME</label>
+                <input id="bp-first" class="bp-input" type="text" placeholder="First" autocomplete="given-name" />
+              </div>
+              <div class="bp-field">
+                <label class="bp-label" for="bp-last">LAST NAME</label>
+                <input id="bp-last" class="bp-input" type="text" placeholder="Last" autocomplete="family-name" />
+              </div>
+            </div>
+
+            <div class="bp-field">
+              <label class="bp-label" for="bp-company">COMPANY NAME</label>
+              <input id="bp-company" class="bp-input" type="text" placeholder="Company" autocomplete="organization" />
+            </div>
+
+            <div class="bp-field">
+              <label class="bp-label" for="bp-email">EMAIL</label>
+              <input id="bp-email" class="bp-input" type="email" placeholder="Email" autocomplete="email" />
+            </div>
+
+            <div class="bp-form__row">
+              <div class="bp-field">
+                <label class="bp-label" for="bp-phone">PHONE</label>
+                <input id="bp-phone" class="bp-input" type="tel" placeholder="Phone" autocomplete="tel" />
+              </div>
+              <div class="bp-field">
+                <label class="bp-label" for="bp-qty">QUANTITY</label>
+                <input id="bp-qty" class="bp-input" type="number" min="0" placeholder="Quantity" />
+              </div>
+            </div>
+
+            <div class="bp-field">
+              <span class="bp-label">PRODUCTS OF INTEREST</span>
+              <div class="bp-input bp-chips" id="bp-chips">
+                <span class="bp-chip">Uni-Pak<button type="button" class="bp-chip__x" aria-label="Remove Uni-Pak">×</button></span>
+                <span class="bp-chip">Uni-Directional Pallet<button type="button" class="bp-chip__x" aria-label="Remove Uni-Directional Pallet">×</button></span>
+              </div>
+            </div>
+
+            <div class="bp-field">
+              <label class="bp-label" for="bp-notes">ANY OTHER QUESTIONS?</label>
+              <textarea id="bp-notes" class="bp-input bp-textarea" placeholder="Additional Info"></textarea>
+            </div>
+
+            <button type="submit" class="bp-btn bp-btn--dark bp-form__submit">Submit</button>
+          </form>
+        </div>
+
+        <div class="bp-quote__media">
+          <img src={quoteImg.src} alt="Forklift moving stacked reusable pallets in a warehouse" width={quoteImg.width} height={quoteImg.height} loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  // ---- Product gallery thumbnail switching ----
+  const main = document.getElementById('bp-gallery-main') as HTMLImageElement | null;
+  const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('.bp-gallery__thumb'));
+  let galleryIndex = 0;
+
+  function selectThumb(i: number) {
+    if (!thumbs.length || !main) return;
+    galleryIndex = (i + thumbs.length) % thumbs.length;
+    const src = thumbs[galleryIndex].dataset.src;
+    if (src) main.src = src;
+    thumbs.forEach((t, idx) => t.classList.toggle('is-active', idx === galleryIndex));
+  }
+
+  thumbs.forEach((t, i) => t.addEventListener('click', () => selectThumb(i)));
+  document.querySelector('.bp-gallery__nav--prev')?.addEventListener('click', () => selectThumb(galleryIndex - 1));
+  document.querySelector('.bp-gallery__nav--next')?.addEventListener('click', () => selectThumb(galleryIndex + 1));
+
+  // ---- Unit / view pill toggles ----
+  document.querySelectorAll<HTMLElement>('.bp-toggle').forEach((group) => {
+    const btns = Array.from(group.querySelectorAll<HTMLButtonElement>('.bp-toggle__btn'));
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btns.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+      });
+    });
+  });
+
+  // ---- Chips removal ----
+  document.querySelectorAll<HTMLButtonElement>('.bp-chip__x').forEach((x) => {
+    x.addEventListener('click', () => x.closest('.bp-chip')?.remove());
+  });
+
+  // ---- Prevent demo form submit ----
+  document.querySelector('.bp-form')?.addEventListener('submit', (e) => e.preventDefault());
+</script>
+
+<script
+  define:vars={{
+    bpAutoplayMs: FEATURES_AUTOPLAY_MS,
+  }}
+>
+  /* Technical features swiper — same implementation as the careers culture carousel */
+  (function () {
+    const root = document.getElementById('bp-features-carousel');
+    if (!root) return;
+
+    const ANIM_NAME = 'bp-dot-progress';
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    root.style.setProperty('--bp-autoplay-ms', `${bpAutoplayMs}ms`);
+
+    const prevBtn = root.querySelector('[data-carousel-prev]');
+    const nextBtn = root.querySelector('[data-carousel-next]');
+    const slotEls = root.querySelectorAll('[data-carousel-slot]');
+    const realSlideEls = root.querySelectorAll('[data-carousel-swiper-slide]');
+    const allSlideEls = root.querySelectorAll('.bp-swiper__slide');
+    const viewport = root.querySelector('#bp-features-rail');
+    const track = root.querySelector('[data-carousel-swiper-track]');
+
+    const n = realSlideEls.length;
+    let realIndex = 0;
+    let domIndex = 1;
+    let prevDotsIndex = -1;
+    let shapeTimer = 0;
+    let sliding = false;
+    let ready = false;
+    const SHAPE_SETTLE_MS = 480;
+    var TRACK_EASE = 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)';
+    var OPACITY_EASE = 'opacity 0.45s ease';
+
+    function getSlideMetrics() {
+      var firstEl = allSlideEls[0];
+      if (!firstEl || !viewport) return { slideW: 0, gap: 20, vpW: 0 };
+      var vpW = viewport.getBoundingClientRect().width;
+      var slideW = firstEl.getBoundingClientRect().width;
+      var gap = parseFloat(getComputedStyle(track).gap) || 20;
+      return { slideW: slideW, gap: gap, vpW: vpW };
+    }
+
+    function calcTranslateX(di) {
+      var m = getSlideMetrics();
+      var center = (m.vpW - m.slideW) / 2;
+      return center - di * (m.slideW + m.gap);
+    }
+
+    function applyTransform(di, animate) {
+      domIndex = di;
+      var px = calcTranslateX(di);
+      if (animate) {
+        track.style.transition = TRACK_EASE;
+      } else {
+        track.style.transition = 'none';
+      }
+      track.style.transform = 'translateX(' + px + 'px)';
+
+      allSlideEls.forEach(function (el, j) {
+        if (animate) {
+          el.style.transition = OPACITY_EASE;
+        } else {
+          el.style.transition = 'none';
+        }
+        el.classList.toggle('is-active', j === di);
+      });
+
+      if (!animate) {
+        void track.offsetWidth;
+      }
+    }
+
+    function setRealIndex(ri) {
+      realIndex = ri;
+      realSlideEls.forEach(function (el, j) {
+        el.setAttribute('aria-hidden', j === realIndex ? 'false' : 'true');
+      });
+    }
+
+    function refreshDots() {
+      var moved = prevDotsIndex >= 0 && prevDotsIndex !== realIndex;
+      window.clearTimeout(shapeTimer);
+
+      slotEls.forEach(function (slot, i) {
+        var grow = slot.querySelector('.bp-swiper__dot-grow');
+        var fill = slot.querySelector('[data-carousel-grow-fill]');
+        if (grow) grow.classList.toggle('is-active', i === realIndex);
+        if (fill) fill.classList.remove('bp-swiper__dot-grow-fill--animating');
+      });
+
+      var activeFill = slotEls[realIndex] ? slotEls[realIndex].querySelector('[data-carousel-grow-fill]') : null;
+
+      var startFill = function () {
+        if (!activeFill || !(activeFill instanceof HTMLElement)) return;
+        if (reduceMotion) return;
+        void activeFill.offsetWidth;
+        activeFill.classList.add('bp-swiper__dot-grow-fill--animating');
+      };
+
+      if (moved && !reduceMotion) {
+        shapeTimer = window.setTimeout(startFill, SHAPE_SETTLE_MS);
+      } else {
+        requestAnimationFrame(startFill);
+      }
+
+      prevDotsIndex = realIndex;
+    }
+
+    function go(delta) {
+      if (sliding || !ready) return;
+      var nextReal = (realIndex + delta + n) % n;
+      var nextDom = domIndex + delta;
+      sliding = true;
+      setRealIndex(nextReal);
+      applyTransform(nextDom, true);
+      refreshDots();
+    }
+
+    if (track) {
+      track.addEventListener('transitionend', function (e) {
+        if (e.target !== track) return;
+        if (domIndex === 0) {
+          applyTransform(n, false);
+        } else if (domIndex === n + 1) {
+          applyTransform(1, false);
+        }
+        sliding = false;
+      });
+    }
+
+    prevBtn && prevBtn.addEventListener('click', function () { go(-1); });
+    nextBtn && nextBtn.addEventListener('click', function () { go(1); });
+
+    slotEls.forEach(function (slot, i) {
+      var fill = slot.querySelector('[data-carousel-grow-fill]');
+      if (fill) {
+        fill.addEventListener('animationend', function (e) {
+          if (e.animationName !== ANIM_NAME) return;
+          if (i !== realIndex) return;
+          go(1);
+        });
+      }
+    });
+
+    /* ---- Pointer / touch drag ---- */
+    if (viewport && track) {
+      var dragging = false;
+      var startX = 0;
+      var dragDelta = 0;
+      var THRESHOLD = 40;
+
+      function applyDragOffset(px) {
+        var base = calcTranslateX(domIndex);
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(' + (base + px) + 'px)';
+      }
+
+      function onDown(e) {
+        if (!ready) return;
+        if (e.button && e.button !== 0) return;
+        dragging = true;
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        dragDelta = 0;
+        track.style.transition = 'none';
+        viewport.style.cursor = 'grabbing';
+      }
+
+      function onMove(e) {
+        if (!dragging) return;
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        dragDelta = clientX - startX;
+        applyDragOffset(dragDelta);
+      }
+
+      function onUp() {
+        if (!dragging) return;
+        dragging = false;
+        viewport.style.cursor = '';
+        if (Math.abs(dragDelta) > THRESHOLD) {
+          go(dragDelta < 0 ? 1 : -1);
+        } else {
+          applyTransform(domIndex, true);
+        }
+      }
+
+      viewport.addEventListener('pointerdown', onDown);
+      viewport.addEventListener('pointermove', onMove);
+      viewport.addEventListener('pointerup', onUp);
+      viewport.addEventListener('pointercancel', onUp);
+      viewport.addEventListener('pointerleave', onUp);
+
+      viewport.addEventListener('touchstart', onDown, { passive: true });
+      viewport.addEventListener('touchmove', onMove, { passive: true });
+      viewport.addEventListener('touchend', onUp);
+      viewport.addEventListener('touchcancel', onUp);
+
+      viewport.style.touchAction = 'pan-y';
+      viewport.style.cursor = 'grab';
+      viewport.style.userSelect = 'none';
+
+      viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    }
+
+    /* ---- Decode all images, then enable ---- */
+    setRealIndex(0);
+    applyTransform(1, false);
+
+    var imgs = track ? [].slice.call(track.querySelectorAll('img')) : [];
+
+    function decodeAll() {
+      return Promise.all(imgs.map(function (img) {
+        return new Promise(function (resolve) {
+          if (img.complete && img.naturalWidth > 0) {
+            if (img.decode) {
+              img.decode().then(resolve).catch(resolve);
+            } else {
+              resolve();
+            }
+          } else {
+            img.addEventListener('load', function () {
+              if (img.decode) {
+                img.decode().then(resolve).catch(resolve);
+              } else {
+                resolve();
+              }
+            }, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          }
+        });
+      }));
+    }
+
+    decodeAll().then(function () {
+      ready = true;
+      refreshDots();
+    });
+
+    var resizeTimer = 0;
+    window.addEventListener('resize', function () {
+      sliding = false;
+      clearTimeout(resizeTimer);
+      applyTransform(domIndex, false);
+      resizeTimer = setTimeout(function () {
+        applyTransform(domIndex, false);
+      }, 150);
+    });
+  })();
+</script>
+
+<style>
+  .bp {
+    background: var(--c-sec-1);
+  }
+
+  /* ---- shared bits ---- */
+  .bp-eyebrow {
+    margin: 0;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .bp-eyebrow--dim {
+    color: var(--c-sec-3);
+  }
+
+  .bp-section__head {
+    padding-top: 86px;
+  }
+
+  .bp-section__title {
+    margin: 25px 0 0;
+    font: var(--w-semibold) 40px / 43px var(--ff-r);
+    color: var(--c-black);
+    letter-spacing: 0;
+  }
+
+  .bp-rule {
+    border: 0;
+    border-top: 1px solid #ddd9d4;
+    margin: 0;
+  }
+
+  /* ---- Buttons ---- */
+  .bp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    height: 50px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .bp-btn--dark {
+    background: var(--c-black);
+    color: var(--c-white);
+    border-color: var(--c-black);
+  }
+
+  .bp-btn--dark:hover {
+    opacity: 0.88;
+  }
+
+  .bp-btn--outline {
+    background: var(--c-sec-1);
+    color: var(--c-black);
+    border-color: var(--c-black);
+  }
+
+  .bp-btn--outline:hover {
+    background: var(--c-sec-2);
+  }
+
+  .bp-btn__icon {
+    width: 13px;
+    height: 14px;
+  }
+
+  /* ============================== HERO HEADER ============================== */
+  .bp-header {
+    position: relative;
+    height: 556px;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .bp-header__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .bp-header__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bp-header__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 71.89%, rgb(0, 0, 0) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0) 88.31%, rgb(0, 0, 0) 100%);
+  }
+
+  .bp-header__inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 57px;
+  }
+
+  .bp-header__crumb {
+    margin: 0 0 32px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .bp-header__crumb-dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .bp-header__title {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    margin: 0;
+    line-height: 0.9;
+  }
+
+  .bp-header__reg {
+    width: 18px;
+    height: 23px;
+    margin-top: 6px;
+  }
+
+  .bp-header__meta {
+    position: absolute;
+    right: var(--grid-margin);
+    bottom: 57px;
+    display: flex;
+    align-items: center;
+    gap: 45px;
+  }
+
+  .bp-header__dims {
+    font: var(--w-semibold) 20px / 22px var(--ff-s);
+    letter-spacing: -0.5px;
+    color: var(--c-white);
+  }
+
+  /* ---- Toggle pill (Imperial/Metric, Specs/Schematic) ---- */
+  .bp-toggle {
+    display: inline-flex;
+    align-items: center;
+    height: 65px;
+    padding: 0 8px;
+    background: var(--c-white);
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .bp-toggle--cream {
+    background: var(--c-sec-1);
+  }
+
+  .bp-toggle__btn {
+    border: 0;
+    background: transparent;
+    color: var(--c-black);
+    font: var(--w-medium) 16px / 20px var(--ff-r);
+    padding: 15px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .bp-toggle__btn.is-active {
+    background: var(--c-black);
+    color: var(--c-white);
+  }
+
+  /* ============================== OVERVIEW ==============================
+     Figma frame: 1728 x 821 (y 556 → 1377). All positions are percentages
+     of that frame so the layout scales with viewport width.
+     ====================================================================== */
+  .bp-overview {
+    position: relative;
+    background: var(--c-sec-1);
+    aspect-ratio: 1728 / 821;
+  }
+
+  /* product image: x 114/1728, 690x690 */
+  .bp-overview__media {
+    position: absolute;
+    left: 6.597%;
+    top: 0;
+    width: 39.931%;
+    aspect-ratio: 1 / 1;
+    z-index: 1;
+  }
+
+  .bp-overview__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* arrows: y center = image center (345/821) */
+  .bp-gallery__nav {
+    position: absolute;
+    top: 42.02%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .bp-gallery__nav img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bp-gallery__nav--prev {
+    left: 3.762%;
+  }
+
+  .bp-gallery__nav--next {
+    left: 46.528%;
+  }
+
+  .bp-gallery__nav:hover {
+    opacity: 0.85;
+  }
+
+  /* thumbnails: x 235/1728, y 579/821, 110px squares, flush */
+  .bp-gallery__thumbs {
+    position: absolute;
+    left: 13.6%;
+    top: 70.52%;
+    display: flex;
+    z-index: 2;
+  }
+
+  .bp-gallery__thumb {
+    width: min(110px, 6.366vw);
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .bp-gallery__thumb.is-active {
+    background: #ebe7e3;
+  }
+
+  .bp-gallery__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+
+  /* about column: x 1009/1728, w 519/1728, vertically centered in 628/821 */
+  .bp-about {
+    position: absolute;
+    left: 58.391%;
+    top: 0;
+    width: 30.034%;
+    height: 76.49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 33px;
+    z-index: 2;
+  }
+
+  .bp-about__eyebrow {
+    color: var(--c-black);
+  }
+
+  .bp-about__desc {
+    margin: 0;
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  /* buttons: y 639/821; RAQ at x 1009/1728, download at x 1269/1728 */
+  .bp-overview__actions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 77.83%;
+    z-index: 2;
+  }
+
+  .bp-overview__cta {
+    position: absolute;
+    left: 58.391%;
+  }
+
+  .bp-overview__download {
+    position: absolute;
+    left: 73.438%;
+  }
+
+  /* ============================== TECHNICAL FEATURES (careers swiper) ============================== */
+  .bp-features {
+    background: var(--c-sec-1);
+    padding-bottom: 78px;
+    overflow: hidden;
+  }
+
+  /* Swiper: single centered card with adjacent peek — same as careers culture */
+  .bp-swiper__viewport {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 58px;
+  }
+
+  .bp-swiper__track {
+    --slide-gap: 20px;
+    display: flex;
+    gap: var(--slide-gap);
+    will-change: transform;
+  }
+
+  .bp-swiper__slide {
+    flex: 0 0 61.28%;
+    width: 61.28%;
+    min-width: 0;
+    box-sizing: border-box;
+    opacity: 0.35;
+  }
+
+  .bp-swiper__slide.is-active {
+    opacity: 1;
+  }
+
+  .bp-feat {
+    position: relative;
+    height: min(580px, 33.56vw);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #222;
+  }
+
+  .bp-feat img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bp-feat__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0.5) 100%);
+    z-index: 1;
+  }
+
+  .bp-feat__tag {
+    position: absolute;
+    top: 40px;
+    left: 38px;
+    z-index: 2;
+    display: inline-block;
+    margin: 0;
+    background: var(--c-black);
+    color: var(--c-white);
+    border-radius: 25px;
+    padding: 6px 18px;
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+  }
+
+  .bp-feat__desc {
+    position: absolute;
+    left: 35px;
+    bottom: 24px;
+    z-index: 2;
+    margin: 0;
+    max-width: 527px;
+    font: var(--w-light) 25px / 32px var(--ff-r);
+    color: var(--c-sec-1);
+  }
+
+  .bp-swiper__controls {
+    margin-top: 42px;
+  }
+
+  .bp-swiper__controls-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .bp-swiper__arrows {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+  }
+
+  .bp-swiper__arrow {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e8e4de;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    cursor: pointer;
+    color: #9a958d;
+  }
+
+  .bp-swiper__arrow-svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .bp-swiper__arrow:hover {
+    opacity: 0.85;
+  }
+
+  .bp-swiper__arrow:focus-visible {
+    outline: 2px solid var(--c-black);
+    outline-offset: 2px;
+  }
+
+  .bp-swiper__dots-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .bp-swiper__dots-wrap > * {
+    pointer-events: auto;
+  }
+
+  @keyframes bp-dot-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .bp-swiper__dots {
+    flex-shrink: 0;
+  }
+
+  .bp-swiper__dots-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10px;
+  }
+
+  .bp-swiper__dots-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .bp-swiper__dot-slot {
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bp-swiper__dot-grow {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d7d0c7;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    transition:
+      width 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+      height 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+      border-radius 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .bp-swiper__dot-grow.is-active {
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .bp-swiper__dot-grow-fill {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #000;
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .bp-swiper__dot-grow.is-active .bp-swiper__dot-grow-fill {
+    opacity: 1;
+  }
+
+  .bp-swiper__dot-grow-fill--animating {
+    animation: bp-dot-progress var(--bp-autoplay-ms, 3000ms) linear forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bp-swiper__dot-grow {
+      transition: none;
+    }
+
+    .bp-swiper__dot-grow-fill {
+      transition: none;
+    }
+
+    .bp-swiper__dot-grow-fill--animating {
+      animation: none !important;
+      transform: scaleX(1);
+    }
+  }
+
+  /* ============================== PROVEN ============================== */
+  .bp-proven {
+    background: var(--c-sec-1);
+    padding-bottom: 114px;
+  }
+
+  .bp-section__head--proven {
+    padding-top: 73px;
+  }
+
+  .bp-proven__grid {
+    margin-top: 63px;
+    row-gap: 48px;
+  }
+
+  .bp-proven__col {
+    grid-column: span 4;
+  }
+
+  .bp-proven__logo-slot {
+    height: 41px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 49px;
+  }
+
+  .bp-proven__logo {
+    display: block;
+  }
+
+  .bp-proven__title {
+    margin: 0 0 8px;
+    font: var(--w-semibold) 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-black);
+  }
+
+  .bp-proven__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 461px;
+  }
+
+  /* ============================== MARKETS ============================== */
+  .bp-markets {
+    background: var(--c-sec-1);
+    padding-bottom: 75px;
+  }
+
+  .bp-markets__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 21px;
+    margin-top: 58px;
+  }
+
+  .bp-market__media {
+    position: relative;
+    aspect-ratio: 519 / 380;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .bp-market__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bp-market__label {
+    position: absolute;
+    left: 23px;
+    bottom: 21px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    border-radius: 25px;
+    background: var(--c-black);
+    color: var(--c-white);
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    white-space: nowrap;
+  }
+
+  .bp-market__desc {
+    margin: 27px 0 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 454px;
+  }
+
+  /* ============================== LOGISTICS ============================== */
+  .bp-logistics {
+    background: var(--c-sec-1);
+    padding-bottom: 75px;
+  }
+
+  .bp-logistics__head {
+    padding-top: 89px;
+    align-items: start;
+  }
+
+  .bp-logistics__heading {
+    grid-column: 1 / 9;
+  }
+
+  .bp-logistics__desc {
+    grid-column: 9 / -1;
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 519px;
+  }
+
+  .bp-logistics__media {
+    margin-top: 89px;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 1598 / 735;
+    background: var(--c-white);
+  }
+
+  .bp-logistics__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ============================== SPECS (white band) ============================== */
+  .bp-specs {
+    background: var(--c-white);
+    padding-bottom: 73px;
+  }
+
+  .bp-specs__inner {
+    position: relative;
+  }
+
+  .bp-section__head--specs {
+    padding-top: 73px;
+  }
+
+  /* toggle at y=209 from band top, right-aligned */
+  .bp-specs__toggle {
+    position: absolute;
+    right: var(--grid-margin);
+    top: 209px;
+  }
+
+  .bp-specs__body {
+    margin-top: 62px;
+    align-items: start;
+  }
+
+  .bp-specs__intro {
+    grid-column: 1 / 4;
+  }
+
+  .bp-specs__wordmark {
+    display: block;
+    width: 191px;
+    height: 57px;
+  }
+
+  .bp-specs__desc {
+    margin: 54px 0 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 325px;
+  }
+
+  .bp-specs__scroll {
+    grid-column: 4 / -1;
+    overflow-x: auto;
+    margin-top: 94px;
+  }
+
+  .bp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .bp-table__group {
+    font: var(--w-bold) 14px / normal var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--c-black);
+    padding: 0 0 39px 18px;
+    white-space: nowrap;
+  }
+
+  .bp-table__head-row th {
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--c-black);
+    padding: 0 0 14px 8px;
+    white-space: nowrap;
+  }
+
+  .bp-table tbody td {
+    height: 30px;
+    padding: 4px 0 4px 8px;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+
+  .bp-table tbody tr:nth-child(odd) {
+    background: var(--c-sec-1);
+  }
+
+  .bp-table tbody td:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  .bp-table tbody td:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  /* group column separators (2px, #EFECE7) */
+  .bp-table__group,
+  .bp-table__head-row th:nth-child(7),
+  .bp-table__head-row th:nth-child(9),
+  .bp-table__head-row th:nth-child(11),
+  .bp-table tbody td:nth-child(7),
+  .bp-table tbody td:nth-child(9),
+  .bp-table tbody td:nth-child(11) {
+    border-left: 2px solid var(--c-sec-2);
+  }
+
+  .bp-table__head-row th:nth-child(7),
+  .bp-table__head-row th:nth-child(9),
+  .bp-table__head-row th:nth-child(11),
+  .bp-table tbody td:nth-child(7),
+  .bp-table tbody td:nth-child(9),
+  .bp-table tbody td:nth-child(11) {
+    padding-left: 18px;
+  }
+
+  /* ============================== RELATED ============================== */
+  .bp-related {
+    background: var(--c-sec-1);
+    padding-bottom: 101px;
+  }
+
+  .bp-section__head--related {
+    padding-top: 75px;
+  }
+
+  .bp-related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 79px -9px 0;
+  }
+
+  .bp-related__card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+  }
+
+  /* vertical separators between cards (556px tall starting 5px above cards) */
+  .bp-related__card + .bp-related__card::before {
+    content: '';
+    position: absolute;
+    left: -0.5px;
+    top: -5px;
+    width: 1px;
+    height: 90.7%;
+    background: #ddd9d4;
+  }
+
+  /* Figma crop: card 539x613 window onto a 3840x2160 render
+     img: w 345.08%, left -127.27%, top -50.24% */
+  .bp-related__media {
+    position: relative;
+    aspect-ratio: 539 / 613;
+    overflow: hidden;
+  }
+
+  .bp-related__media img {
+    position: absolute;
+    width: 345.08%;
+    height: auto;
+    max-width: none;
+    left: -127.27%;
+    top: -50.24%;
+  }
+
+  .bp-related__text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 75.37%;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .bp-related__name {
+    margin: 0;
+    font: var(--w-semibold) 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-black);
+  }
+
+  .bp-related__size {
+    margin: 9px 0 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    white-space: pre;
+  }
+
+  .bp-related__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: -6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============================== REQUEST A QUOTE ============================== */
+  .bp-quote {
+    background: #1b1b1b;
+    padding: 66px 0 70px;
+  }
+
+  .bp-quote__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 695px) minmax(0, 789px);
+    gap: 114px;
+    align-items: start;
+  }
+
+  .bp-quote__left .bp-eyebrow {
+    color: var(--c-white);
+    margin-top: 3px;
+  }
+
+  .bp-quote__title {
+    margin: 49px 0 0;
+    max-width: 654px;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-white);
+    letter-spacing: 0;
+  }
+
+  .bp-form {
+    margin-top: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .bp-form__row {
+    display: grid;
+    grid-template-columns: 347fr 332fr;
+    gap: 16px;
+  }
+
+  .bp-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bp-label {
+    margin: 0 0 14px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .bp-input {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 11px 18px;
+    background: var(--c-black);
+    border: 1px solid var(--c-black);
+    border-radius: 8px;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    outline: none;
+  }
+
+  .bp-input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .bp-input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .bp-textarea {
+    min-height: 106px;
+    resize: vertical;
+  }
+
+  .bp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    padding: 7px;
+  }
+
+  .bp-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+    padding: 0 13px 0 15px;
+    background: var(--c-white);
+    color: var(--c-black);
+    border-radius: 50px;
+    font: var(--w-semibold) 16px / 1 var(--ff-s);
+  }
+
+  .bp-chip__x {
+    border: 0;
+    background: transparent;
+    color: var(--c-black);
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .bp-form__submit {
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  .bp-quote__media {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 789 / 937;
+  }
+
+  /* Figma crop of the 3840x2160 source: w 283.9%, left -87.9%, top -34.47% */
+  .bp-quote__media img {
+    position: absolute;
+    width: 283.9%;
+    height: auto;
+    max-width: none;
+    left: -87.9%;
+    top: -34.47%;
+  }
+
+  /* ============================== RESPONSIVE ============================== */
+  @media (max-width: 64rem) {
+    .bp-header {
+      height: clamp(420px, 55vw, 540px);
+    }
+
+    .bp-header__meta {
+      position: static;
+      margin-top: 20px;
+      justify-content: space-between;
+      width: 100%;
+      gap: 16px;
+    }
+
+    .bp-toggle {
+      height: 54px;
+    }
+
+    .bp-toggle__btn {
+      padding: 10px 16px;
+    }
+
+    /* Overview: switch to flow layout */
+    .bp-overview {
+      aspect-ratio: auto;
+      padding: 32px var(--grid-margin) 48px;
+    }
+
+    .bp-overview__media {
+      position: static;
+      width: min(560px, 100%);
+      margin-inline: auto;
+    }
+
+    .bp-gallery__nav {
+      top: 28%;
+    }
+
+    .bp-gallery__nav--prev {
+      left: var(--grid-margin);
+    }
+
+    .bp-gallery__nav--next {
+      left: auto;
+      right: var(--grid-margin);
+    }
+
+    .bp-gallery__thumbs {
+      position: static;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .bp-gallery__thumb {
+      width: 90px;
+    }
+
+    .bp-about {
+      position: static;
+      width: auto;
+      height: auto;
+      margin-top: 32px;
+      gap: 20px;
+    }
+
+    .bp-overview__actions {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .bp-overview__cta,
+    .bp-overview__download {
+      position: static;
+    }
+
+    .bp-section__head {
+      padding-top: 56px;
+    }
+
+    .bp-section__head--proven,
+    .bp-section__head--specs,
+    .bp-section__head--related {
+      padding-top: 56px;
+    }
+
+    .bp-section__title {
+      font-size: 32px;
+      line-height: 36px;
+    }
+
+    /* Carousel (matches careers tablet behavior) */
+    .bp-swiper__viewport {
+      margin-top: 40px;
+    }
+
+    .bp-swiper__track {
+      --slide-gap: 12px;
+    }
+
+    .bp-swiper__slide {
+      flex-basis: 85%;
+      width: 85%;
+    }
+
+    .bp-feat {
+      height: 56vw;
+      min-height: 320px;
+    }
+
+    .bp-feat__desc {
+      font-size: 20px;
+      line-height: 26px;
+      max-width: 420px;
+    }
+
+    .bp-features {
+      padding-bottom: 56px;
+    }
+
+    .bp-proven {
+      padding-bottom: 64px;
+    }
+
+    .bp-proven__grid {
+      margin-top: 40px;
+    }
+
+    .bp-proven__col {
+      grid-column: 1 / -1;
+    }
+
+    .bp-proven__logo-slot {
+      margin-bottom: 28px;
+    }
+
+    .bp-markets__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .bp-logistics__head {
+      padding-top: 56px;
+    }
+
+    .bp-logistics__heading,
+    .bp-logistics__desc {
+      grid-column: 1 / -1;
+    }
+
+    .bp-logistics__desc {
+      margin-top: 20px;
+      max-width: none;
+    }
+
+    .bp-logistics__media {
+      margin-top: 32px;
+    }
+
+    .bp-specs__toggle {
+      position: static;
+      margin-top: 24px;
+    }
+
+    .bp-specs__body {
+      margin-top: 32px;
+    }
+
+    .bp-specs__intro,
+    .bp-specs__scroll {
+      grid-column: 1 / -1;
+    }
+
+    .bp-specs__scroll {
+      margin-top: 32px;
+    }
+
+    .bp-related__grid {
+      grid-template-columns: 1fr;
+      margin: 40px 0 0;
+      gap: 40px;
+    }
+
+    .bp-related__card + .bp-related__card::before {
+      display: none;
+    }
+
+    .bp-related__media {
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    .bp-related__cta {
+      margin-top: 40px;
+    }
+
+    .bp-quote__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .bp-quote__media {
+      max-width: 600px;
+      order: -1;
+    }
+
+    .bp-form {
+      margin-top: 40px;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .bp-form__row {
+      grid-template-columns: 1fr;
+    }
+
+    .bp-gallery__thumb {
+      width: 72px;
+    }
+
+    .bp-header__title {
+      line-height: 0.92;
+    }
+  }
+</style>

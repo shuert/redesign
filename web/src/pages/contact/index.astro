@@ -1,0 +1,636 @@
+---
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import heroImg from '../../assets/contact/245624c7253b02d89996388c0c6276de1f6916a2.png';
+import locImg1 from '../../assets/contact/fd5389ffdf5abc87db6180ec2ad180bdb2b74e7d.png';
+import locImg2 from '../../assets/contact/b871b35a38f37fc4df733f44372a9191d74c1ac0.png';
+import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+---
+
+<Mainlayout title="Contact">
+  <!-- Hero -->
+  <section class="ct-hero">
+    <div class="ct-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="ct-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="ct-hero__gradient"></div>
+    </div>
+    <div class="ct-hero__content container">
+      <div class="page-grid ct-hero__grid">
+        <div class="ct-hero__left">
+          <p class="ct-hero__breadcrumb">
+            <span class="ct-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>CONTACT
+          </p>
+          <h1 class="detail-xl text-white">contact</h1>
+        </div>
+        <div class="ct-hero__right">
+          <p class="ct-hero__desc text-white">
+            We appreciate your interest in learning how Shuert can help you find the right packaging solution for your project. Please use the form below or call <span class="ct-hero__phone">(586) 254-4590</span> to discuss your needs with our team.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section class="ct-loc">
+    <div class="container">
+      <p class="ct-loc__eyebrow label">LOCATIONS</p>
+      <h2 class="ct-loc__heading">Where we're located.</h2>
+
+      <div class="ct-loc__images page-grid">
+        <div class="ct-loc__img-wrap ct-loc__img-wrap--left">
+          <img
+            src={locImg1.src}
+            alt="Shuert headquarters and production facility"
+            class="ct-loc__img"
+            width={locImg1.width}
+            height={locImg1.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="ct-loc__badge">HQ &amp; Production</span>
+        </div>
+        <div class="ct-loc__img-wrap ct-loc__img-wrap--right">
+          <img
+            src={locImg2.src}
+            alt="Shuert fulfillment center"
+            class="ct-loc__img"
+            width={locImg2.width}
+            height={locImg2.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="ct-loc__badge">Fulfillment</span>
+        </div>
+      </div>
+
+      <div class="ct-loc__addresses page-grid">
+        <div class="ct-loc__address ct-loc__address--left">
+          <p>6600 Dobry Road<br />Sterling Heights, MI 48314</p>
+          <p>(586) 254-4590</p>
+        </div>
+        <div class="ct-loc__address ct-loc__address--right">
+          <p>44650 Merrill Road<br />Sterling Heights, MI 48314</p>
+          <p>Shipping Hours: 8am EST - 5pm EST</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request More Information -->
+  <section class="ct-form">
+    <div class="container">
+      <div class="ct-form__layout">
+        <div class="ct-form__side">
+          <p class="ct-form__eyebrow label">REQUEST MORE INFORMATION</p>
+          <p class="ct-form__title text-white">
+            Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque.
+          </p>
+          <form class="ct-form__fields" aria-label="Request more information">
+            <div class="ct-form__row ct-form__row--half">
+              <div class="ct-form__field">
+                <label class="ct-form__label">FIRST NAME</label>
+                <input type="text" class="ct-form__input" placeholder="First" />
+              </div>
+              <div class="ct-form__field">
+                <label class="ct-form__label">LAST NAME</label>
+                <input type="text" class="ct-form__input" placeholder="First" />
+              </div>
+            </div>
+            <div class="ct-form__field">
+              <label class="ct-form__label">COMPANY NAME</label>
+              <input type="text" class="ct-form__input" placeholder="Company" />
+            </div>
+            <div class="ct-form__row ct-form__row--half">
+              <div class="ct-form__field">
+                <label class="ct-form__label">EMAIL</label>
+                <input type="email" class="ct-form__input" placeholder="Email" />
+              </div>
+              <div class="ct-form__field">
+                <label class="ct-form__label">PHONE</label>
+                <input type="tel" class="ct-form__input" placeholder="Phone" />
+              </div>
+            </div>
+            <div class="ct-form__field">
+              <label class="ct-form__label">SPECIFIC INTEREST</label>
+              <div class="ct-form__select">
+                <div class="ct-form__tags">
+                  <span class="ct-form__tag">
+                    fast moving consumer goods
+                    <span class="ct-form__tag-x" aria-hidden="true">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </span>
+                  </span>
+                  <span class="ct-form__tag">
+                    automotive
+                    <span class="ct-form__tag-x" aria-hidden="true">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </span>
+                  </span>
+                </div>
+                <svg class="ct-form__select-caret" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M0.5 0V10.14L10.64 0" stroke="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="ct-form__field">
+              <label class="ct-form__label">COMMENTS</label>
+              <textarea class="ct-form__input ct-form__textarea" placeholder=""></textarea>
+            </div>
+            <button type="submit" class="ct-form__submit">Submit</button>
+          </form>
+        </div>
+        <div class="ct-form__media">
+          <img
+            src={formImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="ct-form__img"
+            width={formImg.width}
+            height={formImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  const form = document.querySelector('.ct-form__fields');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .ct-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .ct-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ct-hero__img {
+    position: absolute;
+    width: 104.15%;
+    height: 126.23%;
+    top: -15.67%;
+    left: -3.13%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .ct-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0, 0, 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgb(0, 0, 0) 100%);
+  }
+
+  .ct-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .ct-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .ct-hero__left {
+    grid-column: 1 / 9;
+  }
+
+  .ct-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .ct-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .ct-hero__left .detail-xl {
+    margin: 0;
+  }
+
+  .ct-hero__right {
+    grid-column: 9 / -1;
+  }
+
+  .ct-hero__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 520px;
+  }
+
+  .ct-hero__phone {
+    color: var(--c-red);
+  }
+
+  /* ================================================================
+     LOCATIONS
+     ================================================================ */
+  .ct-loc {
+    background: var(--c-sec-1);
+    padding: 69px 0 125px;
+  }
+
+  .ct-loc__eyebrow {
+    margin: 0 0 25px;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .ct-loc__heading {
+    margin: 0 0 61px;
+    font: var(--w-medium) clamp(1.75rem, 2.5vw, 40px) / 43px var(--ff-r);
+    color: var(--c-black);
+    max-width: 789px;
+  }
+
+  .ct-loc__images {
+    margin-bottom: 53px;
+  }
+
+  .ct-loc__img-wrap {
+    position: relative;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 789 / 565;
+  }
+
+  .ct-loc__img-wrap--left {
+    grid-column: 1 / 7;
+  }
+
+  .ct-loc__img-wrap--right {
+    grid-column: 7 / -1;
+  }
+
+  .ct-loc__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ct-loc__badge {
+    position: absolute;
+    bottom: 8%;
+    left: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px;
+    background: var(--c-black);
+    border-radius: 25px;
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    color: var(--c-white);
+    white-space: nowrap;
+  }
+
+  .ct-loc__address {
+    font: var(--w-medium) 20px / 23px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .ct-loc__address--left {
+    grid-column: 1 / 7;
+  }
+
+  .ct-loc__address--right {
+    grid-column: 7 / -1;
+  }
+
+  .ct-loc__address p {
+    margin: 0;
+  }
+
+  .ct-loc__address p + p {
+    margin-top: 23px;
+  }
+
+  /* ================================================================
+     FORM SECTION
+     ================================================================ */
+  .ct-form {
+    background: #1b1b1b;
+    padding: clamp(3rem, 4vw, 69px) 0 clamp(3rem, 3.8vw, 65px);
+  }
+
+  .ct-form__layout {
+    display: grid;
+    align-items: start;
+  }
+
+  .ct-form__eyebrow {
+    margin: 0 0 36px;
+    color: var(--c-white);
+    letter-spacing: 1.54px;
+  }
+
+  .ct-form__title {
+    margin: 0 0 63px;
+    max-width: 654px;
+    font: var(--w-light) clamp(1.375rem, 1.8vw, 30px) / 40px var(--ff-r);
+  }
+
+  .ct-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .ct-form__row--half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .ct-form__label {
+    display: block;
+    margin-bottom: 14px;
+    font: var(--w-bold) 14px / 1 var(--ff-s);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .ct-form__input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: 400 16px / 22px var(--ff-r);
+    outline: none;
+  }
+
+  .ct-form__input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .ct-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .ct-form__textarea {
+    height: 148px;
+    padding: 18px;
+    resize: none;
+  }
+
+  .ct-form__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 7px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  .ct-form__tags {
+    display: flex;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .ct-form__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 12px;
+    background: var(--c-white);
+    border-radius: 50px;
+    font: var(--w-semibold) 16px / 1 var(--ff-s);
+    color: var(--c-black);
+    white-space: nowrap;
+  }
+
+  .ct-form__tag-x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .ct-form__select-caret {
+    flex-shrink: 0;
+    transform: rotate(-45deg);
+  }
+
+  .ct-form__submit {
+    align-self: flex-start;
+    padding: 15px 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .ct-form__submit:hover {
+    opacity: 0.85;
+  }
+
+  .ct-form__media {
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .ct-form__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ================================================================
+     DESKTOP (≥ 1728px)
+     ================================================================ */
+  @media (min-width: 1728px) {
+    .ct-form__layout {
+      grid-template-columns: 695px 789px;
+      column-gap: 114px;
+    }
+
+    .ct-form__media {
+      width: 789px;
+      max-width: none;
+      aspect-ratio: 789 / 871;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (1025px – 1727px)
+     ================================================================ */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .ct-form__layout {
+      grid-template-columns: minmax(0, 695fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 7vw, 114px);
+    }
+
+    .ct-form__media {
+      aspect-ratio: 789 / 871;
+    }
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .ct-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .ct-hero__left {
+      grid-column: 1 / -1;
+      padding-bottom: 0;
+    }
+
+    .ct-hero__right {
+      grid-column: 1 / -1;
+      margin-top: 1.25rem;
+    }
+
+    .ct-hero__desc {
+      max-width: none;
+    }
+
+    /* Locations */
+    .ct-loc {
+      padding: 48px 0 64px;
+    }
+
+    .ct-loc__heading {
+      margin-bottom: 32px;
+    }
+
+    .ct-loc__img-wrap--left,
+    .ct-loc__img-wrap--right {
+      grid-column: 1 / -1;
+    }
+
+    .ct-loc__img-wrap--right {
+      margin-top: var(--grid-gutter);
+    }
+
+    .ct-loc__images {
+      margin-bottom: 32px;
+    }
+
+    .ct-loc__address--left,
+    .ct-loc__address--right {
+      grid-column: 1 / -1;
+    }
+
+    .ct-loc__address--right {
+      margin-top: 24px;
+    }
+
+    /* Form */
+    .ct-form__layout {
+      grid-template-columns: 1fr;
+      row-gap: 2.5rem;
+    }
+
+    .ct-form__media {
+      max-width: 600px;
+      aspect-ratio: 789 / 871;
+    }
+
+    .ct-form__title {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .ct-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .ct-hero__img {
+      width: 160%;
+      left: -40%;
+    }
+
+    .ct-loc {
+      padding: 32px 0 48px;
+    }
+
+    .ct-loc__eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .ct-loc__heading {
+      font-size: 28px;
+      line-height: 34px;
+      margin-bottom: 24px;
+    }
+
+    .ct-loc__badge {
+      left: 16px;
+      padding: 5px 14px;
+      font-size: 14px;
+    }
+
+    .ct-loc__address {
+      font-size: 17px;
+      line-height: 22px;
+    }
+
+    .ct-form__row--half {
+      grid-template-columns: 1fr;
+    }
+
+    .ct-form__fields {
+      gap: 18px;
+    }
+
+    .ct-form__title {
+      line-height: 34px;
+    }
+  }
+</style>

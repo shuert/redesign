@@ -1,0 +1,672 @@
+---
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import heroImg from '../../assets/capabilities/d0898f74e6a17d8157762d57261d2b429feb1f29.png';
+import reachOutImg from '../../assets/capabilities/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import playIcon from '../../assets/capabilities/42208bd656b84eb6378eaaeb7657c54f8badc043.svg?url';
+
+import img01 from '../../assets/capabilities/cb3b6eafff44df7558209d756b6695b8aba566e1.png';
+import img02 from '../../assets/capabilities/a6d9ba3ad0c7d6f3ebaac9ecad6d00dfd962098b.png';
+import img03 from '../../assets/capabilities/04896979f7eaa8c7c63cacdad52dff39383582b7.png';
+import img04 from '../../assets/capabilities/0480e4649dac68afe571e55ee77e5c481440aef4.png';
+import img06 from '../../assets/capabilities/cd6fd03d8db6e3678c1a0acaf59d04ac6dffabdb.png';
+import img07 from '../../assets/capabilities/2b1c7fecc62f5fca81aed1dd6ddb8c826af6c0e6.png';
+
+const placeholderDesc = 'Lorem ipsum dolor sit amet consectetur. Ut purus non urna sagittis scelerisque eu. Sem a amet viverra lectus egestas sed nibh amet facilisis. Tincidunt ullamcorper vulputate id nisi ut massa. Blandit pharetra a nibh nunc arcu. Potenti feugiat tellus libero maecenas. Arcu vitae feugiat et commodo tincidunt lorem. Mattis diam a varius vitae libero. Curabitur ut urna aliquam mauris. Enim condimentum scelerisque maecenas sagittis orci amet arcu amet. Sed nulla convallis sodales lacus tincidunt sagittis. Dictum purus maecenas nulla lectus vitae sed pharetra auctor tristique. Tellus cras volutpat ut sapien hendrerit.';
+
+const capabilities = [
+  { num: '01', title: 'Design & Engineering', img: img01, desc: placeholderDesc },
+  { num: '02', title: 'Testing', img: img02, desc: placeholderDesc },
+  { num: '03', title: 'Tooling', img: img03, desc: placeholderDesc },
+  { num: '04', title: 'Extrusion', img: img04, desc: placeholderDesc },
+  { num: '05', title: 'Thermoforming', img: heroImg, desc: placeholderDesc },
+  { num: '06', title: 'Injection Molding', img: img06, desc: placeholderDesc },
+  { num: '07', title: 'Recycling', img: img07, desc: placeholderDesc },
+];
+---
+
+<Mainlayout title="Capabilities">
+  <!-- Hero -->
+  <section class="c-hero">
+    <div class="c-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="c-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="c-hero__gradient"></div>
+    </div>
+    <div class="c-hero__content container">
+      <div class="page-grid c-hero__grid">
+        <div class="c-hero__left">
+          <p class="c-hero__breadcrumb">
+            <span class="c-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>CAPABILITIES
+          </p>
+          <h1 class="detail-xl text-white">capabilities</h1>
+        </div>
+        <div class="c-hero__right">
+          <p class="c-hero__desc text-white">
+            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
+          </p>
+        </div>
+      </div>
+      <a class="c-hero__watch" href="#" aria-label="Watch video">
+        <span class="c-hero__watch-label">WATCH</span>
+        <img src={playIcon} alt="" width="50" height="50" class="c-hero__watch-icon" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="c-body">
+    <div class="container">
+      {capabilities.map((cap, i) => (
+        <article class:list={['c-row page-grid', { 'c-row--reverse': i % 2 !== 0 }]}>
+          <div class="c-row__img-wrap">
+            <img
+              src={cap.img.src}
+              alt={cap.title}
+              class="c-row__img"
+              width={cap.img.width}
+              height={cap.img.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="c-row__text reveal">
+            <div class="c-row__head">
+              <span class="c-row__number">{cap.num}</span>
+              <h2 class="c-row__title">{cap.title}</h2>
+            </div>
+            <p class="c-row__desc">{cap.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Reach Out -->
+  <section class="c-reach-out">
+    <div class="container c-reach-out__inner">
+      <div class="c-reach-out__grid">
+        <div class="c-reach-out__content">
+          <p class="label c-reach-out__eyebrow">REACH OUT</p>
+          <h2 class="c-reach-out__title text-white reveal">
+            Stay in the loop on all<br />
+            things Shuert, from product updates to exhibitions we're attending.
+          </h2>
+          <form class="c-reach-out__form" aria-label="Email updates">
+            <div class="c-reach-out__field">
+              <input
+                type="email"
+                class="c-reach-out__input"
+                placeholder="Email Address"
+                autocomplete="email"
+                inputmode="email"
+                aria-label="Email address"
+              />
+              <button type="submit" class="c-reach-out__submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="c-reach-out__media">
+          <img
+            src={reachOutImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="c-reach-out__img"
+            width={reachOutImg.width}
+            height={reachOutImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  const form = document.querySelector('.c-reach-out__form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .c-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .c-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .c-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -21.18%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .c-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0, 0, 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgba(0, 0, 0, 0.25) 100%);
+  }
+
+  .c-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .c-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .c-hero__left {
+    grid-column: 1 / 9;
+  }
+
+  .c-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .c-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .c-hero__left .detail-xl {
+    margin: 0;
+  }
+
+  .c-hero__right {
+    grid-column: 9 / -1;
+  }
+
+  .c-hero__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 520px;
+  }
+
+  /* WATCH button */
+  .c-hero__watch {
+    position: absolute;
+    right: var(--grid-margin);
+    bottom: clamp(100px, 9.6vw, 166px);
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    text-decoration: none;
+    color: var(--c-white);
+    z-index: 2;
+  }
+
+  .c-hero__watch-label {
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+  }
+
+  .c-hero__watch-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .c-hero__watch:hover .c-hero__watch-icon {
+    opacity: 0.75;
+  }
+
+  /* ================================================================
+     CAPABILITIES BODY (cream background)
+     ================================================================ */
+  .c-body {
+    position: relative;
+    background: var(--c-sec-1);
+    padding: 77px 0;
+  }
+
+  /* ================================================================
+     CAPABILITY ROW
+     ================================================================ */
+  .c-row {
+    align-items: start;
+  }
+
+  .c-row + .c-row {
+    margin-top: 77px;
+  }
+
+  /* --- Default (odd): image left, text right --- */
+  .c-row__img-wrap {
+    grid-column: 1 / 8;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 924 / 662;
+    position: relative;
+  }
+
+  .c-row__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .c-row__text {
+    grid-column: 8 / -1;
+    padding-left: 55px;
+    padding-top: 122px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* --- Reversed (even): text left, image right --- */
+  .c-row--reverse .c-row__img-wrap {
+    grid-column: 6 / -1;
+    grid-row: 1;
+  }
+
+  .c-row--reverse .c-row__text {
+    grid-column: 1 / 6;
+    grid-row: 1;
+    padding-left: 58px;
+  }
+
+  /* --- Text elements --- */
+  .c-row__head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .c-row__number {
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-sec-3);
+  }
+
+  .c-row__title {
+    margin: 0;
+    font-family: var(--ff-r);
+    font-weight: 650;
+    font-size: 30px;
+    line-height: 33px;
+    color: var(--c-black);
+    letter-spacing: 0;
+  }
+
+  .c-row__desc {
+    margin: 39px 0 0;
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+    max-width: 519px;
+  }
+
+  /* ================================================================
+     REACH OUT
+     ================================================================ */
+  .c-reach-out {
+    position: relative;
+    background: #1b1b1b;
+    padding: 73px 0 73px;
+    box-sizing: border-box;
+  }
+
+  .c-reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+  }
+
+  .c-reach-out__eyebrow {
+    margin: 0 0 49px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.54px;
+  }
+
+  .c-reach-out__title {
+    margin: 0;
+    max-width: 654px;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.75rem, 2.8vw, 48px);
+    line-height: 56px;
+    letter-spacing: 0;
+  }
+
+  .c-reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
+  .c-reach-out__field {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+  }
+
+  .c-reach-out__input {
+    flex: 1;
+    min-width: 0;
+    height: 22px;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    padding: 0;
+    outline: none;
+  }
+
+  .c-reach-out__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .c-reach-out__submit {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+  }
+
+  .c-reach-out__submit:hover {
+    opacity: 0.92;
+  }
+
+  .c-reach-out__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .c-reach-out__media {
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 789 / 691;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .c-reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 42%;
+  }
+
+  /* ================================================================
+     REVEAL ANIMATION
+     ================================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================================================================
+     DESKTOP (≥ 1728px)
+     ================================================================ */
+  @media (min-width: 1728px) {
+    .c-reach-out__title {
+      font-size: 48px;
+      line-height: 56px;
+    }
+
+    .c-reach-out__grid {
+      grid-template-columns: 654px 789px;
+      column-gap: 155px;
+    }
+
+    .c-reach-out__media {
+      width: 789px;
+      max-width: none;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (1025px – 1727px)
+     ================================================================ */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .c-reach-out__grid {
+      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 8.9vw, 155px);
+    }
+
+    .c-reach-out__form {
+      margin-top: clamp(4rem, 19.5vw, 336px);
+    }
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .c-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .c-hero__left {
+      grid-column: 1 / -1;
+      padding-bottom: 0;
+    }
+
+    .c-hero__right {
+      grid-column: 1 / -1;
+      margin-top: 1.25rem;
+    }
+
+    .c-hero__desc {
+      max-width: none;
+    }
+
+    .c-hero__watch {
+      bottom: clamp(80px, 12vw, 140px);
+    }
+
+    /* Capability rows: stack vertically */
+    .c-body {
+      padding: 48px 0;
+    }
+
+    .c-row + .c-row {
+      margin-top: 56px;
+    }
+
+    .c-row__img-wrap {
+      grid-column: 1 / -1;
+      aspect-ratio: 924 / 520;
+    }
+
+    .c-row__text {
+      grid-column: 1 / -1;
+      padding-left: 0;
+      padding-top: 28px;
+    }
+
+    .c-row--reverse .c-row__img-wrap {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    .c-row--reverse .c-row__text {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding-left: 0;
+    }
+
+    .c-row__title {
+      font-size: 26px;
+      line-height: 30px;
+    }
+
+    .c-row__desc {
+      font-size: 18px;
+      line-height: 24px;
+      max-width: none;
+    }
+
+    /* Reach Out */
+    .c-reach-out {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .c-reach-out__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .c-reach-out__title {
+      max-width: none;
+      line-height: 1.2;
+    }
+
+    .c-reach-out__form {
+      margin-top: 2rem;
+      max-width: none;
+    }
+
+    .c-reach-out__field {
+      height: auto;
+      min-height: 65px;
+      flex-wrap: wrap;
+      padding: 10px 10px 10px 20px;
+    }
+
+    .c-reach-out__submit {
+      height: 48px;
+      min-width: auto;
+    }
+
+    .c-reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      max-width: none;
+    }
+
+    .c-reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .c-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .c-hero__img {
+      width: 160%;
+      left: -40%;
+    }
+
+    .c-hero__watch {
+      bottom: clamp(60px, 10vw, 100px);
+      gap: 12px;
+    }
+
+    .c-hero__watch-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .c-body {
+      padding: 32px 0;
+    }
+
+    .c-row + .c-row {
+      margin-top: 40px;
+    }
+
+    .c-row__img-wrap {
+      aspect-ratio: 924 / 480;
+    }
+
+    .c-row__text {
+      padding-top: 20px;
+    }
+
+    .c-row__number {
+      font-size: 12px;
+    }
+
+    .c-row__title {
+      font-size: 22px;
+      line-height: 26px;
+    }
+
+    .c-row__desc {
+      font-size: 16px;
+      line-height: 22px;
+      margin-top: 16px;
+    }
+  }
+</style>

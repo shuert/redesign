@@ -1,17 +1,1064 @@
 ---
-
+import Mainlayout from '../layouts/Mainlayout.astro';
+import ExploreHoverCard from '../components/ExploreHoverCard.astro';
+import palletImg from '../assets/home/Uni-Directional-Pallet_v02.png';
+import productFamilyImg from '../assets/home/Shuert_Product_Family_v01_v02.png';
+import gridImg from '../assets/home/Isometric_Grid_v02 1.png';
+import exploreCapabilitiesImg from '../assets/home/Rectangle 30.png';
+import exploreAboutImg from '../assets/home/Rectangle 29.png';
+import iconAutomotive from '../assets/home/7c61e96fd523fbfee58ef2dc967fb250ae0ac962.svg?url';
+import iconAgriculture from '../assets/home/e437b82618ada1bd3baea1071885d346ec78d1e1.svg?url';
+import iconAutomatedSystems from '../assets/home/7850fb2d2eeabb768ee1c47c0e2307c7bbddb2da.svg?url';
+import iconConstruction from '../assets/home/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
+import iconEcommerce from '../assets/home/4c5e31e9b4808bff05cac0ef0086008fb8389b8a.svg?url';
+import iconMore from '../assets/home/66fac9b62bb604a30a73f2e66a4d01544af56ce2.svg?url';
+import iconArrow from '../assets/home/e1e05d54610c23a46c0f381b38cd27e6782c2106.svg?url';
+import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Mainlayout title="Home">
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <img
+        src={palletImg.src}
+        alt=""
+        class="hero__img"
+        width={palletImg.width}
+        height={palletImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="hero__gradient"></div>
+    </div>
+
+    <div class="hero__content container">
+      <div class="page-grid hero__grid">
+        <div class="hero__text col-full">
+          <h1 class="detail-xl text-white">leaders in reusable<br />transport packaging</h1>
+          <p class="p-lg text-white hero__subtitle">
+            Providing Innovative Supply Chain<br />Solutions Since 1971
+          </p>
+          <a href="/products" class="button button-glass">See All Products</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll">
+        <span class="label text-white">Learn More</span>
+        <button class="hero__scroll-btn" type="button" aria-label="Scroll down">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+            <circle cx="25" cy="25" r="25" transform="rotate(-90 25 25)" fill="#F7F5F2"/>
+            <path d="M29.6063 27.7738L24.8032 32.5769L20.0001 27.7738" stroke="black" stroke-linecap="round"/>
+            <path d="M24.8032 32.5772L24.8032 17.4229" stroke="black" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="container">
+      <div class="page-grid">
+        <h2 class="statement__heading text-white reveal">
+          We invent solutions in reusable transport packaging that move goods more efficiently.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <div class="showcase__grid-bg" aria-hidden="true">
+      <img
+        src={gridImg.src}
+        alt=""
+        class="showcase__grid-img"
+        width={gridImg.width}
+        height={gridImg.height}
+      />
+      <div class="showcase__grid-gradient"></div>
+    </div>
+
+    <div class="showcase__products">
+      <img
+        src={productFamilyImg.src}
+        alt="Shuert product family — pallets, containers, and bulk boxes"
+        class="showcase__products-img"
+        width={productFamilyImg.width}
+        height={productFamilyImg.height}
+      />
+    </div>
+
+    <div class="showcase__label container">
+      <span class="label" style="color: rgba(255,255,255,0.35); letter-spacing: 0.11em;">Hover to Explore</span>
+    </div>
+  </section>
+
+  <section class="explore-pair">
+    <div class="container">
+      <div class="explore-pair__grid">
+        <ExploreHoverCard
+          href="/capabilities"
+          image={exploreCapabilitiesImg}
+          imageAlt="Forklift and CNC machine in Shuert manufacturing"
+          eyebrow="Capabilities"
+          eyebrowVariant="plain"
+          title="Vertically integrated services without handoff compromise."
+          cta="Explore Our Capabilities"
+        />
+        <ExploreHoverCard
+          href="/about/whyshuert"
+          image={exploreAboutImg}
+          imageAlt="Team inspecting a wooden mold in the workshop"
+          eyebrow="Why Choose Shuert"
+          eyebrowVariant="pill"
+          title="From the start with material selection, we've never compromised the product."
+          cta="Learn More About Us"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="markets-grid" aria-labelledby="markets-heading">
+    <div class="markets-grid__deco" aria-hidden="true">
+      <img
+        src={gridImg.src}
+        alt=""
+        class="markets-grid__deco-img"
+        width={gridImg.width}
+        height={gridImg.height}
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="markets-grid__deco-fade"></div>
+    </div>
+    <div class="container markets-grid__inner">
+      <p class="label markets-grid__eyebrow" style="color: rgba(255,255,255,0.35);">Markets we work in</p>
+      <h2 id="markets-heading" class="markets-grid__title text-white reveal">
+        Modular products to serve every market.
+      </h2>
+
+      <div class="markets-grid__cells">
+        <article class="markets-cell">
+          <div class="markets-cell__top">
+            <img class="markets-cell__icon" src={iconAutomotive} alt="" width="36" height="27" />
+            <h3 class="markets-cell__name">Automotive</h3>
+          </div>
+          <p class="markets-cell__desc">
+            Durable, returnable packaging for line-side delivery, kitting, and high-mix assembly.
+          </p>
+          <a class="markets-cell__link" href="/markets/automotive">
+            <span class="label">Learn more</span>
+            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
+          </a>
+        </article>
+
+        <article class="markets-cell">
+          <div class="markets-cell__top">
+            <img class="markets-cell__icon" src={iconAgriculture} alt="" width="28" height="35" />
+            <h3 class="markets-cell__name">Agriculture</h3>
+          </div>
+          <p class="markets-cell__desc">
+            Hygienic, ventilated designs for produce, protein, and cold-chain distribution.
+          </p>
+          <a class="markets-cell__link" href="/markets/agriculture">
+            <span class="label">Learn more</span>
+            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
+          </a>
+        </article>
+
+        <article class="markets-cell">
+          <div class="markets-cell__top">
+            <img class="markets-cell__icon" src={iconAutomatedSystems} alt="" width="35" height="35" />
+            <h3 class="markets-cell__name">Automated Systems</h3>
+          </div>
+          <p class="markets-cell__desc">
+            Dimensionally consistent loads for conveyors, ASRS, and robotic handling.
+          </p>
+          <a class="markets-cell__link" href="/markets/automated-systems">
+            <span class="label">Learn more</span>
+            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
+          </a>
+        </article>
+
+        <article class="markets-cell">
+          <div class="markets-cell__top">
+            <img class="markets-cell__icon" src={iconConstruction} alt="" width="34" height="35" />
+            <h3 class="markets-cell__name">Construction</h3>
+          </div>
+          <p class="markets-cell__desc">
+            Rugged, reusable solutions for heavy materials, job-site logistics, and bulk shipments.
+          </p>
+          <a class="markets-cell__link" href="/markets/construction">
+            <span class="label">Learn more</span>
+            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
+          </a>
+        </article>
+
+        <article class="markets-cell">
+          <div class="markets-cell__top">
+            <img class="markets-cell__icon" src={iconEcommerce} alt="" width="34" height="35" />
+            <h3 class="markets-cell__name">E-Commerce</h3>
+          </div>
+          <p class="markets-cell__desc">
+            Cube-efficient totes and pallets tuned for fulfillment, sortation, and returns.
+          </p>
+          <a class="markets-cell__link" href="/markets/e-commerce">
+            <span class="label">Learn more</span>
+            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
+          </a>
+        </article>
+
+        <article class="markets-cell markets-cell--more">
+          <div class="markets-cell__top">
+            <img class="markets-cell__icon markets-cell__icon--more" src={iconMore} alt="" width="24" height="24" />
+            <h3 class="markets-cell__name">And More</h3>
+          </div>
+          <p class="markets-cell__desc">
+            From grocery to government — modular platforms adapted to your sector.
+          </p>
+          <a class="markets-cell__link" href="/markets">
+            <span class="label">See all</span>
+            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
+          </a>
+        </article>
+      </div>
+
+      <div class="markets-grid__cta">
+        <a href="/markets" class="button button-primary">Explore All Markets</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reach-out" aria-labelledby="reach-out-heading">
+    <div class="container reach-out__inner">
+      <div class="reach-out__grid">
+        <div class="reach-out__content">
+          <p class="label reach-out__eyebrow" style="color: rgba(255, 255, 255, 0.35);">Reach out</p>
+          <h2 id="reach-out-heading" class="reach-out__title text-white reveal">
+            Stay in the loop on all<br />
+            things Shuert, from product updates to exhibitions we’re attending.
+          </h2>
+          <form class="reach-out__form" aria-label="Email updates">
+            <div class="reach-out__field">
+              <input
+                type="email"
+                id="reach-out-email"
+                name="email"
+                class="reach-out__input"
+                placeholder="Email Address"
+                autocomplete="email"
+                inputmode="email"
+                aria-label="Email address"
+              />
+              <button type="submit" class="reach-out__submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="reach-out__media">
+          <img
+            src={reachOutImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="reach-out__img"
+            width={reachOutImg.width}
+            height={reachOutImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const heroBg = document.querySelector('.hero__bg');
+  const heroContent = document.querySelector('.hero__content');
+
+  if (hero && heroBg && heroContent) {
+    let currentBgY = 0;
+    let targetBgY = 0;
+    const ease = 0.06;
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      const heroH = hero.offsetHeight;
+      const progress = Math.min(scrollY / heroH, 1);
+
+      targetBgY = scrollY * 0.15;
+      heroContent.style.opacity = String(1 - progress * 1.5);
+      heroContent.style.transform = `translateY(${scrollY * -0.3}px)`;
+    };
+
+    const animate = () => {
+      currentBgY = lerp(currentBgY, targetBgY, ease);
+      heroBg.style.transform = `translateY(${currentBgY}px)`;
+      requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    animate();
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  const reachOutForm = document.querySelector('.reach-out__form');
+  reachOutForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  .hero {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  /* ── Background image layer ── */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 120%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center center;
+    transform: scaleX(-1);
+  }
+
+  .hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgb(0, 0, 0) 4.05%, rgba(0, 0, 0, 0) 31.05%),
+      linear-gradient(127.81deg, rgba(0, 0, 0, 0) 67.35%, rgb(0, 0, 0) 84.9%);
+  }
+
+  /* ── Content layer ── */
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    will-change: transform, opacity;
+  }
+
+  .hero__grid {
+    flex: 1;
+    align-content: center;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero__subtitle {
+    line-height: 1.3;
+    max-width: 322px;
+  }
+
+  /* ── Scroll indicator ── */
+  .hero__scroll {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero__scroll-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .detail-xl {
+    margin: 0px;
+  }
+
+  /* ── Statement section ── */
+  .statement {
+    position: relative;
+    z-index: 2;
+    background: var(--c-black);
+    padding: 235px 0 121px;
+  }
+
+  .statement__heading {
+    grid-column: 4 / 10;
+    font: var(--w-medium) var(--h2) / 1.167 var(--ff-r);
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ── Showcase section ──
+     Figma 575:1513: bg gradient black → #1b1b1b by 25.88%
+     Grid: full-bleed layer + mask (no clipped box — avoids hard seam)
+     Gradient overlay: single smooth vignette (dual gradients caused mid-band seam) */
+  .showcase {
+    position: relative;
+    z-index: 2;
+    /* Charcoal mid — bottom resolves to pure black like Figma (not gray) */
+    background: linear-gradient(
+      180deg,
+      #000 0%,
+      #1b1b1b 25.88%,
+      #1b1b1b 52%,
+      #0a0a0a 78%,
+      #000 100%
+    );
+    overflow: hidden;
+  }
+
+  .showcase__grid-bg {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .showcase__grid-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 72%;
+    max-width: none;
+    object-fit: contain;
+    object-position: center bottom;
+    opacity: 0.5;
+    /* Fade grid in from top; blend toward charcoal (#1b1b1b) like Figma */
+    /* Top fade in + bottom fade out so grid vanishes into black */
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 12%,
+      #000 28%,
+      #000 68%,
+      rgba(0, 0, 0, 0.35) 82%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 12%,
+      #000 28%,
+      #000 68%,
+      rgba(0, 0, 0, 0.35) 82%,
+      transparent 100%
+    );
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+  }
+
+  .showcase__grid-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* Strong vignette — opaque black from mid-bottom so no gray shows through */
+    /* background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.35) 55%,
+      rgba(0, 0, 0, 0.75) 68%,
+      #000 82%,
+      #000 100%
+    ); */
+  }
+
+  .showcase__products {
+    position: relative;
+    z-index: 1;
+  }
+
+  .showcase__products-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .showcase__label {
+    position: absolute;
+    z-index: 2;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+  }
+
+  /* ── Explore pair (dual image cards, Figma 1224:3815) ── */
+  .explore-pair {
+    position: relative;
+    z-index: 2;
+    background: var(--c-black);
+    padding: 3.5rem 0 1rem;
+  }
+
+  .explore-pair__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--grid-gutter);
+  }
+
+  @media (max-width: 48rem) {
+    .explore-pair {
+      padding: 2.5rem 0 3.5rem;
+    }
+
+    .explore-pair__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Markets grid (Figma 575:1219) ── */
+  .markets-grid {
+    position: relative;
+    z-index: 2;
+    background: var(--c-black);
+    overflow: hidden;
+    padding: 4.375rem 0 6.25rem;
+  }
+
+  .markets-grid__deco {
+    position: absolute;
+    z-index: 0;
+    top: -27.5rem;
+    right: -15%;
+    width: min(106.25rem, 240%);
+    max-width: none;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+
+  .markets-grid__deco-img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: right top;
+    transform: translate(6%, -2%);
+  }
+
+  .markets-grid__deco-fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(198.82deg, rgba(0, 0, 0, 0) 67.6%, #000 84.36%),
+      linear-gradient(21.76deg, rgba(0, 0, 0, 0) 70.8%, #000 83.42%),
+      linear-gradient(-11.06deg, rgba(0, 0, 0, 0) 63.2%, #000 80.83%),
+      linear-gradient(156.3deg, rgba(0, 0, 0, 0) 66.4%, #000 84.29%);
+  }
+
+  .markets-grid__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .markets-grid__eyebrow {
+    margin: 0 0 1.5625rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    letter-spacing: 0.11em;
+  }
+
+  .markets-grid__title {
+    margin: 0;
+    max-width: 30.625rem;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.75rem, 2.2vw, 2.5rem);
+    line-height: 1.075;
+    letter-spacing: 0;
+  }
+
+  .markets-grid__cells {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    margin-top: 5.5625rem;
+  }
+
+  .markets-cell {
+    border-right: 1px solid #2d2d2d;
+    border-bottom: 1px solid #2d2d2d;
+    padding: 1.5625rem 0 1.75rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .markets-cell:nth-child(3n + 1) {
+    padding-left: 0;
+    padding-right: 2.5rem;
+  }
+
+  .markets-cell:nth-child(3n + 2) {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .markets-cell:nth-child(3n) {
+    border-right: none;
+    padding-left: 2.5rem;
+    padding-right: 0;
+  }
+
+  .markets-cell:nth-child(n + 4) {
+    border-bottom: none;
+    padding-top: 2.4375rem;
+    padding-bottom: 1.8125rem;
+  }
+
+  .markets-cell--more {
+    background: #1b1b1b;
+    box-sizing: border-box;
+    border-radius: 0 0 16px 0;
+  }
+
+  .markets-cell__top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.125rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .markets-cell__icon {
+    flex-shrink: 0;
+    width: auto;
+    height: 2.1875rem;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .markets-cell__icon--more {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .markets-cell__name {
+    margin: 0;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.25rem, 1.6vw, 1.875rem);
+    line-height: 1.1;
+    color: var(--c-white);
+    letter-spacing: 0;
+  }
+
+  .markets-cell__desc {
+    margin: 0;
+    font: var(--w-light) 1rem / 1.375 var(--ff-r);
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 20.75rem;
+  }
+
+  .markets-cell__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 4.375rem;
+    text-decoration: none;
+    color: var(--c-white);
+  }
+
+  .markets-cell__link .label {
+    letter-spacing: 1.54px;
+  }
+
+  .markets-cell__link:hover .label,
+  .markets-cell__link:focus-visible .label {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .markets-cell__arrow {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .markets-grid__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.25rem;
+  }
+
+  /* ── Reach out / email (Figma 581:1601 — 1728×885 frame, inner 1598) ── */
+  .reach-out {
+    position: relative;
+    z-index: 2;
+    background: #1b1b1b;
+    padding: 97px 0;
+    box-sizing: border-box;
+  }
+
+  .reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+  }
+
+  .reach-out__eyebrow {
+    margin: 0 0 49px;
+    letter-spacing: 1.54px;
+  }
+
+  .reach-out__title {
+    margin: 0;
+    max-width: 654px;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.75rem, 2.8vw, 48px);
+    line-height: 1.167;
+    letter-spacing: 0;
+    min-height: 0;
+  }
+
+  .reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
+  .reach-out__field {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+  }
+
+  .reach-out__input {
+    flex: 1;
+    min-width: 0;
+    height: 22px;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    padding: 0;
+    outline: none;
+  }
+
+  .reach-out__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .reach-out__submit {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+  }
+
+  .reach-out__submit:hover {
+    opacity: 0.92;
+  }
+
+  .reach-out__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .reach-out__media {
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 789 / 691;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 42%;
+  }
+
+  @media (min-width: 1728px) {
+    .reach-out__title {
+      font-size: 48px;
+      line-height: 56px;
+    }
+
+    .reach-out__grid {
+      grid-template-columns: 654px 789px;
+      column-gap: 155px;
+    }
+
+    .reach-out__media {
+      width: 789px;
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .reach-out__grid {
+      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 8.9vw, 155px);
+    }
+
+    .reach-out__form {
+      margin-top: clamp(4rem, 19.5vw, 336px);
+    }
+  }
+
+  @media (max-width: 64rem) {
+    .reach-out {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .reach-out__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .reach-out__title {
+      max-width: none;
+      line-height: 1.2;
+    }
+
+    .reach-out__form {
+      margin-top: 2rem;
+      max-width: none;
+    }
+
+    .reach-out__field {
+      height: auto;
+      min-height: 65px;
+      flex-wrap: wrap;
+      padding: 10px 10px 10px 20px;
+    }
+
+    .reach-out__submit {
+      height: 48px;
+      min-width: auto;
+    }
+
+    .reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      max-width: none;
+    }
+
+    .reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+
+    .markets-grid {
+      padding: 3.5rem 0 4.5rem;
+    }
+
+    .markets-grid__cells {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 3.75rem;
+    }
+
+    .markets-grid__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .markets-cell {
+      border-right: none;
+      border-bottom: none;
+      padding: 1.5rem 0;
+    }
+
+    .markets-cell:nth-child(3n + 1),
+    .markets-cell:nth-child(3n + 2),
+    .markets-cell:nth-child(3n) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .markets-cell:nth-child(-n + 2) {
+      padding-top: 0;
+      padding-bottom: 1.5rem;
+    }
+
+    .markets-cell:nth-child(n + 3) {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .markets-cell:nth-child(2n + 1) {
+      border-right: 1px solid #2d2d2d;
+      padding-right: 1.25rem;
+    }
+
+    .markets-cell:nth-child(2n) {
+      padding-left: 1.25rem;
+    }
+
+    .markets-cell:nth-child(-n + 4) {
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .markets-cell:nth-child(5) {
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .markets-cell--more {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .markets-cell--more:nth-child(2n + 1) {
+      padding-right: 1.25rem;
+      padding-left: 0;
+    }
+
+    .markets-cell--more:nth-child(2n) {
+      padding-left: 1.25rem;
+      padding-right: 0;
+    }
+
+    .markets-cell--more {
+      border-radius: 0 0 16px 0;
+    }
+
+    .markets-cell__link {
+      margin-top: 2.5rem;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .markets-grid__cells {
+      grid-template-columns: 1fr;
+      margin-top: 2.75rem;
+    }
+
+    .markets-cell,
+    .markets-cell:nth-child(3n + 1),
+    .markets-cell:nth-child(3n + 2),
+    .markets-cell:nth-child(3n),
+    .markets-cell:nth-child(2n + 1),
+    .markets-cell:nth-child(2n),
+    .markets-cell:nth-child(-n + 3),
+    .markets-cell:nth-child(n + 4) {
+      border-right: none;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .markets-cell--more,
+    .markets-cell--more:nth-child(2n + 1),
+    .markets-cell--more:nth-child(2n) {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .markets-cell:last-child {
+      border-bottom: none;
+    }
+
+    .markets-cell--more {
+      border-radius: 12px;
+    }
+
+    .markets-cell__link {
+      margin-top: 2rem;
+    }
+
+    .markets-grid__deco {
+      opacity: 0.06;
+      top: -10rem;
+    }
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Tablet (≤ 1024px) ── */
+  @media (max-width: 64rem) {
+    .hero__text {
+      grid-column: 1 / -1;
+    }
+
+    .statement {
+      padding: 8rem 0 5rem;
+    }
+
+    .statement__heading {
+      grid-column: 2 / 8;
+    }
+  }
+
+  /* ── Mobile (≤ 768px) ── */
+  @media (max-width: 48rem) {
+    .hero__img {
+      left: -40%;
+      width: 160%;
+      height: 110%;
+    }
+
+    .hero__scroll {
+      padding-bottom: 1.5rem;
+    }
+
+    .statement {
+      padding: 5rem 0 3rem;
+    }
+
+    .statement__heading {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

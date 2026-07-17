@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  mainClass?: string;
+}
+
+const { title = 'Home', mainClass } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100;">
+      <Nav />
+    </header>
+    <main class:list={[mainClass]}>
+      <slot />
+    </main>
+    <Footer />
+
+    <div class="grid-overlay" id="grid-overlay" aria-hidden="true">
+      <div class="grid-overlay__container container">
+        <div class="grid-overlay__grid page-grid">
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+          <div class="grid-overlay__col"></div>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener('keydown', (e) => {
+        if (e.shiftKey && e.key === 'G') {
+          e.preventDefault();
+          document.getElementById('grid-overlay').classList.toggle('grid-overlay--visible');
+        }
+      });
+    </script>
+  </body>
+</html>

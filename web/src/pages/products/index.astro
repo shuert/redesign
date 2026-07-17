@@ -1,0 +1,1012 @@
+---
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import heroImg from '../../assets/product/Uni-Directional-Pallet_v02.png';
+import uniPakImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Pak_v02.png';
+import batteryPakImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Battery-Pak_v01.png';
+import uniPalletImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Pallet_v01.png';
+import uniDirPalletImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Directional-Pallet_v01.png';
+import uniCaseImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Case_v01.png';
+import remanImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Reman_v01.png';
+import yarnPakImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Yarn-Pak_v01.png';
+import quoteImg from '../../assets/product/A001C001_240221_AOXI.01_07_10_18.Still020.jpg';
+
+const products = [
+  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: uniPakImg },
+  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniDirPalletImg },
+  { name: 'reman-pak', size: 'Custom', image: remanImg },
+  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: batteryPakImg },
+  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniCaseImg },
+  { name: 'reman-pak', size: 'Custom', image: yarnPakImg },
+  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: uniPalletImg },
+  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniDirPalletImg },
+  { name: 'reman-pak', size: 'Custom', image: remanImg },
+  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: batteryPakImg },
+  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniCaseImg },
+  { name: 'reman-pak', size: 'Custom', image: yarnPakImg },
+];
+
+const filters = [
+  { label: 'Product', active: false },
+  { label: 'Market', active: true },
+  { label: 'Size', active: false },
+  { label: 'Feature', active: false },
+  { label: 'Dynamic Load', active: false },
+  { label: 'Static Load', active: false },
+  { label: 'Racking Load', active: false },
+];
+
+const faqAnswer = 'Lorem ipsum dolor sit amet consectetur. Orci massa pretium venenatis nunc sed blandit. Viverra adipiscing imperdiet sed sed. Aliquet sed lacus lobortis fusce ut lorem elementum. Habitasse viverra nunc a libero mattis ultrices amet sit vestibulum. Volutpat nisl non velit habitasse sit sodales quisque dignissim sed. A egestas pretium proin suspendisse vel mi faucibus eget. Id nulla bibendum et elit magna turpis sed. Ut nunc semper ullamcorper pellentesque eu. Justo arcu lectus feugiat diam vitae ipsum arcu metus. Dui mauris nunc at justo laoreet et. Tempor vitae quis nunc ac lacus. Luctus pellentesque urna imperdiet varius. Ut sodales elementum sed nisi adipiscing. Risus ac bibendum platea ultricies diam lacus aliquam pellentesque tellus.';
+
+const faqs = [
+  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
+  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
+  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer, expanded: true },
+  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
+  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
+];
+---
+
+<Mainlayout title="Products">
+  <!-- Hero -->
+  <section class="p-hero">
+    <div class="p-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="p-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="p-hero__gradient"></div>
+    </div>
+    <div class="p-hero__content container">
+      <div class="page-grid p-hero__grid">
+        <div class="p-hero__left">
+          <p class="p-hero__breadcrumb">
+            <span class="p-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>ALL PRODUCTS
+          </p>
+          <h1 class="detail-xl text-white">products</h1>
+        </div>
+        <div class="p-hero__right">
+          <p class="p-hero__desc text-white">
+            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="products-body">
+    <!-- Filters -->
+    <section class="p-filters">
+      <div class="container">
+        <div class="p-filters__bar">
+          <div class="p-filters__scroll">
+            <div class="p-filters__buttons">
+              {filters.map((filter) => (
+                <button class:list={['p-filters__btn', { 'p-filters__btn--active': filter.active }]}>
+                  <span>{filter.label}</span>
+                  <svg class="p-filters__chevron" width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.35 10L5 14.66L9.67 10" stroke="currentColor"/>
+                  </svg>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div class="p-filters__actions">
+            <button class="p-filters__badge-btn" aria-label="3 active filters">
+              <span class="p-filters__badge-dot">3</span>
+            </button>
+            <button class="p-filters__reset">Reset Filters</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="p-grid">
+      <div class="container">
+        <div class="p-grid__cells">
+          {products.map((product) => (
+            <a class="p-card" href="#">
+              <div class="p-card__img">
+                <img
+                  src={product.image.src}
+                  alt={product.name}
+                  width={product.image.width}
+                  height={product.image.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="p-card__info">
+                <h3 class="p-card__name">{product.name}</h3>
+                <p class="p-card__size">{product.size}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="container">
+      <hr class="p-divider" />
+    </div>
+
+    <!-- FAQ -->
+    <section class="p-faq">
+      <div class="container">
+        <div class="p-faq__layout">
+          <div class="p-faq__left">
+            <p class="p-faq__eyebrow label">QUESTIONS?</p>
+            <h2 class="p-faq__heading">Frequently Asked</h2>
+          </div>
+          <div class="p-faq__right">
+            {faqs.map((faq, i) => (
+              <div class:list={['p-faq__item', { 'p-faq__item--open': faq.expanded }]} data-faq>
+                <button class="p-faq__trigger" aria-expanded={faq.expanded ? 'true' : 'false'}>
+                  <span class="p-faq__question">{faq.question}</span>
+                  <span class="p-faq__icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="p-faq__icon-v" d="M10 0V20" stroke="currentColor" stroke-width="2"/>
+                      <path d="M20 10H0" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </span>
+                </button>
+                <div class="p-faq__panel">
+                  <hr class="p-faq__panel-line" />
+                  <p class="p-faq__panel-text">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Request a Quote -->
+  <section class="p-quote">
+    <div class="container">
+      <div class="p-quote__layout">
+        <div class="p-quote__form-side">
+          <p class="p-quote__eyebrow label">REQUEST A QUOTE</p>
+          <h2 class="p-quote__title text-white">
+            Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque.
+          </h2>
+          <form class="p-quote__form" aria-label="Request a quote">
+            <div class="p-quote__row p-quote__row--half">
+              <div class="p-quote__field">
+                <label class="p-quote__label">FIRST NAME</label>
+                <input type="text" class="p-quote__input" placeholder="First" />
+              </div>
+              <div class="p-quote__field">
+                <label class="p-quote__label">LAST NAME</label>
+                <input type="text" class="p-quote__input" placeholder="Last" />
+              </div>
+            </div>
+            <div class="p-quote__field">
+              <label class="p-quote__label">COMPANY NAME</label>
+              <input type="text" class="p-quote__input" placeholder="Company" />
+            </div>
+            <div class="p-quote__field">
+              <label class="p-quote__label">EMAIL</label>
+              <input type="email" class="p-quote__input" placeholder="Email" />
+            </div>
+            <div class="p-quote__row p-quote__row--half">
+              <div class="p-quote__field">
+                <label class="p-quote__label">PHONE</label>
+                <input type="tel" class="p-quote__input" placeholder="Phone" />
+              </div>
+              <div class="p-quote__field">
+                <label class="p-quote__label">QUANTITY</label>
+                <input type="text" class="p-quote__input" placeholder="Quantity" />
+              </div>
+            </div>
+            <div class="p-quote__field">
+              <label class="p-quote__label">PRODUCTS OF INTEREST</label>
+              <div class="p-quote__select">
+                <div class="p-quote__tags">
+                  <span class="p-quote__tag">
+                    Uni-Pak
+                    <span class="p-quote__tag-x" aria-hidden="true">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </span>
+                  </span>
+                  <span class="p-quote__tag">
+                    Uni-Directional Pallet
+                    <span class="p-quote__tag-x" aria-hidden="true">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
+                    </span>
+                  </span>
+                </div>
+                <svg class="p-quote__select-caret" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M0.5 0V10.14L10.64 0" stroke="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="p-quote__field">
+              <label class="p-quote__label">ANY OTHER QUESTIONS?</label>
+              <textarea class="p-quote__input p-quote__textarea" placeholder="Additional Info"></textarea>
+            </div>
+            <button type="submit" class="p-quote__submit">Submit</button>
+          </form>
+        </div>
+        <div class="p-quote__media">
+          <img
+            src={quoteImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="p-quote__img"
+            width={quoteImg.width}
+            height={quoteImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  document.querySelectorAll('[data-faq]').forEach((item) => {
+    const trigger = item.querySelector('.p-faq__trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('p-faq__item--open');
+
+      document.querySelectorAll('[data-faq]').forEach((i) => {
+        i.classList.remove('p-faq__item--open');
+        const t = i.querySelector('.p-faq__trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('p-faq__item--open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .p-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .p-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .p-hero__img {
+    position: absolute;
+    width: 129%;
+    height: 156%;
+    left: -29%;
+    top: -28%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .p-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 75.13%, rgb(0,0,0) 100%),
+      linear-gradient(0deg, rgba(0,0,0,0) 53.11%, rgb(0,0,0) 100%);
+  }
+
+  .p-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .p-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .p-hero__left {
+    grid-column: 1 / 9;
+  }
+
+  .p-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .p-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .p-hero__left .detail-xl {
+    margin: 0;
+  }
+
+  .p-hero__right {
+    grid-column: 9 / -1;
+  }
+
+  .p-hero__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 520px;
+  }
+
+  /* ================================================================
+     PRODUCTS BODY (cream background wrapper)
+     ================================================================ */
+  .products-body {
+    background: var(--c-sec-1);
+  }
+
+  /* ================================================================
+     FILTERS
+     ================================================================ */
+  .p-filters {
+    padding-top: clamp(2rem, 3.5vw, 61px);
+  }
+
+  .p-filters__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px;
+    background: rgba(237, 234, 230, 0.5);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 14px;
+  }
+
+  .p-filters__scroll {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .p-filters__scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .p-filters__buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .p-filters__btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 18px;
+    background: #edeae6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    color: var(--c-black);
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .p-filters__btn:hover {
+    background: #e0dcd7;
+  }
+
+  .p-filters__btn--active {
+    background: var(--c-black);
+    color: #edeae6;
+  }
+
+  .p-filters__btn--active:hover {
+    background: #1a1a1a;
+  }
+
+  .p-filters__chevron {
+    flex-shrink: 0;
+    width: 10px;
+    height: 20px;
+  }
+
+  .p-filters__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .p-filters__badge-btn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #edeae6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .p-filters__badge-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: #d92136;
+    color: var(--c-white);
+    font: var(--w-bold) 12px / 1 var(--ff-r);
+  }
+
+  .p-filters__reset {
+    padding: 15px 18px;
+    background: #edeae6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    color: var(--c-black);
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .p-filters__reset:hover {
+    background: #e0dcd7;
+  }
+
+  /* ================================================================
+     PRODUCT GRID
+     ================================================================ */
+  .p-grid {
+    padding-top: clamp(2.5rem, 4.5vw, 77px);
+  }
+
+  .p-grid__cells {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .p-card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 530 / 613;
+    text-decoration: none;
+    color: inherit;
+    border-right: 2px solid #ebe7e3;
+    border-bottom: 2px solid #ebe7e3;
+    overflow: hidden;
+  }
+
+  .p-card:nth-child(3n) {
+    border-right: none;
+  }
+
+  .p-card:nth-last-child(-n + 3) {
+    border-bottom: none;
+  }
+
+  .p-card__img {
+    flex: 462;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .p-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .p-card:hover .p-card__img img {
+    transform: scale(1.04);
+  }
+
+  .p-card__info {
+    flex: 151;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .p-card__name {
+    margin: 0;
+    font: var(--w-semibold) clamp(1.25rem, 1.8vw, 30px) / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  .p-card__size {
+    margin: 9px 0 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  /* ================================================================
+     DIVIDER
+     ================================================================ */
+  .p-divider {
+    border: none;
+    border-top: 2px solid #ebe7e3;
+    margin: 0;
+  }
+
+  /* ================================================================
+     FAQ
+     ================================================================ */
+  .p-faq {
+    padding: clamp(3rem, 4.5vw, 65px) 0 clamp(3rem, 5vw, 80px);
+  }
+
+  .p-faq__layout {
+    display: grid;
+    grid-template-columns: minmax(200px, 461px) minmax(0, 1fr);
+    column-gap: clamp(2rem, 5vw, 78px);
+    align-items: start;
+  }
+
+  .p-faq__eyebrow {
+    margin: 0 0 22px;
+    color: #d4cec6;
+  }
+
+  .p-faq__heading {
+    margin: 0;
+    font: var(--w-medium) var(--h3) / 1.075 var(--ff-r);
+  }
+
+  .p-faq__right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-faq__item {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .p-faq__item:nth-child(odd) {
+    background: #f2efec;
+  }
+
+  .p-faq__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    min-height: 99px;
+    padding: 12px 27px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    color: var(--c-black);
+  }
+
+  .p-faq__question {
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    max-width: 789px;
+  }
+
+  .p-faq__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-black);
+  }
+
+  .p-faq__icon svg {
+    display: block;
+  }
+
+  .p-faq__icon-v {
+    transition: transform 0.3s ease;
+  }
+
+  .p-faq__item--open .p-faq__icon-v {
+    transform: scaleY(0);
+  }
+
+  .p-faq__panel {
+    display: none;
+    padding: 0 27px 25px;
+  }
+
+  .p-faq__item--open .p-faq__panel {
+    display: block;
+  }
+
+  .p-faq__item--open .p-faq__trigger {
+    align-items: flex-start;
+    min-height: auto;
+    padding-top: 25px;
+    padding-bottom: 0;
+  }
+
+  .p-faq__panel-line {
+    border: none;
+    border-top: 2px solid #ece9e5;
+    margin: 20px 0 21px;
+  }
+
+  .p-faq__panel-text {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 894px;
+  }
+
+  /* ================================================================
+     REQUEST A QUOTE
+     ================================================================ */
+  .p-quote {
+    background: #1b1b1b;
+    padding: clamp(3rem, 4.8vw, 83px) 0 clamp(3rem, 4.2vw, 73px);
+  }
+
+  .p-quote__layout {
+    display: grid;
+    align-items: start;
+  }
+
+  .p-quote__eyebrow {
+    margin: 0 0 31px;
+    color: var(--c-white);
+    letter-spacing: 1.54px;
+  }
+
+  .p-quote__title {
+    margin: 0 0 59px;
+    max-width: 654px;
+    font: var(--w-semibold) clamp(1.5rem, 1.8vw, 30px) / 33px var(--ff-r);
+  }
+
+  .p-quote__form {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .p-quote__row--half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .p-quote__label {
+    display: block;
+    margin-bottom: 14px;
+    font: var(--w-bold) 14px / 1 var(--ff-s);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .p-quote__input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: 400 16px / 22px var(--ff-r);
+    outline: none;
+  }
+
+  .p-quote__input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .p-quote__input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .p-quote__textarea {
+    height: 106px;
+    padding: 18px;
+    resize: none;
+  }
+
+  .p-quote__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 7px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  .p-quote__tags {
+    display: flex;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .p-quote__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 12px;
+    background: var(--c-white);
+    border-radius: 50px;
+    font: var(--w-semibold) 16px / 1 var(--ff-s);
+    color: var(--c-black);
+    white-space: nowrap;
+  }
+
+  .p-quote__tag-x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .p-quote__select-caret {
+    flex-shrink: 0;
+    transform: rotate(-45deg);
+  }
+
+  .p-quote__submit {
+    align-self: flex-start;
+    padding: 15px 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .p-quote__submit:hover {
+    opacity: 0.85;
+  }
+
+  .p-quote__media {
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: -17px;
+  }
+
+  .p-quote__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ================================================================
+     REVEAL ANIMATION
+     ================================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================================================================
+     DESKTOP LAYOUT (≥ 1728px)
+     ================================================================ */
+  @media (min-width: 1728px) {
+    .p-quote__layout {
+      grid-template-columns: 695px 789px;
+      column-gap: 114px;
+    }
+
+    .p-quote__media {
+      width: 789px;
+      max-width: none;
+      aspect-ratio: 789 / 908;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (1025px – 1727px)
+     ================================================================ */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .p-quote__layout {
+      grid-template-columns: minmax(0, 695fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 7vw, 114px);
+    }
+
+    .p-quote__media {
+      aspect-ratio: 789 / 908;
+    }
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .p-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .p-hero__left {
+      grid-column: 1 / -1;
+      padding-bottom: 0;
+    }
+
+    .p-hero__right {
+      grid-column: 1 / -1;
+      margin-top: 1.25rem;
+    }
+
+    .p-hero__desc {
+      max-width: none;
+    }
+
+    .p-grid__cells {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .p-card:nth-child(3n) {
+      border-right: 2px solid #ebe7e3;
+    }
+
+    .p-card:nth-child(2n) {
+      border-right: none;
+    }
+
+    .p-card:nth-last-child(-n + 3) {
+      border-bottom: 2px solid #ebe7e3;
+    }
+
+    .p-card:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+
+    .p-faq__layout {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+    }
+
+    .p-quote__layout {
+      grid-template-columns: 1fr;
+      row-gap: 2.5rem;
+    }
+
+    .p-quote__media {
+      margin-top: 0;
+      max-width: 600px;
+      aspect-ratio: 789 / 908;
+    }
+
+    .p-quote__title {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .p-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .p-hero__img {
+      width: 160%;
+      left: -40%;
+    }
+
+    .p-grid__cells {
+      grid-template-columns: 1fr;
+    }
+
+    .p-card {
+      border-right: none !important;
+      aspect-ratio: auto;
+    }
+
+    .p-card:nth-last-child(-n + 3) {
+      border-bottom: 2px solid #ebe7e3;
+    }
+
+    .p-card:last-child {
+      border-bottom: none;
+    }
+
+    .p-card__img {
+      aspect-ratio: 530 / 462;
+    }
+
+    .p-card__info {
+      padding: 18px 10px 32px;
+    }
+
+    .p-card__name {
+      white-space: normal;
+      text-align: center;
+    }
+
+    .p-filters__actions {
+      display: none;
+    }
+
+    .p-faq__trigger {
+      padding: 12px 16px;
+      min-height: 80px;
+    }
+
+    .p-faq__question {
+      font-size: 17px;
+      line-height: 24px;
+    }
+
+    .p-faq__panel {
+      padding: 0 16px 20px;
+    }
+
+    .p-quote__row--half {
+      grid-template-columns: 1fr;
+    }
+
+    .p-quote__form {
+      gap: 18px;
+    }
+  }
+</style>

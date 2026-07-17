@@ -1,0 +1,647 @@
+---
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import heroImg from '../../assets/markets/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
+import reachOutImg from '../../assets/markets/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+
+import iconAutomotive from '../../assets/markets/7c61e96fd523fbfee58ef2dc967fb250ae0ac962.svg?url';
+import iconAgriculture from '../../assets/markets/e437b82618ada1bd3baea1071885d346ec78d1e1.svg?url';
+import iconAutomatedSystems from '../../assets/home/7850fb2d2eeabb768ee1c47c0e2307c7bbddb2da.svg?url';
+import iconConstruction from '../../assets/markets/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
+import iconEcommerce from '../../assets/markets/e599fe2c8709a6a434485eab6b63c610d1fe9613.svg?url';
+import iconFmcg from '../../assets/markets/499b89d1df290e0ae8c1f320fb7b23f10a622137.svg?url';
+import iconArrow from '../../assets/markets/0698f9b1b58c6757196a50c59d38219df2e075cd.svg?url';
+
+const markets = [
+  { name: 'Automotive', icon: iconAutomotive, iw: 36, ih: 27, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/automotive' },
+  { name: 'Agriculture', icon: iconAgriculture, iw: 28, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/agriculture' },
+  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/automated-systems' },
+  { name: 'Construction', icon: iconConstruction, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/construction' },
+  { name: 'E-Commerce', icon: iconEcommerce, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/e-commerce' },
+  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/fast-moving-consumer-goods' },
+  { name: 'Government', icon: iconConstruction, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/government' },
+  { name: 'Grocery', icon: iconEcommerce, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/grocery' },
+  { name: 'Military', icon: iconFmcg, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/military' },
+  { name: 'Pharmaceutical/Medical', icon: iconConstruction, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/pharmaceutical-medical' },
+  { name: 'Textiles', icon: iconEcommerce, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.', href: '/markets/textiles' },
+];
+---
+
+<Mainlayout title="Markets">
+  <!-- Hero -->
+  <section class="m-hero">
+    <div class="m-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="m-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="m-hero__gradient"></div>
+    </div>
+    <div class="m-hero__content container">
+      <div class="page-grid m-hero__grid">
+        <div class="m-hero__left">
+          <p class="m-hero__breadcrumb">
+            <span class="m-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>ALL MARKETS
+          </p>
+          <h1 class="detail-xl text-white">markets</h1>
+        </div>
+        <div class="m-hero__right">
+          <p class="m-hero__desc text-white">
+            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Markets Grid -->
+  <section class="m-body">
+    <div class="container">
+      <div class="m-grid">
+        {markets.map((market) => (
+          <article class="m-cell">
+            <div class="m-cell__top">
+              <img class="m-cell__icon" src={market.icon} alt="" width={market.iw} height={market.ih} />
+              <h3 class="m-cell__name">{market.name}</h3>
+            </div>
+            <p class="m-cell__desc">{market.desc}</p>
+            <a class="m-cell__link" href={market.href}>
+              <span class="label">LEARN MORE</span>
+              <img src={iconArrow} alt="" width="14" height="9" class="m-cell__arrow" />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reach Out -->
+  <section class="m-reach-out">
+    <div class="container m-reach-out__inner">
+      <div class="m-reach-out__grid">
+        <div class="m-reach-out__content">
+          <p class="label m-reach-out__eyebrow">REACH OUT</p>
+          <h2 class="m-reach-out__title text-white reveal">
+            Stay in the loop on all<br />
+            things Shuert, from product updates to exhibitions we're attending.
+          </h2>
+          <form class="m-reach-out__form" aria-label="Email updates">
+            <div class="m-reach-out__field">
+              <input
+                type="email"
+                class="m-reach-out__input"
+                placeholder="Email Address"
+                autocomplete="email"
+                inputmode="email"
+                aria-label="Email address"
+              />
+              <button type="submit" class="m-reach-out__submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="m-reach-out__media">
+          <img
+            src={reachOutImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="m-reach-out__img"
+            width={reachOutImg.width}
+            height={reachOutImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Mainlayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  const form = document.querySelector('.m-reach-out__form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .m-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .m-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .m-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -11.46%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .m-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0, 0, 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgb(0, 0, 0) 100%);
+  }
+
+  .m-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .m-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .m-hero__left {
+    grid-column: 1 / 9;
+  }
+
+  .m-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .m-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .m-hero__left .detail-xl {
+    margin: 0;
+  }
+
+  .m-hero__right {
+    grid-column: 9 / -1;
+  }
+
+  .m-hero__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 520px;
+  }
+
+  /* ================================================================
+     MARKETS BODY (cream background)
+     ================================================================ */
+  .m-body {
+    background: var(--c-sec-1);
+    padding: 46px 0 93px;
+  }
+
+  /* ================================================================
+     MARKETS GRID
+     ================================================================ */
+  .m-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .m-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px 40px 28px 3px;
+    border-bottom: 1px solid #ebe7e3;
+    border-right: 1px solid #ebe7e3;
+    min-height: 286px;
+  }
+
+  .m-cell:nth-child(3n + 2) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .m-cell:nth-child(3n) {
+    border-right: none;
+    padding-left: 40px;
+    padding-right: 0;
+  }
+
+  .m-cell:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .m-cell:nth-child(10) {
+    border-bottom: none;
+  }
+
+  .m-cell__top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .m-cell__icon {
+    flex-shrink: 0;
+    width: auto;
+    height: 35px;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .m-cell__name {
+    margin: 0;
+    font-family: var(--ff-r);
+    font-weight: 650;
+    font-size: 30px;
+    line-height: 33px;
+    color: var(--c-black);
+    letter-spacing: 0;
+  }
+
+  .m-cell__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 332px;
+  }
+
+  .m-cell__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 30px;
+    text-decoration: none;
+    color: var(--c-black);
+  }
+
+  .m-cell__link .label {
+    letter-spacing: 1.54px;
+  }
+
+  .m-cell__link:hover .label,
+  .m-cell__link:focus-visible .label {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .m-cell__arrow {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  /* ================================================================
+     REACH OUT
+     ================================================================ */
+  .m-reach-out {
+    position: relative;
+    background: #1b1b1b;
+    padding: 73px 0 73px;
+    box-sizing: border-box;
+  }
+
+  .m-reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+  }
+
+  .m-reach-out__eyebrow {
+    margin: 0 0 49px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.54px;
+  }
+
+  .m-reach-out__title {
+    margin: 0;
+    max-width: 654px;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.75rem, 2.8vw, 48px);
+    line-height: 56px;
+    letter-spacing: 0;
+  }
+
+  .m-reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
+  .m-reach-out__field {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+  }
+
+  .m-reach-out__input {
+    flex: 1;
+    min-width: 0;
+    height: 22px;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    padding: 0;
+    outline: none;
+  }
+
+  .m-reach-out__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .m-reach-out__submit {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+  }
+
+  .m-reach-out__submit:hover {
+    opacity: 0.92;
+  }
+
+  .m-reach-out__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .m-reach-out__media {
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 789 / 691;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .m-reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 42%;
+  }
+
+  /* ================================================================
+     REVEAL ANIMATION
+     ================================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================================================================
+     DESKTOP (≥ 1728px)
+     ================================================================ */
+  @media (min-width: 1728px) {
+    .m-reach-out__title {
+      font-size: 48px;
+      line-height: 56px;
+    }
+
+    .m-reach-out__grid {
+      grid-template-columns: 654px 789px;
+      column-gap: 155px;
+    }
+
+    .m-reach-out__media {
+      width: 789px;
+      max-width: none;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (1025px – 1727px)
+     ================================================================ */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .m-reach-out__grid {
+      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 8.9vw, 155px);
+    }
+
+    .m-reach-out__form {
+      margin-top: clamp(4rem, 19.5vw, 336px);
+    }
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .m-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .m-hero__left {
+      grid-column: 1 / -1;
+      padding-bottom: 0;
+    }
+
+    .m-hero__right {
+      grid-column: 1 / -1;
+      margin-top: 1.25rem;
+    }
+
+    .m-hero__desc {
+      max-width: none;
+    }
+
+    .m-body {
+      padding-top: 32px;
+    }
+
+    .m-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .m-cell {
+      min-height: auto;
+      padding: 24px 0 24px 0;
+      border-right: none;
+    }
+
+    .m-cell:nth-child(3n + 2),
+    .m-cell:nth-child(3n) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .m-cell:nth-child(odd) {
+      border-right: 1px solid #ebe7e3;
+      padding-right: 24px;
+    }
+
+    .m-cell:nth-child(even) {
+      padding-left: 24px;
+    }
+
+    .m-cell:nth-last-child(-n + 2) {
+      border-bottom: 1px solid #ebe7e3;
+    }
+
+    .m-cell:last-child {
+      border-bottom: none;
+    }
+
+    .m-cell:nth-last-child(1):nth-child(odd) {
+      border-bottom: none;
+    }
+
+    .m-cell:nth-child(10) {
+      border-bottom: 1px solid #ebe7e3;
+    }
+
+    .m-cell__name {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    .m-cell__link {
+      padding-top: 20px;
+    }
+
+    .m-reach-out {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .m-reach-out__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .m-reach-out__title {
+      max-width: none;
+      line-height: 1.2;
+    }
+
+    .m-reach-out__form {
+      margin-top: 2rem;
+      max-width: none;
+    }
+
+    .m-reach-out__field {
+      height: auto;
+      min-height: 65px;
+      flex-wrap: wrap;
+      padding: 10px 10px 10px 20px;
+    }
+
+    .m-reach-out__submit {
+      height: 48px;
+      min-width: auto;
+    }
+
+    .m-reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      max-width: none;
+    }
+
+    .m-reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .m-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .m-hero__img {
+      width: 160%;
+      left: -40%;
+    }
+
+    .m-body {
+      padding-top: 24px;
+    }
+
+    .m-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .m-cell {
+      padding: 24px 0;
+      border-right: none !important;
+    }
+
+    .m-cell:nth-child(odd) {
+      padding-right: 0;
+    }
+
+    .m-cell:nth-child(even) {
+      padding-left: 0;
+    }
+
+    .m-cell:nth-child(10) {
+      border-bottom: 1px solid #ebe7e3;
+    }
+
+    .m-cell:last-child {
+      border-bottom: none;
+    }
+
+    .m-cell__name {
+      font-size: 22px;
+      line-height: 26px;
+    }
+  }
+</style>

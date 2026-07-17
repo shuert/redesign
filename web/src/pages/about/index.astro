@@ -1,0 +1,1722 @@
+---
+import AboutLayout from '../../layouts/AboutLayout.astro';
+import heroImg from '../../assets/about/whoweare/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
+import introImg from '../../assets/about/whoweare/Rectangle 28.png';
+import pillar1 from '../../assets/about/whoweare/Rectangle 18.png';
+import pillar2 from '../../assets/about/whoweare/Rectangle 29.png';
+import pillar3 from '../../assets/about/whoweare/Rectangle 30.png';
+import pillar4 from '../../assets/about/whoweare/Rectangle 31.png';
+import innovationBg from '../../assets/about/whoweare/40x48_Uni-Pak_Isometric_v01 4.png';
+import worldsBestBg from '../../assets/about/whoweare/40x48_Uni-Pak_Isometric_v01 3.png';
+import reachOutImg from '../../assets/about/whoweare/Rectangle 28-1.png';
+import globeImg from '../../assets/about/whoweare/global-presence-globe.png';
+import playIcon from '../../assets/capabilities/42208bd656b84eb6378eaaeb7657c54f8badc043.svg?url';
+import tlOriginalBldg from '../../assets/about/whoweare/history-original-bldg.png';
+import tlBwBldg from '../../assets/about/whoweare/history-bw-bldg.png';
+import tlGarrison from '../../assets/about/whoweare/history-garrison-sign.png';
+import tlGroup from '../../assets/about/whoweare/history-group.png';
+import tlConveyor from '../../assets/about/whoweare/history-conveyor.png';
+import tlTeam from '../../assets/about/whoweare/history-team.png';
+import tlWarehouseWide from '../../assets/about/whoweare/history-warehouse-wide.png';
+
+const values = [
+  {
+    title: 'be curious',
+    desc: 'We question assumptions, seek to understand, and explore new possibilities with an open mind—combining critical thinking with imagination to solve complex problems.',
+  },
+  {
+    title: 'collaborate',
+    desc: 'We solve problems together. Across our team of approximately 250 skilled production workers, engineers, support staff, and leaders, we recognize that the best ideas can come from anywhere. We make a point to know and learn from one another—because the strongest solutions are built collectively, not individually.',
+  },
+  {
+    title: 'be compassionate',
+    desc: 'We treat customers, partners, and colleagues with empathy, respect, and a genuine commitment to doing what\u2019s right. As a family-owned and operated business, we value relationships and take responsibility for how we show up—for each other and for those we serve.',
+  },
+  {
+    title: 'take risks',
+    desc: 'We continuously test ideas, experiment, and challenge conventional thinking—because meaningful innovation requires action. Not every idea succeeds, but every iteration—good or bad—provides valuable insight.',
+  },
+  {
+    title: 'wear many hats',
+    desc: 'We stay adaptable and step in where needed, taking ownership and rising to the occasion. We take the initiative to learn across roles and responsibilities—because understanding the full business makes us better problem solvers.',
+  },
+];
+
+const pillars = [
+  {
+    img: pillar1,
+    tag: 'Experimentation',
+    desc: 'We test ideas, learn quickly, and refine through iteration to develop better solutions.',
+  },
+  {
+    img: pillar2,
+    tag: 'Open Problem Solving',
+    desc: 'We address challenges directly and work through them together to move ideas forward.',
+  },
+  {
+    img: pillar3,
+    tag: 'Shared Ownership',
+    desc: 'We take responsibility for outcomes across teams, stepping in to lend a hand wherever needed to move work forward.',
+  },
+  {
+    img: pillar4,
+    tag: 'Continuous Learning',
+    desc: 'We learn through experience, from one another, and from different perspectives—strengthening our ability to invent and refine over time.',
+  },
+];
+
+// Timeline events: 7 cards alternating sm/lg/sm/lg/sm/lg/sm
+const timeline = [
+  {
+    size: 'sm',
+    decade: '1970s',
+    img: tlOriginalBldg,
+    label: 'The Foundation: Hands-On Problem Solving',
+    desc: 'We began as a small tooling business, working closely with companies like Jerad Products, Cadillac Products, and Oakland Plastics. From the start, we focused on solving the problems others could not\u2014developing practical solutions through hands-on collaboration that would become the foundation of how we operate.',
+  },
+  {
+    size: 'lg',
+    decade: '1970s',
+    img: tlBwBldg,
+    label: 'The Shift: From Tooling to Manufacturing',
+    desc: 'As we worked alongside our customers, we recognized the limitations of the manufacturing technologies behind existing material handling systems\u2014and the opportunity to improve them. To overcome them, we expanded into manufacturing\u2014embracing twin-sheet thermoforming and helping develop early sequentially fed processes that enabled stronger, more efficient designs.',
+  },
+  {
+    size: 'sm',
+    decade: '1980s',
+    img: tlGarrison,
+    label: 'The Breakthrough: A New Kind of Shipping System',
+    desc: 'When the industry needed a more efficient shipping container, Shuert invented one: the Uni-Pak. A first-of-its-kind design, it combined a twin-sheet thermoformed pallet and top with a heavy-duty corrugated sleeve, secured by our patented slide-lock mechanism. The result was a durable, reusable alternative to traditional, limited-life packaging systems.',
+  },
+  {
+    size: 'lg',
+    decade: '1990s',
+    img: tlGarrison,
+    label: 'The Leap: Scaling Innovation for High-Volume Demand',
+    desc: 'As demand grew from high-volume users like the U.S. Postal Service and the grocery industry, we rethought how these systems were made. Our proprietary in-line process combines extrusion, thermoforming, trimming, and assembly into a single continuous operation\u2014delivering the consistency, speed, and scale required for widespread adoption.',
+  },
+  {
+    size: 'sm',
+    decade: '2000s',
+    img: tlGroup,
+    label: 'The Standard: Engineering the Modern Pallet',
+    desc: 'We took pallet performance further with the development of the rackable Uni-Pallet. Featuring a proprietary anti-skid surface and enabled by a high-output manufacturing process\u2014producing [X units] with a cycle time of [X seconds]\u2014it delivered consistent, repeatable performance at scale, setting the foundation for widespread adoption of reusable material handling systems.',
+  },
+  {
+    size: 'lg',
+    decade: '2010s',
+    img: tlConveyor,
+    label: 'The Proof: Adopted at Scale',
+    desc: 'As reusable systems became more widely adopted, our solutions expanded into global markets. The rackable Uni-Pallet saw widespread use across Scandinavia, where today it supports a significant share of food distribution\u2014demonstrating the long-term value and reliability of systems built to perform.',
+  },
+  {
+    size: 'sm',
+    decade: '2020s',
+    img: tlWarehouseWide,
+    label: 'Lorem Ipsum Dolor',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  },
+];
+
+const decades = ['1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+const TIMELINE_INITIAL_INDEX = 0;
+---
+
+<AboutLayout title="Who We Are" current="who-we-are">
+  <!-- ─────────── HERO ─────────── -->
+  <section class="wwa-hero">
+    <div class="wwa-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="wwa-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="wwa-hero__gradient"></div>
+    </div>
+    <div class="wwa-hero__content container">
+      <div class="page-grid wwa-hero__grid">
+        <div class="wwa-hero__left">
+          <p class="wwa-hero__breadcrumb">
+            <span class="wwa-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>WHO WE ARE
+          </p>
+          <h1 class="detail-xl text-white wwa-hero__title">who we are</h1>
+        </div>
+      </div>
+      <a class="wwa-hero__watch" href="#" aria-label="Watch video">
+        <span class="wwa-hero__watch-label">WATCH</span>
+        <img src={playIcon} alt="" width="50" height="50" class="wwa-hero__watch-icon" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── INTRO ─────────── -->
+  <section class="wwa-intro">
+    <div class="container">
+      <div class="page-grid wwa-intro__grid">
+        <div class="wwa-intro__media">
+          <img src={introImg.src} alt="Shuert team gathering" width={introImg.width} height={introImg.height} />
+        </div>
+        <div class="wwa-intro__copy">
+          <h2 class="wwa-intro__heading reveal">
+            Since 1971, we have built our business around a simple idea: we invent solutions.
+          </h2>
+          <p class="wwa-intro__text">
+            Our products are informed by real-world challenges presented to us by industry leaders. We have always invited
+            companies to bring us their toughest transport and material handling problems—and we respond with systems
+            designed to perform: durable, versatile, and cost-effective by design.
+          </p>
+          <p class="wwa-intro__text">
+            From the start, we recognized where traditional, limited-use packaging fell short, and where reusable systems
+            could deliver greater long-term value. That understanding has kept us at the forefront of developing practical,
+            engineered solutions that hold up in real-world applications.
+          </p>
+          <a class="button button-glass wwa-intro__cta" href="/about/whyshuert">Shuert Advantage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── VALUES ─────────── -->
+  <section class="wwa-values">
+    <div class="container">
+      <div class="page-grid wwa-values__grid">
+        <div class="wwa-values__intro">
+          <p class="label wwa-values__eyebrow">OUR EFFORTS</p>
+          <h2 class="wwa-values__heading reveal">
+            The values we live by to enable continuous invention.
+          </h2>
+        </div>
+        <ul class="wwa-values__list">
+          {values.map((v) => (
+            <li class="wwa-values__item">
+              <h3 class="wwa-values__title">{v.title}</h3>
+              <p class="wwa-values__desc">{v.desc}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── PROCESS PILLARS ─────────── -->
+  <section class="wwa-pillars">
+    <div class="container">
+      <div class="wwa-pillars__head">
+        <p class="label wwa-pillars__eyebrow">PROCESS PILLARS</p>
+        <h2 class="wwa-pillars__heading reveal">
+          When practiced consistently, our values shape how we operate every day:
+        </h2>
+      </div>
+      <div class="wwa-pillars__grid">
+        {pillars.map((p) => (
+          <article class="wwa-pillars__card">
+            <div class="wwa-pillars__media">
+              <img src={p.img.src} alt={p.tag} width={p.img.width} height={p.img.height} loading="lazy" />
+              <span class="wwa-pillars__tag">{p.tag}</span>
+            </div>
+            <p class="wwa-pillars__desc">{p.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── INNOVATION DRIVES MOMENTUM ─────────── -->
+  <section class="wwa-innovation">
+    <div class="wwa-innovation__bg" aria-hidden="true">
+      <img
+        src={innovationBg.src}
+        alt=""
+        class="wwa-innovation__img"
+        width={innovationBg.width}
+        height={innovationBg.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="wwa-image-fade" style="--fade-offset-y: 100px" aria-hidden="true">
+      <div class="wwa-image-fade__vignette wwa-image-fade__vignette--text-left"></div>
+      <div class="wwa-image-fade__band wwa-image-fade__band--bottom">
+        <div class="wwa-image-fade__cream wwa-image-fade__cream--bottom"></div>
+      </div>
+    </div>
+    <div class="container wwa-innovation__content">
+      <h2 class="detail-xl text-white wwa-innovation__title reveal">innovation<br />drives<br />momentum.</h2>
+      <p class="wwa-innovation__text text-white">
+        Since 1971, innovation has defined how we solve problems. The Shuert team holds 52 patents for original designs
+        and technologies, and has engineered and tooled thousands of custom solutions—each developed through close
+        collaboration with industry leaders and grounded in real-world material handling challenges.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────── TIMELINE ─────────── -->
+  <section
+    class="wwa-timeline"
+    id="wwa-timeline"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Shuert history"
+  >
+    <div class="wwa-timeline__rail" id="wwa-timeline-rail">
+      <div class="wwa-timeline__track" data-tl-track>
+        {timeline.map((item, i) => (
+          <article
+            class:list={['wwa-timeline__card', `wwa-timeline__card--${item.size}`, { 'is-active': i === TIMELINE_INITIAL_INDEX }]}
+            data-tl-card
+            data-tl-decade={item.decade}
+            data-tl-index={i}
+          >
+            <div class="wwa-timeline__card-label-top">{item.label}</div>
+            <div class="wwa-timeline__card-img">
+              <img src={item.img.src} alt={item.label} width={item.img.width} height={item.img.height} loading="lazy" />
+            </div>
+            <div class="wwa-timeline__card-label-bottom">{item.label}</div>
+            <p class="wwa-timeline__card-desc">{item.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="container">
+      <div class="wwa-timeline__years">
+        {decades.map((d, i) => (
+          <button type="button" class:list={['wwa-timeline__year', { 'is-active': d === timeline[TIMELINE_INITIAL_INDEX].decade }]} data-tl-year={d}>
+            {d}
+          </button>
+        ))}
+      </div>
+      <div class="wwa-timeline__line" aria-hidden="true">
+        <span class="wwa-timeline__line-track"></span>
+        {decades.map((d) => (
+          <button type="button" class:list={['wwa-timeline__dot', { 'is-active': d === timeline[TIMELINE_INITIAL_INDEX].decade }]} data-tl-dot={d} aria-label={d}></button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── WORLD'S BEST PALLET ─────────── -->
+  <section class="wwa-best">
+    <div class="wwa-best__bg" aria-hidden="true">
+      <img
+        src={worldsBestBg.src}
+        alt=""
+        class="wwa-best__img"
+        width={worldsBestBg.width}
+        height={worldsBestBg.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="wwa-image-fade" aria-hidden="true">
+      <div class="wwa-image-fade__vignette wwa-image-fade__vignette--text-bottom"></div>
+      <div class="wwa-image-fade__band wwa-image-fade__band--top">
+        <div class="wwa-image-fade__cream wwa-image-fade__cream--top"></div>
+      </div>
+    </div>
+    <div class="container wwa-best__content">
+      <h2 class="detail-xl text-white wwa-best__title reveal">worlds best<br />reusable pallet.</h2>
+    </div>
+  </section>
+
+  <!-- ─────────── GLOBAL PRESENCE ─────────── -->
+  <section class="wwa-global">
+    <div class="wwa-global__map" aria-hidden="true">
+      <img
+        src={globeImg.src}
+        alt=""
+        class="wwa-global__map-img"
+        width={globeImg.width}
+        height={globeImg.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="container wwa-global__inner">
+      <div class="wwa-global__head">
+        <p class="label wwa-global__eyebrow">OUR EFFORTS</p>
+        <h2 class="wwa-global__heading reveal">Global Presence</h2>
+        <p class="wwa-global__lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+        </p>
+      </div>
+      <dl class="wwa-global__stats">
+        <div class="wwa-global__stat">
+          <dt class="wwa-global__stat-num">46</dt>
+          <dd class="wwa-global__stat-label">Countries</dd>
+        </div>
+        <div class="wwa-global__stat">
+          <dt class="wwa-global__stat-num">6</dt>
+          <dd class="wwa-global__stat-label">Continents</dd>
+        </div>
+        <div class="wwa-global__stat">
+          <dt class="wwa-global__stat-num">50</dt>
+          <dd class="wwa-global__stat-label">States</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ─────────── REACH OUT ─────────── -->
+  <section class="c-reach-out">
+    <div class="container c-reach-out__inner">
+      <div class="c-reach-out__grid">
+        <div class="c-reach-out__content">
+          <p class="label c-reach-out__eyebrow">REACH OUT</p>
+          <h2 class="c-reach-out__title text-white reveal">
+            Stay in the loop on all<br />
+            things Shuert, from product updates to exhibitions we&apos;re attending.
+          </h2>
+          <form class="c-reach-out__form" aria-label="Email updates">
+            <div class="c-reach-out__field">
+              <input
+                type="email"
+                class="c-reach-out__input"
+                placeholder="Email Address"
+                autocomplete="email"
+                inputmode="email"
+                aria-label="Email address"
+              />
+              <button type="submit" class="c-reach-out__submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="c-reach-out__media">
+          <img
+            src={reachOutImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="c-reach-out__img"
+            width={reachOutImg.width}
+            height={reachOutImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</AboutLayout>
+
+<script>
+  // ── Reveal on scroll ──
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  // ── Reach-out form (no-op submit) ──
+  const form = document.querySelector('.c-reach-out__form');
+  form?.addEventListener('submit', (e) => e.preventDefault());
+
+  // ── Timeline: swipe carousel + autoplay + decade indicators ──
+  (function () {
+    const AUTOPLAY_MS = 5000;
+    const INITIAL_INDEX = 0;
+    const rail = document.getElementById('wwa-timeline-rail') as HTMLElement | null;
+    const section = document.getElementById('wwa-timeline');
+    if (!rail || !section) return;
+
+    const cards = Array.from(rail.querySelectorAll<HTMLElement>('[data-tl-card]'));
+    const years = Array.from(document.querySelectorAll<HTMLElement>('[data-tl-year]'));
+    const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-tl-dot]'));
+    if (!cards.length) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeIndex = INITIAL_INDEX;
+    let autoplayTimer = 0;
+    let resumeTimer = 0;
+    let scrollRaf = 0;
+    let scrollEndTimer = 0;
+    let isInteracting = false;
+    let isInView = false;
+
+    function nearestIndex() {
+      const railRect = rail!.getBoundingClientRect();
+      const center = railRect.left + railRect.width / 2;
+      let nearest = 0;
+      let bestDist = Infinity;
+      cards.forEach((c, i) => {
+        const r = c.getBoundingClientRect();
+        const d = Math.abs(r.left + r.width / 2 - center);
+        if (d < bestDist) {
+          bestDist = d;
+          nearest = i;
+        }
+      });
+      return nearest;
+    }
+
+    function setActive(index: number) {
+      activeIndex = index;
+      const decade = cards[index]?.getAttribute('data-tl-decade');
+      cards.forEach((c, i) => c.classList.toggle('is-active', i === index));
+      years.forEach((y) => y.classList.toggle('is-active', y.getAttribute('data-tl-year') === decade));
+      dots.forEach((d) => d.classList.toggle('is-active', d.getAttribute('data-tl-dot') === decade));
+    }
+
+    function scrollOffsetFor(card: HTMLElement) {
+      const railRect = rail!.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      return cardRect.left - railRect.left - (railRect.width - cardRect.width) / 2;
+    }
+
+    function scrollToIndex(index: number, behavior: ScrollBehavior = 'smooth') {
+      const i = ((index % cards.length) + cards.length) % cards.length;
+      const card = cards[i];
+      if (!card) return;
+      rail!.scrollTo({
+        left: rail!.scrollLeft + scrollOffsetFor(card),
+        behavior: reduceMotion ? 'auto' : behavior,
+      });
+      setActive(i);
+    }
+
+    function stopAutoplay() {
+      window.clearInterval(autoplayTimer);
+      autoplayTimer = 0;
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      if (reduceMotion || isInteracting || !isInView) return;
+      autoplayTimer = window.setInterval(() => {
+        scrollToIndex(activeIndex + 1);
+      }, AUTOPLAY_MS);
+    }
+
+    function pauseAutoplay(ms = AUTOPLAY_MS) {
+      stopAutoplay();
+      window.clearTimeout(resumeTimer);
+      if (!isInView) return;
+      resumeTimer = window.setTimeout(() => {
+        if (!isInteracting && isInView) startAutoplay();
+      }, ms);
+    }
+
+    // Track active card as the user scrolls/swipes, then restart the timer once settled.
+    rail.addEventListener(
+      'scroll',
+      () => {
+        if (!scrollRaf) {
+          scrollRaf = requestAnimationFrame(() => {
+            scrollRaf = 0;
+            setActive(nearestIndex());
+          });
+        }
+        window.clearTimeout(scrollEndTimer);
+        scrollEndTimer = window.setTimeout(() => {
+          setActive(nearestIndex());
+          if (isInView) pauseAutoplay();
+        }, 200);
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('resize', () => setActive(nearestIndex()), { passive: true });
+
+    const goToDecade = (decade: string) => {
+      const targetIndex = cards.findIndex((c) => c.getAttribute('data-tl-decade') === decade);
+      if (targetIndex < 0) return;
+      scrollToIndex(targetIndex);
+      pauseAutoplay();
+    };
+
+    years.forEach((y) => {
+      y.addEventListener('click', () => {
+        const d = y.getAttribute('data-tl-year');
+        if (d) goToDecade(d);
+      });
+    });
+    dots.forEach((d) => {
+      d.addEventListener('click', () => {
+        const v = d.getAttribute('data-tl-dot');
+        if (v) goToDecade(v);
+      });
+    });
+
+    // ── Mouse drag-to-swipe (touch uses native momentum scrolling) ──
+    let isDown = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+    let dragged = false;
+
+    rail.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      isDown = true;
+      dragged = false;
+      dragStartX = e.clientX;
+      dragStartScroll = rail.scrollLeft;
+      isInteracting = true;
+      stopAutoplay();
+      rail.classList.add('is-dragging');
+    });
+
+    rail.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - dragStartX;
+      if (Math.abs(dx) > 4) dragged = true;
+      rail.scrollLeft = dragStartScroll - dx;
+    });
+
+    const endDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      rail.classList.remove('is-dragging');
+      isInteracting = false;
+      scrollToIndex(nearestIndex());
+      pauseAutoplay();
+    };
+
+    rail.addEventListener('pointerup', endDrag);
+    rail.addEventListener('pointercancel', endDrag);
+    rail.addEventListener('pointerleave', endDrag);
+
+    // Prevent a drag from also firing a click on cards/links
+    rail.addEventListener(
+      'click',
+      (e) => {
+        if (dragged) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true
+    );
+    rail.addEventListener('dragstart', (e) => e.preventDefault());
+
+    section.addEventListener('mouseenter', stopAutoplay);
+    section.addEventListener('mouseleave', () => {
+      if (!isInteracting && isInView) startAutoplay();
+    });
+    section.addEventListener('focusin', stopAutoplay);
+    section.addEventListener('focusout', () => {
+      window.setTimeout(() => {
+        if (!section.contains(document.activeElement) && isInView) startAutoplay();
+      }, 0);
+    });
+
+    const visibility = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isInView = entry.isIntersecting;
+          if (isInView) {
+            startAutoplay();
+          } else {
+            stopAutoplay();
+            window.clearTimeout(resumeTimer);
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    visibility.observe(section);
+
+    requestAnimationFrame(() => {
+      scrollToIndex(INITIAL_INDEX, 'auto');
+    });
+  })();
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .wwa-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .wwa-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .wwa-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -21.18%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .wwa-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0 0 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgba(0, 0, 0, 0.25) 100%);
+  }
+
+  .wwa-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .wwa-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .wwa-hero__left {
+    grid-column: 1 / 11;
+  }
+
+  .wwa-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .wwa-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .wwa-hero__title {
+    margin: 0;
+    /* Pull text slightly left to match Figma optical baseline (59 vs 65) */
+    margin-left: -6px;
+  }
+
+  .wwa-hero__watch {
+    position: absolute;
+    right: var(--grid-margin);
+    bottom: clamp(80px, 7vw, 110px);
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    text-decoration: none;
+    color: var(--c-white);
+    z-index: 2;
+  }
+
+  .wwa-hero__watch-label {
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+  }
+
+  .wwa-hero__watch-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .wwa-hero__watch:hover .wwa-hero__watch-icon {
+    opacity: 0.75;
+  }
+
+  /* ================================================================
+     INTRO
+     ================================================================ */
+  .wwa-intro {
+    background: var(--c-sec-1);
+    padding: 77px 0;
+  }
+
+  .wwa-intro__grid {
+    align-items: start;
+  }
+
+  .wwa-intro__media {
+    grid-column: 1 / 8;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 924 / 662;
+  }
+
+  .wwa-intro__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wwa-intro__copy {
+    grid-column: 9 / -1;
+    padding-top: 112px;
+  }
+
+  .wwa-intro__heading {
+    margin: 0 0 35px;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+    max-width: 520px;
+  }
+
+  .wwa-intro__text {
+    margin: 0 0 18px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 519px;
+  }
+
+  .wwa-intro__text:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .wwa-intro__cta {
+    margin-top: 35px;
+    display: inline-flex;
+  }
+
+  /* ================================================================
+     VALUES
+     ================================================================ */
+  .wwa-values {
+    background: var(--c-sec-1);
+    padding: 56px 0 96px;
+  }
+
+  .wwa-values__grid {
+    align-items: start;
+  }
+
+  .wwa-values__intro {
+    grid-column: 1 / 7;
+    position: sticky;
+    top: 120px;
+  }
+
+  .wwa-values__eyebrow {
+    margin: 0 0 25px;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .wwa-values__heading {
+    margin: 0;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+    max-width: 540px;
+  }
+
+  .wwa-values__list {
+    grid-column: 7 / -1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wwa-values__item {
+    padding: 0 0 40px;
+    margin: 0 0 40px;
+    border-bottom: 1px solid #d9d3cb;
+  }
+
+  .wwa-values__item:first-child {
+    padding-top: 0;
+  }
+
+  .wwa-values__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .wwa-values__title {
+    margin: 0 0 15px;
+    font: var(--w-bold) 30px / 32px var(--ff-s);
+    color: var(--c-black);
+    text-transform: lowercase;
+    letter-spacing: 0;
+  }
+
+  .wwa-values__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 615px;
+  }
+
+  /* ================================================================
+     PROCESS PILLARS
+     ================================================================ */
+  .wwa-pillars {
+    background: var(--c-sec-1);
+    padding: 0 0 96px;
+  }
+
+  .wwa-pillars__head {
+    max-width: 730px;
+    margin-bottom: 40px;
+  }
+
+  .wwa-pillars__eyebrow {
+    margin: 0 0 25px;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .wwa-pillars__heading {
+    margin: 0;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .wwa-pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .wwa-pillars__card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wwa-pillars__media {
+    position: relative;
+    aspect-ratio: 384 / 380;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 27px;
+  }
+
+  .wwa-pillars__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wwa-pillars__tag {
+    position: absolute;
+    left: 23px;
+    bottom: 23px;
+    display: inline-block;
+    padding: 6px 18px;
+    background: var(--c-black);
+    color: var(--c-white);
+    border-radius: 25px;
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    white-space: nowrap;
+  }
+
+  .wwa-pillars__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 386px;
+  }
+
+  /* ================================================================
+     IMAGE FADE (innovation + world's best photo sections)
+     --fade-offset-y: positive = band moves down; --fade-height: band size (default 50%)
+     ================================================================ */
+  .wwa-image-fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .wwa-image-fade__vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .wwa-image-fade__vignette--text-left {
+    background: linear-gradient(256deg, rgba(0, 0, 0, 0) 46.7%, rgba(0, 0, 0, 0.85) 80.62%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 72%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 72%);
+  }
+
+  .wwa-image-fade__vignette--text-bottom {
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.55) 78%, rgba(0, 0, 0, 0.85) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 45%);
+    mask-image: linear-gradient(to top, #000 0%, #000 45%, transparent 72%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 45%, transparent 72%);
+  }
+
+  .wwa-image-fade__band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: var(--fade-height, 50%);
+    transform: translateY(var(--fade-offset-y, 0));
+  }
+
+  .wwa-image-fade__band--bottom {
+    bottom: 0;
+  }
+
+  .wwa-image-fade__band--top {
+    top: 0;
+  }
+
+  .wwa-image-fade__cream {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .wwa-image-fade__cream--bottom {
+    background: linear-gradient(180deg, rgba(247, 245, 242, 0) 57.28%, #f7f5f2 100%);
+  }
+
+  .wwa-image-fade__cream--top {
+    background: linear-gradient(0deg, rgba(247, 245, 242, 0) 57.28%, #f7f5f2 100%);
+  }
+
+  /* ================================================================
+     INNOVATION DRIVES MOMENTUM (full-bleed dark)
+     ================================================================ */
+  .wwa-innovation {
+    position: relative;
+    background: var(--c-sec-1);
+    overflow: hidden;
+    padding: 64px 0 80px;
+    min-height: clamp(640px, 60vw, 1037px);
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .wwa-innovation__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .wwa-innovation__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  .wwa-innovation__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .wwa-innovation__title,
+  .wwa-innovation__text {
+    color: var(--c-white);
+  }
+
+  .wwa-innovation__title {
+    margin: 0 0 40px;
+    max-width: 760px;
+  }
+
+  .wwa-innovation__text {
+    margin: 0;
+    max-width: 654px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+  }
+
+  /* ================================================================
+     TIMELINE
+     ================================================================ */
+  .wwa-timeline {
+    position: relative;
+    background: var(--c-sec-1);
+    padding: 89px 0 64px;
+  }
+
+  .wwa-timeline__rail {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 16px;
+    cursor: grab;
+  }
+
+  .wwa-timeline__rail.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  .wwa-timeline__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wwa-timeline__track {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 calc(50vw - 446px);
+    width: max-content;
+  }
+
+  .wwa-timeline__card {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    scroll-snap-align: center;
+    transition: opacity 0.4s ease;
+    opacity: 0.45;
+  }
+
+  .wwa-timeline__card.is-active {
+    opacity: 1;
+  }
+
+  .wwa-timeline__card--lg {
+    width: clamp(560px, 51.6vw, 892px);
+    padding-top: 0;
+  }
+
+  .wwa-timeline__card--sm {
+    width: clamp(440px, 39.6vw, 685px);
+    padding-top: 142px;
+  }
+
+  .wwa-timeline__card-label-top {
+    margin-bottom: 20px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  /* Per Figma: LG cards have label ABOVE image, SM cards have label BELOW image */
+  .wwa-timeline__card--sm .wwa-timeline__card-label-top {
+    display: none;
+  }
+
+  .wwa-timeline__card-img {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 892 / 662;
+  }
+
+  .wwa-timeline__card--sm .wwa-timeline__card-img {
+    aspect-ratio: 685 / 386;
+  }
+
+  .wwa-timeline__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wwa-timeline__card-label-bottom {
+    margin: 21px 0 12px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  .wwa-timeline__card--lg .wwa-timeline__card-label-bottom {
+    display: none;
+  }
+
+  .wwa-timeline__card-desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 459px;
+  }
+
+  .wwa-timeline__card--lg .wwa-timeline__card-desc {
+    margin-top: 20px;
+  }
+
+  .wwa-timeline__card--sm .wwa-timeline__card-desc {
+    max-width: 343px;
+  }
+
+  /* year labels & line */
+  .wwa-timeline__years {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 80px;
+    padding: 0 calc(85px - 22px);
+  }
+
+  .wwa-timeline__year {
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .wwa-timeline__year.is-active {
+    color: var(--c-red);
+  }
+
+  .wwa-timeline__line {
+    position: relative;
+    margin-top: 22px;
+    height: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 85px;
+  }
+
+  .wwa-timeline__line-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: var(--c-black);
+    transform: translateY(-50%);
+  }
+
+  .wwa-timeline__dot {
+    position: relative;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c-black);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .wwa-timeline__dot.is-active {
+    background: var(--c-red);
+    transform: scale(1.3);
+  }
+
+  /* ================================================================
+     WORLD'S BEST PALLET
+     ================================================================ */
+  .wwa-best {
+    position: relative;
+    background: var(--c-black);
+    overflow: hidden;
+    min-height: clamp(640px, 60vw, 1037px);
+    display: flex;
+    align-items: flex-end;
+    padding: 64px 0 64px;
+  }
+
+  .wwa-best__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .wwa-best__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .wwa-best__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .wwa-best__title {
+    margin: 0;
+    max-width: 760px;
+    color: var(--c-white);
+  }
+
+  /* ================================================================
+     GLOBAL PRESENCE
+     ================================================================ */
+  .wwa-global {
+    position: relative;
+    background: var(--c-sec-1);
+    /* Match Figma: section is ~1030px tall on a 1728px-wide frame (≈59.6vw) */
+    min-height: clamp(720px, 59.6vw, 1030px);
+    padding: 97px 0 64px;
+    overflow: hidden;
+  }
+
+  .wwa-global__map {
+    position: absolute;
+    top: 50%;
+    right: -4%;
+    width: min(1128px, 62%);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .wwa-global__map-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .wwa-global__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(clamp(720px, 59.6vw, 1030px) - 161px);
+  }
+
+  .wwa-global__head {
+    max-width: 640px;
+  }
+
+  .wwa-global__eyebrow {
+    margin: 0 0 12px;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .wwa-global__heading {
+    margin: 0 0 30px;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .wwa-global__lead {
+    margin: 0;
+    max-width: 573px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .wwa-global__stats {
+    margin: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    max-width: 720px;
+  }
+
+  .wwa-global__stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 6px 30px;
+    border-left: 1px solid var(--c-black);
+    box-sizing: border-box;
+  }
+
+  .wwa-global__stat:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .wwa-global__stat-num {
+    margin: 0;
+    font: var(--w-semibold) clamp(48px, 5.5vw, 90px) / 1 var(--ff-s);
+    color: var(--c-black);
+    letter-spacing: 0;
+  }
+
+  .wwa-global__stat-label {
+    margin: 0;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  /* ================================================================
+     REACH OUT (shared style from capabilities/careers)
+     ================================================================ */
+  .c-reach-out {
+    position: relative;
+    background: #1b1b1b;
+    padding: 73px 0;
+    box-sizing: border-box;
+  }
+
+  .c-reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+    grid-template-columns: 654px 789px;
+    column-gap: 155px;
+  }
+
+  .c-reach-out__eyebrow {
+    margin: 0 0 49px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.54px;
+  }
+
+  .c-reach-out__title {
+    margin: 0;
+    max-width: 654px;
+    font: var(--w-medium) 47px / 56px var(--ff-r);
+    color: var(--c-white);
+  }
+
+  .c-reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
+  .c-reach-out__field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+  }
+
+  .c-reach-out__input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    outline: none;
+  }
+
+  .c-reach-out__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .c-reach-out__submit {
+    flex-shrink: 0;
+    border: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    cursor: pointer;
+  }
+
+  .c-reach-out__submit:hover {
+    opacity: 0.92;
+  }
+
+  .c-reach-out__media {
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 789 / 691;
+  }
+
+  .c-reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ================================================================
+     REVEAL ANIMATION
+     ================================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .wwa-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .wwa-hero__left {
+      grid-column: 1 / -1;
+    }
+
+    .wwa-hero__watch {
+      bottom: clamp(60px, 9vw, 100px);
+    }
+
+    /* Intro */
+    .wwa-intro {
+      padding: 48px 0;
+    }
+    .wwa-intro__media,
+    .wwa-intro__copy {
+      grid-column: 1 / -1;
+    }
+    .wwa-intro__copy {
+      padding-top: 32px;
+    }
+    .wwa-intro__heading {
+      font-size: 26px;
+      line-height: 30px;
+      max-width: none;
+    }
+
+    /* Values */
+    .wwa-values {
+      padding: 48px 0 56px;
+    }
+    .wwa-values__intro,
+    .wwa-values__list {
+      grid-column: 1 / -1;
+    }
+    .wwa-values__intro {
+      position: static;
+      margin-bottom: 32px;
+    }
+    .wwa-values__heading {
+      font-size: 26px;
+      line-height: 30px;
+      max-width: none;
+    }
+
+    /* Pillars */
+    .wwa-pillars {
+      padding: 0 0 56px;
+    }
+    .wwa-pillars__heading {
+      font-size: 24px;
+      line-height: 28px;
+    }
+    .wwa-pillars__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    /* Innovation */
+    .wwa-innovation {
+      padding: 56px 0 64px;
+      min-height: 540px;
+    }
+    .wwa-innovation__title {
+      max-width: 100%;
+    }
+    .wwa-innovation__text {
+      max-width: 100%;
+    }
+
+    /* Timeline */
+    .wwa-timeline {
+      padding: 56px 0 48px;
+    }
+    .wwa-timeline__track {
+      gap: 24px;
+      padding: 0 var(--grid-margin);
+    }
+    .wwa-timeline__card--lg {
+      width: clamp(420px, 75vw, 720px);
+    }
+    .wwa-timeline__card--sm {
+      width: clamp(320px, 60vw, 560px);
+      padding-top: 80px;
+    }
+    .wwa-timeline__years,
+    .wwa-timeline__line {
+      padding: 0 32px;
+    }
+
+    /* Best */
+    .wwa-best {
+      min-height: 540px;
+    }
+
+    /* Global */
+    .wwa-global {
+      min-height: 0;
+      padding: 56px 0;
+    }
+    .wwa-global__inner {
+      min-height: 0;
+      display: block;
+    }
+    .wwa-global__stats {
+      margin-top: 56px;
+    }
+    .wwa-global__map {
+      top: auto;
+      bottom: 0;
+      right: -10%;
+      width: 70%;
+      transform: none;
+      opacity: 0.6;
+    }
+    .wwa-global__heading {
+      font-size: 26px;
+      line-height: 30px;
+    }
+    .wwa-global__stat-num {
+      font-size: 60px;
+    }
+
+    /* Reach out */
+    .c-reach-out {
+      padding: 56px 0;
+    }
+    .c-reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+      max-width: none;
+    }
+    .c-reach-out__title {
+      font-size: clamp(1.75rem, 2.8vw, 48px);
+      line-height: 1.2;
+    }
+    .c-reach-out__form {
+      margin-top: 24px;
+      max-width: none;
+    }
+    .c-reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .wwa-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+    .wwa-hero__img {
+      width: 160%;
+      left: -40%;
+    }
+
+    /* Intro */
+    .wwa-intro {
+      padding: 32px 0;
+    }
+    .wwa-intro__heading {
+      font-size: 22px;
+      line-height: 26px;
+    }
+
+    /* Values */
+    .wwa-values__title {
+      font-size: 24px;
+      line-height: 26px;
+    }
+    .wwa-values__item {
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+    }
+
+    /* Pillars */
+    .wwa-pillars__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .wwa-pillars__media {
+      aspect-ratio: 384 / 280;
+    }
+
+    /* Innovation */
+    .wwa-innovation {
+      padding: 48px 0;
+      min-height: 420px;
+    }
+
+    /* Timeline */
+    .wwa-timeline {
+      padding: 40px 0 40px;
+    }
+    .wwa-timeline__track {
+      gap: 16px;
+    }
+    .wwa-timeline__card--lg {
+      width: 80vw;
+    }
+    .wwa-timeline__card--sm {
+      width: 70vw;
+      padding-top: 0;
+    }
+    .wwa-timeline__years,
+    .wwa-timeline__line {
+      padding: 0 20px;
+    }
+    .wwa-timeline__year {
+      font-size: 10px;
+    }
+
+    /* Best */
+    .wwa-best {
+      min-height: 420px;
+    }
+
+    /* Global */
+    .wwa-global {
+      padding: 48px 0;
+    }
+    .wwa-global__stats {
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0;
+      max-width: 100%;
+    }
+    .wwa-global__stat {
+      padding: 0 12px 0 0;
+    }
+    .wwa-global__stat:nth-child(3) {
+      padding: 0 12px;
+    }
+    .wwa-global__stat:nth-child(5) {
+      padding: 0 0 0 12px;
+    }
+    .wwa-global__stat-num {
+      font-size: 48px;
+    }
+    .wwa-global__stat-label {
+      font-size: 11px;
+    }
+  }
+</style>

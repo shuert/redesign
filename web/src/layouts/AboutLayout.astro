@@ -1,0 +1,17 @@
+---
+import Mainlayout from './Mainlayout.astro';
+import AboutSubnav from '../components/AboutSubnav.astro';
+import type { AboutSection } from '../components/AboutSubnav.astro';
+
+interface Props {
+  title?: string;
+  current: AboutSection;
+}
+
+const { title = 'About', current } = Astro.props;
+---
+
+<Mainlayout title={title} mainClass="about-main">
+  <slot />
+  <AboutSubnav current={current} />
+</Mainlayout>

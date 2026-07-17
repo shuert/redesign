@@ -1,0 +1,996 @@
+---
+import AboutLayout from '../../layouts/AboutLayout.astro';
+import heroImg from '../../assets/careers/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
+import introImg from '../../assets/careers/Rectangle 28-1.png';
+import cultureMainImg from '../../assets/careers/Rectangle 18.png';
+import cultureLeftImg from '../../assets/careers/Rectangle 23-1.png';
+import cultureRightImg from '../../assets/careers/Rectangle 23.png';
+import reachOutImg from '../../assets/careers/Rectangle 28.png';
+
+const cultureBlurb = 'Small blurb about the specific capability.';
+
+const cultureSlides = [
+  { img: cultureMainImg, tag: 'Slide Locks', blurb: cultureBlurb },
+  { img: cultureLeftImg, tag: 'Knitting', blurb: cultureBlurb },
+  { img: cultureRightImg, tag: 'Knitting', blurb: cultureBlurb },
+] as const;
+
+const CULTURE_AUTOPLAY_MS = 3000;
+const firstSlide = cultureSlides[0];
+const lastSlide = cultureSlides[cultureSlides.length - 1];
+---
+
+<AboutLayout title="Careers" current="careers">
+  <section class="c-hero">
+    <div class="c-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="c-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="c-hero__gradient"></div>
+    </div>
+    <div class="c-hero__content container">
+      <div class="page-grid c-hero__grid">
+        <div class="c-hero__left">
+          <p class="c-hero__breadcrumb">
+            <span class="c-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>CAREERS
+          </p>
+          <h1 class="detail-xl text-white">careers</h1>
+        </div>
+        <div class="c-hero__right">
+          <p class="c-hero__desc text-white">
+            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique
+            cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="careers-intro">
+    <div class="container">
+      <div class="page-grid careers-intro__grid">
+        <div class="careers-intro__media">
+          <img src={introImg.src} alt="Shuert team on production floor" width={introImg.width} height={introImg.height} />
+        </div>
+        <div class="careers-intro__copy">
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Ut purus non urna sagittis scelerisque eu. Sem a amet viverra lectus
+            egestas sed nibh amet facilisis. Tincidunt ullamcorper vulputate id nisi ut massa. Blandit pharetra a nibh nunc
+            arcu. Potenti feugiat tellus libero maecenas. Arcu vitae feugiat et commodo tincidunt lorem. Mattis diam a varius
+            vitae libero. Curabitur ut urna aliquam mauris. Enim condimentum scelerisque maecenas sagittis orci amet arcu amet.
+            Sed nulla convallis sodales lacus tincidunt sagittis. Dictum purus maecenas nulla lectus vitae sed pharetra auctor
+            tristique. Tellus cras volutpat ut sapien hendrerit.
+          </p>
+          <a class="button button-glass careers-intro__cta" href="/contact">Explore Openings</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="careers-culture"
+    id="careers-culture-carousel"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Working at Shuert"
+    style={`--careers-autoplay-ms: ${CULTURE_AUTOPLAY_MS}ms`}
+  >
+    <div class="container">
+      <p class="label careers-section-label">OUR CULTURE</p>
+      <h2 class="careers-h3">Working at Shuert</h2>
+    </div>
+    <div class="careers-culture__swiper-viewport" id="careers-culture-rail" aria-live="polite">
+      <div class="careers-culture__swiper-track" data-carousel-swiper-track>
+        <!-- Clone of last slide (peeks on the left of slide 0) -->
+        <article class="careers-culture__swiper-slide careers-card" aria-hidden="true" data-carousel-clone>
+          <img src={lastSlide.img.src} alt="" width={lastSlide.img.width} height={lastSlide.img.height} loading="eager" decoding="async" />
+          <div class="careers-card__overlay" aria-hidden="true" />
+          <span class="careers-card__tag">{lastSlide.tag}</span>
+          <p class="careers-card__blurb">{lastSlide.blurb}</p>
+        </article>
+        {
+          cultureSlides.map((slide, si) => (
+            <article
+              class:list={['careers-culture__swiper-slide', 'careers-card', { 'is-active': si === 0 }]}
+              data-carousel-swiper-slide
+              data-carousel-slide-index={si}
+              aria-hidden={si !== 0}
+            >
+              <img
+                src={slide.img.src}
+                alt={si === 0 ? 'Shuert team in workspace' : ''}
+                width={slide.img.width}
+                height={slide.img.height}
+                loading="eager"
+                decoding="async"
+              />
+              <div class="careers-card__overlay" aria-hidden="true" />
+              <span class="careers-card__tag">{slide.tag}</span>
+              <p class="careers-card__blurb">{slide.blurb}</p>
+            </article>
+          ))
+        }
+        <!-- Clone of first slide (peeks on the right of last slide) -->
+        <article class="careers-culture__swiper-slide careers-card" aria-hidden="true" data-carousel-clone>
+          <img src={firstSlide.img.src} alt="" width={firstSlide.img.width} height={firstSlide.img.height} loading="eager" decoding="async" />
+          <div class="careers-card__overlay" aria-hidden="true" />
+          <span class="careers-card__tag">{firstSlide.tag}</span>
+          <p class="careers-card__blurb">{firstSlide.blurb}</p>
+        </article>
+      </div>
+    </div>
+    <div class="container careers-culture__controls">
+      <div class="careers-culture__controls-inner">
+        <div class="careers-culture__arrows">
+          <button type="button" class="careers-culture__arrow" aria-label="Previous slide" data-carousel-prev>
+            <svg class="careers-culture__arrow-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14 7l-5 5 5 5"></path>
+            </svg>
+          </button>
+          <button type="button" class="careers-culture__arrow" aria-label="Next slide" data-carousel-next>
+            <svg class="careers-culture__arrow-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 7l5 5-5 5"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="careers-culture__dots-wrap">
+          <div class="careers-culture__dots" role="presentation" data-carousel-dots>
+            <div class="careers-culture__dots-track" data-carousel-dots-track>
+              <div class="careers-culture__dots-row">
+                {
+                  cultureSlides.map((_, i) => (
+                    <div class="careers-culture__dot-slot" data-carousel-slot={i}>
+                      <div class:list={['careers-culture__dot-grow', { 'is-active': i === 0 }]}>
+                        <span class="careers-culture__dot-grow-fill" data-carousel-grow-fill />
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="careers-testimonials">
+    <div class="container">
+      <p class="label careers-section-label">TESTIMONIALS</p>
+      <h2 class="careers-h3">What our team thinks.</h2>
+      <div class="page-grid careers-testimonials__grid">
+        <article class="careers-testimonial">
+          <img src={cultureLeftImg.src} alt="Team member portrait" class="careers-testimonial__avatar" width="127" height="127" />
+          <h3>First Last Name</h3>
+          <p class="careers-testimonial__role">JOB TITLE</p>
+          <p class="careers-testimonial__text">
+            Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis
+            sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna.
+          </p>
+        </article>
+        <article class="careers-testimonial">
+          <img src={cultureMainImg.src} alt="Team member portrait" class="careers-testimonial__avatar" width="127" height="127" />
+          <h3>First Last Name</h3>
+          <p class="careers-testimonial__role">JOB TITLE</p>
+          <p class="careers-testimonial__text">
+            Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis
+            sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna.
+          </p>
+        </article>
+        <article class="careers-testimonial">
+          <img src={cultureRightImg.src} alt="Team member portrait" class="careers-testimonial__avatar" width="127" height="127" />
+          <h3>First Last Name</h3>
+          <p class="careers-testimonial__role">JOB TITLE</p>
+          <p class="careers-testimonial__text">
+            Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis
+            sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="careers-values">
+    <div class="container">
+      <div class="page-grid careers-values__grid">
+        <div class="careers-values__head">
+          <p class="label careers-section-label">CORE VALUES</p>
+          <h2 class="careers-h3">Our Values</h2>
+        </div>
+        <div class="careers-values__list">
+          <article class="careers-values__item">
+            <span>01</span>
+            <div>
+              <h3>Our Customers</h3>
+              <p>Listen to the needs of our customers and deliver high-quality products through trust, honesty and integrity.</p>
+            </div>
+          </article>
+          <article class="careers-values__item">
+            <span>02</span>
+            <div>
+              <h3>Our People</h3>
+              <p>
+                Our employees are the key to our success. Investing in our people and processes creates an environment of
+                learning and growth.
+              </p>
+            </div>
+          </article>
+          <article class="careers-values__item">
+            <span>03</span>
+            <div>
+              <h3>Our Community</h3>
+              <p>We are committed to giving back to the communities in which we live, work and serve.</p>
+            </div>
+          </article>
+          <article class="careers-values__item">
+            <span>04</span>
+            <div>
+              <h3>Our Environment</h3>
+              <p>
+                Shuert Technologies is dedicated to protecting human health, natural resources and the global environment.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-reach-out">
+    <div class="container c-reach-out__inner">
+      <div class="c-reach-out__grid">
+        <div class="c-reach-out__content">
+          <p class="label c-reach-out__eyebrow">REACH OUT</p>
+          <h2 class="c-reach-out__title text-white">
+            Stay in the loop on all<br />
+            things Shuert, from product updates to exhibitions we&apos;re attending.
+          </h2>
+          <form class="c-reach-out__form" aria-label="Email updates">
+            <div class="c-reach-out__field">
+              <input
+                type="email"
+                class="c-reach-out__input"
+                placeholder="Email Address"
+                autocomplete="email"
+                inputmode="email"
+                aria-label="Email address"
+              />
+              <button type="submit" class="c-reach-out__submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="c-reach-out__media">
+          <img
+            src={reachOutImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="c-reach-out__img"
+            width={reachOutImg.width}
+            height={reachOutImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</AboutLayout>
+
+<script>
+  const form = document.querySelector('.c-reach-out__form');
+  form?.addEventListener('submit', (e) => e.preventDefault());
+</script>
+
+<script
+  define:vars={{
+    careersAutoplayMs: CULTURE_AUTOPLAY_MS,
+  }}
+>
+  (function () {
+    const root = document.getElementById('careers-culture-carousel');
+    if (!root) return;
+
+    const ANIM_NAME = 'careers-dot-progress';
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    root.style.setProperty('--careers-autoplay-ms', `${careersAutoplayMs}ms`);
+
+    const prevBtn = root.querySelector('[data-carousel-prev]');
+    const nextBtn = root.querySelector('[data-carousel-next]');
+    const slotEls = root.querySelectorAll('[data-carousel-slot]');
+    const realSlideEls = root.querySelectorAll('[data-carousel-swiper-slide]');
+    const allSlideEls = root.querySelectorAll('.careers-culture__swiper-slide');
+    const viewport = root.querySelector('#careers-culture-rail');
+    const track = root.querySelector('[data-carousel-swiper-track]');
+
+    const n = realSlideEls.length;
+    let realIndex = 0;
+    let domIndex = 1;
+    let prevDotsIndex = -1;
+    let shapeTimer = 0;
+    let sliding = false;
+    let ready = false;
+    const SHAPE_SETTLE_MS = 480;
+    var TRACK_EASE = 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)';
+    var OPACITY_EASE = 'opacity 0.45s ease';
+
+    function getSlideMetrics() {
+      var firstEl = allSlideEls[0];
+      if (!firstEl || !viewport) return { slideW: 0, gap: 20, vpW: 0 };
+      var vpW = viewport.getBoundingClientRect().width;
+      var slideW = firstEl.getBoundingClientRect().width;
+      var gap = parseFloat(getComputedStyle(track).gap) || 20;
+      return { slideW: slideW, gap: gap, vpW: vpW };
+    }
+
+    function calcTranslateX(di) {
+      var m = getSlideMetrics();
+      var center = (m.vpW - m.slideW) / 2;
+      return center - di * (m.slideW + m.gap);
+    }
+
+    function applyTransform(di, animate) {
+      domIndex = di;
+      var px = calcTranslateX(di);
+      if (animate) {
+        track.style.transition = TRACK_EASE;
+      } else {
+        track.style.transition = 'none';
+      }
+      track.style.transform = 'translateX(' + px + 'px)';
+
+      allSlideEls.forEach(function (el, j) {
+        if (animate) {
+          el.style.transition = OPACITY_EASE;
+        } else {
+          el.style.transition = 'none';
+        }
+        el.classList.toggle('is-active', j === di);
+      });
+
+      if (!animate) {
+        void track.offsetWidth;
+      }
+    }
+
+    function setRealIndex(ri) {
+      realIndex = ri;
+      realSlideEls.forEach(function (el, j) {
+        el.setAttribute('aria-hidden', j === realIndex ? 'false' : 'true');
+      });
+    }
+
+    function refreshDots() {
+      var moved = prevDotsIndex >= 0 && prevDotsIndex !== realIndex;
+      window.clearTimeout(shapeTimer);
+
+      slotEls.forEach(function (slot, i) {
+        var grow = slot.querySelector('.careers-culture__dot-grow');
+        var fill = slot.querySelector('[data-carousel-grow-fill]');
+        if (grow) grow.classList.toggle('is-active', i === realIndex);
+        if (fill) fill.classList.remove('careers-culture__dot-grow-fill--animating');
+      });
+
+      var activeFill = slotEls[realIndex] ? slotEls[realIndex].querySelector('[data-carousel-grow-fill]') : null;
+
+      var startFill = function () {
+        if (!activeFill || !(activeFill instanceof HTMLElement)) return;
+        if (reduceMotion) return;
+        void activeFill.offsetWidth;
+        activeFill.classList.add('careers-culture__dot-grow-fill--animating');
+      };
+
+      if (moved && !reduceMotion) {
+        shapeTimer = window.setTimeout(startFill, SHAPE_SETTLE_MS);
+      } else {
+        requestAnimationFrame(startFill);
+      }
+
+      prevDotsIndex = realIndex;
+    }
+
+    function go(delta) {
+      if (sliding || !ready) return;
+      var nextReal = (realIndex + delta + n) % n;
+      var nextDom = domIndex + delta;
+      sliding = true;
+      setRealIndex(nextReal);
+      applyTransform(nextDom, true);
+      refreshDots();
+    }
+
+    if (track) {
+      track.addEventListener('transitionend', function (e) {
+        if (e.target !== track) return;
+        if (domIndex === 0) {
+          applyTransform(n, false);
+        } else if (domIndex === n + 1) {
+          applyTransform(1, false);
+        }
+        sliding = false;
+      });
+    }
+
+    prevBtn && prevBtn.addEventListener('click', function () { go(-1); });
+    nextBtn && nextBtn.addEventListener('click', function () { go(1); });
+
+    slotEls.forEach(function (slot, i) {
+      var fill = slot.querySelector('[data-carousel-grow-fill]');
+      if (fill) {
+        fill.addEventListener('animationend', function (e) {
+          if (e.animationName !== ANIM_NAME) return;
+          if (i !== realIndex) return;
+          go(1);
+        });
+      }
+    });
+
+    /* ---- Pointer / touch drag ---- */
+    if (viewport && track) {
+      var dragging = false;
+      var startX = 0;
+      var dragDelta = 0;
+      var THRESHOLD = 40;
+
+      function applyDragOffset(px) {
+        var base = calcTranslateX(domIndex);
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(' + (base + px) + 'px)';
+      }
+
+      function onDown(e) {
+        if (!ready) return;
+        if (e.button && e.button !== 0) return;
+        dragging = true;
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        dragDelta = 0;
+        track.style.transition = 'none';
+        viewport.style.cursor = 'grabbing';
+      }
+
+      function onMove(e) {
+        if (!dragging) return;
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        dragDelta = clientX - startX;
+        applyDragOffset(dragDelta);
+      }
+
+      function onUp() {
+        if (!dragging) return;
+        dragging = false;
+        viewport.style.cursor = '';
+        if (Math.abs(dragDelta) > THRESHOLD) {
+          go(dragDelta < 0 ? 1 : -1);
+        } else {
+          applyTransform(domIndex, true);
+        }
+      }
+
+      viewport.addEventListener('pointerdown', onDown);
+      viewport.addEventListener('pointermove', onMove);
+      viewport.addEventListener('pointerup', onUp);
+      viewport.addEventListener('pointercancel', onUp);
+      viewport.addEventListener('pointerleave', onUp);
+
+      viewport.addEventListener('touchstart', onDown, { passive: true });
+      viewport.addEventListener('touchmove', onMove, { passive: true });
+      viewport.addEventListener('touchend', onUp);
+      viewport.addEventListener('touchcancel', onUp);
+
+      viewport.style.touchAction = 'pan-y';
+      viewport.style.cursor = 'grab';
+      viewport.style.userSelect = 'none';
+
+      viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    }
+
+    /* ---- Decode all images, then enable ---- */
+    setRealIndex(0);
+    applyTransform(1, false);
+
+    var imgs = track ? [].slice.call(track.querySelectorAll('img')) : [];
+
+    function decodeAll() {
+      return Promise.all(imgs.map(function (img) {
+        return new Promise(function (resolve) {
+          if (img.complete && img.naturalWidth > 0) {
+            if (img.decode) {
+              img.decode().then(resolve).catch(resolve);
+            } else {
+              resolve();
+            }
+          } else {
+            img.addEventListener('load', function () {
+              if (img.decode) {
+                img.decode().then(resolve).catch(resolve);
+              } else {
+                resolve();
+              }
+            }, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          }
+        });
+      }));
+    }
+
+    decodeAll().then(function () {
+      ready = true;
+      refreshDots();
+    });
+
+    var resizeTimer = 0;
+    window.addEventListener('resize', function () {
+      sliding = false;
+      clearTimeout(resizeTimer);
+      applyTransform(domIndex, false);
+      resizeTimer = setTimeout(function () {
+        applyTransform(domIndex, false);
+      }, 150);
+    });
+  })();
+</script>
+
+<style>
+  /* ================================================================
+     HERO (shared header structure)
+     ================================================================ */
+  .c-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .c-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .c-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -21.18%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .c-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0 0 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgba(0, 0, 0, 0.25) 100%);
+  }
+
+  .c-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .c-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .c-hero__left {
+    grid-column: 1 / 9;
+  }
+
+  .c-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .c-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .c-hero__left .detail-xl {
+    margin: 0;
+  }
+
+  .c-hero__right {
+    grid-column: 9 / -1;
+  }
+
+  .c-hero__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 520px;
+  }
+
+  .careers-intro,
+  .careers-culture,
+  .careers-testimonials { background: var(--c-sec-1); }
+
+  .careers-intro {
+    border-top: 1px solid #e3ded6;
+    padding: 77px 0;
+  }
+  .careers-intro__grid { align-items: start; }
+  .careers-intro__media { grid-column: 1 / 8; border-radius: 14px; overflow: hidden; aspect-ratio: 924 / 662; }
+  .careers-intro__media img { width: 100%; height: 100%; object-fit: cover; }
+  .careers-intro__copy { grid-column: 8 / -1; padding-top: 122px; padding-left: 55px; }
+  .careers-intro__copy p { margin: 0; font: var(--w-light) 20px / 26px var(--ff-r); }
+  .careers-intro__cta { margin-top: 34px; display: inline-flex; }
+
+  .careers-culture { border-top: 1px solid #e3ded6; padding: 86px 0 76px; overflow: hidden; }
+  .careers-section-label { margin: 0; color: var(--c-sec-3); letter-spacing: 1.54px; }
+  .careers-h3 { margin: 25px 0 0; font: var(--w-medium) 40px / 43px var(--ff-r); color: var(--c-black); }
+
+  /* ---- Swiper: single-card-per-slide with adjacent peek ---- */
+  .careers-culture__swiper-viewport {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 71px;
+  }
+
+  .careers-culture__swiper-track {
+    --slide-gap: 20px;
+    display: flex;
+    gap: var(--slide-gap);
+    will-change: transform;
+  }
+
+  .careers-culture__swiper-slide {
+    flex: 0 0 61%;
+    width: 61%;
+    min-width: 0;
+    box-sizing: border-box;
+    opacity: 0.35;
+  }
+
+  .careers-culture__swiper-slide.is-active {
+    opacity: 1;
+  }
+
+  .careers-card {
+    position: relative;
+    height: min(580px, 34vw);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .careers-card img { width: 100%; height: 100%; object-fit: cover; }
+  .careers-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 20%);
+    z-index: 1;
+  }
+  .careers-card__tag {
+    position: absolute;
+    top: 34px;
+    left: 35px;
+    z-index: 2;
+    display: inline-block;
+    margin: 0;
+    background: #000;
+    color: #fff;
+    border-radius: 25px;
+    padding: 6px 18px;
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+  }
+  .careers-card__blurb {
+    position: absolute;
+    left: 35px;
+    bottom: 32px;
+    z-index: 2;
+    margin: 0;
+    max-width: 260px;
+    font: var(--w-medium) 25px / 28px var(--ff-r);
+    color: #f7f5f2;
+  }
+
+  .careers-culture__controls { margin-top: 42px; }
+  .careers-culture__controls-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 50px;
+  }
+  .careers-culture__arrows {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+  }
+  .careers-culture__dots-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+  .careers-culture__dots-wrap > * {
+    pointer-events: auto;
+  }
+  .careers-culture__arrow {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e8e4de;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    cursor: pointer;
+    color: #9a958d;
+  }
+
+  .careers-culture__arrow-svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  .careers-culture__arrow:hover {
+    opacity: 0.85;
+  }
+  .careers-culture__arrow:focus-visible {
+    outline: 2px solid var(--c-black);
+    outline-offset: 2px;
+  }
+
+  @keyframes careers-dot-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Progress: inactive = small dots; active grows in place to the elongated bar (no sliding) */
+  .careers-culture__dots {
+    flex-shrink: 0;
+  }
+
+  .careers-culture__dots-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10px;
+  }
+
+  .careers-culture__dots-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .careers-culture__dot-slot {
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .careers-culture__dot-grow {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d7d0c7;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    transition:
+      width 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+      height 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+      border-radius 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .careers-culture__dot-grow.is-active {
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .careers-culture__dot-grow-fill {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #000;
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .careers-culture__dot-grow.is-active .careers-culture__dot-grow-fill {
+    opacity: 1;
+  }
+
+  .careers-culture__dot-grow-fill--animating {
+    animation: careers-dot-progress var(--careers-autoplay-ms, 6000ms) linear forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .careers-culture__dot-grow {
+      transition: none;
+    }
+
+    .careers-culture__dot-grow-fill {
+      transition: none;
+    }
+
+    .careers-culture__dot-grow-fill--animating {
+      animation: none !important;
+      transform: scaleX(1);
+    }
+  }
+
+  .careers-testimonials {
+    border-top: 1px solid #e3ded6;
+    padding: 76px 0 96px;
+  }
+  .careers-testimonials__grid { margin-top: 70px; gap: 28px 20px; }
+  .careers-testimonial { grid-column: span 4; }
+  .careers-testimonial__avatar {
+    width: 127px;
+    height: 127px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 28px;
+  }
+  .careers-testimonial h3 {
+    margin: 0;
+    font: var(--w-semibold) 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+  }
+  .careers-testimonial__role {
+    margin: 7px 0 18px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+  }
+  .careers-testimonial__text { margin: 0; font: var(--w-light) 16px / 22px var(--ff-r); max-width: 461px; }
+
+  .careers-values {
+    background: var(--c-sec-2);
+    padding: 87px 0 95px;
+  }
+  .careers-values__grid { align-items: start; }
+  .careers-values__head { grid-column: 1 / 7; }
+  .careers-values__list { grid-column: 7 / -1; }
+  .careers-values__item {
+    display: grid;
+    grid-template-columns: 21px 1fr;
+    gap: 38px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #d9d3cb;
+  }
+  .careers-values__item:last-child { margin-bottom: 0; }
+  .careers-values__item > span {
+    font: var(--w-semibold) 20px / 22px var(--ff-s);
+    letter-spacing: -0.5px;
+    color: var(--c-sec-3);
+  }
+  .careers-values__item h3 { margin: 0; font: 400 30px / 33px var(--ff-r); }
+  .careers-values__item p { margin: 15px 0 0; font: var(--w-light) 16px / 22px var(--ff-r); max-width: 615px; }
+
+  .c-reach-out {
+    position: relative;
+    background: #1b1b1b;
+    padding: 73px 0;
+  }
+  .c-reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+    grid-template-columns: 654px 789px;
+    column-gap: 155px;
+  }
+  .c-reach-out__eyebrow {
+    margin: 0 0 49px;
+    color: rgb(255 255 255 / 35%);
+    letter-spacing: 1.54px;
+  }
+  .c-reach-out__title {
+    margin: 0;
+    max-width: 654px;
+    font: var(--w-medium) 47px / 56px var(--ff-r);
+  }
+  .c-reach-out__form { margin-top: 336px; max-width: 654px; }
+  .c-reach-out__field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+  }
+  .c-reach-out__input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    outline: none;
+  }
+  .c-reach-out__input::placeholder { color: rgb(255 255 255 / 35%); }
+  .c-reach-out__submit {
+    border: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+  }
+  .c-reach-out__media { border-radius: 14px; overflow: hidden; aspect-ratio: 789 / 691; }
+  .c-reach-out__img { width: 100%; height: 100%; object-fit: cover; }
+
+  @media (max-width: 64rem) {
+    .c-hero__left,
+    .c-hero__right,
+    .careers-intro__media,
+    .careers-intro__copy,
+    .careers-values__head,
+    .careers-values__list,
+    .careers-testimonial { grid-column: 1 / -1; }
+
+    .careers-intro { padding: 48px 0; }
+    .careers-intro__copy { padding: 28px 0 0; }
+    .careers-intro__copy p { font-size: 18px; line-height: 24px; }
+
+    .careers-culture { padding: 60px 0 56px; }
+    .careers-culture__swiper-viewport { margin-top: 40px; }
+    .careers-culture__swiper-track { --slide-gap: 12px; }
+    .careers-culture__swiper-slide { flex-basis: 85%; width: 85%; }
+    .careers-card { height: 56vw; min-height: 320px; }
+
+    .careers-testimonials { padding: 60px 0; }
+    .careers-testimonials__grid { margin-top: 36px; }
+
+    .careers-values { padding: 60px 0; }
+
+    .c-reach-out { padding: 56px 0; }
+    .c-reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+      max-width: none;
+    }
+    .c-reach-out__title { font-size: clamp(1.75rem, 2.8vw, 48px); line-height: 1.2; }
+    .c-reach-out__form { margin-top: 24px; max-width: none; }
+    .c-reach-out__media { max-width: 36rem; margin-inline: auto; }
+  }
+</style>

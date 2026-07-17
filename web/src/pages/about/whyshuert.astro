@@ -1,0 +1,970 @@
+---
+import AboutLayout from '../../layouts/AboutLayout.astro';
+import heroImg from '../../assets/about/whyshuert/hero.png';
+import introImg from '../../assets/about/whyshuert/intro.png';
+import pillarImg from '../../assets/about/whyshuert/video-still.png';
+import videoStill from '../../assets/about/whyshuert/video-still.png';
+import productsImg from '../../assets/about/whyshuert/products.png';
+import materialImg from '../../assets/about/whyshuert/video-still.png';
+import manufacturingImg from '../../assets/about/whyshuert/manufacturing.png';
+import processImg from '../../assets/about/whyshuert/process.png';
+import reachOutImg from '../../assets/about/whyshuert/reach-out.png';
+import playIcon from '../../assets/about/whyshuert/play-icon.svg?url';
+import playIconLg from '../../assets/about/whyshuert/play-icon-lg.svg?url';
+
+const pillars = [
+  {
+    tag: 'durable',
+    img: pillarImg,
+    desc: 'HDPE\u2019s linear, minimally branched molecular structure allows tighter packing and higher crystallinity, resulting in greater strength and stiffness for durable, reusable products. Twin-sheet thermoforming further enhances structural integrity\u2014creating double-walled designs with rigidity, load-bearing capacity, and impact resistance compared to other technologies. When damage occurs, components can be repaired rather than replaced, extending service life and reducing waste.',
+  },
+  {
+    tag: 'versatile',
+    img: pillarImg,
+    desc: 'Shuert products support a high degree of versatility through both fully custom solutions and configurable product lines. Interior dunnage can be engineered to secure, separate, and protect specific parts, while integrated identification features enable tracking and process control within material handling systems. This approach allows packaging to be adapted across applications and updated as requirements evolve, without compromising structural performance or system compatibility.',
+  },
+  {
+    tag: 'cost-effective',
+    img: pillarImg,
+    desc: 'Shuert products deliver strong economic performance through lightweight construction, high load-to-weight ratios, and space-efficient designs engineered to maximize pallet load density and cube density across shipments. These design characteristics improve how efficiently product weight is carried (payload efficiency) and space is utilized (cube utilization), reducing freight and storage requirements. At the same time, durable, reusable structures extend service life and limit the need for repeated asset investment, lowering total cost over time. The result is a transport and handling solution designed to contain costs as effectively as it contains product.',
+  },
+] as const;
+
+const features = [
+  {
+    title: 'Products',
+    desc: 'Our products are developed at the intersection of material selection, manufacturing process, and real-world application. We use premium high-molecular-weight, high-density polyethylene (HMW-HDPE) combined with twin-sheet thermoforming to manufacture thoughtful designs. Just as important is how we approach the problem itself. Customers often come to us with a proposed solution\u2014we work to understand the underlying challenge, then apply our experience across material, process, and design to deliver a solution that performs reliably in real-world conditions.',
+    cta: 'All Products',
+    href: '/products',
+    img: productsImg,
+    descSize: 'lg' as const,
+  },
+  {
+    title: 'Material Selection',
+    desc: 'Material choice is not a secondary decision\u2014it defines how a product performs over thousands of cycles in a reusable system. We engineer our solutions using high molecular weight, high-density polyethylene (HMW-HDPE) and prime material inputs to ensure consistent, predictable performance in demanding supply chain environments.',
+    cta: 'Learn More',
+    href: '/capabilities',
+    img: materialImg,
+    descSize: 'sm' as const,
+  },
+  {
+    title: 'Manufacturing',
+    desc: 'Twin-sheet thermoforming is a manufacturing process in which two heated plastic sheets are simultaneously formed against opposing mold surfaces\u2014one male and one female\u2014using vacuum to draw each sheet into shape. The formed sheets are then fused together at defined contact points within the tool through localized bonding, known as knitting, creating a single, unified structure with enclosed geometries and internal features.',
+    cta: 'Learn More',
+    href: '/capabilities',
+    img: manufacturingImg,
+    descSize: 'sm' as const,
+  },
+  {
+    title: 'Process',
+    desc: 'Delivering consistency\u2014in quality, pricing, and service\u2014in an environment defined by constant change begins by conceding what we cannot control. We cannot control external volatility, but we can control how we design, build, and deliver. That\u2019s why we have invested in vertical integration and developed in-house capability across the full lifecycle of our reusable packaging systems\u2014including buy-back and recycling at end of life. From design and engineering through prototyping and testing, tooling, production manufacturing, and recycling, each stage operates in alignment on a single campus\u2014enabling real-time collaboration, faster iteration, and true end-to-end process control. This integrated model allows us to deliver with precision while reducing dependency on external constraints. By engineering and advancing our own equipment and processes, we ensure repeatability, responsiveness, and consistency our customers can rely on\u2014program after program.',
+    cta: 'Our Capabilities',
+    href: '/capabilities',
+    img: processImg,
+    descSize: 'sm' as const,
+  },
+] as const;
+---
+
+<AboutLayout title="Why Shuert" current="why-shuert">
+  <!-- ─────────── HERO ─────────── -->
+  <section class="ws-hero">
+    <div class="ws-hero__bg" aria-hidden="true">
+      <img
+        src={heroImg.src}
+        alt=""
+        class="ws-hero__img"
+        width={heroImg.width}
+        height={heroImg.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="ws-hero__gradient"></div>
+    </div>
+    <div class="ws-hero__content container">
+      <div class="page-grid ws-hero__grid">
+        <div class="ws-hero__left">
+          <p class="ws-hero__breadcrumb">
+            <span class="ws-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>WHY SHUERT
+          </p>
+          <h1 class="detail-xl text-white ws-hero__title">shuert<br />advantage</h1>
+        </div>
+      </div>
+      <a class="ws-hero__watch" href="#" aria-label="Watch video">
+        <span class="ws-hero__watch-label">WATCH</span>
+        <img src={playIcon} alt="" width="50" height="50" class="ws-hero__watch-icon" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── INTRO + TAGLINE + PILLARS ─────────── -->
+  <section class="ws-body">
+    <div class="container">
+      <div class="page-grid ws-intro">
+        <div class="ws-intro__media">
+          <img
+            src={introImg.src}
+            alt="Shuert engineer reviewing technical designs at a workstation"
+            width={introImg.width}
+            height={introImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="ws-intro__copy">
+          <p class="ws-intro__text">
+            Our people are our greatest asset. Every individual plays a critical role, bringing unique experience and
+            perspective to the challenges we solve together. Many members of our team have extensive tenures, building deep
+            expertise across both operations and product development. With roots on the plant floor and progression through
+            increasingly responsible roles, our team designs with manufacturing in mind&mdash;ensuring every solution is not
+            only well engineered, but practical to produce and reliable in use.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="ws-tagline reveal">
+        durable.<br />
+        versatile.<br />
+        cost-effective.
+      </h2>
+
+      <div class="ws-pillars">
+        {
+          pillars.map((p) => (
+            <article class="ws-pillars__card">
+              <div class="ws-pillars__media">
+                <img
+                  src={p.img.src}
+                  alt=""
+                  width={p.img.width}
+                  height={p.img.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="ws-pillars__tag">{p.tag}</span>
+              </div>
+              <p class="ws-pillars__desc">{p.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── VIDEO ─────────── -->
+  <section class="ws-video">
+    <div class="ws-video__bg" aria-hidden="true">
+      <img
+        src={videoStill.src}
+        alt=""
+        class="ws-video__img"
+        width={videoStill.width}
+        height={videoStill.height}
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="ws-video__overlay"></div>
+    </div>
+    <a class="ws-video__play" href="#" aria-label="Play video">
+      <img src={playIconLg} alt="" width="100" height="100" />
+    </a>
+  </section>
+
+  <!-- ─────────── FEATURE ROWS ─────────── -->
+  <section class="ws-features">
+    <div class="container">
+      {
+        features.map((f, i) => (
+          <article class:list={['ws-row page-grid', { 'ws-row--reverse': i % 2 !== 0 }]}>
+            <div class="ws-row__img-wrap">
+              <img
+                src={f.img.src}
+                alt={f.title}
+                class="ws-row__img"
+                width={f.img.width}
+                height={f.img.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="ws-row__text reveal">
+              <h2 class="ws-row__title">{f.title}</h2>
+              <p class:list={['ws-row__desc', `ws-row__desc--${f.descSize}`]}>{f.desc}</p>
+              <a class="button ws-btn" href={f.href}>
+                {f.cta}
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ─────────── REACH OUT ─────────── -->
+  <section class="c-reach-out">
+    <div class="container c-reach-out__inner">
+      <div class="c-reach-out__grid">
+        <div class="c-reach-out__content">
+          <p class="label c-reach-out__eyebrow">REACH OUT</p>
+          <h2 class="c-reach-out__title text-white reveal">
+            Stay in the loop on all<br />
+            things Shuert, from product updates to exhibitions we&apos;re attending.
+          </h2>
+          <form class="c-reach-out__form" aria-label="Email updates">
+            <div class="c-reach-out__field">
+              <input
+                type="email"
+                class="c-reach-out__input"
+                placeholder="Email Address"
+                autocomplete="email"
+                inputmode="email"
+                aria-label="Email address"
+              />
+              <button type="submit" class="c-reach-out__submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="c-reach-out__media">
+          <img
+            src={reachOutImg.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="c-reach-out__img"
+            width={reachOutImg.width}
+            height={reachOutImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</AboutLayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  const form = document.querySelector('.c-reach-out__form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .ws-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .ws-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ws-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -21.18%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .ws-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0, 0, 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgba(0, 0, 0, 0.25) 100%);
+  }
+
+  .ws-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+  }
+
+  .ws-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .ws-hero__left {
+    grid-column: 1 / 9;
+  }
+
+  .ws-hero__breadcrumb {
+    margin: 0 0 50px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .ws-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .ws-hero__title {
+    margin: 0;
+  }
+
+  .ws-hero__watch {
+    position: absolute;
+    right: var(--grid-margin);
+    bottom: clamp(1.5rem, 3.18vw, 60px);
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    text-decoration: none;
+    color: var(--c-white);
+    z-index: 2;
+  }
+
+  .ws-hero__watch-label {
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+  }
+
+  .ws-hero__watch-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .ws-hero__watch:hover .ws-hero__watch-icon {
+    opacity: 0.75;
+  }
+
+  /* ================================================================
+     BODY (intro + tagline + pillars)
+     ================================================================ */
+  .ws-body {
+    background: var(--c-sec-1);
+    padding: 77px 0 67px;
+  }
+
+  .ws-intro {
+    align-items: center;
+  }
+
+  .ws-intro__media {
+    grid-column: 1 / 8;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 924 / 662;
+  }
+
+  .ws-intro__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-intro__copy {
+    grid-column: 8 / -1;
+    padding-left: 55px;
+  }
+
+  .ws-intro__text {
+    margin: 0;
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+    max-width: 519px;
+  }
+
+  /* ================================================================
+     TAGLINE
+     ================================================================ */
+  .ws-tagline {
+    margin: 154px 0 138px;
+    font: var(--w-semibold) clamp(3.5rem, 11.57vw, 200px) / 0.865 var(--ff-s);
+    text-transform: lowercase;
+    color: var(--c-black);
+    letter-spacing: 0;
+  }
+
+  /* ================================================================
+     PILLARS (durable / versatile / cost-effective)
+     ================================================================ */
+  .ws-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--grid-gutter);
+  }
+
+  .ws-pillars__card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ws-pillars__media {
+    position: relative;
+    aspect-ratio: 519 / 380;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    margin-bottom: 27px;
+    background: var(--c-black);
+  }
+
+  .ws-pillars__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-pillars__tag {
+    position: absolute;
+    left: 23px;
+    bottom: 21px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px;
+    background: var(--c-black);
+    color: var(--c-white);
+    border-radius: 25px;
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    white-space: nowrap;
+  }
+
+  .ws-pillars__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    max-width: 454px;
+  }
+
+  /* ================================================================
+     VIDEO
+     ================================================================ */
+  .ws-video {
+    position: relative;
+    height: clamp(420px, 60vw, 1037px);
+    overflow: hidden;
+    background: var(--c-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ws-video__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ws-video__img {
+    position: absolute;
+    width: 147.58%;
+    height: 102.6%;
+    left: -17.77%;
+    top: -2.6%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .ws-video__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .ws-video__play {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    transition: opacity 0.2s ease;
+  }
+
+  .ws-video__play:hover {
+    opacity: 0.8;
+  }
+
+  .ws-video__play img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ================================================================
+     FEATURE ROWS
+     ================================================================ */
+  .ws-features {
+    background: var(--c-sec-1);
+    padding: 77px 0;
+  }
+
+  .ws-row {
+    align-items: center;
+  }
+
+  .ws-row + .ws-row {
+    margin-top: 77px;
+  }
+
+  .ws-row__img-wrap {
+    grid-column: 1 / 8;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 924 / 662;
+    position: relative;
+  }
+
+  .ws-row__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-row__text {
+    grid-column: 8 / -1;
+    padding-left: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+  }
+
+  .ws-row--reverse .ws-row__img-wrap {
+    grid-column: 6 / -1;
+    grid-row: 1;
+  }
+
+  .ws-row--reverse .ws-row__text {
+    grid-column: 1 / 6;
+    grid-row: 1;
+    padding-left: 58px;
+  }
+
+  .ws-row__title {
+    margin: 0;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .ws-row__desc {
+    margin: 0;
+    color: var(--c-black);
+    max-width: 519px;
+  }
+
+  .ws-row__desc--lg {
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    max-width: 556px;
+  }
+
+  .ws-row__desc--sm {
+    font: var(--w-light) 16px / 22px var(--ff-r);
+  }
+
+  .ws-btn {
+    background: var(--c-black);
+    color: var(--c-white);
+    border-color: transparent;
+    text-decoration: none;
+  }
+
+  .ws-btn:hover {
+    opacity: 0.88;
+  }
+
+  /* ================================================================
+     REACH OUT
+     ================================================================ */
+  .c-reach-out {
+    position: relative;
+    background: #1b1b1b;
+    padding: 73px 0;
+    box-sizing: border-box;
+  }
+
+  .c-reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+  }
+
+  .c-reach-out__eyebrow {
+    margin: 0 0 49px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.54px;
+  }
+
+  .c-reach-out__title {
+    margin: 0;
+    max-width: 654px;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.75rem, 2.8vw, 47px);
+    line-height: 1.19;
+    letter-spacing: 0;
+  }
+
+  .c-reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
+  .c-reach-out__field {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+  }
+
+  .c-reach-out__input {
+    flex: 1;
+    min-width: 0;
+    height: 22px;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    padding: 0;
+    outline: none;
+  }
+
+  .c-reach-out__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .c-reach-out__submit {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+  }
+
+  .c-reach-out__submit:hover {
+    opacity: 0.92;
+  }
+
+  .c-reach-out__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .c-reach-out__media {
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 789 / 691;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .c-reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 42%;
+  }
+
+  /* ================================================================
+     REVEAL
+     ================================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================================================================
+     DESKTOP (≥ 1728px)
+     ================================================================ */
+  @media (min-width: 1728px) {
+    .c-reach-out__title {
+      font-size: 47px;
+      line-height: 56px;
+    }
+
+    .c-reach-out__grid {
+      grid-template-columns: 654px 789px;
+      column-gap: 155px;
+    }
+
+    .c-reach-out__media {
+      width: 789px;
+      max-width: none;
+    }
+  }
+
+  /* ================================================================
+     WIDE DESKTOP (1025px – 1727px)
+     ================================================================ */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .c-reach-out__grid {
+      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 8.9vw, 155px);
+    }
+
+    .c-reach-out__form {
+      margin-top: clamp(4rem, 19.5vw, 336px);
+    }
+  }
+
+  /* ================================================================
+     TABLET (≤ 1024px)
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .ws-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .ws-hero__left {
+      grid-column: 1 / -1;
+    }
+
+    .ws-hero__breadcrumb {
+      margin-bottom: 1.5rem;
+    }
+
+    .ws-hero__watch {
+      bottom: clamp(60px, 9vw, 100px);
+    }
+
+    .ws-body {
+      padding: 48px 0;
+    }
+
+    .ws-intro__media,
+    .ws-intro__copy {
+      grid-column: 1 / -1;
+    }
+
+    .ws-intro__copy {
+      margin-top: 28px;
+      padding-left: 0;
+    }
+
+    .ws-intro__text {
+      max-width: none;
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .ws-tagline {
+      margin: 64px 0 56px;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+    }
+
+    .ws-pillars {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ws-pillars__media {
+      aspect-ratio: 16 / 10;
+    }
+
+    .ws-pillars__desc {
+      max-width: none;
+    }
+
+    .ws-video {
+      height: clamp(360px, 55vw, 640px);
+    }
+
+    .ws-features {
+      padding: 48px 0;
+    }
+
+    .ws-row + .ws-row {
+      margin-top: 56px;
+    }
+
+    .ws-row__img-wrap {
+      grid-column: 1 / -1;
+      aspect-ratio: 924 / 520;
+    }
+
+    .ws-row__text {
+      grid-column: 1 / -1;
+      padding-left: 0;
+      padding-top: 28px;
+      gap: 24px;
+    }
+
+    .ws-row--reverse .ws-row__img-wrap {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    .ws-row--reverse .ws-row__text {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding-left: 0;
+    }
+
+    .ws-row__title {
+      font-size: 26px;
+      line-height: 30px;
+    }
+
+    .ws-row__desc--lg,
+    .ws-row__desc--sm {
+      font-size: 16px;
+      line-height: 22px;
+      max-width: none;
+    }
+
+    .c-reach-out {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .c-reach-out__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .c-reach-out__title {
+      max-width: none;
+      line-height: 1.2;
+    }
+
+    .c-reach-out__form {
+      margin-top: 2rem;
+      max-width: none;
+    }
+
+    .c-reach-out__field {
+      height: auto;
+      min-height: 65px;
+      flex-wrap: wrap;
+      padding: 10px 10px 10px 20px;
+    }
+
+    .c-reach-out__submit {
+      height: 48px;
+      min-width: auto;
+    }
+
+    .c-reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      max-width: none;
+    }
+
+    .c-reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* ================================================================
+     MOBILE (≤ 768px)
+     ================================================================ */
+  @media (max-width: 48rem) {
+    .ws-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .ws-hero__img {
+      width: 160%;
+      left: -40%;
+    }
+
+    .ws-hero__breadcrumb {
+      margin-bottom: 1rem;
+    }
+
+    .ws-body {
+      padding: 32px 0;
+    }
+
+    .ws-intro__text {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .ws-tagline {
+      margin: 48px 0 40px;
+      font-size: clamp(2.5rem, 12vw, 3.5rem);
+    }
+
+    .ws-video {
+      height: clamp(280px, 70vw, 420px);
+    }
+
+    .ws-video__play {
+      width: 72px;
+      height: 72px;
+    }
+
+    .ws-features {
+      padding: 32px 0;
+    }
+
+    .ws-row + .ws-row {
+      margin-top: 40px;
+    }
+
+    .c-reach-out {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .c-reach-out__title {
+      font-size: 1.5rem;
+    }
+
+    .c-reach-out__field {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+      padding: 12px;
+      gap: 10px;
+    }
+
+    .c-reach-out__submit {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,320 @@
+/* ==========================================================================
+   GLOBAL.css — Production Ready
+   Fluid headings (clamp)
+   Accessible (rem-based)
+   Astro + Islands safe
+   ========================================================================== */
+
+/* ================================
+   1. Fonts (/public/fonts → /fonts/)
+   ================================ */
+
+   @font-face{
+    font-family:"Roobert";
+    src:url("/fonts/Roobert-Light.woff2") format("woff2");
+    font-weight:300;
+    font-style:normal;
+    font-display:swap;
+  }
+  
+  @font-face{
+    font-family:"Roobert";
+    src:url("/fonts/Roobert-Medium.woff2") format("woff2");
+    font-weight:500;
+    font-style:normal;
+    font-display:swap;
+  }
+  
+  @font-face{
+    font-family:"Shentox";
+    src:url("/fonts/Shentox-Semibold.woff2") format("woff2");
+    font-weight:600;
+    font-style:normal;
+    font-display:swap;
+  }
+  
+  @font-face{
+    font-family:"Shentox";
+    src:url("/fonts/Shentox-Bold.woff2") format("woff2");
+    font-weight:700;
+    font-style:normal;
+    font-display:swap;
+  }
+  
+  /* ================================
+     2. Tokens
+     ================================ */
+  
+  :root{
+    /* Colors */
+    --c-black:#000;
+    --c-blackbg:#1e1e1e;
+    --c-white:#fff;
+    --c-red:#D12539;
+    --c-sec-1:#F7F5F2;
+    --c-sec-2:#EFECE7;
+    --c-sec-3:#D4CEC6;
+  
+    /* Font families */
+    --ff-r:"Roobert",system-ui,sans-serif;
+    --ff-s:"Shentox",system-ui,sans-serif;
+  
+    /* Weights */
+    --w-light:300;
+    --w-medium:500;
+    --w-semibold:600;
+    --w-bold:700;
+  
+    /* Radii */
+    --r-btn:.5rem;      /* 8px */
+    --r-img:.875rem;    /* 14px */
+  
+    /* ================================
+       Fluid Headings (Desktop max → Mobile min)
+       ================================ */
+  
+    --h1: clamp(2rem, 4.5vw, 4.0625rem);     /* 32px → 65px */
+    --h2: clamp(1.75rem, 3.8vw, 3rem);       /* 28px → 48px */
+    --h3: clamp(1.5rem, 3vw, 2.5rem);        /* 24px → 40px */
+    --h4: clamp(1.375rem, 2.5vw, 1.875rem);  /* 22px → 30px */
+    --h5: clamp(1.25rem, 2vw, 1.5625rem);    /* 20px → 25px */
+    --h6: 1.25rem;                           /* 20px fixed */
+  
+    /* Detail (Shentox) */
+    --detail-xl: clamp(2.5rem, 7.5vw, 6.875rem); /* 40px → 110px */
+    --detail-lg: clamp(2.5rem, 6vw, 6.25rem);    /* 40px → 100px */
+    --detail-md: clamp(1.5rem, 3vw, 1.875rem);
+  
+    /* Paragraphs (fixed for readability) */
+    --p: 1rem;        /* 16px */
+    --p-lg: 1.25rem;  /* 20px */
+    --p-sm: .75rem;   /* 12px */
+    --p-xs: .625rem;  /* 10px */
+  
+    --lh-tight: 1.1;
+    --lh-normal: 1.4;
+    --lh-loose: 1.6;
+  
+    /* Buttons */
+    --but-pad-y:.9375rem;  /* 15px */
+    --but-pad-x:1.125rem;  /* 18px */
+
+    /* ================================
+       Grid — 12 col / 65px margin / 20px gutter (desktop)
+       ================================ */
+    --grid-cols: 12;
+    --grid-margin: 4.0625rem;  /* 65px */
+    --grid-gutter: 1.25rem;    /* 20px */
+  }
+
+  /* Tablet (≤ 1024px): 8 columns, 32px margin */
+  @media (max-width: 64rem) {
+    :root {
+      --grid-cols: 8;
+      --grid-margin: 2rem;
+    }
+  }
+
+  /* Mobile (≤ 768px): 4 columns, 20px margin, 16px gutter */
+  @media (max-width: 48rem) {
+    :root {
+      --grid-cols: 4;
+      --grid-margin: 1.25rem;
+      --grid-gutter: 1rem;
+    }
+  }
+
+  /* ================================
+     3. Base
+     ================================ */
+  
+  *,
+  *::before,
+  *::after{box-sizing:border-box;}
+  
+  html{font-size:100%;}
+  
+  body{
+    margin:0;
+    background:var(--c-white);
+    color:var(--c-black);
+    font: var(--w-light) var(--p)/var(--lh-loose) var(--ff-r);
+  }
+  
+  img,svg,video{display:block;max-width:100%;}
+  
+  /* ================================
+     4. Typography
+     ================================ */
+  
+  /* Headings */
+  .h1{font:var(--w-light) var(--h1)/var(--lh-tight) var(--ff-r);}
+  .h2{font:var(--w-light) var(--h2)/var(--lh-tight) var(--ff-r);}
+  .h3{font:var(--w-light) var(--h3)/var(--lh-tight) var(--ff-r);}
+  .h4{font:var(--w-light) var(--h4)/var(--lh-normal) var(--ff-r);}
+  .h5{font:var(--w-light) var(--h5)/var(--lh-normal) var(--ff-r);}
+  .h6{font:var(--w-light) var(--h6)/var(--lh-normal) var(--ff-r);}
+  
+  /* Paragraphs */
+  .p{font:var(--w-light) var(--p)/var(--lh-loose) var(--ff-r);}
+  .p-lg{font:var(--w-light) var(--p-lg)/var(--lh-loose) var(--ff-r);}
+  .p-sm{font:var(--w-light) var(--p-sm)/var(--lh-normal) var(--ff-r);}
+  .p-xs{font:var(--w-light) var(--p-xs)/var(--lh-normal) var(--ff-r);}
+  
+  /* Detail headings */
+  .detail-xl{
+    font:var(--w-semibold) var(--detail-xl)/0.91 var(--ff-s);
+    text-transform:lowercase;
+  }
+  .detail-lg{
+    font:var(--w-semibold) var(--detail-lg)/var(--lh-tight) var(--ff-s);
+    text-transform:lowercase;
+  }
+  .detail-md{
+    font:var(--w-semibold) var(--detail-md)/var(--lh-tight) var(--ff-s);
+    text-transform:lowercase;
+  }
+  
+  /* Labels */
+  .label{
+    font:var(--w-bold) .875rem/1 var(--ff-s);
+    letter-spacing:.11em;
+    text-transform:uppercase;
+  }
+  
+  /* ================================
+     5. Buttons
+     ================================ */
+  
+  .button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:var(--but-pad-y) var(--but-pad-x);
+    border-radius:var(--r-btn);
+    border:1px solid transparent;
+    font:var(--w-medium) 1rem/1 var(--ff-r);
+    cursor:pointer;
+  }
+  
+  .button-primary{
+    background:var(--c-white);
+    color:var(--c-black);
+    border-color:var(--c-black);
+    text-decoration: none;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+    padding: 15px 18px;
+    border-radius: 8px;
+  }
+  
+  .button-secondary{
+    background:var(--c-white);
+    color:var(--c-black);
+    border-color:var(--c-black);
+    text-decoration: none;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+    padding: 6px 18px;
+    border-radius: 8px;
+  }
+  
+  .button-glass{
+    background:rgb(44, 44, 44);
+    color:var(--c-white);
+    border-color:transparent;
+    text-decoration: none;
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: 0;
+    padding: 15px 18px;
+    border-radius: 8px;
+  }
+
+  .button-disabled{
+    background:var(--c-sec-3);
+    color:var(--c-white);
+    opacity:.7;
+    cursor:not-allowed;
+  }
+  
+  /* ================================
+     6. Utilities
+     ================================ */
+  
+  .img{border-radius:var(--r-img);overflow:hidden;}
+  
+  .bg-black{background:var(--c-black);}
+  .bg-red{background:var(--c-red);}
+  .bg-sec{background:var(--c-sec-1);}
+  
+  .text-white{color:var(--c-white);}
+  .text-red{color:var(--c-red);}
+
+  /* ================================
+     7. Grid system
+     ================================ */
+
+  .container{
+    width:100%;
+    margin-inline:auto;
+    padding-inline:var(--grid-margin);
+  }
+
+  .page-grid{
+    display:grid;
+    grid-template-columns:repeat(var(--grid-cols),minmax(0,1fr));
+    gap:var(--grid-gutter);
+  }
+
+  .col-span-1 {grid-column:span 1;}
+  .col-span-2 {grid-column:span 2;}
+  .col-span-3 {grid-column:span 3;}
+  .col-span-4 {grid-column:span 4;}
+  .col-span-5 {grid-column:span 5;}
+  .col-span-6 {grid-column:span 6;}
+  .col-span-7 {grid-column:span 7;}
+  .col-span-8 {grid-column:span 8;}
+  .col-span-9 {grid-column:span 9;}
+  .col-span-10{grid-column:span 10;}
+  .col-span-11{grid-column:span 11;}
+  .col-span-12{grid-column:span 12;}
+  .col-full   {grid-column:1 / -1;}
+
+  /* ================================
+     8. Grid debug overlay (Ctrl+G)
+     ================================ */
+
+  .grid-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    display: none;
+  }
+
+  .grid-overlay--visible {
+    display: block;
+  }
+
+  .grid-overlay__container {
+    height: 100%;
+  }
+
+  .grid-overlay__grid {
+    height: 100%;
+  }
+
+  .grid-overlay__col {
+    background: rgba(255, 0, 100, 0.08);
+    border-inline: 1px solid rgba(255, 0, 100, 0.2);
+  }
+  
