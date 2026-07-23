@@ -1,33 +1,106 @@
 ---
 import Mainlayout from '../layouts/Mainlayout.astro';
 import ExploreHoverCard from '../components/ExploreHoverCard.astro';
-import palletImg from '../assets/home/Uni-Directional-Pallet_v02.png';
-import productFamilyImg from '../assets/home/Shuert_Product_Family_v01_v02.png';
-import gridImg from '../assets/home/Isometric_Grid_v02 1.png';
+import heroVideo from '../assets/home/Shuert Hero.mp4?url';
+import showcaseGridImg from '../assets/home/showcase/442c4945dd362268b980a5ca97e20f26e7ebd454.png';
 import exploreCapabilitiesImg from '../assets/home/Rectangle 30.png';
 import exploreAboutImg from '../assets/home/Rectangle 29.png';
-import iconAutomotive from '../assets/home/7c61e96fd523fbfee58ef2dc967fb250ae0ac962.svg?url';
-import iconAgriculture from '../assets/home/e437b82618ada1bd3baea1071885d346ec78d1e1.svg?url';
+import iconAutomotive from '../assets/markets/7c61e96fd523fbfee58ef2dc967fb250ae0ac962.svg?url';
+import iconAgriculture from '../assets/markets/e437b82618ada1bd3baea1071885d346ec78d1e1.svg?url';
 import iconAutomatedSystems from '../assets/home/7850fb2d2eeabb768ee1c47c0e2307c7bbddb2da.svg?url';
-import iconConstruction from '../assets/home/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
-import iconEcommerce from '../assets/home/4c5e31e9b4808bff05cac0ef0086008fb8389b8a.svg?url';
-import iconMore from '../assets/home/66fac9b62bb604a30a73f2e66a4d01544af56ce2.svg?url';
-import iconArrow from '../assets/home/e1e05d54610c23a46c0f381b38cd27e6782c2106.svg?url';
+import iconConstruction from '../assets/markets/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
+import iconEcommerce from '../assets/markets/e599fe2c8709a6a434485eab6b63c610d1fe9613.svg?url';
+import iconFmcg from '../assets/markets/499b89d1df290e0ae8c1f320fb7b23f10a622137.svg?url';
 import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+
+import swpfUniCase from '../assets/home/showcase/4b170503a9b59eff640b0edc203460e636770be1.png';
+import swpfYarnPak from '../assets/home/showcase/8814d643574ff518056f6ce26f4edefd5d46a80e.png';
+import swpfBatteryRak from '../assets/home/showcase/108ec376df65f3cc0ee4220601ba12405b08659c.png';
+import swpfModulePak from '../assets/home/showcase/03a91da25f7f86086463e14458bcd279277f5709.png';
+import swpfUniPakIi from '../assets/home/showcase/c7cebf8f9dab13617207e179bf6b69ac9347fefe.png';
+import swpfUniPak from '../assets/home/showcase/974cb1b76ab2b91a796aa3a198c5be826cc8c78e.png';
+import swpfSnapPak from '../assets/home/showcase/f5f5968a699aeb53db959a87cccd4ce29090a0e1.png';
+import swpfBulkPak from '../assets/home/showcase/6661c68d4e4964b1fbfe9142352dda22f14600c9.png';
+import swpfProPak from '../assets/home/showcase/9a9f3efdb18c2bfd8a9c201d7875e9d99d2add75.png';
+import swpfRemanPak from '../assets/home/showcase/a263c45ea647f3f8932e045b690d6e28e2a6439c.png';
+import swpfBatteryShell from '../assets/home/showcase/d910fec071e11b9db902c06d71b2330200ee5cfc.png';
+import swpfUniRak from '../assets/home/showcase/7263cce3121718fdd3b45b63d5778ae2f16a836e.png';
+import swpfAxlePak from '../assets/home/showcase/7869141aff8f1052144c41e39e4b6094958a27c6.png';
+import swpfTerraRoad from '../assets/home/showcase/712acef20e697dbe2c9efed8c200a1858bad65b6.png';
+import swpfUniDirectional from '../assets/home/showcase/df2d10cd900107fb5cd9da3677993ef0dc1bd546.png';
+import swpfUniPallet from '../assets/home/showcase/05d946f9598c18c84bbd6a0600beea44850414f7.png';
+import swpfPerimeterBase from '../assets/home/showcase/7086a744aeb4ac6e8b63c7a8367846740eb17c79.png';
+
+const ART_W = 1727;
+const ART_H = 1248;
+const SWPF_SIZE = 668.432;
+
+const marketDesc =
+  'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.';
+
+const markets = [
+  { name: 'Automotive', icon: iconAutomotive, iw: 36, ih: 27, desc: marketDesc },
+  { name: 'Agriculture', icon: iconAgriculture, iw: 28, ih: 35, desc: marketDesc },
+  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 35, ih: 35, desc: marketDesc },
+  { name: 'Construction', icon: iconConstruction, iw: 34, ih: 34, desc: marketDesc },
+  { name: 'E-Commerce', icon: iconEcommerce, iw: 34, ih: 35, desc: marketDesc },
+  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 35, ih: 35, desc: marketDesc },
+  { name: 'Government', icon: iconConstruction, iw: 34, ih: 34, desc: marketDesc },
+  { name: 'Grocery', icon: iconEcommerce, iw: 34, ih: 35, desc: marketDesc },
+  { name: 'Military', icon: iconFmcg, iw: 35, ih: 35, desc: marketDesc },
+  { name: 'Pharmaceutical/Medical', icon: iconConstruction, iw: 34, ih: 34, desc: marketDesc },
+  { name: 'Textiles', icon: iconEcommerce, iw: 34, ih: 35, desc: marketDesc },
+];
+
+/** Figma Frame 155 (2003:8154) product positions on 1727×1248 artboard */
+const showcaseProducts = [
+  { id: 'uni-case', name: 'uni-case', href: '/products/uni-case', left: 562.72, top: -26.9, flip: false, image: swpfUniCase },
+  { id: 'yarn-pak', name: 'yarn-pak', href: '/products/yarn-pak', left: 789.52, top: 110.41, flip: false, image: swpfYarnPak },
+  { id: 'battery-rak', name: 'battery-rak', href: '/products/battery-pak', left: 1058.57, top: 254.47, flip: true, image: swpfBatteryRak },
+  { id: 'module-pak', name: 'module-pak', href: '#', left: 259.04, top: 49.38, flip: false, image: swpfModulePak },
+  { id: 'uni-pak-ii', name: 'uni-pak II', href: '/products/unipak', left: 433.33, top: 147.38, flip: false, image: swpfUniPakIi },
+  { id: 'uni-pak', name: 'uni-pak', href: '/products/unipak', left: 608.49, top: 253.3, flip: false, image: swpfUniPak },
+  { id: 'snap-pak', name: 'snap-pak', href: '#', left: 773.38, top: 357.75, flip: false, image: swpfSnapPak },
+  { id: 'bulk-pak', name: 'bulk-pak', href: '/products/bulk-pak', left: 947.66, top: 455.75, flip: false, image: swpfBulkPak },
+  { id: 'pro-pak', name: 'pro-pak', href: '/products/pro-pak', left: 48.17, top: 134.12, flip: false, image: swpfProPak },
+  { id: 'reman-pak', name: 'reman-pak', href: '/products/reman-pak', left: 183.43, top: 212.16, flip: false, image: swpfRemanPak },
+  { id: 'battery-shell', name: 'battery-shell', href: '#', left: 327.78, top: 307.23, flip: false, image: swpfBatteryShell },
+  { id: 'uni-rak', name: 'uni-rak', href: '/products/uni-rak', left: 548.23, top: 432.64, flip: true, image: swpfUniRak },
+  { id: 'axle-pak', name: 'axle-pak', href: '#', left: 785.37, top: 559.5, flip: false, image: swpfAxlePak },
+  { id: 'terra-road', name: 'terra-road', href: '#', left: 1.33, top: 342.96, flip: true, image: swpfTerraRoad },
+  { id: 'uni-directional', name: 'uni-directional', href: '/products/uni-directional-pallet', left: 183.82, top: 463.97, flip: false, image: swpfUniDirectional },
+  { id: 'uni-pallet', name: 'uni-pallet', href: '/products/uni-pallet', left: 301.18, top: 532.03, flip: false, image: swpfUniPallet },
+  { id: 'perimeter-base', name: 'perimeter-base', href: '#', left: 436.64, top: 607.25, flip: false, image: swpfPerimeterBase },
+].map((p) => ({
+  ...p,
+  style: {
+    left: `${(p.left / ART_W) * 100}%`,
+    top: `${(p.top / ART_H) * 100}%`,
+    width: `${(SWPF_SIZE / ART_W) * 100}%`,
+    height: `${(SWPF_SIZE / ART_H) * 100}%`,
+  },
+}));
+
+/** Back-to-front stagger along the isometric layout (top → bottom, then left → right) */
+const showcaseRevealOrder = Object.fromEntries(
+  [...showcaseProducts]
+    .sort((a, b) => a.top - b.top || a.left - b.left)
+    .map((p, i) => [p.id, i]),
+);
 ---
 
 <Mainlayout title="Home">
   <section class="hero">
     <div class="hero__bg" aria-hidden="true">
-      <img
-        src={palletImg.src}
-        alt=""
-        class="hero__img"
-        width={palletImg.width}
-        height={palletImg.height}
-        loading="eager"
-        decoding="async"
-      />
+      <video
+        class="hero__video"
+        src={heroVideo}
+        muted
+        playsinline
+        loop
+        autoplay
+        preload="auto"
+      ></video>
       <div class="hero__gradient"></div>
     </div>
 
@@ -59,37 +132,62 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     <div class="container">
       <div class="page-grid">
         <h2 class="statement__heading text-white reveal">
-          We invent solutions in reusable transport packaging that move goods more efficiently.
+          Products built to handle, transport, and protect goods across the supply chain, again and again.
         </h2>
       </div>
     </div>
   </section>
 
-  <section class="showcase">
+  <section
+    class="showcase"
+    id="product-showcase"
+    aria-label="Product family preview"
+    data-state="idle"
+  >
     <div class="showcase__grid-bg" aria-hidden="true">
       <img
-        src={gridImg.src}
+        src={showcaseGridImg.src}
         alt=""
         class="showcase__grid-img"
-        width={gridImg.width}
-        height={gridImg.height}
+        width={showcaseGridImg.width}
+        height={showcaseGridImg.height}
+        loading="lazy"
+        decoding="async"
       />
-      <div class="showcase__grid-gradient"></div>
+      <div class="showcase__vignette"></div>
     </div>
 
-    <div class="showcase__products">
-      <img
-        src={productFamilyImg.src}
-        alt="Shuert product family — pallets, containers, and bulk boxes"
-        class="showcase__products-img"
-        width={productFamilyImg.width}
-        height={productFamilyImg.height}
-      />
+    <div class="showcase__viewport">
+      <div class="showcase__stage">
+        {showcaseProducts.map((product, index) => (
+          <button
+            type="button"
+            class:list={['showcase__product', product.flip && 'showcase__product--flip']}
+            style={`left:${product.style.left};top:${product.style.top};width:${product.style.width};height:${product.style.height};z-index:${index + 1};--reveal-i:${showcaseRevealOrder[product.id] ?? index}`}
+            data-product-id={product.id}
+            data-name={`${product.name}®`}
+            data-href={product.href}
+            aria-label={`Explore ${product.name}`}
+          >
+            <img
+              src={product.image.src}
+              alt=""
+              class="showcase__product-img"
+              width={product.image.width}
+              height={product.image.height}
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+              crossorigin="anonymous"
+            />
+          </button>
+        ))}
+      </div>
     </div>
 
-    <div class="showcase__label container">
-      <span class="label" style="color: rgba(255,255,255,0.35); letter-spacing: 0.11em;">Hover to Explore</span>
-    </div>
+    <p class="showcase__side-label" data-side="left" hidden aria-hidden="true"></p>
+
+    <p class="showcase__hint label">Hover to Explore</p>
   </section>
 
   <section class="explore-pair">
@@ -101,129 +199,47 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
           imageAlt="Forklift and CNC machine in Shuert manufacturing"
           eyebrow="Capabilities"
           eyebrowVariant="plain"
-          title="Vertically integrated services without handoff compromise."
+          title="End-to-end control through in-house capability."
           cta="Explore Our Capabilities"
         />
         <ExploreHoverCard
           href="/about/whyshuert"
           image={exploreAboutImg}
           imageAlt="Team inspecting a wooden mold in the workshop"
-          eyebrow="Why Choose Shuert"
+          eyebrow="The Shuert Advantage"
           eyebrowVariant="pill"
           title="From the start with material selection, we've never compromised the product."
-          cta="Learn More About Us"
+          cta="Learn About Shuert"
         />
       </div>
     </div>
   </section>
 
   <section class="markets-grid" aria-labelledby="markets-heading">
-    <div class="markets-grid__deco" aria-hidden="true">
-      <img
-        src={gridImg.src}
-        alt=""
-        class="markets-grid__deco-img"
-        width={gridImg.width}
-        height={gridImg.height}
-        loading="lazy"
-        decoding="async"
-      />
-      <div class="markets-grid__deco-fade"></div>
-    </div>
     <div class="container markets-grid__inner">
-      <p class="label markets-grid__eyebrow" style="color: rgba(255,255,255,0.35);">Markets we work in</p>
-      <h2 id="markets-heading" class="markets-grid__title text-white reveal">
-        Modular products to serve every market.
-      </h2>
+      <header class="markets-grid__header">
+        <p class="label markets-grid__eyebrow">Markets we work in</p>
+        <h2 id="markets-heading" class="markets-grid__title text-white reveal">
+          Products to serve every market
+        </h2>
+      </header>
 
       <div class="markets-grid__cells">
-        <article class="markets-cell">
-          <div class="markets-cell__top">
-            <img class="markets-cell__icon" src={iconAutomotive} alt="" width="36" height="27" />
-            <h3 class="markets-cell__name">Automotive</h3>
-          </div>
-          <p class="markets-cell__desc">
-            Durable, returnable packaging for line-side delivery, kitting, and high-mix assembly.
-          </p>
-          <a class="markets-cell__link" href="/markets/automotive">
-            <span class="label">Learn more</span>
-            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
-          </a>
-        </article>
-
-        <article class="markets-cell">
-          <div class="markets-cell__top">
-            <img class="markets-cell__icon" src={iconAgriculture} alt="" width="28" height="35" />
-            <h3 class="markets-cell__name">Agriculture</h3>
-          </div>
-          <p class="markets-cell__desc">
-            Hygienic, ventilated designs for produce, protein, and cold-chain distribution.
-          </p>
-          <a class="markets-cell__link" href="/markets/agriculture">
-            <span class="label">Learn more</span>
-            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
-          </a>
-        </article>
-
-        <article class="markets-cell">
-          <div class="markets-cell__top">
-            <img class="markets-cell__icon" src={iconAutomatedSystems} alt="" width="35" height="35" />
-            <h3 class="markets-cell__name">Automated Systems</h3>
-          </div>
-          <p class="markets-cell__desc">
-            Dimensionally consistent loads for conveyors, ASRS, and robotic handling.
-          </p>
-          <a class="markets-cell__link" href="/markets/automated-systems">
-            <span class="label">Learn more</span>
-            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
-          </a>
-        </article>
-
-        <article class="markets-cell">
-          <div class="markets-cell__top">
-            <img class="markets-cell__icon" src={iconConstruction} alt="" width="34" height="35" />
-            <h3 class="markets-cell__name">Construction</h3>
-          </div>
-          <p class="markets-cell__desc">
-            Rugged, reusable solutions for heavy materials, job-site logistics, and bulk shipments.
-          </p>
-          <a class="markets-cell__link" href="/markets/construction">
-            <span class="label">Learn more</span>
-            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
-          </a>
-        </article>
-
-        <article class="markets-cell">
-          <div class="markets-cell__top">
-            <img class="markets-cell__icon" src={iconEcommerce} alt="" width="34" height="35" />
-            <h3 class="markets-cell__name">E-Commerce</h3>
-          </div>
-          <p class="markets-cell__desc">
-            Cube-efficient totes and pallets tuned for fulfillment, sortation, and returns.
-          </p>
-          <a class="markets-cell__link" href="/markets/e-commerce">
-            <span class="label">Learn more</span>
-            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
-          </a>
-        </article>
-
-        <article class="markets-cell markets-cell--more">
-          <div class="markets-cell__top">
-            <img class="markets-cell__icon markets-cell__icon--more" src={iconMore} alt="" width="24" height="24" />
-            <h3 class="markets-cell__name">And More</h3>
-          </div>
-          <p class="markets-cell__desc">
-            From grocery to government — modular platforms adapted to your sector.
-          </p>
-          <a class="markets-cell__link" href="/markets">
-            <span class="label">See all</span>
-            <img src={iconArrow} alt="" width="12" height="8" class="markets-cell__arrow" />
-          </a>
-        </article>
-      </div>
-
-      <div class="markets-grid__cta">
-        <a href="/markets" class="button button-primary">Explore All Markets</a>
+        {markets.map((market) => (
+          <article class="markets-cell">
+            <div class="markets-cell__top">
+              <img
+                class="markets-cell__icon"
+                src={market.icon}
+                alt=""
+                width={market.iw}
+                height={market.ih}
+              />
+              <h3 class="markets-cell__name">{market.name}</h3>
+            </div>
+            <p class="markets-cell__desc">{market.desc}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -273,6 +289,20 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
   const hero = document.querySelector('.hero');
   const heroBg = document.querySelector('.hero__bg');
   const heroContent = document.querySelector('.hero__content');
+  const heroVideoEl = document.querySelector('.hero__video');
+
+  if (heroVideoEl instanceof HTMLVideoElement) {
+    const startAtRandom = () => {
+      const duration = heroVideoEl.duration;
+      if (!Number.isFinite(duration) || duration <= 0) return;
+      /* Avoid landing exactly on the end frame before loop */
+      heroVideoEl.currentTime = Math.random() * Math.max(duration - 0.25, 0);
+      heroVideoEl.play().catch(() => {});
+    };
+
+    if (heroVideoEl.readyState >= 1) startAtRandom();
+    else heroVideoEl.addEventListener('loadedmetadata', startAtRandom, { once: true });
+  }
 
   if (hero && heroBg && heroContent) {
     let currentBgY = 0;
@@ -315,10 +345,214 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     reveals.forEach((el) => observer.observe(el));
   }
 
+  const showcaseReveal = document.querySelector('#product-showcase');
+  if (showcaseReveal instanceof HTMLElement) {
+    const revealProducts = Array.from(
+      showcaseReveal.querySelectorAll('.showcase__product'),
+    );
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const revealShowcase = () => {
+      showcaseReveal.classList.add('is-revealed');
+      if (prefersReducedMotion) {
+        revealProducts.forEach((el) => el.classList.add('is-focused'));
+        return;
+      }
+      revealProducts.forEach((el) => {
+        if (!(el instanceof HTMLElement)) return;
+        const i = Number(el.style.getPropertyValue('--reveal-i')) || 0;
+        window.setTimeout(() => el.classList.add('is-focused'), i * 110);
+      });
+    };
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealShowcase();
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
+    );
+    revealObserver.observe(showcaseReveal);
+  }
+
   const reachOutForm = document.querySelector('.reach-out__form');
   reachOutForm?.addEventListener('submit', (e) => {
     e.preventDefault();
   });
+
+  /* ── Product showcase (Figma 1581:1556 hover → navigate on click) ── */
+  const showcase = document.querySelector('#product-showcase');
+  if (showcase instanceof HTMLElement) {
+    const stage = showcase.querySelector('.showcase__stage');
+    const viewport = showcase.querySelector('.showcase__viewport');
+    const sideLabel = showcase.querySelector('.showcase__side-label');
+    const products = Array.from(showcase.querySelectorAll('.showcase__product'));
+    /** @type {HTMLElement | null} */
+    let hovered = null;
+    /** @type {WeakMap<HTMLImageElement, { data: Uint8ClampedArray, w: number, h: number }>} */
+    const alphaCache = new WeakMap();
+    let moveRaf = 0;
+    let pendingX = 0;
+    let pendingY = 0;
+
+    const setState = (state) => {
+      showcase.dataset.state = state;
+      if (sideLabel instanceof HTMLElement) {
+        const showLabel = state === 'hover';
+        sideLabel.hidden = !showLabel;
+        sideLabel.setAttribute('aria-hidden', showLabel ? 'false' : 'true');
+      }
+    };
+
+    const placeSideLabel = (product) => {
+      if (!(sideLabel instanceof HTMLElement) || !(product instanceof HTMLElement)) return;
+      sideLabel.textContent = product.getAttribute('data-name') || '';
+
+      const stageEl = stage instanceof HTMLElement ? stage : showcase;
+      const stageRect = stageEl.getBoundingClientRect();
+      const prodRect = product.getBoundingClientRect();
+      const centerX = prodRect.left + prodRect.width / 2 - stageRect.left;
+      sideLabel.dataset.side = centerX >= stageRect.width / 2 ? 'left' : 'right';
+    };
+
+    const clearHover = () => {
+      hovered = null;
+      products.forEach((el) => el.classList.remove('is-hovered'));
+      viewport?.classList.remove('is-over-product');
+      setState('idle');
+    };
+
+    const setHover = (product) => {
+      if (hovered === product) return;
+      hovered = product;
+      products.forEach((el) => {
+        el.classList.toggle('is-hovered', el === product);
+      });
+      viewport?.classList.add('is-over-product');
+      placeSideLabel(product);
+      setState('hover');
+    };
+
+    const getAlphaData = (img) => {
+      if (!(img instanceof HTMLImageElement) || !img.complete || img.naturalWidth === 0) return null;
+      const cached = alphaCache.get(img);
+      if (cached) return cached;
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        if (!ctx) return null;
+        ctx.drawImage(img, 0, 0);
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const entry = { data, w: canvas.width, h: canvas.height };
+        alphaCache.set(img, entry);
+        return entry;
+      } catch {
+        return null;
+      }
+    };
+
+    const sampleAlpha = (product, clientX, clientY) => {
+      const img = product.querySelector('.showcase__product-img');
+      if (!(img instanceof HTMLImageElement)) return 0;
+      const rect = product.getBoundingClientRect();
+      if (
+        clientX < rect.left ||
+        clientX > rect.right ||
+        clientY < rect.top ||
+        clientY > rect.bottom
+      ) {
+        return 0;
+      }
+
+      let u = (clientX - rect.left) / rect.width;
+      let v = (clientY - rect.top) / rect.height;
+      /* Flipped assets use scaleY(-1) rotate(180deg) ≡ horizontal mirror */
+      if (product.classList.contains('showcase__product--flip')) {
+        u = 1 - u;
+      }
+
+      const alpha = getAlphaData(img);
+      if (!alpha) {
+        return u > 0.25 && u < 0.75 && v > 0.25 && v < 0.75 ? 255 : 0;
+      }
+
+      const x = Math.min(alpha.w - 1, Math.max(0, Math.floor(u * alpha.w)));
+      const y = Math.min(alpha.h - 1, Math.max(0, Math.floor(v * alpha.h)));
+      return alpha.data[(y * alpha.w + x) * 4 + 3];
+    };
+
+    const hitTest = (clientX, clientY) => {
+      /* Topmost first — later DOM nodes paint above */
+      for (let i = products.length - 1; i >= 0; i -= 1) {
+        const product = products[i];
+        if (!(product instanceof HTMLElement)) continue;
+        if (sampleAlpha(product, clientX, clientY) > 24) return product;
+      }
+      return null;
+    };
+
+    const onPointerMove = (clientX, clientY) => {
+      const hit = hitTest(clientX, clientY);
+      if (hit) setHover(hit);
+      else if (hovered) clearHover();
+    };
+
+    viewport?.addEventListener(
+      'pointermove',
+      (e) => {
+        pendingX = e.clientX;
+        pendingY = e.clientY;
+        if (moveRaf) return;
+        moveRaf = requestAnimationFrame(() => {
+          moveRaf = 0;
+          onPointerMove(pendingX, pendingY);
+        });
+      },
+      { passive: true },
+    );
+
+    viewport?.addEventListener('pointerleave', () => {
+      if (moveRaf) {
+        cancelAnimationFrame(moveRaf);
+        moveRaf = 0;
+      }
+      clearHover();
+    });
+
+    viewport?.addEventListener('click', (e) => {
+      const hit = hitTest(e.clientX, e.clientY) || hovered;
+      if (!hit) return;
+      e.preventDefault();
+      const href = hit.getAttribute('data-href') || '/products';
+      window.location.href = href === '#' ? '/products' : href;
+    });
+
+    products.forEach((product) => {
+      product.addEventListener('focus', () => setHover(product));
+      product.addEventListener('blur', () => {
+        if (hovered === product) clearHover();
+      });
+      product.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        const href = product.getAttribute('data-href') || '/products';
+        window.location.href = href === '#' ? '/products' : href;
+      });
+    });
+
+    /* Warm alpha caches once images decode */
+    products.forEach((product) => {
+      const img = product.querySelector('.showcase__product-img');
+      if (!(img instanceof HTMLImageElement)) return;
+      if (img.complete) getAlphaData(img);
+      else img.addEventListener('load', () => getAlphaData(img), { once: true });
+    });
+  }
 </script>
 
 <style>
@@ -333,7 +567,7 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     background: var(--c-black);
   }
 
-  /* ── Background image layer ── */
+  /* ── Background video layer ── */
   .hero__bg {
     position: absolute;
     inset: 0;
@@ -341,15 +575,14 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     will-change: transform;
   }
 
-  .hero__img {
+  .hero__video {
     position: absolute;
     inset: 0;
-    width: 120%;
+    width: 100%;
     height: 100%;
     max-width: none;
     object-fit: cover;
     object-position: center center;
-    transform: scaleX(-1);
   }
 
   .hero__gradient {
@@ -360,7 +593,9 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
       linear-gradient(127.81deg, rgba(0, 0, 0, 0) 67.35%, rgb(0, 0, 0) 84.9%);
   }
 
-  /* ── Content layer ── */
+  /* ── Content layer ──
+     Figma 2003:8139 — headline sits 286px below the nav (nav bottom → text top).
+     Nav wrapper margin-top 10px + ~66px bar ≈ 76px from viewport top. */
   .hero__content {
     position: relative;
     z-index: 1;
@@ -372,19 +607,22 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
 
   .hero__grid {
     flex: 1;
-    align-content: center;
+    align-content: start;
+    padding-top: calc(10px + 4.125rem + 286px);
   }
 
   .hero__text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 3.5rem;
+    max-width: 59.75rem;
   }
 
   .hero__subtitle {
     line-height: 1.3;
     max-width: 322px;
+    margin: 0;
   }
 
   /* ── Scroll indicator ── */
@@ -425,22 +663,11 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     margin: 0;
   }
 
-  /* ── Showcase section ──
-     Figma 575:1513: bg gradient black → #1b1b1b by 25.88%
-     Grid: full-bleed layer + mask (no clipped box — avoids hard seam)
-     Gradient overlay: single smooth vignette (dual gradients caused mid-band seam) */
+  /* ── Showcase section (Figma 2003:8154 / 1581:1478 / 1581:1525) ── */
   .showcase {
     position: relative;
     z-index: 2;
-    /* Charcoal mid — bottom resolves to pure black like Figma (not gray) */
-    background: linear-gradient(
-      180deg,
-      #000 0%,
-      #1b1b1b 25.88%,
-      #1b1b1b 52%,
-      #0a0a0a 78%,
-      #000 100%
-    );
+    background: #0c0c0c;
     overflow: hidden;
   }
 
@@ -454,72 +681,191 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
 
   .showcase__grid-img {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 72%;
+    left: -9.42%;
+    top: 8.13%;
+    width: 118.88%;
+    height: 92.47%;
     max-width: none;
-    object-fit: contain;
-    object-position: center bottom;
-    opacity: 0.5;
-    /* Fade grid in from top; blend toward charcoal (#1b1b1b) like Figma */
-    /* Top fade in + bottom fade out so grid vanishes into black */
-    mask-image: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.4) 12%,
-      #000 28%,
-      #000 68%,
-      rgba(0, 0, 0, 0.35) 82%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.4) 12%,
-      #000 28%,
-      #000 68%,
-      rgba(0, 0, 0, 0.35) 82%,
-      transparent 100%
-    );
-    mask-size: 100% 100%;
-    -webkit-mask-size: 100% 100%;
+    object-fit: cover;
+    opacity: 0.25;
   }
 
-  .showcase__grid-gradient {
+  .showcase__vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 80.1%, #000 100%),
+      linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 34.74%);
+  }
+
+  .showcase__viewport {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 1727 / 1248;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .showcase__viewport.is-over-product {
+    cursor: pointer;
+  }
+
+  .showcase__stage {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    /* Strong vignette — opaque black from mid-bottom so no gray shows through */
-    /* background: linear-gradient(
-      180deg,
-      transparent 0%,
-      transparent 40%,
-      rgba(0, 0, 0, 0.35) 55%,
-      rgba(0, 0, 0, 0.75) 68%,
-      #000 82%,
-      #000 100%
-    ); */
   }
 
-  .showcase__products {
-    position: relative;
-    z-index: 1;
-  }
-
-  .showcase__products-img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .showcase__label {
+  .showcase__product {
     position: absolute;
-    z-index: 2;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    pointer-events: none;
+    opacity: 0;
+    filter: blur(14px);
+    transform: translate3d(0, 28px, 0) scale(0.96);
+    transition:
+      opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .showcase__product.is-focused {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .showcase__product:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.55);
+    outline-offset: -4px;
+  }
+
+  .showcase__product-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .showcase__product--flip .showcase__product-img {
+    transform: scaleY(-1) rotate(180deg);
+  }
+
+  /* Figma 1581:1556 — large upright side name, left or right of the stage */
+  .showcase__side-label {
+    position: absolute;
+    z-index: 8;
+    top: 50%;
+    margin: 0;
+    max-width: min(38vw, 28rem);
+    font-family: var(--ff-s);
+    font-weight: var(--w-bold);
+    font-size: clamp(2.5rem, 7.5vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--c-white);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.28s ease;
+  }
+
+  .showcase__side-label[data-side='left'] {
+    left: clamp(1.25rem, 4.5vw, 4.5rem);
+    right: auto;
+    text-align: left;
+  }
+
+  .showcase__side-label[data-side='right'] {
+    right: clamp(1.25rem, 4.5vw, 4.5rem);
+    left: auto;
+    text-align: right;
+  }
+
+  .showcase[data-state='hover'] .showcase__side-label:not([hidden]) {
+    opacity: 1;
+  }
+
+  .showcase__side-label[hidden] {
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .showcase[data-state='hover'] .showcase__product.is-focused:not(.is-hovered) {
+    opacity: 0.25;
+    transition: opacity 0.35s ease;
+  }
+
+  .showcase[data-state='hover'] .showcase__product.is-focused.is-hovered {
+    opacity: 1;
+    z-index: 40 !important;
+    transition: opacity 0.35s ease;
+  }
+
+  .showcase__hint {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    bottom: clamp(1.25rem, 3vw, 2.5rem);
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.54px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s ease 1.6s;
+  }
+
+  .showcase.is-revealed .showcase__hint {
+    opacity: 1;
+  }
+
+  .showcase[data-state='hover'] .showcase__hint {
+    opacity: 0;
+    transition-delay: 0s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase__product {
+      opacity: 1;
+      filter: none;
+      transform: none;
+      transition: none;
+    }
+
+    .showcase__hint {
+      opacity: 1;
+      transition: none;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .showcase__hint {
+      display: none;
+    }
+
+    .showcase__side-label {
+      max-width: 46vw;
+      font-size: clamp(1.75rem, 9vw, 3rem);
+    }
+
+    .showcase__side-label[data-side='left'] {
+      left: 1rem;
+    }
+
+    .showcase__side-label[data-side='right'] {
+      right: 1rem;
+    }
   }
 
   /* ── Explore pair (dual image cards, Figma 1224:3815) ── */
@@ -546,7 +892,7 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     }
   }
 
-  /* ── Markets grid (Figma 575:1219) ── */
+  /* ── Markets grid (Figma 2125:908) ── */
   .markets-grid {
     position: relative;
     z-index: 2;
@@ -555,44 +901,18 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     padding: 4.375rem 0 6.25rem;
   }
 
-  .markets-grid__deco {
-    position: absolute;
-    z-index: 0;
-    top: -27.5rem;
-    right: -15%;
-    width: min(106.25rem, 240%);
-    max-width: none;
-    pointer-events: none;
-    opacity: 0.1;
-  }
-
-  .markets-grid__deco-img {
-    width: 100%;
-    height: auto;
-    max-width: none;
-    object-fit: contain;
-    object-position: right top;
-    transform: translate(6%, -2%);
-  }
-
-  .markets-grid__deco-fade {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(198.82deg, rgba(0, 0, 0, 0) 67.6%, #000 84.36%),
-      linear-gradient(21.76deg, rgba(0, 0, 0, 0) 70.8%, #000 83.42%),
-      linear-gradient(-11.06deg, rgba(0, 0, 0, 0) 63.2%, #000 80.83%),
-      linear-gradient(156.3deg, rgba(0, 0, 0, 0) 66.4%, #000 84.29%);
-  }
-
   .markets-grid__inner {
     position: relative;
     z-index: 1;
   }
 
+  .markets-grid__header {
+    max-width: 45.625rem;
+  }
+
   .markets-grid__eyebrow {
-    margin: 0 0 1.5625rem;
+    margin: 0 0 0.9375rem;
+    color: rgba(255, 255, 255, 0.35);
     font-size: 0.875rem;
     line-height: 1;
     letter-spacing: 0.11em;
@@ -600,7 +920,6 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
 
   .markets-grid__title {
     margin: 0;
-    max-width: 30.625rem;
     font-family: var(--ff-r);
     font-weight: var(--w-medium);
     font-size: clamp(1.75rem, 2.2vw, 2.5rem);
@@ -611,53 +930,42 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
   .markets-grid__cells {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: auto auto;
-    margin-top: 5.5625rem;
+    margin-top: 3.5rem;
   }
 
   .markets-cell {
-    border-right: 1px solid #2d2d2d;
-    border-bottom: 1px solid #2d2d2d;
-    padding: 1.5625rem 0 1.75rem 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .markets-cell:nth-child(3n + 1) {
-    padding-left: 0;
-    padding-right: 2.5rem;
+    box-sizing: border-box;
+    min-height: 14rem;
+    padding: 1.5625rem 2.0625rem 3.25rem 0.1875rem;
+    border-right: 1px solid #2d2d2d;
+    border-bottom: 1px solid #2d2d2d;
   }
 
   .markets-cell:nth-child(3n + 2) {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 2.0625rem;
+    padding-right: 2.0625rem;
   }
 
   .markets-cell:nth-child(3n) {
     border-right: none;
-    padding-left: 2.5rem;
+    padding-left: 2.0625rem;
     padding-right: 0;
   }
 
-  .markets-cell:nth-child(n + 4) {
+  .markets-cell:nth-child(10),
+  .markets-cell:nth-child(11) {
     border-bottom: none;
-    padding-top: 2.4375rem;
-    padding-bottom: 1.8125rem;
-  }
-
-  .markets-cell--more {
-    background: #1b1b1b;
-    box-sizing: border-box;
-    border-radius: 0 0 16px 0;
   }
 
   .markets-cell__top {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.125rem;
-    margin-bottom: 1.125rem;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .markets-cell__icon {
@@ -666,11 +974,6 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     height: 2.1875rem;
     object-fit: contain;
     object-position: left center;
-  }
-
-  .markets-cell__icon--more {
-    height: 1.5rem;
-    width: 1.5rem;
   }
 
   .markets-cell__name {
@@ -688,36 +991,6 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     font: var(--w-light) 1rem / 1.375 var(--ff-r);
     color: rgba(255, 255, 255, 0.72);
     max-width: 20.75rem;
-  }
-
-  .markets-cell__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.625rem;
-    margin-top: 4.375rem;
-    text-decoration: none;
-    color: var(--c-white);
-  }
-
-  .markets-cell__link .label {
-    letter-spacing: 1.54px;
-  }
-
-  .markets-cell__link:hover .label,
-  .markets-cell__link:focus-visible .label {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
-  .markets-cell__arrow {
-    flex-shrink: 0;
-    display: block;
-  }
-
-  .markets-grid__cta {
-    display: flex;
-    justify-content: center;
-    margin-top: 3.25rem;
   }
 
   /* ── Reach out / email (Figma 581:1601 — 1728×885 frame, inner 1598) ── */
@@ -900,34 +1173,28 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
 
     .markets-grid__cells {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: 3.75rem;
+      margin-top: 3rem;
     }
 
     .markets-grid__eyebrow {
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
     }
 
     .markets-cell {
+      min-height: 0;
       border-right: none;
-      border-bottom: none;
+      border-bottom: 1px solid #2d2d2d;
       padding: 1.5rem 0;
     }
 
     .markets-cell:nth-child(3n + 1),
     .markets-cell:nth-child(3n + 2),
-    .markets-cell:nth-child(3n) {
+    .markets-cell:nth-child(3n),
+    .markets-cell:nth-child(10),
+    .markets-cell:nth-child(11) {
       padding-left: 0;
       padding-right: 0;
-    }
-
-    .markets-cell:nth-child(-n + 2) {
-      padding-top: 0;
-      padding-bottom: 1.5rem;
-    }
-
-    .markets-cell:nth-child(n + 3) {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #2d2d2d;
     }
 
     .markets-cell:nth-child(2n + 1) {
@@ -939,41 +1206,15 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
       padding-left: 1.25rem;
     }
 
-    .markets-cell:nth-child(-n + 4) {
-      border-bottom: 1px solid #2d2d2d;
-    }
-
-    .markets-cell:nth-child(5) {
-      border-bottom: 1px solid #2d2d2d;
-    }
-
-    .markets-cell--more {
-      padding: 1.5rem 1.25rem;
-    }
-
-    .markets-cell--more:nth-child(2n + 1) {
-      padding-right: 1.25rem;
-      padding-left: 0;
-    }
-
-    .markets-cell--more:nth-child(2n) {
-      padding-left: 1.25rem;
-      padding-right: 0;
-    }
-
-    .markets-cell--more {
-      border-radius: 0 0 16px 0;
-    }
-
-    .markets-cell__link {
-      margin-top: 2.5rem;
+    .markets-cell:nth-last-child(-n + 2) {
+      border-bottom: none;
     }
   }
 
   @media (max-width: 48rem) {
     .markets-grid__cells {
       grid-template-columns: 1fr;
-      margin-top: 2.75rem;
+      margin-top: 2.5rem;
     }
 
     .markets-cell,
@@ -982,34 +1223,15 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
     .markets-cell:nth-child(3n),
     .markets-cell:nth-child(2n + 1),
     .markets-cell:nth-child(2n),
-    .markets-cell:nth-child(-n + 3),
-    .markets-cell:nth-child(n + 4) {
+    .markets-cell:nth-child(10),
+    .markets-cell:nth-child(11) {
       border-right: none;
-      padding: 1.75rem 0;
       border-bottom: 1px solid #2d2d2d;
-    }
-
-    .markets-cell--more,
-    .markets-cell--more:nth-child(2n + 1),
-    .markets-cell--more:nth-child(2n) {
-      padding: 1.5rem 1.25rem;
+      padding: 1.75rem 0;
     }
 
     .markets-cell:last-child {
       border-bottom: none;
-    }
-
-    .markets-cell--more {
-      border-radius: 12px;
-    }
-
-    .markets-cell__link {
-      margin-top: 2rem;
-    }
-
-    .markets-grid__deco {
-      opacity: 0.06;
-      top: -10rem;
     }
   }
 
@@ -1043,10 +1265,12 @@ import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0
 
   /* ── Mobile (≤ 768px) ── */
   @media (max-width: 48rem) {
-    .hero__img {
-      left: -40%;
-      width: 160%;
-      height: 110%;
+    .hero__grid {
+      padding-top: calc(10px + 4.125rem + clamp(5rem, 18vh, 10rem));
+    }
+
+    .hero__text {
+      gap: 1.75rem;
     }
 
     .hero__scroll {

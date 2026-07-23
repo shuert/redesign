@@ -1,7 +1,7 @@
 ---
 import logoSrc from '../assets/nav/logo.svg';
 import customSolutionsImg from '../assets/nav/customsolutions.png';
-import marketsImg from '../assets/nav/markets.png';
+import featuredProductImg from '../assets/nav/featuredproduct.png';
 ---
 
 <div class="nav-wrapper" id="nav-wrapper">
@@ -49,48 +49,54 @@ import marketsImg from '../assets/nav/markets.png';
 
     <!-- Expandable menu content (inside nav so one background) -->
     <div class="nav__mega" id="nav-mega">
-      <!-- Desktop: products + cards + explore -->
-      <div class="nav__mega-grid">
-        <section class="nav__mega-col nav__mega-products">
-          <h2 class="nav__mega-heading">Products</h2>
-          <ul class="nav__mega-list" role="list">
-            <li><a href="/unipak" class="nav__mega-link">Uni-Pak</a></li>
-            <li><a href="/products/bulk-pak" class="nav__mega-link">Bulk-Pak</a></li>
-            <li><a href="/products" class="nav__mega-link">Uni-Pallet</a></li>
-            <li><a href="/products" class="nav__mega-link">Uni-Directional Pallet</a></li>
-            <li><a href="/products" class="nav__mega-link">Uni-Case</a></li>
-            <li><a href="/products" class="nav__mega-link">Uni-Rak</a></li>
-            <li><a href="/products" class="nav__mega-link">Yarn-Pak</a></li>
-            <li><a href="/products" class="nav__mega-link">Pro-Pak</a></li>
-            <li><a href="/products" class="nav__mega-link">Reman-Pak</a></li>
-            <li><a href="/products" class="nav__mega-link">Battery-Pak</a></li>
-            <li><a href="/customsolutions" class="nav__mega-link">Custom</a></li>
-          </ul>
-          <a href="/product" class="button button-secondary nav__mega-btn">See All Products</a>
-        </section>
+      <!-- Desktop: products + cards + explore (Explore aligns with Request a Quote) -->
+      <div class="nav__mega-body">
+        <div class="nav__mega-main">
+          <section class="nav__mega-col nav__mega-products">
+            <h2 class="nav__mega-heading">Products</h2>
+            <ul class="nav__mega-list" role="list">
+              <li><a href="/unipak" class="nav__mega-link">Uni-Pak</a></li>
+              <li><a href="/products/bulk-pak" class="nav__mega-link">Bulk-Pak</a></li>
+              <li><a href="/products" class="nav__mega-link">Uni-Pallet</a></li>
+              <li><a href="/products" class="nav__mega-link">Uni-Directional Pallet</a></li>
+              <li><a href="/products" class="nav__mega-link">Uni-Case</a></li>
+              <li><a href="/products" class="nav__mega-link">Uni-Rak</a></li>
+              <li><a href="/products" class="nav__mega-link">Yarn-Pak</a></li>
+              <li><a href="/products" class="nav__mega-link">Pro-Pak</a></li>
+              <li><a href="/products" class="nav__mega-link">Reman-Pak</a></li>
+              <li><a href="/products" class="nav__mega-link">Battery-Pak</a></li>
+              <li><a href="/customsolutions" class="nav__mega-link">Custom</a></li>
+            </ul>
+            <a href="/product" class="button button-secondary nav__mega-btn">See All Products</a>
+          </section>
 
-        <div class="nav__mega-cards">
-          <a href="/customsolutions" class="nav__mega-card">
-            <img class="nav__mega-card-img" src={customSolutionsImg.src} alt="" width={customSolutionsImg.width} height={customSolutionsImg.height} />
-            <span class="nav__mega-card-overlay" aria-hidden="true"></span>
-            <span class="nav__mega-card-label">custom solutions</span>
-          </a>
-          <a href="/markets" class="nav__mega-card">
-            <img class="nav__mega-card-img" src={marketsImg.src} alt="" width={marketsImg.width} height={marketsImg.height} />
-            <span class="nav__mega-card-overlay" aria-hidden="true"></span>
-            <span class="nav__mega-card-label">markets</span>
-          </a>
+          <div class="nav__mega-cards">
+            <a href="/customsolutions" class="nav__mega-card">
+              <img class="nav__mega-card-img" src={customSolutionsImg.src} alt="" width={customSolutionsImg.width} height={customSolutionsImg.height} />
+              <span class="nav__mega-card-overlay" aria-hidden="true"></span>
+              <span class="nav__mega-card-label">custom solutions</span>
+            </a>
+            <a href="/products" class="nav__mega-card">
+              <img class="nav__mega-card-img" src={featuredProductImg.src} alt="" width={featuredProductImg.width} height={featuredProductImg.height} />
+              <span class="nav__mega-card-overlay" aria-hidden="true"></span>
+              <span class="nav__mega-card-badge">Featured Product</span>
+              <span class="nav__mega-card-label">new product name</span>
+            </a>
+          </div>
         </div>
 
-        <section class="nav__mega-col nav__mega-explore">
+        <section class="nav__mega-col nav__mega-explore" id="nav-mega-explore">
           <h2 class="nav__mega-heading">Explore More</h2>
           <ul class="nav__mega-list" role="list">
+            <li><a href="/about/whyshuert" class="nav__mega-link">Why Shuert</a></li>
             <li><a href="/markets" class="nav__mega-link">Markets</a></li>
             <li><a href="/customsolutions" class="nav__mega-link">Custom Solutions</a></li>
             <li><a href="/sustainability" class="nav__mega-link">Sustainability</a></li>
             <li><a href="/about/careers" class="nav__mega-link">Careers</a></li>
           </ul>
         </section>
+        <!-- Mirrors menu-btn width so Explore left-aligns with Request a Quote -->
+        <span class="nav__mega-x-spacer" aria-hidden="true"></span>
       </div>
 
       <!-- Mobile only: single list + CTA at bottom -->
@@ -271,17 +277,29 @@ import marketsImg from '../assets/nav/markets.png';
   }
 
   .nav-wrapper--open .nav__mega {
-    max-height: 546px;
+    /* Figma open nav is 546px total (bar + mega); bar ≈ 64px */
+    max-height: 482px;
     opacity: 1;
   }
 
-  .nav__mega-grid {
-    display: grid;
-    grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
-    gap: var(--grid-gutter);
-    padding: 2rem;
-    height: 546px;
+  /*
+   * Mega layout mirrors the bar’s right cluster so Explore aligns with Request a Quote:
+   *   [products 238px][cards] —51px— [explore] —2rem— [27px X-spacer]
+   * Same horizontal padding as .nav__bar (2rem).
+   */
+  .nav__mega-body {
+    display: flex;
     align-items: stretch;
+    padding: 1.25rem 2rem 1.75rem;
+    height: 482px;
+  }
+
+  .nav__mega-main {
+    flex: 1;
+    display: flex;
+    min-width: 0;
+    /* Figma: 51px from featured card to Explore More */
+    margin-right: 51px;
   }
 
   .nav__mega-col {
@@ -291,9 +309,18 @@ import marketsImg from '../assets/nav/markets.png';
   }
 
   .nav__mega-products {
-    display: flex;
-    flex-direction: column;
-    grid-column: span 2;
+    /* Figma: 238px from products text to first card */
+    width: 14.875rem;
+    flex-shrink: 0;
+  }
+
+  .nav__mega-cards {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.375rem;
+    min-width: 0;
+    min-height: 0;
   }
 
   .nav__mega-heading {
@@ -312,13 +339,12 @@ import marketsImg from '../assets/nav/markets.png';
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0;
   }
 
   .nav__mega-link {
     color: var(--c-white);
-    font: var(--w-medium)  var(--ff-r);
-    line-height: 15px;
+    font: var(--w-medium) 1rem / 1.875rem var(--ff-r);
     text-decoration: none;
   }
 
@@ -335,7 +361,15 @@ import marketsImg from '../assets/nav/markets.png';
   }
 
   .nav__mega-explore {
-    grid-column: span 3;
+    flex-shrink: 0;
+    width: max-content;
+    /* Match gap between CTA and X in .nav__inner */
+    margin-right: 2rem;
+  }
+
+  .nav__mega-x-spacer {
+    width: 27px;
+    flex-shrink: 0;
   }
 
   /* Mobile menu (separate from desktop mega) - hidden by default */
@@ -353,20 +387,9 @@ import marketsImg from '../assets/nav/markets.png';
     display: none;
   }
 
-  .nav__mega-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--grid-gutter);
-    grid-column: span 7;
-    height: 100%;
-    min-height: 0;
-    min-width: 0;
-  }
-
   .nav__mega-card {
     position: relative;
     display: block;
-    /* max-width: 504px; */
     width: 100%;
     height: 100%;
     min-height: 0;
@@ -389,6 +412,22 @@ import marketsImg from '../assets/nav/markets.png';
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+  }
+
+  .nav__mega-card-badge {
+    position: absolute;
+    top: 1.375rem;
+    left: 1.375rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px;
+    border: 1px solid var(--c-red);
+    border-radius: 25px;
+    color: var(--c-white);
+    font: var(--w-medium) 1rem / normal var(--ff-r);
+    white-space: nowrap;
     pointer-events: none;
   }
 
@@ -462,8 +501,8 @@ import marketsImg from '../assets/nav/markets.png';
       display: none;
     }
 
-    /* Hide desktop grid on mobile */
-    .nav__mega-grid {
+    /* Hide desktop mega body on mobile */
+    .nav__mega-body {
       display: none;
     }
 
@@ -577,6 +616,18 @@ import marketsImg from '../assets/nav/markets.png';
       window.addEventListener('resize', () => { if (activeLink) movePill(activeLink); });
     }
 
+    const explore = document.getElementById('nav-mega-explore');
+    const cta = wrapper.querySelector('.nav__cta');
+
+    /* Keep Explore More left edge aligned with Request a Quote */
+    function syncExploreAlign() {
+      if (!explore || !cta || isMobile()) {
+        if (explore) explore.style.width = '';
+        return;
+      }
+      explore.style.width = `${Math.ceil(cta.getBoundingClientRect().width)}px`;
+    }
+
     function isMobile() {
       return window.matchMedia('(max-width: 52rem)').matches;
     }
@@ -588,6 +639,7 @@ import marketsImg from '../assets/nav/markets.png';
       }
       wrapper.classList.add('nav-wrapper--open');
       btn.setAttribute('aria-expanded', 'true');
+      syncExploreAlign();
     }
 
     function close() {
@@ -610,6 +662,8 @@ import marketsImg from '../assets/nav/markets.png';
     }
 
     btn.addEventListener('click', toggle);
+    window.addEventListener('resize', syncExploreAlign);
+    syncExploreAlign();
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && wrapper.classList.contains('nav-wrapper--open')) close();

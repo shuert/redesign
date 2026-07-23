@@ -1,48 +1,62 @@
 ---
 import Mainlayout from '../../layouts/Mainlayout.astro';
-import heroImg from '../../assets/product/Uni-Directional-Pallet_v02.png';
-import uniPakImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Pak_v02.png';
-import batteryPakImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Battery-Pak_v01.png';
-import uniPalletImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Pallet_v01.png';
-import uniDirPalletImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Directional-Pallet_v01.png';
-import uniCaseImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Uni-Case_v01.png';
-import remanImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Reman_v01.png';
-import yarnPakImg from '../../assets/product/Shuert_ProductPageHeaders_v01_Yarn-Pak_v01.png';
-import quoteImg from '../../assets/product/A001C001_240221_AOXI.01_07_10_18.Still020.jpg';
+import MultiSelect from '../../components/MultiSelect.astro';
+import { PRODUCT_OPTIONS } from '../../data/formOptions';
+import heroImg from '../../assets/product/index/064607540992bca96b018e8895ceb73ab9b9f54d.png';
+import uniPakImg from '../../assets/product/index/6324929b6ffd966af7a2778ee189f60b599310e9.png';
+import uniDirPalletImg from '../../assets/product/index/7ff131f8858a7b66c45784b5edc74c3a71e37ef2.png';
+import remanImg from '../../assets/product/index/3028050f466102f5296e21bd8f008072f3e5416e.png';
+import uniPalletImg from '../../assets/product/index/aa4c71cf6fd121cfe04e6f4f44658228fc24d3dc.png';
+import snapPakImg from '../../assets/product/index/7afa23b4d9678b5221bedf3bb5d58d68f36943e3.png';
+import batteryRakImg from '../../assets/product/index/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
+import bulkPakImg from '../../assets/product/index/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
+import yarnPakImg from '../../assets/product/index/e9c3bad29049bc104caa12c3c1df6a909ac3c3d7.png';
+import axlePakImg from '../../assets/product/index/56e5e0488ca1226ecb15ba61951c49ae13582380.png';
+import batteryShellImg from '../../assets/product/index/a2fba7307a268376e5965c15eed34f5f050db60e.png';
+import proPakImg from '../../assets/product/index/962bc5dea41b9cb8605e747bfd0c533ce2a929fa.png';
+import exairPalletImg from '../../assets/product/index/6d491e071fc9a0e187d505a9422887387b2911e8.png';
+import uniPalletDoublerImg from '../../assets/product/index/ec9f80a540e1500371c3f3ed38b78e62b9077848.png';
+import sleevesImg from '../../assets/product/index/aa41e80d3b854437febc89d1bbb40ed82f5d740c.png';
+import uniCaseImg from '../../assets/product/index/454084480a055ddddae249d65a9d63552f1b760d.png';
+import uniRakImg from '../../assets/product/index/64c1ebff21662b97d2badc576764e2beb665d3d0.png';
+import perimeterBaseImg from '../../assets/product/index/ace628f106d3945cb72725dcdea147e2c7a6eff4.png';
+import modulePakImg from '../../assets/product/index/8a3ddf1c3913dddbff2427e7e435308c4d616728.png';
+import terraRoadImg from '../../assets/product/index/c25cf16ea6bf49b562af48467ba1e375c9120fbb.png';
+import uniPakIiImg from '../../assets/product/index/1f33178a0228a5eee17d27db2787893e839ba77b.png';
+import customImg from '../../assets/product/index/5b12aa8d3d5dc5bb61774bd04c5ab8c85dbb0152.png';
+import quoteImg from '../../assets/product/index/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+
+const sizeRange = '29” x 23”  —  90” x 48”';
+const sizePallet = '48” x 78” x 36”';
 
 const products = [
-  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: uniPakImg },
-  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniDirPalletImg },
-  { name: 'reman-pak', size: 'Custom', image: remanImg },
-  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: batteryPakImg },
-  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniCaseImg },
-  { name: 'reman-pak', size: 'Custom', image: yarnPakImg },
-  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: uniPalletImg },
-  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniDirPalletImg },
-  { name: 'reman-pak', size: 'Custom', image: remanImg },
-  { name: 'uni-pak', size: '29"x23"  —  90"x48"', image: batteryPakImg },
-  { name: 'uni-directional pallet', size: '1000mm x 800mm', image: uniCaseImg },
-  { name: 'reman-pak', size: 'Custom', image: yarnPakImg },
+  { name: 'uni-pak', size: sizeRange, image: uniPakImg, href: '/products/unipak' },
+  { name: 'uni-directional pallet', size: sizePallet, image: uniDirPalletImg, href: '/products/uni-directional-pallet' },
+  { name: 'remanufacturing-systems', size: 'Systems for Remanufacturing Drivetrain Components', image: remanImg, href: '/products/reman-pak' },
+  { name: 'uni-pallet', size: sizeRange, image: uniPalletImg, href: '/products/uni-pallet' },
+  { name: 'snap-pak', size: sizePallet, image: snapPakImg, href: '#' },
+  { name: 'battery-rak', size: sizePallet, image: batteryRakImg, href: '/products/battery-pak', crop: 'battery-rak' },
+  { name: 'bulk-pak', size: sizeRange, image: bulkPakImg, href: '/products/bulk-pak' },
+  { name: 'yarn-pak', size: sizeRange, image: yarnPakImg, href: '/products/yarn-pak' },
+  { name: 'axle-pak', size: sizeRange, image: axlePakImg, href: '#' },
+  { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#' },
+  { name: 'pro-pak', size: sizeRange, image: proPakImg, href: '/products/pro-pak' },
+  { name: 'exair-pallet', size: sizeRange, image: exairPalletImg, href: '#' },
+  { name: 'uni-pallet doubler', size: sizeRange, image: uniPalletDoublerImg, href: '#' },
+  { name: 'sleeves', size: 'Request More Information', image: sleevesImg, href: '#' },
+  { name: 'uni-case', size: sizeRange, image: uniCaseImg, href: '/products/uni-case' },
+  { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak' },
+  { name: 'perimeter-base pallet', size: sizeRange, image: perimeterBaseImg, href: '#' },
+  { name: 'module-pak', size: sizeRange, image: modulePakImg, href: '#' },
+  { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#' },
+  { name: 'uni-pak II', size: sizeRange, image: uniPakIiImg, href: '/products/unipak' },
+  { name: 'custom', size: sizeRange, image: customImg, href: '/products/custom' },
 ];
 
 const filters = [
-  { label: 'Product', active: false },
-  { label: 'Market', active: true },
-  { label: 'Size', active: false },
-  { label: 'Feature', active: false },
-  { label: 'Dynamic Load', active: false },
-  { label: 'Static Load', active: false },
-  { label: 'Racking Load', active: false },
-];
-
-const faqAnswer = 'Lorem ipsum dolor sit amet consectetur. Orci massa pretium venenatis nunc sed blandit. Viverra adipiscing imperdiet sed sed. Aliquet sed lacus lobortis fusce ut lorem elementum. Habitasse viverra nunc a libero mattis ultrices amet sit vestibulum. Volutpat nisl non velit habitasse sit sodales quisque dignissim sed. A egestas pretium proin suspendisse vel mi faucibus eget. Id nulla bibendum et elit magna turpis sed. Ut nunc semper ullamcorper pellentesque eu. Justo arcu lectus feugiat diam vitae ipsum arcu metus. Dui mauris nunc at justo laoreet et. Tempor vitae quis nunc ac lacus. Luctus pellentesque urna imperdiet varius. Ut sodales elementum sed nisi adipiscing. Risus ac bibendum platea ultricies diam lacus aliquam pellentesque tellus.';
-
-const faqs = [
-  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
-  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
-  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer, expanded: true },
-  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
-  { question: 'This is an example of a frequently asked question that someone would ask about a Shuert Product', answer: faqAnswer },
+  { label: 'Product' },
+  { label: 'Market' },
+  { label: 'Size' },
 ];
 ---
 
@@ -86,7 +100,7 @@ const faqs = [
           <div class="p-filters__scroll">
             <div class="p-filters__buttons">
               {filters.map((filter) => (
-                <button class:list={['p-filters__btn', { 'p-filters__btn--active': filter.active }]}>
+                <button class="p-filters__btn" type="button">
                   <span>{filter.label}</span>
                   <svg class="p-filters__chevron" width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.35 10L5 14.66L9.67 10" stroke="currentColor"/>
@@ -96,10 +110,10 @@ const faqs = [
             </div>
           </div>
           <div class="p-filters__actions">
-            <button class="p-filters__badge-btn" aria-label="3 active filters">
+            <button class="p-filters__badge-btn" type="button" aria-label="3 active filters">
               <span class="p-filters__badge-dot">3</span>
             </button>
-            <button class="p-filters__reset">Reset Filters</button>
+            <button class="p-filters__reset" type="button">Reset Filters</button>
           </div>
         </div>
       </div>
@@ -110,8 +124,8 @@ const faqs = [
       <div class="container">
         <div class="p-grid__cells">
           {products.map((product) => (
-            <a class="p-card" href="#">
-              <div class="p-card__img">
+            <a class="p-card" href={product.href}>
+              <div class:list={['p-card__img', { 'p-card__img--battery-rak': product.crop === 'battery-rak' }]}>
                 <img
                   src={product.image.src}
                   alt={product.name}
@@ -127,42 +141,6 @@ const faqs = [
               </div>
             </a>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="container">
-      <hr class="p-divider" />
-    </div>
-
-    <!-- FAQ -->
-    <section class="p-faq">
-      <div class="container">
-        <div class="p-faq__layout">
-          <div class="p-faq__left">
-            <p class="p-faq__eyebrow label">QUESTIONS?</p>
-            <h2 class="p-faq__heading">Frequently Asked</h2>
-          </div>
-          <div class="p-faq__right">
-            {faqs.map((faq, i) => (
-              <div class:list={['p-faq__item', { 'p-faq__item--open': faq.expanded }]} data-faq>
-                <button class="p-faq__trigger" aria-expanded={faq.expanded ? 'true' : 'false'}>
-                  <span class="p-faq__question">{faq.question}</span>
-                  <span class="p-faq__icon">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path class="p-faq__icon-v" d="M10 0V20" stroke="currentColor" stroke-width="2"/>
-                      <path d="M20 10H0" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                  </span>
-                </button>
-                <div class="p-faq__panel">
-                  <hr class="p-faq__panel-line" />
-                  <p class="p-faq__panel-text">{faq.answer}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -207,26 +185,13 @@ const faqs = [
               </div>
             </div>
             <div class="p-quote__field">
-              <label class="p-quote__label">PRODUCTS OF INTEREST</label>
-              <div class="p-quote__select">
-                <div class="p-quote__tags">
-                  <span class="p-quote__tag">
-                    Uni-Pak
-                    <span class="p-quote__tag-x" aria-hidden="true">
-                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
-                    </span>
-                  </span>
-                  <span class="p-quote__tag">
-                    Uni-Directional Pallet
-                    <span class="p-quote__tag-x" aria-hidden="true">
-                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1L7 7" stroke="black" stroke-width=".6"/><path d="M7 1L1 7" stroke="black" stroke-width=".6"/></svg>
-                    </span>
-                  </span>
-                </div>
-                <svg class="p-quote__select-caret" width="11" height="11" viewBox="0 0 11 11" fill="none">
-                  <path d="M0.5 0V10.14L10.64 0" stroke="white"/>
-                </svg>
-              </div>
+              <label class="p-quote__label" for="products-of-interest">PRODUCTS OF INTEREST</label>
+              <MultiSelect
+                id="products-of-interest"
+                name="productsOfInterest"
+                options={PRODUCT_OPTIONS}
+                placeholder="Select products…"
+              />
             </div>
             <div class="p-quote__field">
               <label class="p-quote__label">ANY OTHER QUESTIONS?</label>
@@ -252,41 +217,10 @@ const faqs = [
 </Mainlayout>
 
 <script>
-  document.querySelectorAll('[data-faq]').forEach((item) => {
-    const trigger = item.querySelector('.p-faq__trigger');
-    if (!trigger) return;
-
-    trigger.addEventListener('click', () => {
-      const isOpen = item.classList.contains('p-faq__item--open');
-
-      document.querySelectorAll('[data-faq]').forEach((i) => {
-        i.classList.remove('p-faq__item--open');
-        const t = i.querySelector('.p-faq__trigger');
-        if (t) t.setAttribute('aria-expanded', 'false');
-      });
-
-      if (!isOpen) {
-        item.classList.add('p-faq__item--open');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
+  const form = document.querySelector('.p-quote__form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
   });
-
-  const reveals = document.querySelectorAll('.reveal');
-  if (reveals.length) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal--visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    reveals.forEach((el) => observer.observe(el));
-  }
 </script>
 
 <style>
@@ -308,10 +242,9 @@ const faqs = [
 
   .p-hero__img {
     position: absolute;
-    width: 129%;
-    height: 156%;
-    left: -29%;
-    top: -28%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     max-width: none;
     object-fit: cover;
   }
@@ -373,6 +306,7 @@ const faqs = [
      ================================================================ */
   .products-body {
     background: var(--c-sec-1);
+    padding-bottom: clamp(3rem, 6.5vw, 112px);
   }
 
   /* ================================================================
@@ -428,15 +362,6 @@ const faqs = [
 
   .p-filters__btn:hover {
     background: #e0dcd7;
-  }
-
-  .p-filters__btn--active {
-    background: var(--c-black);
-    color: #edeae6;
-  }
-
-  .p-filters__btn--active:hover {
-    background: #1a1a1a;
   }
 
   .p-filters__chevron {
@@ -525,25 +450,40 @@ const faqs = [
   }
 
   .p-card__img {
-    flex: 462;
+    flex: 538;
     min-height: 0;
     overflow: hidden;
+    position: relative;
   }
 
   .p-card__img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 40%;
+    object-position: center;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .p-card__img--battery-rak img {
+    position: absolute;
+    width: 226.72%;
+    height: 227.14%;
+    max-width: none;
+    left: -28.39%;
+    top: -63.57%;
+    object-fit: cover;
   }
 
   .p-card:hover .p-card__img img {
     transform: scale(1.04);
   }
 
+  .p-card:hover .p-card__img--battery-rak img {
+    transform: none;
+  }
+
   .p-card__info {
-    flex: 151;
+    flex: 75;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -564,123 +504,7 @@ const faqs = [
     margin: 9px 0 0;
     font: var(--w-light) 16px / 22px var(--ff-r);
     color: var(--c-black);
-  }
-
-  /* ================================================================
-     DIVIDER
-     ================================================================ */
-  .p-divider {
-    border: none;
-    border-top: 2px solid #ebe7e3;
-    margin: 0;
-  }
-
-  /* ================================================================
-     FAQ
-     ================================================================ */
-  .p-faq {
-    padding: clamp(3rem, 4.5vw, 65px) 0 clamp(3rem, 5vw, 80px);
-  }
-
-  .p-faq__layout {
-    display: grid;
-    grid-template-columns: minmax(200px, 461px) minmax(0, 1fr);
-    column-gap: clamp(2rem, 5vw, 78px);
-    align-items: start;
-  }
-
-  .p-faq__eyebrow {
-    margin: 0 0 22px;
-    color: #d4cec6;
-  }
-
-  .p-faq__heading {
-    margin: 0;
-    font: var(--w-medium) var(--h3) / 1.075 var(--ff-r);
-  }
-
-  .p-faq__right {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .p-faq__item {
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .p-faq__item:nth-child(odd) {
-    background: #f2efec;
-  }
-
-  .p-faq__trigger {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-    min-height: 99px;
-    padding: 12px 27px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    text-align: left;
-    color: var(--c-black);
-  }
-
-  .p-faq__question {
-    font: var(--w-light) 20px / 26px var(--ff-r);
-    max-width: 789px;
-  }
-
-  .p-faq__icon {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--c-black);
-  }
-
-  .p-faq__icon svg {
-    display: block;
-  }
-
-  .p-faq__icon-v {
-    transition: transform 0.3s ease;
-  }
-
-  .p-faq__item--open .p-faq__icon-v {
-    transform: scaleY(0);
-  }
-
-  .p-faq__panel {
-    display: none;
-    padding: 0 27px 25px;
-  }
-
-  .p-faq__item--open .p-faq__panel {
-    display: block;
-  }
-
-  .p-faq__item--open .p-faq__trigger {
-    align-items: flex-start;
-    min-height: auto;
-    padding-top: 25px;
-    padding-bottom: 0;
-  }
-
-  .p-faq__panel-line {
-    border: none;
-    border-top: 2px solid #ece9e5;
-    margin: 20px 0 21px;
-  }
-
-  .p-faq__panel-text {
-    margin: 0;
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    max-width: 894px;
+    white-space: nowrap;
   }
 
   /* ================================================================
@@ -723,8 +547,8 @@ const faqs = [
   .p-quote__label {
     display: block;
     margin-bottom: 14px;
-    font: var(--w-bold) 14px / 1 var(--ff-s);
-    letter-spacing: 1.4px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
     text-transform: uppercase;
     color: var(--c-white);
   }
@@ -740,6 +564,7 @@ const faqs = [
     color: var(--c-white);
     font: 400 16px / 22px var(--ff-r);
     outline: none;
+    box-sizing: border-box;
   }
 
   .p-quote__input:focus {
@@ -754,52 +579,6 @@ const faqs = [
     height: 106px;
     padding: 18px;
     resize: none;
-  }
-
-  .p-quote__select {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    width: 100%;
-    height: 44px;
-    padding: 0 14px 0 7px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    box-sizing: border-box;
-  }
-
-  .p-quote__tags {
-    display: flex;
-    gap: 8px;
-    overflow: hidden;
-  }
-
-  .p-quote__tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    height: 30px;
-    padding: 0 12px;
-    background: var(--c-white);
-    border-radius: 50px;
-    font: var(--w-semibold) 16px / 1 var(--ff-s);
-    color: var(--c-black);
-    white-space: nowrap;
-  }
-
-  .p-quote__tag-x {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-
-  .p-quote__select-caret {
-    flex-shrink: 0;
-    transform: rotate(-45deg);
   }
 
   .p-quote__submit {
@@ -818,6 +597,11 @@ const faqs = [
     opacity: 0.85;
   }
 
+  .p-quote__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
   .p-quote__media {
     border-radius: 14px;
     overflow: hidden;
@@ -829,22 +613,6 @@ const faqs = [
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  /* ================================================================
-     REVEAL ANIMATION
-     ================================================================ */
-  .reveal {
-    opacity: 0;
-    transform: translateY(60px);
-    transition:
-      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .reveal--visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   /* ================================================================
@@ -919,9 +687,9 @@ const faqs = [
       border-bottom: none;
     }
 
-    .p-faq__layout {
-      grid-template-columns: 1fr;
-      row-gap: 2rem;
+    .p-card__name,
+    .p-card__size {
+      white-space: normal;
     }
 
     .p-quote__layout {
@@ -948,11 +716,6 @@ const faqs = [
       height: clamp(360px, 80vw, 500px);
     }
 
-    .p-hero__img {
-      width: 160%;
-      left: -40%;
-    }
-
     .p-grid__cells {
       grid-template-columns: 1fr;
     }
@@ -971,7 +734,7 @@ const faqs = [
     }
 
     .p-card__img {
-      aspect-ratio: 530 / 462;
+      aspect-ratio: 530 / 538;
     }
 
     .p-card__info {
@@ -979,26 +742,11 @@ const faqs = [
     }
 
     .p-card__name {
-      white-space: normal;
       text-align: center;
     }
 
     .p-filters__actions {
       display: none;
-    }
-
-    .p-faq__trigger {
-      padding: 12px 16px;
-      min-height: 80px;
-    }
-
-    .p-faq__question {
-      font-size: 17px;
-      line-height: 24px;
-    }
-
-    .p-faq__panel {
-      padding: 0 16px 20px;
     }
 
     .p-quote__row--half {

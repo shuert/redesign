@@ -132,11 +132,14 @@
   *::before,
   *::after{box-sizing:border-box;}
   
-  html{font-size:100%;}
+  html{
+    font-size:100%;
+    background:var(--c-black);
+  }
   
   body{
     margin:0;
-    background:var(--c-white);
+    background:var(--c-black);
     color:var(--c-black);
     font: var(--w-light) var(--p)/var(--lh-loose) var(--ff-r);
   }

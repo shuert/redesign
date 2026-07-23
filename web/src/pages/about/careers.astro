@@ -1,26 +1,87 @@
 ---
 import AboutLayout from '../../layouts/AboutLayout.astro';
-import heroImg from '../../assets/careers/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
-import introImg from '../../assets/careers/Rectangle 28-1.png';
-import cultureMainImg from '../../assets/careers/Rectangle 18.png';
-import cultureLeftImg from '../../assets/careers/Rectangle 23-1.png';
-import cultureRightImg from '../../assets/careers/Rectangle 23.png';
-import reachOutImg from '../../assets/careers/Rectangle 28.png';
+import heroImg from '../../assets/about/careers/9d36c932f523a740b4e616018c32e8cf6807c960.png';
+import introImg from '../../assets/about/careers/acb7f6fdfb8cc0bbaeea7fa9d84f57f60b4aef04.png';
+import cultureImg from '../../assets/about/careers/0aaa54070576742e39b9fe8728b45ee73f715613.png';
+import avatarAdam from '../../assets/about/careers/4626be44b284b8b1ee6284f743bcc3a42a902da1.png';
+import avatarFawaaz1 from '../../assets/about/careers/e3a1b1cac1bdf2b1d67ac45543b814862b0858b6.png';
+import avatarFawaaz2 from '../../assets/about/careers/ba96183393ff9a64923b8099b9d32083d5b2f315.png';
+import reachOutImg from '../../assets/about/careers/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
 
-const cultureBlurb = 'Small blurb about the specific capability.';
-
-const cultureSlides = [
-  { img: cultureMainImg, tag: 'Slide Locks', blurb: cultureBlurb },
-  { img: cultureLeftImg, tag: 'Knitting', blurb: cultureBlurb },
-  { img: cultureRightImg, tag: 'Knitting', blurb: cultureBlurb },
+const accordionItems = [
+  {
+    title: 'Compensation',
+    body:
+      'Employees receive competitive wages and receive annual raises as they develop new skills, grow in their roles, and take on greater responsibility. Paid time off and paid holidays give employees time to step away, recharge, and maintain balance outside of work. A 401(k) plan with employer match supports long-term financial planning.',
+  },
+  {
+    title: 'Medical',
+    body:
+      'Access to quality health care is deeply important to Shuert. As a self-insured company, Shuert directly funds medical coverage for employees and their families, with no employee-paid premiums. Employees also receive company-paid Life Insurance, Accidental Death and Disability, and Short-Term Disability coverage for added peace of mind. Policies are reviewed yearly to help ensure employees and their families have access to comprehensive, high-quality coverage.',
+  },
+  {
+    title: 'Opportunity',
+    body:
+      'All levels of experience are welcome at Shuert. Whether someone is starting their career, learning a new role, or bringing years of experience to the team, there are opportunities to grow. As advocates of promoting from within, employees are encouraged to learn new skills, take on new responsibilities, and build a path forward from wherever they begin.',
+  },
+  {
+    title: 'Appreciation',
+    body:
+      'Employees\u2019 contributions are important to Shuert, and acknowledging those contributions is part of how we show appreciation. When possible, Shuert recognizes employees through team lunches, outings, gifts, and non-merit-based bonuses.',
+  },
+  {
+    title: 'Open-Door Policy',
+    body:
+      'Every employee has direct access to management to share concerns, ask questions, and offer ideas. People should feel heard, respected, and comfortable bringing their perspective forward.',
+  },
 ] as const;
 
-const CULTURE_AUTOPLAY_MS = 3000;
-const firstSlide = cultureSlides[0];
-const lastSlide = cultureSlides[cultureSlides.length - 1];
+const clubNames = [
+  'Ethan Mercer',
+  'Olivia Hart',
+  'Mason Reed',
+  'Charlotte Quinn',
+  'Lucas Bennett',
+  'Amelia Brooks',
+  'Noah Sullivan',
+  'Harper Ellis',
+  'Jackson Cole',
+  'Evelyn Foster',
+  'Liam Turner',
+  'Sophia Grant',
+  'Caleb Dawson',
+  'Nora Whitaker',
+  'Owen Hayes',
+  'Lily Morgan',
+] as const;
+
+const testimonials = [
+  {
+    name: 'Adam Rigg',
+    role: 'JOB TITLE',
+    avatar: avatarAdam,
+    quote:
+      'What I like most about working here is the opportunity to apply my industrial maintenance skills while continuing to learn and grow every day. I appreciate being part of an environment that challenges me to solve problems, improve equipment reliability, and develop new technical abilities. I\u2019m grateful for the experience, teamwork, and opportunities this job provides to expand my knowledge and contribute in a meaningful way.',
+  },
+  {
+    name: 'Fawaaz Abdulmaged',
+    role: 'JOB TITLE',
+    avatar: avatarFawaaz1,
+    quote:
+      'I like the work environment the most. Everyone is supportive and respectful, and I\u2019ve learned a lot while working here. I also appreciate the teamwork and the opportunity to improve my skills every day.',
+  },
+  {
+    name: 'Fawaaz Abdulmaged',
+    role: 'JOB TITLE',
+    avatar: avatarFawaaz2,
+    quote:
+      'Shuert is a good place to work because the team is supportive, the environment is positive, and there are good opportunities to learn and grow. I also appreciate the respect between employees and the focus on teamwork and quality work.',
+  },
+] as const;
 ---
 
 <AboutLayout title="Careers" current="careers">
+  <!-- ─────────── HERO ─────────── -->
   <section class="c-hero">
     <div class="c-hero__bg" aria-hidden="true">
       <img
@@ -40,220 +101,159 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
           <p class="c-hero__breadcrumb">
             <span class="c-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>CAREERS
           </p>
-          <h1 class="detail-xl text-white">careers</h1>
-        </div>
-        <div class="c-hero__right">
-          <p class="c-hero__desc text-white">
-            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique
-            cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
-          </p>
+          <h1 class="detail-xl text-white">Careers</h1>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ─────────── INTRO ─────────── -->
   <section class="careers-intro">
     <div class="container">
       <div class="page-grid careers-intro__grid">
         <div class="careers-intro__media">
-          <img src={introImg.src} alt="Shuert team on production floor" width={introImg.width} height={introImg.height} />
+          <img
+            src={introImg.src}
+            alt="Shuert team gathered on the production floor"
+            width={introImg.width}
+            height={introImg.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div class="careers-intro__copy">
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Ut purus non urna sagittis scelerisque eu. Sem a amet viverra lectus
-            egestas sed nibh amet facilisis. Tincidunt ullamcorper vulputate id nisi ut massa. Blandit pharetra a nibh nunc
-            arcu. Potenti feugiat tellus libero maecenas. Arcu vitae feugiat et commodo tincidunt lorem. Mattis diam a varius
-            vitae libero. Curabitur ut urna aliquam mauris. Enim condimentum scelerisque maecenas sagittis orci amet arcu amet.
-            Sed nulla convallis sodales lacus tincidunt sagittis. Dictum purus maecenas nulla lectus vitae sed pharetra auctor
-            tristique. Tellus cras volutpat ut sapien hendrerit.
-          </p>
-          <a class="button button-glass careers-intro__cta" href="/contact">Explore Openings</a>
+          <div class="careers-intro__text">
+            <p>
+              We&apos;re proud to be family-owned, but family has never been limited to ownership. At Shuert Technologies,
+              family includes the people who have helped build our story — and who will carry it forward.
+            </p>
+            <p>
+              That belief shapes how we lead, work, and support one another. To us, being family-oriented means creating a
+              workplace where people know their contributions matter, their efforts are noticed, and their role is essential
+              to the strength of the team. It shows up when we treat people with respect, recognize the value they bring, and
+              take the time to know, support, and appreciate them — not just for what they do, but for who they are.
+            </p>
+          </div>
+          <a class="button careers-intro__cta" href="/contact">Explore Openings</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section
-    class="careers-culture"
-    id="careers-culture-carousel"
-    role="region"
-    aria-roledescription="carousel"
-    aria-label="Working at Shuert"
-    style={`--careers-autoplay-ms: ${CULTURE_AUTOPLAY_MS}ms`}
-  >
+  <!-- ─────────── WORKING AT SHUERT / ACCORDION ─────────── -->
+  <section class="careers-culture">
     <div class="container">
-      <p class="label careers-section-label">OUR CULTURE</p>
-      <h2 class="careers-h3">Working at Shuert</h2>
-    </div>
-    <div class="careers-culture__swiper-viewport" id="careers-culture-rail" aria-live="polite">
-      <div class="careers-culture__swiper-track" data-carousel-swiper-track>
-        <!-- Clone of last slide (peeks on the left of slide 0) -->
-        <article class="careers-culture__swiper-slide careers-card" aria-hidden="true" data-carousel-clone>
-          <img src={lastSlide.img.src} alt="" width={lastSlide.img.width} height={lastSlide.img.height} loading="eager" decoding="async" />
-          <div class="careers-card__overlay" aria-hidden="true" />
-          <span class="careers-card__tag">{lastSlide.tag}</span>
-          <p class="careers-card__blurb">{lastSlide.blurb}</p>
-        </article>
-        {
-          cultureSlides.map((slide, si) => (
-            <article
-              class:list={['careers-culture__swiper-slide', 'careers-card', { 'is-active': si === 0 }]}
-              data-carousel-swiper-slide
-              data-carousel-slide-index={si}
-              aria-hidden={si !== 0}
-            >
-              <img
-                src={slide.img.src}
-                alt={si === 0 ? 'Shuert team in workspace' : ''}
-                width={slide.img.width}
-                height={slide.img.height}
-                loading="eager"
-                decoding="async"
-              />
-              <div class="careers-card__overlay" aria-hidden="true" />
-              <span class="careers-card__tag">{slide.tag}</span>
-              <p class="careers-card__blurb">{slide.blurb}</p>
-            </article>
-          ))
-        }
-        <!-- Clone of first slide (peeks on the right of last slide) -->
-        <article class="careers-culture__swiper-slide careers-card" aria-hidden="true" data-carousel-clone>
-          <img src={firstSlide.img.src} alt="" width={firstSlide.img.width} height={firstSlide.img.height} loading="eager" decoding="async" />
-          <div class="careers-card__overlay" aria-hidden="true" />
-          <span class="careers-card__tag">{firstSlide.tag}</span>
-          <p class="careers-card__blurb">{firstSlide.blurb}</p>
-        </article>
-      </div>
-    </div>
-    <div class="container careers-culture__controls">
-      <div class="careers-culture__controls-inner">
-        <div class="careers-culture__arrows">
-          <button type="button" class="careers-culture__arrow" aria-label="Previous slide" data-carousel-prev>
-            <svg class="careers-culture__arrow-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14 7l-5 5 5 5"></path>
-            </svg>
-          </button>
-          <button type="button" class="careers-culture__arrow" aria-label="Next slide" data-carousel-next>
-            <svg class="careers-culture__arrow-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10 7l5 5-5 5"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="careers-culture__dots-wrap">
-          <div class="careers-culture__dots" role="presentation" data-carousel-dots>
-            <div class="careers-culture__dots-track" data-carousel-dots-track>
-              <div class="careers-culture__dots-row">
-                {
-                  cultureSlides.map((_, i) => (
-                    <div class="careers-culture__dot-slot" data-carousel-slot={i}>
-                      <div class:list={['careers-culture__dot-grow', { 'is-active': i === 0 }]}>
-                        <span class="careers-culture__dot-grow-fill" data-carousel-grow-fill />
-                      </div>
+      <div class="page-grid careers-culture__grid">
+        <div class="careers-culture__left">
+          <p class="label careers-section-label">OUR CULTURE</p>
+          <h2 class="careers-h3">Working at Shuert</h2>
+
+          <div class="careers-accordion" data-careers-accordion>
+            {
+              accordionItems.map((item, i) => (
+                <div class="careers-accordion__item">
+                  <button
+                    type="button"
+                    class="careers-accordion__trigger"
+                    aria-expanded="false"
+                    aria-controls={`careers-accordion-panel-${i}`}
+                    id={`careers-accordion-trigger-${i}`}
+                    data-accordion-trigger
+                  >
+                    <span class="careers-accordion__title">{item.title}</span>
+                    <span class="careers-accordion__icon" aria-hidden="true" />
+                  </button>
+                  <div
+                    class="careers-accordion__panel"
+                    id={`careers-accordion-panel-${i}`}
+                    role="region"
+                    aria-labelledby={`careers-accordion-trigger-${i}`}
+                    data-accordion-panel
+                  >
+                    <div class="careers-accordion__panel-inner">
+                      <p class="careers-accordion__body">{item.body}</p>
                     </div>
-                  ))
-                }
-              </div>
-            </div>
+                  </div>
+                  {i < accordionItems.length - 1 && <div class="careers-accordion__rule" aria-hidden="true" />}
+                </div>
+              ))
+            }
           </div>
         </div>
+
+        <div class="careers-culture__media">
+          <img
+            src={cultureImg.src}
+            alt=""
+            width={cultureImg.width}
+            height={cultureImg.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ─────────── 20 YEAR CLUB ─────────── -->
+  <section class="careers-club" aria-labelledby="careers-club-heading">
+    <div class="careers-club__fade careers-club__fade--top" aria-hidden="true"></div>
+    <div class="careers-club__fade careers-club__fade--bottom" aria-hidden="true"></div>
+    <div class="container careers-club__inner">
+      <div class="page-grid careers-club__grid">
+        <div class="careers-club__names" data-club-names aria-hidden="true">
+          <div class="careers-club__track" data-club-track>
+            {[...clubNames, ...clubNames].map((name) => (
+              <p class="careers-club__name">{name}</p>
+            ))}
+          </div>
+        </div>
+        <div class="careers-club__copy">
+          <h2 class="careers-club__heading" id="careers-club-heading">20 Year Club</h2>
+          <p class="careers-club__text">
+            Where people stay, contribute, and belong.<br />
+            We appreciate what our employees accomplish<br />
+            throughout their careers and believe long-term commitment is still worth building.
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="visually-hidden">
+      {clubNames.map((name) => (
+        <li>{name}</li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- ─────────── TESTIMONIALS ─────────── -->
   <section class="careers-testimonials">
     <div class="container">
       <p class="label careers-section-label">TESTIMONIALS</p>
-      <h2 class="careers-h3">What our team thinks.</h2>
+      <h2 class="careers-h3 careers-h3--sm">What Our Team Thinks</h2>
       <div class="page-grid careers-testimonials__grid">
-        <article class="careers-testimonial">
-          <img src={cultureLeftImg.src} alt="Team member portrait" class="careers-testimonial__avatar" width="127" height="127" />
-          <h3>First Last Name</h3>
-          <p class="careers-testimonial__role">JOB TITLE</p>
-          <p class="careers-testimonial__text">
-            Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis
-            sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna.
-          </p>
-        </article>
-        <article class="careers-testimonial">
-          <img src={cultureMainImg.src} alt="Team member portrait" class="careers-testimonial__avatar" width="127" height="127" />
-          <h3>First Last Name</h3>
-          <p class="careers-testimonial__role">JOB TITLE</p>
-          <p class="careers-testimonial__text">
-            Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis
-            sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna.
-          </p>
-        </article>
-        <article class="careers-testimonial">
-          <img src={cultureRightImg.src} alt="Team member portrait" class="careers-testimonial__avatar" width="127" height="127" />
-          <h3>First Last Name</h3>
-          <p class="careers-testimonial__role">JOB TITLE</p>
-          <p class="careers-testimonial__text">
-            Lorem ipsum dolor sit amet consectetur. Diam aliquam nulla pellentesque blandit. Justo proin elit vel sagittis
-            sodales dui sed. Enim tincidunt ipsum arcu ut sit nibh dolor magna.
-          </p>
-        </article>
+        {
+          testimonials.map((t) => (
+            <article class="careers-testimonial">
+              <img
+                src={t.avatar.src}
+                alt=""
+                class="careers-testimonial__avatar"
+                width={127}
+                height={127}
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>{t.name}</h3>
+              <p class="careers-testimonial__role">{t.role}</p>
+              <p class="careers-testimonial__text">{t.quote}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="careers-values">
-    <div class="container">
-      <div class="page-grid careers-values__grid">
-        <div class="careers-values__head">
-          <p class="label careers-section-label">CORE VALUES</p>
-          <h2 class="careers-h3">Our Values</h2>
-        </div>
-        <div class="careers-values__list">
-          <article class="careers-values__item">
-            <span>01</span>
-            <div>
-              <h3>Our Customers</h3>
-              <p>Listen to the needs of our customers and deliver high-quality products through trust, honesty and integrity.</p>
-            </div>
-          </article>
-          <article class="careers-values__item">
-            <span>02</span>
-            <div>
-              <h3>Our People</h3>
-              <p>
-                Our employees are the key to our success. Investing in our people and processes creates an environment of
-                learning and growth.
-              </p>
-            </div>
-          </article>
-          <article class="careers-values__item">
-            <span>03</span>
-            <div>
-              <h3>Our Community</h3>
-              <p>We are committed to giving back to the communities in which we live, work and serve.</p>
-            </div>
-          </article>
-          <article class="careers-values__item">
-            <span>04</span>
-            <div>
-              <h3>Our Environment</h3>
-              <p>
-                Shuert Technologies is dedicated to protecting human health, natural resources and the global environment.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- ─────────── REACH OUT ─────────── -->
   <section class="c-reach-out">
     <div class="container c-reach-out__inner">
       <div class="c-reach-out__grid">
@@ -294,261 +294,102 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
 </AboutLayout>
 
 <script>
-  const form = document.querySelector('.c-reach-out__form');
-  form?.addEventListener('submit', (e) => e.preventDefault());
-</script>
+  // Reach-out form (no-op submit)
+  document.querySelector('.c-reach-out__form')?.addEventListener('submit', (e) => e.preventDefault());
 
-<script
-  define:vars={{
-    careersAutoplayMs: CULTURE_AUTOPLAY_MS,
-  }}
->
+  // Accordion — one panel open at a time; click open item to close
   (function () {
-    const root = document.getElementById('careers-culture-carousel');
+    const root = document.querySelector('[data-careers-accordion]');
     if (!root) return;
 
-    const ANIM_NAME = 'careers-dot-progress';
+    const items = Array.from(root.querySelectorAll('.careers-accordion__item'));
+
+    function setOpen(target) {
+      items.forEach((item) => {
+        const trigger = item.querySelector('[data-accordion-trigger]');
+        const open = target !== null && item === target;
+        item.classList.toggle('is-open', open);
+        if (trigger instanceof HTMLButtonElement) {
+          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+      });
+    }
+
+    items.forEach((item) => {
+      const trigger = item.querySelector('[data-accordion-trigger]');
+      trigger?.addEventListener('click', () => {
+        if (item.classList.contains('is-open')) {
+          setOpen(null);
+          return;
+        }
+        setOpen(item);
+      });
+    });
+  })();
+
+  // 20 Year Club — continuous vertical marquee with random start
+  (function () {
+    const viewport = document.querySelector('[data-club-names]');
+    const track = document.querySelector('[data-club-track]');
+    if (!(viewport instanceof HTMLElement) || !(track instanceof HTMLElement)) return;
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    root.style.setProperty('--careers-autoplay-ms', `${careersAutoplayMs}ms`);
+    const names = track.querySelectorAll('.careers-club__name');
+    if (names.length < 2) return;
 
-    const prevBtn = root.querySelector('[data-carousel-prev]');
-    const nextBtn = root.querySelector('[data-carousel-next]');
-    const slotEls = root.querySelectorAll('[data-carousel-slot]');
-    const realSlideEls = root.querySelectorAll('[data-carousel-swiper-slide]');
-    const allSlideEls = root.querySelectorAll('.careers-culture__swiper-slide');
-    const viewport = root.querySelector('#careers-culture-rail');
-    const track = root.querySelector('[data-carousel-swiper-track]');
+    const half = Math.floor(names.length / 2);
+    const LINE = 56; // matches design line-height
+    const loopH = LINE * half;
 
-    const n = realSlideEls.length;
-    let realIndex = 0;
-    let domIndex = 1;
-    let prevDotsIndex = -1;
-    let shapeTimer = 0;
-    let sliding = false;
-    let ready = false;
-    const SHAPE_SETTLE_MS = 480;
-    var TRACK_EASE = 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)';
-    var OPACITY_EASE = 'opacity 0.45s ease';
+    // Random starting name on each page load
+    const startIndex = Math.floor(Math.random() * half);
+    let offset = startIndex * LINE;
+    track.style.transform = `translate3d(0, ${-offset}px, 0)`;
 
-    function getSlideMetrics() {
-      var firstEl = allSlideEls[0];
-      if (!firstEl || !viewport) return { slideW: 0, gap: 20, vpW: 0 };
-      var vpW = viewport.getBoundingClientRect().width;
-      var slideW = firstEl.getBoundingClientRect().width;
-      var gap = parseFloat(getComputedStyle(track).gap) || 20;
-      return { slideW: slideW, gap: gap, vpW: vpW };
+    if (reduceMotion) return;
+
+    const SPEED = 32; // px / sec
+    let last = performance.now();
+    let raf = 0;
+    let running = false;
+
+    function tick(now) {
+      const dt = Math.min((now - last) / 1000, 0.064);
+      last = now;
+      offset += SPEED * dt;
+      if (offset >= loopH) offset -= loopH;
+      track.style.transform = `translate3d(0, ${-offset}px, 0)`;
+      raf = requestAnimationFrame(tick);
     }
 
-    function calcTranslateX(di) {
-      var m = getSlideMetrics();
-      var center = (m.vpW - m.slideW) / 2;
-      return center - di * (m.slideW + m.gap);
+    function start() {
+      if (running) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
     }
 
-    function applyTransform(di, animate) {
-      domIndex = di;
-      var px = calcTranslateX(di);
-      if (animate) {
-        track.style.transition = TRACK_EASE;
-      } else {
-        track.style.transition = 'none';
-      }
-      track.style.transform = 'translateX(' + px + 'px)';
-
-      allSlideEls.forEach(function (el, j) {
-        if (animate) {
-          el.style.transition = OPACITY_EASE;
-        } else {
-          el.style.transition = 'none';
-        }
-        el.classList.toggle('is-active', j === di);
-      });
-
-      if (!animate) {
-        void track.offsetWidth;
-      }
+    function stop() {
+      running = false;
+      cancelAnimationFrame(raf);
     }
 
-    function setRealIndex(ri) {
-      realIndex = ri;
-      realSlideEls.forEach(function (el, j) {
-        el.setAttribute('aria-hidden', j === realIndex ? 'false' : 'true');
-      });
-    }
-
-    function refreshDots() {
-      var moved = prevDotsIndex >= 0 && prevDotsIndex !== realIndex;
-      window.clearTimeout(shapeTimer);
-
-      slotEls.forEach(function (slot, i) {
-        var grow = slot.querySelector('.careers-culture__dot-grow');
-        var fill = slot.querySelector('[data-carousel-grow-fill]');
-        if (grow) grow.classList.toggle('is-active', i === realIndex);
-        if (fill) fill.classList.remove('careers-culture__dot-grow-fill--animating');
-      });
-
-      var activeFill = slotEls[realIndex] ? slotEls[realIndex].querySelector('[data-carousel-grow-fill]') : null;
-
-      var startFill = function () {
-        if (!activeFill || !(activeFill instanceof HTMLElement)) return;
-        if (reduceMotion) return;
-        void activeFill.offsetWidth;
-        activeFill.classList.add('careers-culture__dot-grow-fill--animating');
-      };
-
-      if (moved && !reduceMotion) {
-        shapeTimer = window.setTimeout(startFill, SHAPE_SETTLE_MS);
-      } else {
-        requestAnimationFrame(startFill);
-      }
-
-      prevDotsIndex = realIndex;
-    }
-
-    function go(delta) {
-      if (sliding || !ready) return;
-      var nextReal = (realIndex + delta + n) % n;
-      var nextDom = domIndex + delta;
-      sliding = true;
-      setRealIndex(nextReal);
-      applyTransform(nextDom, true);
-      refreshDots();
-    }
-
-    if (track) {
-      track.addEventListener('transitionend', function (e) {
-        if (e.target !== track) return;
-        if (domIndex === 0) {
-          applyTransform(n, false);
-        } else if (domIndex === n + 1) {
-          applyTransform(1, false);
-        }
-        sliding = false;
-      });
-    }
-
-    prevBtn && prevBtn.addEventListener('click', function () { go(-1); });
-    nextBtn && nextBtn.addEventListener('click', function () { go(1); });
-
-    slotEls.forEach(function (slot, i) {
-      var fill = slot.querySelector('[data-carousel-grow-fill]');
-      if (fill) {
-        fill.addEventListener('animationend', function (e) {
-          if (e.animationName !== ANIM_NAME) return;
-          if (i !== realIndex) return;
-          go(1);
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) start();
+          else stop();
         });
-      }
-    });
-
-    /* ---- Pointer / touch drag ---- */
-    if (viewport && track) {
-      var dragging = false;
-      var startX = 0;
-      var dragDelta = 0;
-      var THRESHOLD = 40;
-
-      function applyDragOffset(px) {
-        var base = calcTranslateX(domIndex);
-        track.style.transition = 'none';
-        track.style.transform = 'translateX(' + (base + px) + 'px)';
-      }
-
-      function onDown(e) {
-        if (!ready) return;
-        if (e.button && e.button !== 0) return;
-        dragging = true;
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
-        dragDelta = 0;
-        track.style.transition = 'none';
-        viewport.style.cursor = 'grabbing';
-      }
-
-      function onMove(e) {
-        if (!dragging) return;
-        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        dragDelta = clientX - startX;
-        applyDragOffset(dragDelta);
-      }
-
-      function onUp() {
-        if (!dragging) return;
-        dragging = false;
-        viewport.style.cursor = '';
-        if (Math.abs(dragDelta) > THRESHOLD) {
-          go(dragDelta < 0 ? 1 : -1);
-        } else {
-          applyTransform(domIndex, true);
-        }
-      }
-
-      viewport.addEventListener('pointerdown', onDown);
-      viewport.addEventListener('pointermove', onMove);
-      viewport.addEventListener('pointerup', onUp);
-      viewport.addEventListener('pointercancel', onUp);
-      viewport.addEventListener('pointerleave', onUp);
-
-      viewport.addEventListener('touchstart', onDown, { passive: true });
-      viewport.addEventListener('touchmove', onMove, { passive: true });
-      viewport.addEventListener('touchend', onUp);
-      viewport.addEventListener('touchcancel', onUp);
-
-      viewport.style.touchAction = 'pan-y';
-      viewport.style.cursor = 'grab';
-      viewport.style.userSelect = 'none';
-
-      viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
-    }
-
-    /* ---- Decode all images, then enable ---- */
-    setRealIndex(0);
-    applyTransform(1, false);
-
-    var imgs = track ? [].slice.call(track.querySelectorAll('img')) : [];
-
-    function decodeAll() {
-      return Promise.all(imgs.map(function (img) {
-        return new Promise(function (resolve) {
-          if (img.complete && img.naturalWidth > 0) {
-            if (img.decode) {
-              img.decode().then(resolve).catch(resolve);
-            } else {
-              resolve();
-            }
-          } else {
-            img.addEventListener('load', function () {
-              if (img.decode) {
-                img.decode().then(resolve).catch(resolve);
-              } else {
-                resolve();
-              }
-            }, { once: true });
-            img.addEventListener('error', resolve, { once: true });
-          }
-        });
-      }));
-    }
-
-    decodeAll().then(function () {
-      ready = true;
-      refreshDots();
-    });
-
-    var resizeTimer = 0;
-    window.addEventListener('resize', function () {
-      sliding = false;
-      clearTimeout(resizeTimer);
-      applyTransform(domIndex, false);
-      resizeTimer = setTimeout(function () {
-        applyTransform(domIndex, false);
-      }, 150);
-    });
+      },
+      { threshold: 0.05 },
+    );
+    io.observe(viewport);
   })();
 </script>
 
 <style>
   /* ================================================================
-     HERO (shared header structure)
+     HERO
      ================================================================ */
   .c-hero {
     position: relative;
@@ -567,7 +408,7 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
     position: absolute;
     width: 100%;
     height: 121.2%;
-    top: -21.18%;
+    top: 0;
     left: 0;
     max-width: none;
     object-fit: cover;
@@ -578,7 +419,7 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
     inset: 0;
     background:
       linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0 0 0) 88.95%),
-      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgba(0, 0, 0, 0.25) 100%);
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgb(0 0 0) 100%);
   }
 
   .c-hero__content {
@@ -615,320 +456,426 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
     margin: 0;
   }
 
-  .c-hero__right {
-    grid-column: 9 / -1;
-  }
-
-  .c-hero__desc {
-    margin: 0;
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    max-width: 520px;
-  }
-
-  .careers-intro,
-  .careers-culture,
-  .careers-testimonials { background: var(--c-sec-1); }
-
+  /* ================================================================
+     INTRO
+     ================================================================ */
   .careers-intro {
+    background: var(--c-sec-1);
     border-top: 1px solid #e3ded6;
-    padding: 77px 0;
-  }
-  .careers-intro__grid { align-items: start; }
-  .careers-intro__media { grid-column: 1 / 8; border-radius: 14px; overflow: hidden; aspect-ratio: 924 / 662; }
-  .careers-intro__media img { width: 100%; height: 100%; object-fit: cover; }
-  .careers-intro__copy { grid-column: 8 / -1; padding-top: 122px; padding-left: 55px; }
-  .careers-intro__copy p { margin: 0; font: var(--w-light) 20px / 26px var(--ff-r); }
-  .careers-intro__cta { margin-top: 34px; display: inline-flex; }
-
-  .careers-culture { border-top: 1px solid #e3ded6; padding: 86px 0 76px; overflow: hidden; }
-  .careers-section-label { margin: 0; color: var(--c-sec-3); letter-spacing: 1.54px; }
-  .careers-h3 { margin: 25px 0 0; font: var(--w-medium) 40px / 43px var(--ff-r); color: var(--c-black); }
-
-  /* ---- Swiper: single-card-per-slide with adjacent peek ---- */
-  .careers-culture__swiper-viewport {
-    width: 100%;
-    overflow: hidden;
-    margin-top: 71px;
+    padding: 77px 0 150px;
   }
 
-  .careers-culture__swiper-track {
-    --slide-gap: 20px;
-    display: flex;
-    gap: var(--slide-gap);
-    will-change: transform;
+  .careers-intro__grid {
+    align-items: center;
   }
 
-  .careers-culture__swiper-slide {
-    flex: 0 0 61%;
-    width: 61%;
-    min-width: 0;
-    box-sizing: border-box;
-    opacity: 0.35;
-  }
-
-  .careers-culture__swiper-slide.is-active {
-    opacity: 1;
-  }
-
-  .careers-card {
-    position: relative;
-    height: min(580px, 34vw);
+  .careers-intro__media {
+    grid-column: 1 / 8;
     border-radius: 14px;
     overflow: hidden;
-  }
-  .careers-card img { width: 100%; height: 100%; object-fit: cover; }
-  .careers-card__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgb(0 0 0 / 20%);
-    z-index: 1;
-  }
-  .careers-card__tag {
-    position: absolute;
-    top: 34px;
-    left: 35px;
-    z-index: 2;
-    display: inline-block;
-    margin: 0;
-    background: #000;
-    color: #fff;
-    border-radius: 25px;
-    padding: 6px 18px;
-    font: var(--w-medium) 16px / 1 var(--ff-r);
-  }
-  .careers-card__blurb {
-    position: absolute;
-    left: 35px;
-    bottom: 32px;
-    z-index: 2;
-    margin: 0;
-    max-width: 260px;
-    font: var(--w-medium) 25px / 28px var(--ff-r);
-    color: #f7f5f2;
+    aspect-ratio: 924 / 662;
   }
 
-  .careers-culture__controls { margin-top: 42px; }
-  .careers-culture__controls-inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 50px;
-  }
-  .careers-culture__arrows {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-shrink: 0;
-  }
-  .careers-culture__dots-wrap {
-    position: absolute;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-  }
-  .careers-culture__dots-wrap > * {
-    pointer-events: auto;
-  }
-  .careers-culture__arrow {
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #e8e4de;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    cursor: pointer;
-    color: #9a958d;
-  }
-
-  .careers-culture__arrow-svg {
-    display: block;
-    width: 24px;
-    height: 24px;
-  }
-  .careers-culture__arrow:hover {
-    opacity: 0.85;
-  }
-  .careers-culture__arrow:focus-visible {
-    outline: 2px solid var(--c-black);
-    outline-offset: 2px;
-  }
-
-  @keyframes careers-dot-progress {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(1);
-    }
-  }
-
-  /* Progress: inactive = small dots; active grows in place to the elongated bar (no sliding) */
-  .careers-culture__dots {
-    flex-shrink: 0;
-  }
-
-  .careers-culture__dots-track {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 10px;
-  }
-
-  .careers-culture__dots-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-  }
-
-  .careers-culture__dot-slot {
-    width: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .careers-culture__dot-grow {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #d7d0c7;
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    transition:
-      width 0.45s cubic-bezier(0.33, 1, 0.68, 1),
-      height 0.45s cubic-bezier(0.33, 1, 0.68, 1),
-      border-radius 0.45s cubic-bezier(0.33, 1, 0.68, 1);
-  }
-
-  .careers-culture__dot-grow.is-active {
-    width: 32px;
-    height: 3px;
-    border-radius: 2px;
-  }
-
-  .careers-culture__dot-grow-fill {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
+  .careers-intro__media img {
     width: 100%;
     height: 100%;
-    border-radius: inherit;
-    background: #000;
-    transform: scaleX(0);
-    transform-origin: left center;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
+    object-fit: cover;
   }
 
-  .careers-culture__dot-grow.is-active .careers-culture__dot-grow-fill {
+  .careers-intro__copy {
+    grid-column: 9 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: flex-start;
+    max-width: 519px;
+  }
+
+  .careers-intro__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.375rem;
+  }
+
+  .careers-intro__text p {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .careers-intro__cta {
+    display: inline-flex;
+    background: var(--c-black);
+    color: var(--c-white);
+    border-color: transparent;
+    text-decoration: none;
+  }
+
+  .careers-intro__cta:hover {
+    opacity: 0.92;
+  }
+
+  /* ================================================================
+     CULTURE + ACCORDION
+     ================================================================ */
+  .careers-culture {
+    background: var(--c-sec-1);
+    padding: 0 0 150px;
+  }
+
+  .careers-section-label {
+    margin: 0;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .careers-h3 {
+    margin: 15px 0 0;
+    font: var(--w-medium) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .careers-h3--sm {
+    margin-top: 15px;
+  }
+
+  .careers-culture__grid {
+    align-items: start;
+  }
+
+  .careers-culture__left {
+    grid-column: 1 / 7;
+    max-width: 731px;
+  }
+
+  .careers-culture__media {
+    grid-column: 7 / -1;
+    justify-self: end;
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 62px;
+  }
+
+  .careers-culture__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .careers-accordion {
+    margin-top: clamp(2.5rem, 11.4vw, 197px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .careers-accordion__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .careers-accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .careers-accordion__title {
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+  }
+
+  .careers-accordion__item.is-open .careers-accordion__title {
     opacity: 1;
   }
 
-  .careers-culture__dot-grow-fill--animating {
-    animation: careers-dot-progress var(--careers-autoplay-ms, 6000ms) linear forwards;
+  .careers-accordion__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 41px;
+    background: #efece7;
+  }
+
+  .careers-accordion__icon::before,
+  .careers-accordion__icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: var(--c-black);
+    transform: translate(-50%, -50%);
+  }
+
+  /* horizontal bar (always) */
+  .careers-accordion__icon::before {
+    width: 12px;
+    height: 1px;
+  }
+
+  /* vertical bar → plus when closed */
+  .careers-accordion__icon::after {
+    width: 1px;
+    height: 12px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .careers-accordion__item.is-open .careers-accordion__icon::after {
+    opacity: 0;
+  }
+
+  .careers-accordion__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    max-width: 648px;
+    transition: grid-template-rows 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .careers-accordion__item.is-open .careers-accordion__panel {
+    grid-template-rows: 1fr;
+  }
+
+  .careers-accordion__panel-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .careers-accordion__body {
+    margin: 0;
+    padding-top: 12px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 0.3s ease 0.05s,
+      transform 0.35s cubic-bezier(0.32, 0.72, 0, 1) 0.05s;
+  }
+
+  .careers-accordion__item.is-open .careers-accordion__body {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .careers-accordion__rule {
+    width: 100%;
+    height: 0;
+    margin-top: 12px;
+    border-top: 1px solid #d4cec6;
+  }
+
+  .careers-accordion__trigger:focus-visible {
+    outline: 2px solid var(--c-black);
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .careers-culture__dot-grow {
+    .careers-accordion__panel,
+    .careers-accordion__body,
+    .careers-accordion__title,
+    .careers-accordion__icon::after {
       transition: none;
-    }
-
-    .careers-culture__dot-grow-fill {
-      transition: none;
-    }
-
-    .careers-culture__dot-grow-fill--animating {
-      animation: none !important;
-      transform: scaleX(1);
     }
   }
 
+  /* ================================================================
+     20 YEAR CLUB
+     ================================================================ */
+  .careers-club {
+    position: relative;
+    background: #efece7;
+    height: 824px;
+    overflow: hidden;
+  }
+
+  .careers-club__fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 824px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .careers-club__fade--top {
+    top: 0;
+    background: linear-gradient(180deg, #efece7 5%, rgba(239, 236, 231, 0) 40%);
+  }
+
+  .careers-club__fade--bottom {
+    bottom: 0;
+    background: linear-gradient(0deg, #efece7 5%, rgba(239, 236, 231, 0) 40%);
+  }
+
+  .careers-club__inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+  }
+
+  .careers-club__grid {
+    height: 100%;
+    align-items: center;
+  }
+
+  .careers-club__names {
+    grid-column: 2 / 6;
+    height: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  }
+
+  .careers-club__track {
+    will-change: transform;
+  }
+
+  .careers-club__name {
+    margin: 0;
+    font: var(--w-medium) 48px / 56px var(--ff-r);
+    color: var(--c-black);
+    white-space: nowrap;
+  }
+
+  .careers-club__copy {
+    grid-column: 7 / 11;
+    max-width: 556px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .careers-club__heading {
+    margin: 0;
+    font: var(--w-semibold) 40px / 43px var(--ff-s);
+    color: var(--c-black);
+  }
+
+  .careers-club__text {
+    margin: 0;
+    font: var(--w-light) 25px / 32px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ================================================================
+     TESTIMONIALS
+     ================================================================ */
   .careers-testimonials {
-    border-top: 1px solid #e3ded6;
-    padding: 76px 0 96px;
+    background: var(--c-sec-1);
+    padding: 150px 0 96px;
   }
-  .careers-testimonials__grid { margin-top: 70px; gap: 28px 20px; }
-  .careers-testimonial { grid-column: span 4; }
+
+  .careers-testimonials__grid {
+    margin-top: 84px;
+    gap: 28px 20px;
+  }
+
+  .careers-testimonial {
+    grid-column: span 4;
+  }
+
   .careers-testimonial__avatar {
     width: 127px;
     height: 127px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 28px;
+    display: block;
   }
+
   .careers-testimonial h3 {
     margin: 0;
     font: var(--w-semibold) 30px / 32px var(--ff-s);
     letter-spacing: -0.75px;
+    color: var(--c-black);
   }
+
   .careers-testimonial__role {
-    margin: 7px 0 18px;
+    margin: 7px 0 16px;
     font: var(--w-bold) 14px / 14px var(--ff-s);
     letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
   }
-  .careers-testimonial__text { margin: 0; font: var(--w-light) 16px / 22px var(--ff-r); max-width: 461px; }
 
-  .careers-values {
-    background: var(--c-sec-2);
-    padding: 87px 0 95px;
+  .careers-testimonial__text {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    max-width: 461px;
+    color: var(--c-black);
   }
-  .careers-values__grid { align-items: start; }
-  .careers-values__head { grid-column: 1 / 7; }
-  .careers-values__list { grid-column: 7 / -1; }
-  .careers-values__item {
-    display: grid;
-    grid-template-columns: 21px 1fr;
-    gap: 38px;
-    padding-bottom: 40px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid #d9d3cb;
-  }
-  .careers-values__item:last-child { margin-bottom: 0; }
-  .careers-values__item > span {
-    font: var(--w-semibold) 20px / 22px var(--ff-s);
-    letter-spacing: -0.5px;
-    color: var(--c-sec-3);
-  }
-  .careers-values__item h3 { margin: 0; font: 400 30px / 33px var(--ff-r); }
-  .careers-values__item p { margin: 15px 0 0; font: var(--w-light) 16px / 22px var(--ff-r); max-width: 615px; }
 
+  /* ================================================================
+     REACH OUT
+     ================================================================ */
   .c-reach-out {
     position: relative;
     background: #1b1b1b;
     padding: 73px 0;
+    box-sizing: border-box;
   }
+
   .c-reach-out__grid {
     display: grid;
     align-items: start;
     max-width: 1598px;
     margin-inline: auto;
-    grid-template-columns: 654px 789px;
-    column-gap: 155px;
   }
+
   .c-reach-out__eyebrow {
     margin: 0 0 49px;
-    color: rgb(255 255 255 / 35%);
+    color: rgba(255, 255, 255, 0.35);
     letter-spacing: 1.54px;
   }
+
   .c-reach-out__title {
     margin: 0;
     max-width: 654px;
-    font: var(--w-medium) 47px / 56px var(--ff-r);
+    font-family: var(--ff-r);
+    font-weight: var(--w-medium);
+    font-size: clamp(1.75rem, 2.72vw, 47px);
+    line-height: 1.19;
+    letter-spacing: 0;
   }
-  .c-reach-out__form { margin-top: 336px; max-width: 654px; }
+
+  .c-reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
   .c-reach-out__field {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     width: 100%;
     height: 65px;
     padding: 0 8px 0 25px;
@@ -936,17 +883,26 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
     border: 1px solid #2c2c2c;
     border-radius: 14px;
   }
+
   .c-reach-out__input {
     flex: 1;
     min-width: 0;
+    height: 22px;
     border: 0;
     background: transparent;
     color: var(--c-white);
-    font: var(--w-light) 16px / 22px var(--ff-r);
+    font: var(--w-medium) 16px / normal var(--ff-r);
     outline: none;
   }
-  .c-reach-out__input::placeholder { color: rgb(255 255 255 / 35%); }
+
+  .c-reach-out__input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
   .c-reach-out__submit {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin: 0;
     border: 0;
     min-width: 89px;
     height: 50px;
@@ -955,42 +911,206 @@ const lastSlide = cultureSlides[cultureSlides.length - 1];
     background: var(--c-white);
     color: var(--c-black);
     font: var(--w-medium) 16px / 1 var(--ff-r);
+    cursor: pointer;
   }
-  .c-reach-out__media { border-radius: 14px; overflow: hidden; aspect-ratio: 789 / 691; }
-  .c-reach-out__img { width: 100%; height: 100%; object-fit: cover; }
 
-  @media (max-width: 64rem) {
-    .c-hero__left,
-    .c-hero__right,
-    .careers-intro__media,
-    .careers-intro__copy,
-    .careers-values__head,
-    .careers-values__list,
-    .careers-testimonial { grid-column: 1 / -1; }
+  .c-reach-out__submit:hover {
+    opacity: 0.92;
+  }
 
-    .careers-intro { padding: 48px 0; }
-    .careers-intro__copy { padding: 28px 0 0; }
-    .careers-intro__copy p { font-size: 18px; line-height: 24px; }
+  .c-reach-out__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
 
-    .careers-culture { padding: 60px 0 56px; }
-    .careers-culture__swiper-viewport { margin-top: 40px; }
-    .careers-culture__swiper-track { --slide-gap: 12px; }
-    .careers-culture__swiper-slide { flex-basis: 85%; width: 85%; }
-    .careers-card { height: 56vw; min-height: 320px; }
+  .c-reach-out__media {
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 789 / 691;
+    border-radius: 14px;
+    overflow: hidden;
+  }
 
-    .careers-testimonials { padding: 60px 0; }
-    .careers-testimonials__grid { margin-top: 36px; }
+  .c-reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    .careers-values { padding: 60px 0; }
+  @media (min-width: 1728px) {
+    .c-reach-out__title {
+      font-size: 47px;
+      line-height: 56px;
+    }
 
-    .c-reach-out { padding: 56px 0; }
     .c-reach-out__grid {
-      grid-template-columns: 1fr;
-      gap: 34px;
+      grid-template-columns: 654px 789px;
+      column-gap: 155px;
+    }
+
+    .c-reach-out__media {
+      width: 789px;
       max-width: none;
     }
-    .c-reach-out__title { font-size: clamp(1.75rem, 2.8vw, 48px); line-height: 1.2; }
-    .c-reach-out__form { margin-top: 24px; max-width: none; }
-    .c-reach-out__media { max-width: 36rem; margin-inline: auto; }
+  }
+
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .c-reach-out__grid {
+      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 8.9vw, 155px);
+    }
+
+    .c-reach-out__form {
+      margin-top: clamp(4rem, 19.5vw, 336px);
+    }
+  }
+
+  /* ================================================================
+     TABLET / MOBILE
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .c-hero__left,
+    .careers-intro__media,
+    .careers-intro__copy,
+    .careers-culture__left,
+    .careers-culture__media,
+    .careers-club__names,
+    .careers-club__copy,
+    .careers-testimonial {
+      grid-column: 1 / -1;
+    }
+
+    .careers-intro {
+      padding: 48px 0 64px;
+    }
+
+    .careers-intro__copy {
+      max-width: none;
+      margin-top: 28px;
+    }
+
+    .careers-culture {
+      padding: 0 0 64px;
+    }
+
+    .careers-accordion {
+      margin-top: 40px;
+    }
+
+    .careers-culture__media {
+      margin-top: 40px;
+      justify-self: stretch;
+      max-width: none;
+    }
+
+    .careers-club {
+      height: auto;
+      min-height: 520px;
+      padding: 64px 0;
+    }
+
+    .careers-club__names {
+      height: 280px;
+      margin-bottom: 40px;
+    }
+
+    .careers-club__name {
+      font-size: clamp(1.75rem, 6vw, 48px);
+      line-height: 1.15;
+    }
+
+    .careers-club__copy {
+      max-width: none;
+    }
+
+    .careers-club__text {
+      font-size: 18px;
+      line-height: 26px;
+    }
+
+    .careers-club__text br {
+      display: none;
+    }
+
+    .careers-testimonials {
+      padding: 64px 0;
+    }
+
+    .careers-testimonials__grid {
+      margin-top: 36px;
+    }
+
+    .c-reach-out {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .c-reach-out__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .c-reach-out__title {
+      max-width: none;
+      line-height: 1.2;
+    }
+
+    .c-reach-out__form {
+      margin-top: 2rem;
+      max-width: none;
+    }
+
+    .c-reach-out__field {
+      height: auto;
+      min-height: 65px;
+      flex-wrap: wrap;
+      padding: 10px 10px 10px 20px;
+    }
+
+    .c-reach-out__submit {
+      height: 48px;
+      min-width: auto;
+    }
+
+    .c-reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      max-width: none;
+    }
+
+    .c-reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .careers-club__name {
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
+
+    .careers-club__heading {
+      font-size: 1.75rem;
+      line-height: 1.2;
+    }
+
+    .c-reach-out {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .c-reach-out__title {
+      font-size: 1.5rem;
+    }
+
+    .c-reach-out__field {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+      padding: 12px;
+      gap: 10px;
+    }
+
+    .c-reach-out__submit {
+      width: 100%;
+    }
   }
 </style>
