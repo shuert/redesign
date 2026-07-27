@@ -25,5 +25,6 @@ export const PRODUCT_OPTIONS = [
   'Pro-Pak',
   'Reman-Pak',
   'Battery-Pak',
+  'Axle-Pak',
   'Custom',
 ] as const;
