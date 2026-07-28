@@ -42,17 +42,42 @@ export type SystemDataRow = {
   highlight?: boolean;
 };
 
+/** Cell may be a fixed string or an imperial/metric pair */
+export type SystemDataCell = string | UnitPair;
+
+export type SystemDataFlexibleRow = {
+  cells: readonly SystemDataCell[];
+  highlight?: boolean;
+  /** Aria / download label; defaults to first cell string */
+  downloadLabel?: string;
+};
+
+/** Flexible multi-column System Data table (e.g. Pro-Pak) */
+export type SystemDataTable = {
+  columns: readonly string[];
+  rows: readonly SystemDataFlexibleRow[];
+};
+
+export type RelatedImageCrop = {
+  width: string;
+  height: string;
+  left: string;
+  top: string;
+};
+
 export type RelatedProduct = {
   name: string;
   size: UnitPair;
   img: ImageMetadata;
   href: string;
+  /** Optional Figma object-position crop for the related card image */
+  crop?: RelatedImageCrop;
 };
 
 /** Optional full-bleed video band (some product pages only) */
 export type ProductVideo = {
-  /** Video file URL (e.g. import with `?url`) */
-  src: string;
+  /** Video file URL (e.g. import with `?url`). Omit until the file is ready. */
+  src?: string;
   poster: ImageMetadata;
   label?: string;
 };
@@ -79,8 +104,10 @@ export type ProductPageData = {
   attributesAutoplayMs?: number;
 
   optionCols: readonly (readonly string[])[];
-  /** When set, renders the System Data table section */
+  /** When set, renders the Bulk-Pak-style 4-column System Data table */
   systemDataRows?: SystemDataRow[];
+  /** When set, renders a flexible multi-column System Data table (e.g. Pro-Pak) */
+  systemData?: SystemDataTable;
   related: RelatedProduct[];
 
   quoteTitle: string;

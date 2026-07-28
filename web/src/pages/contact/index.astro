@@ -27,7 +27,7 @@ import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748
       <div class="page-grid ct-hero__grid">
         <div class="ct-hero__left">
           <p class="ct-hero__breadcrumb">
-            <span class="ct-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>CONTACT
+            <a href="/" class="ct-hero__breadcrumb--dim">HOME</a><span class="ct-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>CONTACT
           </p>
           <h1 class="detail-xl text-white">contact</h1>
         </div>
@@ -222,6 +222,16 @@ import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748
 
   .ct-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .ct-hero__breadcrumb a.ct-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ct-hero__breadcrumb a.ct-hero__breadcrumb--dim:hover,
+  .ct-hero__breadcrumb a.ct-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .ct-hero__left .detail-xl {

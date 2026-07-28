@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import Mainlayout from './Mainlayout.astro';
 import MultiSelect from '../components/MultiSelect.astro';
 import type { ProductPageData } from '../data/products/types';
@@ -31,6 +32,7 @@ const {
   attributes: features,
   optionCols,
   systemDataRows,
+  systemData,
   related,
   quoteTitle,
   quoteImage,
@@ -40,9 +42,50 @@ const {
 } = product;
 
 const FEATURES_AUTOPLAY_MS = product.attributesAutoplayMs ?? 3000;
-const firstFeature = features[0];
-const lastFeature = features[features.length - 1];
-const productMain = thumbnails[0].img;
+const hasSystemData = Boolean(systemData?.rows?.length || systemDataRows?.length);
+
+/** Display widths (~2x retina) — masters stay in assets; only derivatives ship to the browser */
+const headerBgOpt = await getImage({ src: headerBg, width: 2400, format: 'webp', quality: 80 });
+
+const gallery = await Promise.all(
+  thumbnails.map(async (t) => ({
+    alt: t.alt,
+    full: await getImage({ src: t.img, width: 1400, format: 'webp', quality: 80 }),
+    thumb: await getImage({ src: t.img, width: 240, format: 'webp', quality: 75 }),
+  })),
+);
+const productMain = gallery[0].full;
+
+const featuresOpt = await Promise.all(
+  features.map(async (f) => ({
+    tag: f.tag,
+    desc: f.desc,
+    img: await getImage({ src: f.img, width: 1600, format: 'webp', quality: 80 }),
+  })),
+);
+const firstFeature = featuresOpt[0];
+const lastFeature = featuresOpt[featuresOpt.length - 1];
+
+const relatedOpt = await Promise.all(
+  related.map(async (r) => ({
+    ...r,
+    img: await getImage({ src: r.img, width: 1100, format: 'webp', quality: 80 }),
+  })),
+);
+
+const quoteImageOpt = await getImage({ src: quoteImage, width: 2400, format: 'webp', quality: 80 });
+
+const videoPosterOpt = video
+  ? await getImage({ src: video.poster, width: 1920, format: 'webp', quality: 80 })
+  : null;
+
+function cellText(cell: string | { imperial: string; metric: string }): string {
+  return typeof cell === 'string' ? cell : cell.imperial;
+}
+
+function cellIsPair(cell: string | { imperial: string; metric: string }): cell is { imperial: string; metric: string } {
+  return typeof cell !== 'string';
+}
 ---
 
 <Mainlayout title={title} mainClass="bp">
@@ -50,10 +93,10 @@ const productMain = thumbnails[0].img;
   <section class="bp-header">
     <div class="bp-header__bg" aria-hidden="true">
       <img
-        src={headerBg.src}
+        src={headerBgOpt.src}
         alt=""
-        width={headerBg.width}
-        height={headerBg.height}
+        width={headerBgOpt.attributes.width}
+        height={headerBgOpt.attributes.height}
         class="bp-header__img"
         loading="eager"
         decoding="async"
@@ -62,7 +105,7 @@ const productMain = thumbnails[0].img;
     </div>
     <div class="container bp-header__inner">
       <p class="bp-header__crumb">
-        <span class="bp-header__crumb-dim">HOME&ensp;/&ensp;ALL PRODUCTS&ensp;/&ensp;</span>{crumbLabel}
+        <a href="/" class="bp-header__crumb-dim">HOME</a><span class="bp-header__crumb-dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/products" class="bp-header__crumb-dim">ALL PRODUCTS</a><span class="bp-header__crumb-dim" aria-hidden="true">&ensp;/&ensp;</span>{crumbLabel}
       </p>
       <h1 class="bp-header__title detail-xl text-white">
         {name}{showRegMark && <img src={regMark} alt="" class="bp-header__reg" width="18" height="23" />}
@@ -94,8 +137,8 @@ const productMain = thumbnails[0].img;
         id="bp-gallery-main"
         src={productMain.src}
         alt={`${title} product render`}
-        width={productMain.width}
-        height={productMain.height}
+        width={productMain.attributes.width}
+        height={productMain.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -109,9 +152,9 @@ const productMain = thumbnails[0].img;
     </button>
 
     <div class="bp-gallery__thumbs" role="tablist" aria-label="Product views">
-      {thumbnails.map((t, i) => (
-        <button type="button" class:list={['bp-gallery__thumb', { 'is-active': i === 0 }]} data-src={t.img.src} aria-label={t.alt}>
-          <img src={t.img.src} alt="" width={t.img.width} height={t.img.height} loading="lazy" decoding="async" />
+      {gallery.map((t, i) => (
+        <button type="button" class:list={['bp-gallery__thumb', { 'is-active': i === 0 }]} data-src={t.full.src} aria-label={t.alt}>
+          <img src={t.thumb.src} alt="" width={t.thumb.attributes.width} height={t.thumb.attributes.height} loading="lazy" decoding="async" />
         </button>
       ))}
     </div>
@@ -204,20 +247,20 @@ const productMain = thumbnails[0].img;
       <div class="bp-swiper__track" data-carousel-swiper-track>
         <!-- Clone of last slide (peeks on the left of slide 0) -->
         <article class="bp-swiper__slide bp-feat" aria-hidden="true" data-carousel-clone>
-          <img src={lastFeature.img.src} alt="" width={lastFeature.img.width} height={lastFeature.img.height} loading="eager" decoding="async" />
+          <img src={lastFeature.img.src} alt="" width={lastFeature.img.attributes.width} height={lastFeature.img.attributes.height} loading="eager" decoding="async" />
           <div class="bp-feat__gradient" aria-hidden="true"></div>
           <span class="bp-feat__tag">{lastFeature.tag}</span>
           <p class="bp-feat__desc">{lastFeature.desc}</p>
         </article>
         {
-          features.map((f, si) => (
+          featuresOpt.map((f, si) => (
             <article
               class:list={['bp-swiper__slide', 'bp-feat', { 'is-active': si === 0 }]}
               data-carousel-swiper-slide
               data-carousel-slide-index={si}
               aria-hidden={si !== 0}
             >
-              <img src={f.img.src} alt={si === 0 ? f.tag : ''} width={f.img.width} height={f.img.height} loading="eager" decoding="async" />
+              <img src={f.img.src} alt={si === 0 ? f.tag : ''} width={f.img.attributes.width} height={f.img.attributes.height} loading="eager" decoding="async" />
               <div class="bp-feat__gradient" aria-hidden="true" />
               <span class="bp-feat__tag">{f.tag}</span>
               <p class="bp-feat__desc">{f.desc}</p>
@@ -226,7 +269,7 @@ const productMain = thumbnails[0].img;
         }
         <!-- Clone of first slide (peeks on the right of last slide) -->
         <article class="bp-swiper__slide bp-feat" aria-hidden="true" data-carousel-clone>
-          <img src={firstFeature.img.src} alt="" width={firstFeature.img.width} height={firstFeature.img.height} loading="eager" decoding="async" />
+          <img src={firstFeature.img.src} alt="" width={firstFeature.img.attributes.width} height={firstFeature.img.attributes.height} loading="eager" decoding="async" />
           <div class="bp-feat__gradient" aria-hidden="true"></div>
           <span class="bp-feat__tag">{firstFeature.tag}</span>
           <p class="bp-feat__desc">{firstFeature.desc}</p>
@@ -269,32 +312,14 @@ const productMain = thumbnails[0].img;
     </div>
   </section>
 
-
-  <!-- ============================== VIDEO (optional) ============================== -->
-  {
-    video && (
-      <section class="bp-video" aria-label={video.label ?? 'Product video'}>
-        <div class="bp-video__media">
-          <video
-            class="bp-video__el"
-            data-bp-video
-            poster={video.poster.src}
-            preload="metadata"
-            playsinline
-            controls={false}
-          >
-            <source src={video.src} type="video/mp4" />
-          </video>
-          <button type="button" class="bp-video__play" data-bp-video-play aria-label="Play video">
-            <img src={playIcon} alt="" width="100" height="100" />
-          </button>
-        </div>
-      </section>
-    )
-  }
-
   <!-- ============================== OPTIONS ============================== -->
-  <section class:list={['bp-options', { 'bp-options--to-related': !systemDataRows?.length }]}>
+  <section
+    class:list={[
+      'bp-options',
+      { 'bp-options--has-video': Boolean(video) },
+      { 'bp-options--to-related': !hasSystemData && !video },
+    ]}
+  >
     <div class="container">
       <header class="bp-section__head bp-section__head--options">
         <p class="bp-eyebrow bp-eyebrow--dim">OPTIONS</p>
@@ -314,8 +339,94 @@ const productMain = thumbnails[0].img;
     </div>
   </section>
 
+  <!-- ============================== VIDEO (optional, after Options) ============================== -->
   {
-    systemDataRows && systemDataRows.length > 0 && (
+    video && (
+      <section
+        class:list={['bp-video', { 'bp-video--to-related': !hasSystemData }]}
+        aria-label={video.label ?? 'Product video'}
+      >
+        <div class="container">
+          <div class="bp-video__media">
+            <video
+              class="bp-video__el"
+              data-bp-video
+              poster={videoPosterOpt!.src}
+              preload="metadata"
+              playsinline
+              controls={false}
+            >
+              {video.src && <source src={video.src} type="video/mp4" />}
+            </video>
+            <button type="button" class="bp-video__play" data-bp-video-play aria-label="Play video">
+              <img src={playIcon} alt="" width="80" height="80" />
+            </button>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    systemData && systemData.rows.length > 0 && (
+      <section class="bp-system">
+        <div class="container">
+          <header class="bp-section__head bp-section__head--system">
+            <p class="bp-eyebrow bp-eyebrow--dim">PRODUCT</p>
+            <h2 class="bp-section__title">System Data</h2>
+          </header>
+
+          <div
+            class="bp-system__table bp-system__table--flex"
+            role="table"
+            aria-label={`${title} system data`}
+            style={`--bp-system-cols: ${systemData.columns.length}`}
+          >
+            <div class="bp-system__head" role="row">
+              <div class="bp-system__dl-col" aria-hidden="true"></div>
+              {systemData.columns.map((col) => (
+                <div class="bp-system__cell bp-system__cell--label" role="columnheader">
+                  {col}
+                </div>
+              ))}
+            </div>
+            {systemData.rows.map((row) => {
+              const label = row.downloadLabel ?? cellText(row.cells[0] ?? '');
+              return (
+                <div class:list={['bp-system__row', { 'is-highlight': row.highlight }]} role="row">
+                  <div class="bp-system__dl-col">
+                    <a class="bp-system__dl" href="#" aria-label={`Download data sheet for ${label}`}>
+                      <img src={rowDownloadIcon} alt="" width="22" height="22" />
+                    </a>
+                  </div>
+                  {row.cells.map((cell) =>
+                    cellIsPair(cell) ? (
+                      <div
+                        class="bp-system__cell"
+                        role="cell"
+                        data-unit-value
+                        data-imperial={cell.imperial}
+                        data-metric={cell.metric}
+                      >
+                        {cell.imperial}
+                      </div>
+                    ) : (
+                      <div class="bp-system__cell" role="cell">
+                        {cell}
+                      </div>
+                    ),
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    !systemData && systemDataRows && systemDataRows.length > 0 && (
       <section class="bp-system">
         <div class="container">
           <header class="bp-section__head bp-section__head--system">
@@ -399,10 +510,22 @@ const productMain = thumbnails[0].img;
         <h2 class="bp-section__title">Other Similar Products</h2>
       </header>
       <div class="bp-related__grid">
-        {related.map((r) => (
+        {relatedOpt.map((r) => (
           <a class="bp-related__card" href={r.href}>
             <div class="bp-related__media">
-              <img src={r.img.src} alt={r.name} width={r.img.width} height={r.img.height} loading="lazy" decoding="async" />
+              <img
+                src={r.img.src}
+                alt={r.name}
+                width={r.img.attributes.width}
+                height={r.img.attributes.height}
+                loading="lazy"
+                decoding="async"
+                style={
+                  r.crop
+                    ? `width:${r.crop.width};height:${r.crop.height};left:${r.crop.left};top:${r.crop.top}`
+                    : undefined
+                }
+              />
             </div>
             <div class="bp-related__text">
               <h3 class="bp-related__name">{r.name}</h3>
@@ -487,7 +610,7 @@ const productMain = thumbnails[0].img;
         </div>
 
         <div class="bp-quote__media">
-          <img src={quoteImage.src} alt="Forklift moving stacked reusable pallets in a warehouse" width={quoteImage.width} height={quoteImage.height} loading="lazy" decoding="async" />
+          <img src={quoteImageOpt.src} alt="Forklift moving stacked reusable pallets in a warehouse" width={quoteImageOpt.attributes.width} height={quoteImageOpt.attributes.height} loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -980,12 +1103,24 @@ const productMain = thumbnails[0].img;
     color: rgba(255, 255, 255, 0.35);
   }
 
+  .bp-header__crumb a.bp-header__crumb-dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .bp-header__crumb a.bp-header__crumb-dim:hover,
+  .bp-header__crumb a.bp-header__crumb-dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
   .bp-header__title {
     display: flex;
     align-items: flex-start;
     gap: 4px;
     margin: 0;
     line-height: 0.9;
+    /* Preserve intentional casing (e.g. uni-pak II) — .detail-xl lowercases by default */
+    text-transform: none;
   }
 
   .bp-header__reg {
@@ -1097,12 +1232,14 @@ const productMain = thumbnails[0].img;
     opacity: 0.85;
   }
 
-  /* thumbnails: x 235/1728, y 579/821, 110px squares, flush */
+  /* thumbnails: centered under product image (same x/w as .bp-overview__media) */
   .bp-gallery__thumbs {
     position: absolute;
-    left: 13.6%;
+    left: 6.597%;
+    width: 39.931%;
     top: 70.52%;
     display: flex;
+    justify-content: center;
     z-index: 2;
   }
 
@@ -1561,7 +1698,12 @@ const productMain = thumbnails[0].img;
     padding-bottom: 150px;
   }
 
-  /* When System Data is omitted, keep a single 150px band into Related */
+  /* Video sits in the Options cream band before System Data */
+  .bp-options--has-video {
+    padding-bottom: 150px;
+  }
+
+  /* When System Data (and video) are omitted, keep a single 150px band into Related */
   .bp-options--to-related {
     padding-bottom: 0;
   }
@@ -1626,6 +1768,11 @@ const productMain = thumbnails[0].img;
     column-gap: 0;
   }
 
+  .bp-system__table--flex .bp-system__head,
+  .bp-system__table--flex .bp-system__row {
+    grid-template-columns: 50px repeat(var(--bp-system-cols, 4), minmax(0, 1fr));
+  }
+
   .bp-system__head {
     margin-bottom: 16px;
     padding: 0 8px;
@@ -1675,9 +1822,14 @@ const productMain = thumbnails[0].img;
   }
 
 
-  /* ============================== VIDEO (optional) ============================== */
+  /* ============================== VIDEO (optional, after Options) ============================== */
   .bp-video {
-    background: var(--c-black);
+    background: var(--c-sec-1);
+    padding-bottom: 150px;
+  }
+
+  .bp-video--to-related {
+    padding-bottom: 0;
   }
 
   .bp-video__media {
@@ -1687,6 +1839,7 @@ const productMain = thumbnails[0].img;
     max-height: 1037px;
     overflow: hidden;
     background: var(--c-black);
+    border-radius: 14px;
   }
 
   .bp-video__el {
@@ -1715,8 +1868,8 @@ const productMain = thumbnails[0].img;
   }
 
   .bp-video__play img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 
   .bp-video__play[hidden] {
@@ -2074,6 +2227,12 @@ const productMain = thumbnails[0].img;
     .bp-system__row {
       grid-template-columns: 36px repeat(4, minmax(140px, 1fr));
       min-width: 640px;
+    }
+
+    .bp-system__table--flex .bp-system__head,
+    .bp-system__table--flex .bp-system__row {
+      grid-template-columns: 36px repeat(var(--bp-system-cols, 4), minmax(120px, 1fr));
+      min-width: calc(36px + var(--bp-system-cols, 4) * 140px);
     }
 
     .bp-system__table {

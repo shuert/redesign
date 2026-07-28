@@ -101,13 +101,13 @@ export const batteryPak: ProductPageData = {
       name: 'module-pak',
       size: sizeRange,
       img: relatedModulePak,
-      href: '#',
+      href: '/products/module-pak',
     },
     {
       name: 'uni-pak II',
       size: sizeRange,
       img: relatedUniPakIi,
-      href: '/products/unipak',
+      href: '/products/uni-pak-II',
     },
     {
       name: 'axle-pak',

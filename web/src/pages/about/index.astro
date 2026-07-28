@@ -141,7 +141,7 @@ const TIMELINE_INITIAL_INDEX = 0;
       <div class="page-grid wwa-hero__grid">
         <div class="wwa-hero__left">
           <p class="wwa-hero__breadcrumb">
-            <span class="wwa-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>WHO WE ARE
+            <a href="/" class="wwa-hero__breadcrumb--dim">HOME</a><span class="wwa-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/about" class="wwa-hero__breadcrumb--dim">ABOUT</a><span class="wwa-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>WHO WE ARE
           </p>
           <h1 class="detail-xl text-white wwa-hero__title">who we are</h1>
         </div>
@@ -697,6 +697,16 @@ const TIMELINE_INITIAL_INDEX = 0;
 
   .wwa-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .wwa-hero__breadcrumb a.wwa-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .wwa-hero__breadcrumb a.wwa-hero__breadcrumb--dim:hover,
+  .wwa-hero__breadcrumb a.wwa-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .wwa-hero__title {

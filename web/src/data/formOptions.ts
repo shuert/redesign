@@ -16,6 +16,7 @@ export const MARKET_OPTIONS = [
 
 export const PRODUCT_OPTIONS = [
   'Uni-Pak',
+  'Uni-Pak II',
   'Bulk-Pak',
   'Uni-Pallet',
   'Uni-Directional Pallet',
@@ -26,5 +27,6 @@ export const PRODUCT_OPTIONS = [
   'Reman-Pak',
   'Battery-Pak',
   'Axle-Pak',
+  'Snap-Pak',
   'Custom',
 ] as const;

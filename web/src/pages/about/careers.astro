@@ -99,7 +99,7 @@ const testimonials = [
       <div class="page-grid c-hero__grid">
         <div class="c-hero__left">
           <p class="c-hero__breadcrumb">
-            <span class="c-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>CAREERS
+            <a href="/" class="c-hero__breadcrumb--dim">HOME</a><span class="c-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/about" class="c-hero__breadcrumb--dim">ABOUT</a><span class="c-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>CAREERS
           </p>
           <h1 class="detail-xl text-white">Careers</h1>
         </div>
@@ -450,6 +450,16 @@ const testimonials = [
 
   .c-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .c-hero__breadcrumb a.c-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .c-hero__breadcrumb a.c-hero__breadcrumb--dim:hover,
+  .c-hero__breadcrumb a.c-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .c-hero__left .detail-xl {

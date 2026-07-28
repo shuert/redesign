@@ -44,7 +44,7 @@ const markets = [
       <div class="page-grid m-hero__grid">
         <div class="m-hero__left">
           <p class="m-hero__breadcrumb">
-            <span class="m-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>ALL MARKETS
+            <a href="/" class="m-hero__breadcrumb--dim">HOME</a><span class="m-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>ALL MARKETS
           </p>
           <h1 class="detail-xl text-white">markets</h1>
         </div>
@@ -200,6 +200,16 @@ const markets = [
 
   .m-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .m-hero__breadcrumb a.m-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .m-hero__breadcrumb a.m-hero__breadcrumb--dim:hover,
+  .m-hero__breadcrumb a.m-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .m-hero__left .detail-xl {

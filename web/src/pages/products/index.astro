@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
 import MultiSelect from '../../components/MultiSelect.astro';
 import { PRODUCT_OPTIONS } from '../../data/formOptions';
@@ -29,29 +30,43 @@ import quoteImg from '../../assets/product/index/60c26e97b304b786a121896cb8a9ba9
 const sizeRange = '29” x 23”  —  90” x 48”';
 const sizePallet = '48” x 78” x 36”';
 
-const products = [
-  { name: 'uni-pak', size: sizeRange, image: uniPakImg, href: '/products/unipak' },
-  { name: 'uni-directional pallet', size: sizePallet, image: uniDirPalletImg, href: '/products/uni-directional-pallet' },
-  { name: 'remanufacturing-systems', size: 'Systems for Remanufacturing Drivetrain Components', image: remanImg, href: '/products/reman-pak' },
-  { name: 'uni-pallet', size: sizeRange, image: uniPalletImg, href: '/products/uni-pallet' },
-  { name: 'snap-pak', size: sizePallet, image: snapPakImg, href: '#' },
-  { name: 'battery-rak', size: sizePallet, image: batteryRakImg, href: '/products/battery-pak', crop: 'battery-rak' },
-  { name: 'bulk-pak', size: sizeRange, image: bulkPakImg, href: '/products/bulk-pak' },
-  { name: 'yarn-pak', size: sizeRange, image: yarnPakImg, href: '/products/yarn-pak' },
-  { name: 'axle-pak', size: sizeRange, image: axlePakImg, href: '/products/axel-pak' },
-  { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#' },
-  { name: 'pro-pak', size: sizeRange, image: proPakImg, href: '/products/pro-pak' },
-  { name: 'exair-pallet', size: sizeRange, image: exairPalletImg, href: '#' },
-  { name: 'uni-pallet doubler', size: sizeRange, image: uniPalletDoublerImg, href: '#' },
-  { name: 'sleeves', size: 'Request More Information', image: sleevesImg, href: '#' },
-  { name: 'uni-case', size: sizeRange, image: uniCaseImg, href: '/products/uni-case' },
-  { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak' },
-  { name: 'perimeter-base pallet', size: sizeRange, image: perimeterBaseImg, href: '#' },
-  { name: 'module-pak', size: sizeRange, image: modulePakImg, href: '#' },
-  { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#' },
-  { name: 'uni-pak II', size: sizeRange, image: uniPakIiImg, href: '/products/unipak' },
-  { name: 'custom', size: sizeRange, image: customImg, href: '/products/custom' },
-];
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const quoteOpt = await getImage({ src: quoteImg, width: 2400, format: 'webp', quality: 80 });
+
+const products = await Promise.all(
+  [
+    { name: 'uni-pak', size: sizeRange, image: uniPakImg, href: '/products/uni-pak' },
+    { name: 'uni-directional pallet', size: sizePallet, image: uniDirPalletImg, href: '/products/uni-directional-pallet' },
+    { name: 'remanufacturing-systems', size: 'Systems for Remanufacturing Drivetrain Components', image: remanImg, href: '/products/reman-pak' },
+    { name: 'uni-pallet', size: sizeRange, image: uniPalletImg, href: '/products/uni-pallet' },
+    { name: 'snap-pak', size: sizePallet, image: snapPakImg, href: '/products/snap-pak' },
+    { name: 'battery-rak', size: sizePallet, image: batteryRakImg, href: '/products/battery-pak', crop: 'battery-rak' as const },
+    { name: 'bulk-pak', size: sizeRange, image: bulkPakImg, href: '/products/bulk-pak' },
+    { name: 'yarn-pak', size: sizeRange, image: yarnPakImg, href: '/products/yarn-pak' },
+    { name: 'axle-pak', size: sizeRange, image: axlePakImg, href: '/products/axel-pak' },
+    { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#' },
+    { name: 'pro-pak', size: sizeRange, image: proPakImg, href: '/products/pro-pak' },
+    { name: 'exair-pallet', size: sizeRange, image: exairPalletImg, href: '#' },
+    { name: 'uni-pallet doubler', size: sizeRange, image: uniPalletDoublerImg, href: '#' },
+    { name: 'sleeves', size: 'Request More Information', image: sleevesImg, href: '#' },
+    { name: 'uni-case', size: sizeRange, image: uniCaseImg, href: '/products/uni-case' },
+    { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak' },
+    { name: 'perimeter-base pallet', size: sizeRange, image: perimeterBaseImg, href: '#' },
+    { name: 'module-pak', size: sizeRange, image: modulePakImg, href: '/products/module-pak' },
+    { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#' },
+    { name: 'uni-pak II', size: sizeRange, image: uniPakIiImg, href: '/products/uni-pak-II' },
+    { name: 'custom', size: sizeRange, image: customImg, href: '/products/custom' },
+  ].map(async (product) => ({
+    ...product,
+    // Battery-rak CSS crop zooms far in — keep more pixels for that card
+    image: await getImage({
+      src: product.image,
+      width: product.crop === 'battery-rak' ? 1600 : 1100,
+      format: 'webp',
+      quality: 80,
+    }),
+  })),
+);
 
 const filters = [
   { label: 'Product' },
@@ -65,11 +80,11 @@ const filters = [
   <section class="p-hero">
     <div class="p-hero__bg" aria-hidden="true">
       <img
-        src={heroImg.src}
+        src={heroOpt.src}
         alt=""
         class="p-hero__img"
-        width={heroImg.width}
-        height={heroImg.height}
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -79,7 +94,7 @@ const filters = [
       <div class="page-grid p-hero__grid">
         <div class="p-hero__left">
           <p class="p-hero__breadcrumb">
-            <span class="p-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>ALL PRODUCTS
+            <a href="/" class="p-hero__breadcrumb--dim">HOME</a><span class="p-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>ALL PRODUCTS
           </p>
           <h1 class="detail-xl text-white">products</h1>
         </div>
@@ -129,14 +144,23 @@ const filters = [
                 <img
                   src={product.image.src}
                   alt={product.name}
-                  width={product.image.width}
-                  height={product.image.height}
+                  width={product.image.attributes.width}
+                  height={product.image.attributes.height}
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="p-card__info">
-                <h3 class="p-card__name">{product.name}</h3>
+                <h3 class="p-card__name">
+                  {product.name.endsWith(' II') ? (
+                    <>
+                      {product.name.slice(0, -3)}
+                      <span class="p-card__roman"> II</span>
+                    </>
+                  ) : (
+                    product.name
+                  )}
+                </h3>
                 <p class="p-card__size">{product.size}</p>
               </div>
             </a>
@@ -202,11 +226,11 @@ const filters = [
         </div>
         <div class="p-quote__media">
           <img
-            src={quoteImg.src}
+            src={quoteOpt.src}
             alt="Forklift and stacked reusable pallets in a Shuert warehouse"
             class="p-quote__img"
-            width={quoteImg.width}
-            height={quoteImg.height}
+            width={quoteOpt.attributes.width}
+            height={quoteOpt.attributes.height}
             loading="lazy"
             decoding="async"
           />
@@ -285,6 +309,16 @@ const filters = [
 
   .p-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .p-hero__breadcrumb a.p-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .p-hero__breadcrumb a.p-hero__breadcrumb--dim:hover,
+  .p-hero__breadcrumb a.p-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .p-hero__left .detail-xl {
@@ -498,6 +532,10 @@ const filters = [
     letter-spacing: -0.75px;
     text-transform: lowercase;
     white-space: nowrap;
+  }
+
+  .p-card__roman {
+    text-transform: none;
   }
 
   .p-card__size {

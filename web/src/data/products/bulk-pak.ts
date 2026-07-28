@@ -133,7 +133,7 @@ export const bulkPak: ProductPageData = {
       name: 'snap-pak',
       size: { imperial: '29”x23” — 90”x48”', metric: '737 × 584 mm — 2286 × 1219 mm' },
       img: relatedSnapPak,
-      href: '/products',
+      href: '/products/snap-pak',
     },
   ],
   quoteTitle:

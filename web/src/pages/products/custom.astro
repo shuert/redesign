@@ -1,6 +1,1057 @@
 ---
+import { getImage } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
+import MultiSelect from '../../components/MultiSelect.astro';
+import { PRODUCT_OPTIONS } from '../../data/formOptions';
+
+import arrowLeft from '../../assets/product/shared/arrow-left.svg?url';
+import arrowRight from '../../assets/product/shared/arrow-right.svg?url';
+import exploreArrow from '../../assets/product/custom/58923e37f994f542121dae5954b5f46f08e0a69d.svg?url';
+
+import heroBg from '../../assets/product/custom/71b9e2f1adfbbd180f93e89107edd026aef55c42.png';
+import gallery1 from '../../assets/product/custom/d8ec9aa0ba997787fbe189f4db1759a0816da03f.png';
+import gallery2 from '../../assets/product/custom/a2fba7307a268376e5965c15eed34f5f050db60e.png';
+import gallery3 from '../../assets/product/custom/c25cf16ea6bf49b562af48467ba1e375c9120fbb.png';
+import gallery4 from '../../assets/product/custom/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
+import gallery5 from '../../assets/product/custom/a4854ca3ea0cab1acd32dfc1cb43ed26207dd482.png';
+
+import uniRakImg from '../../assets/product/custom/d8ec9aa0ba997787fbe189f4db1759a0816da03f.png';
+import batteryShellImg from '../../assets/product/custom/a2fba7307a268376e5965c15eed34f5f050db60e.png';
+import terraRoadImg from '../../assets/product/custom/c25cf16ea6bf49b562af48467ba1e375c9120fbb.png';
+import batteryRakImg from '../../assets/product/custom/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
+import modulePakImg from '../../assets/product/custom/8a3ddf1c3913dddbff2427e7e435308c4d616728.png';
+import uniCaseImg from '../../assets/product/custom/454084480a055ddddae249d65a9d63552f1b760d.png';
+
+import ctaImg from '../../assets/product/custom/04896979f7eaa8c7c63cacdad52dff39383582b7.png';
+import quoteImg from '../../assets/product/custom/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+
+const aboutText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`;
+
+const loremCard =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+
+const heroOpt = await getImage({ src: heroBg, width: 2400, format: 'webp', quality: 80 });
+const quoteOpt = await getImage({ src: quoteImg, width: 2400, format: 'webp', quality: 80 });
+const ctaOpt = await getImage({ src: ctaImg, width: 2400, format: 'webp', quality: 80 });
+
+const gallery = await Promise.all(
+  [
+    { img: gallery1, alt: 'Custom product view 1' },
+    { img: gallery2, alt: 'Custom product view 2' },
+    { img: gallery3, alt: 'Custom product view 3' },
+    { img: gallery4, alt: 'Custom product view 4' },
+    { img: gallery5, alt: 'Custom product view 5' },
+  ].map(async (t) => ({
+    alt: t.alt,
+    full: await getImage({ src: t.img, width: 1400, format: 'webp', quality: 80 }),
+    thumb: await getImage({ src: t.img, width: 240, format: 'webp', quality: 75 }),
+  })),
+);
+const productMain = gallery[0].full;
+
+const customProducts = await Promise.all(
+  [
+    {
+      name: 'uni-rak',
+      desc: loremCard,
+      image: uniRakImg,
+      href: '/products/uni-rak',
+      explore: false,
+    },
+    {
+      name: 'battery-shell',
+      desc: loremCard,
+      image: batteryShellImg,
+      href: '#',
+      explore: false,
+    },
+    {
+      name: 'terra-road',
+      desc: 'Terraroad is a mobile temporary roadway system designed for crews that need to traverse soft or unstable terrain. Constructed from two heavy-gauge, compression-molded panels, it supports heavy equipment by distributing force across a broad surface area, helping reduce ground pressure below. Molded underside features grip the earth, while integrated projections and recesses allow each panel to securely engage with the next. Built-in lifting hardware supports efficient transport, placement, and removal—making Terraroad a rugged, reusable alternative to large wooden roadways.',
+      image: terraRoadImg,
+      href: '#',
+      explore: false,
+    },
+    {
+      name: 'battery-rak',
+      desc: loremCard,
+      image: batteryRakImg,
+      href: '/products/battery-pak',
+      explore: true,
+    },
+    {
+      name: 'module-pak',
+      desc: 'Module-Pak is a reusable, collapsible container system designed for the storage and transport of electric vehicle battery modules in closed-loop systems. Based on the Uni-Pak platform, it is engineered for operations where space constraints, return efficiency, product protection, and weight sensitivity are critical, providing a systems-based alternative to traditional compartmentalized wood crates.',
+      image: modulePakImg,
+      href: '/products/module-pak',
+      explore: true,
+    },
+    {
+      name: 'uni-case',
+      desc: loremCard,
+      image: uniCaseImg,
+      href: '/products/uni-case',
+      explore: true,
+    },
+  ].map(async (p) => ({
+    ...p,
+    image: await getImage({ src: p.image, width: 1100, format: 'webp', quality: 80 }),
+  })),
+);
 ---
 
 <Mainlayout title="Custom">
+  <!-- Hero -->
+  <section class="cp-header">
+    <div class="cp-header__bg" aria-hidden="true">
+      <img
+        src={heroOpt.src}
+        alt=""
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
+        class="cp-header__img"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="cp-header__gradient"></div>
+    </div>
+    <div class="container cp-header__inner">
+      <p class="cp-header__crumb">
+        <a href="/" class="cp-header__crumb-dim">HOME</a>
+        <span class="cp-header__crumb-dim" aria-hidden="true">&ensp;/&ensp;</span>
+        <a href="/products" class="cp-header__crumb-dim">ALL PRODUCTS</a>
+        <span class="cp-header__crumb-dim" aria-hidden="true">&ensp;/&ensp;</span>
+        CUSTOM
+      </p>
+      <h1 class="cp-header__title detail-xl text-white">custom</h1>
+    </div>
+  </section>
+
+  <!-- Overview: gallery + about -->
+  <section class="cp-overview">
+    <div class="cp-overview__media">
+      <img
+        id="cp-gallery-main"
+        src={productMain.src}
+        alt="Custom product render"
+        width={productMain.attributes.width}
+        height={productMain.attributes.height}
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <button type="button" class="cp-gallery__nav cp-gallery__nav--prev" aria-label="Previous image">
+      <img src={arrowLeft} alt="" width="50" height="50" />
+    </button>
+    <button type="button" class="cp-gallery__nav cp-gallery__nav--next" aria-label="Next image">
+      <img src={arrowRight} alt="" width="50" height="50" />
+    </button>
+
+    <div class="cp-gallery__thumbs" role="tablist" aria-label="Product views">
+      {gallery.map((t, i) => (
+        <button
+          type="button"
+          class:list={['cp-gallery__thumb', { 'is-active': i === 0 }]}
+          data-src={t.full.src}
+          aria-label={t.alt}
+        >
+          <img
+            src={t.thumb.src}
+            alt=""
+            width={t.thumb.attributes.width}
+            height={t.thumb.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      ))}
+    </div>
+
+    <div class="cp-about">
+      <p class="cp-eyebrow">ABOUT OUR CUSTOM PRODUCTS</p>
+      <p class="cp-about__desc">{aboutText}</p>
+    </div>
+
+    <div class="cp-overview__actions">
+      <a href="#request-a-quote" class="cp-btn cp-btn--dark">Request a Quote</a>
+      <a href="/custom-solutions/" class="cp-btn cp-btn--outline">Explore Our Process</a>
+    </div>
+  </section>
+
+  <!-- Custom Products grid -->
+  <section class="cp-products">
+    <div class="container">
+      <header class="cp-products__head">
+        <p class="cp-eyebrow cp-eyebrow--dim">PRODUCTS</p>
+        <h2 class="cp-products__title">Custom Products</h2>
+      </header>
+
+      <div class="cp-grid">
+        {customProducts.map((product) => (
+          <a class="cp-card" href={product.href}>
+            <div class="cp-card__media">
+              <img
+                src={product.image.src}
+                alt={product.name}
+                width={product.image.attributes.width}
+                height={product.image.attributes.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="cp-card__body">
+              <h3 class="cp-card__name">{product.name}</h3>
+              <p class="cp-card__desc">{product.desc}</p>
+              {product.explore && (
+                <span class="cp-card__explore">
+                  EXPLORE
+                  <img src={exploreArrow} alt="" width="12" height="8" />
+                </span>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Capabilities CTA -->
+  <section class="cp-cta">
+    <div class="container">
+      <div class="cp-cta__panel">
+        <img
+          src={ctaOpt.src}
+          alt=""
+          class="cp-cta__img"
+          width={ctaOpt.attributes.width}
+          height={ctaOpt.attributes.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="cp-cta__gradient" aria-hidden="true"></div>
+        <span class="cp-cta__badge">Custom Capabilities</span>
+        <div class="cp-cta__content">
+          <p class="cp-cta__text">
+            Shipping and material handling challenges are never identical—products, processes, environments, and performance requirements all shape what the solution needs to do. So we start with your problem and build from there. It's how we've delivered more than 2,000 unique designs with our partners, combining the right technology with hands-on experience under one roof.
+          </p>
+          <a href="/custom-solutions/" class="cp-btn cp-btn--light">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request a Quote -->
+  <section class="cp-quote" id="request-a-quote">
+    <div class="container">
+      <div class="cp-quote__layout">
+        <div class="cp-quote__form-side">
+          <p class="cp-eyebrow cp-quote__eyebrow">REQUEST A QUOTE</p>
+          <h2 class="cp-quote__title">
+            Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque.
+          </h2>
+          <form class="cp-quote__form" aria-label="Request a quote">
+            <div class="cp-quote__row cp-quote__row--half">
+              <div class="cp-quote__field">
+                <label class="cp-quote__label" for="cp-first">FIRST NAME</label>
+                <input id="cp-first" type="text" class="cp-quote__input" placeholder="First" autocomplete="given-name" />
+              </div>
+              <div class="cp-quote__field">
+                <label class="cp-quote__label" for="cp-last">LAST NAME</label>
+                <input id="cp-last" type="text" class="cp-quote__input" placeholder="Last" autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="cp-quote__field">
+              <label class="cp-quote__label" for="cp-company">COMPANY NAME</label>
+              <input id="cp-company" type="text" class="cp-quote__input" placeholder="Company" autocomplete="organization" />
+            </div>
+            <div class="cp-quote__field">
+              <label class="cp-quote__label" for="cp-email">EMAIL</label>
+              <input id="cp-email" type="email" class="cp-quote__input" placeholder="Email" autocomplete="email" />
+            </div>
+            <div class="cp-quote__row cp-quote__row--half">
+              <div class="cp-quote__field">
+                <label class="cp-quote__label" for="cp-phone">PHONE</label>
+                <input id="cp-phone" type="tel" class="cp-quote__input" placeholder="Phone" autocomplete="tel" />
+              </div>
+              <div class="cp-quote__field">
+                <label class="cp-quote__label" for="cp-qty">QUANTITY</label>
+                <input id="cp-qty" type="text" class="cp-quote__input" placeholder="Quantity" />
+              </div>
+            </div>
+            <div class="cp-quote__field">
+              <label class="cp-quote__label" for="cp-products-of-interest">PRODUCTS OF INTEREST</label>
+              <MultiSelect
+                id="cp-products-of-interest"
+                name="productsOfInterest"
+                options={PRODUCT_OPTIONS}
+                placeholder="Select products…"
+              />
+            </div>
+            <div class="cp-quote__field">
+              <label class="cp-quote__label" for="cp-notes">ANY OTHER QUESTIONS?</label>
+              <textarea id="cp-notes" class="cp-quote__input cp-quote__textarea" placeholder="Additional Info"></textarea>
+            </div>
+            <button type="submit" class="cp-quote__submit">Submit</button>
+          </form>
+        </div>
+        <div class="cp-quote__media">
+          <img
+            src={quoteOpt.src}
+            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
+            class="cp-quote__img"
+            width={quoteOpt.attributes.width}
+            height={quoteOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </Mainlayout>
+
+<script>
+  const main = document.getElementById('cp-gallery-main') as HTMLImageElement | null;
+  const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('.cp-gallery__thumb'));
+  let galleryIndex = 0;
+
+  function selectThumb(i: number) {
+    if (!thumbs.length || !main) return;
+    galleryIndex = (i + thumbs.length) % thumbs.length;
+    const src = thumbs[galleryIndex].dataset.src;
+    if (src) main.src = src;
+    thumbs.forEach((t, idx) => t.classList.toggle('is-active', idx === galleryIndex));
+  }
+
+  thumbs.forEach((t, i) => t.addEventListener('click', () => selectThumb(i)));
+  document.querySelector('.cp-gallery__nav--prev')?.addEventListener('click', () => selectThumb(galleryIndex - 1));
+  document.querySelector('.cp-gallery__nav--next')?.addEventListener('click', () => selectThumb(galleryIndex + 1));
+
+  document.querySelector('.cp-quote__form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>
+
+<style>
+  /* ============================== SHARED ============================== */
+  .cp-eyebrow {
+    margin: 0;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  .cp-eyebrow--dim {
+    color: var(--c-sec-3);
+  }
+
+  .cp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .cp-btn--dark {
+    background: var(--c-black);
+    color: var(--c-white);
+    border-color: var(--c-black);
+  }
+
+  .cp-btn--dark:hover {
+    opacity: 0.88;
+  }
+
+  .cp-btn--outline {
+    background: var(--c-sec-1);
+    color: var(--c-black);
+    border-color: var(--c-black);
+  }
+
+  .cp-btn--outline:hover {
+    background: var(--c-sec-2);
+  }
+
+  .cp-btn--light {
+    background: var(--c-white);
+    color: var(--c-black);
+    border-color: var(--c-white);
+  }
+
+  .cp-btn--light:hover {
+    opacity: 0.9;
+  }
+
+  /* ============================== HERO ============================== */
+  .cp-header {
+    position: relative;
+    height: 556px;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .cp-header__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cp-header__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cp-header__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 71.89%, rgb(0, 0, 0) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0) 88.31%, rgb(0, 0, 0) 100%);
+  }
+
+  .cp-header__inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 57px;
+  }
+
+  .cp-header__crumb {
+    margin: 0 0 32px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .cp-header__crumb-dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .cp-header__crumb a.cp-header__crumb-dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .cp-header__crumb a.cp-header__crumb-dim:hover,
+  .cp-header__crumb a.cp-header__crumb-dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .cp-header__title {
+    margin: 0;
+    line-height: 0.9;
+    text-transform: none;
+  }
+
+  /* ============================== OVERVIEW ============================== */
+  .cp-overview {
+    position: relative;
+    background: var(--c-sec-1);
+    aspect-ratio: 1728 / 821;
+  }
+
+  .cp-overview__media {
+    position: absolute;
+    left: 6.597%;
+    top: 0;
+    width: 39.931%;
+    aspect-ratio: 1 / 1;
+    z-index: 1;
+  }
+
+  .cp-overview__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cp-gallery__nav {
+    position: absolute;
+    top: 42.02%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .cp-gallery__nav img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cp-gallery__nav--prev {
+    left: 3.762%;
+  }
+
+  .cp-gallery__nav--next {
+    left: 46.528%;
+  }
+
+  .cp-gallery__nav:hover {
+    opacity: 0.85;
+  }
+
+  .cp-gallery__thumbs {
+    position: absolute;
+    left: 6.597%;
+    width: 39.931%;
+    top: 70.52%;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .cp-gallery__thumb {
+    width: min(110px, 6.366vw);
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .cp-gallery__thumb.is-active {
+    background: #ebe7e3;
+  }
+
+  .cp-gallery__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+
+  .cp-about {
+    position: absolute;
+    left: 58.391%;
+    top: 0;
+    width: 30.034%;
+    height: 76.49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 33px;
+    z-index: 2;
+  }
+
+  .cp-about__desc {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    white-space: pre-line;
+  }
+
+  .cp-overview__actions {
+    position: absolute;
+    left: 58.391%;
+    width: 30.034%;
+    top: 77.83%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+  }
+
+  /* ============================== CUSTOM PRODUCTS ============================== */
+  .cp-products {
+    background: var(--c-sec-1);
+    padding: 13px 0 80px;
+  }
+
+  .cp-products__head {
+    margin-bottom: 68px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 730px;
+  }
+
+  .cp-products__title {
+    margin: 0;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .cp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    border-top: 2px solid #ebe7e3;
+    border-left: 2px solid #ebe7e3;
+  }
+
+  .cp-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border-right: 2px solid #ebe7e3;
+    border-bottom: 2px solid #ebe7e3;
+    aspect-ratio: 530 / 613;
+    background: var(--c-sec-1);
+    overflow: hidden;
+  }
+
+  .cp-card__media {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cp-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cp-card:hover .cp-card__media img {
+    transform: scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cp-card:hover .cp-card__media img {
+      transform: none;
+    }
+  }
+
+  .cp-card__body {
+    flex: 0 0 auto;
+    padding: 0 43px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .cp-card__name {
+    margin: 0;
+    font: var(--w-semibold) 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-black);
+  }
+
+  .cp-card__desc {
+    margin: 0;
+    font: var(--w-light) 12px / 16px var(--ff-r);
+    color: var(--c-black);
+    max-width: 400px;
+  }
+
+  .cp-card__explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  .cp-card__explore img {
+    width: 12px;
+    height: 8px;
+  }
+
+  /* ============================== CTA ============================== */
+  .cp-cta {
+    background: var(--c-sec-1);
+    padding: 0 0 80px;
+  }
+
+  .cp-cta__panel {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 1597 / 662;
+    min-height: 360px;
+  }
+
+  .cp-cta__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cp-cta__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 28.17%, rgb(0, 0, 0) 100%);
+  }
+
+  .cp-cta__badge {
+    position: absolute;
+    top: 45px;
+    left: 39px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    background: var(--c-black);
+    border-radius: 25px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+  }
+
+  .cp-cta__content {
+    position: absolute;
+    left: 36px;
+    right: 39px;
+    bottom: 33px;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .cp-cta__text {
+    margin: 0;
+    max-width: 819px;
+    font: 400 20px / 23px var(--ff-r);
+    color: var(--c-white);
+  }
+
+  /* ============================== QUOTE ============================== */
+  .cp-quote {
+    background: #1b1b1b;
+    padding: clamp(3rem, 4.8vw, 83px) 0 clamp(3rem, 4.2vw, 73px);
+  }
+
+  .cp-quote__layout {
+    display: grid;
+    align-items: start;
+  }
+
+  .cp-quote__eyebrow {
+    margin: 0 0 31px;
+    color: var(--c-white);
+  }
+
+  .cp-quote__title {
+    margin: 0 0 59px;
+    max-width: 654px;
+    font: var(--w-light) clamp(1.5rem, 1.8vw, 30px) / 33px var(--ff-r);
+    color: var(--c-white);
+  }
+
+  .cp-quote__form {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .cp-quote__row--half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .cp-quote__label {
+    display: block;
+    margin-bottom: 14px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .cp-quote__input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: 400 16px / 22px var(--ff-r);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .cp-quote__input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .cp-quote__input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .cp-quote__textarea {
+    height: 106px;
+    padding: 18px;
+    resize: none;
+  }
+
+  .cp-quote__submit {
+    align-self: flex-start;
+    padding: 15px 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .cp-quote__submit:hover {
+    opacity: 0.85;
+  }
+
+  .cp-quote__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .cp-quote__media {
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: -17px;
+  }
+
+  .cp-quote__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ============================== DESKTOP ≥ 1728 ============================== */
+  @media (min-width: 1728px) {
+    .cp-quote__layout {
+      grid-template-columns: 695px 789px;
+      column-gap: 114px;
+    }
+
+    .cp-quote__media {
+      width: 789px;
+      max-width: none;
+      aspect-ratio: 789 / 937;
+    }
+  }
+
+  /* ============================== WIDE 1025–1727 ============================== */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .cp-quote__layout {
+      grid-template-columns: minmax(0, 695fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 7vw, 114px);
+    }
+
+    .cp-quote__media {
+      aspect-ratio: 789 / 937;
+    }
+  }
+
+  /* ============================== TABLET ≤ 1024 ============================== */
+  @media (max-width: 64rem) {
+    .cp-header {
+      height: clamp(420px, 55vw, 540px);
+    }
+
+    .cp-overview {
+      aspect-ratio: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--grid-margin) 3rem;
+    }
+
+    .cp-overview__media {
+      position: relative;
+      left: auto;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .cp-gallery__nav {
+      position: absolute;
+      top: auto;
+      transform: none;
+    }
+
+    .cp-gallery__nav--prev {
+      left: var(--grid-margin);
+      top: calc(min(100vw - 2 * var(--grid-margin), 520px) * 0.42);
+    }
+
+    .cp-gallery__nav--next {
+      left: auto;
+      right: var(--grid-margin);
+      top: calc(min(100vw - 2 * var(--grid-margin), 520px) * 0.42);
+    }
+
+    .cp-gallery__thumbs {
+      position: relative;
+      left: auto;
+      width: 100%;
+      top: auto;
+      margin: 1.5rem 0 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cp-about {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .cp-overview__actions {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .cp-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cp-card {
+      aspect-ratio: auto;
+      min-height: 520px;
+    }
+
+    .cp-card__media {
+      aspect-ratio: 530 / 420;
+      flex: none;
+    }
+
+    .cp-card__body {
+      padding: 20px 24px 32px;
+    }
+
+    .cp-cta__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .cp-cta__text {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .cp-quote__layout {
+      grid-template-columns: 1fr;
+      row-gap: 2.5rem;
+    }
+
+    .cp-quote__media {
+      margin-top: 0;
+      max-width: 600px;
+      aspect-ratio: 789 / 937;
+    }
+
+    .cp-quote__title {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* ============================== MOBILE ≤ 768 ============================== */
+  @media (max-width: 48rem) {
+    .cp-header {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .cp-header__inner {
+      padding-bottom: 32px;
+    }
+
+    .cp-gallery__nav {
+      display: none;
+    }
+
+    .cp-gallery__thumb {
+      width: 72px;
+    }
+
+    .cp-overview__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .cp-btn {
+      width: 100%;
+    }
+
+    .cp-products {
+      padding-bottom: 48px;
+    }
+
+    .cp-products__head {
+      margin-bottom: 40px;
+    }
+
+    .cp-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cp-card__name {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    .cp-cta {
+      padding-bottom: 48px;
+    }
+
+    .cp-cta__panel {
+      aspect-ratio: auto;
+      min-height: 480px;
+    }
+
+    .cp-cta__badge {
+      top: 24px;
+      left: 20px;
+    }
+
+    .cp-cta__content {
+      left: 20px;
+      right: 20px;
+      bottom: 24px;
+    }
+
+    .cp-quote__row--half {
+      grid-template-columns: 1fr;
+    }
+
+    .cp-quote__form {
+      gap: 18px;
+    }
+  }
+</style>

@@ -12,7 +12,7 @@ import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba
       <div class="page-grid rq-hero__grid">
         <div class="rq-hero__left">
           <p class="rq-hero__breadcrumb">
-            <span class="rq-hero__breadcrumb--dim">HOME&ensp;/&ensp;</span>REQUEST A QUOTE
+            <a href="/" class="rq-hero__breadcrumb--dim">HOME</a><span class="rq-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>REQUEST A QUOTE
           </p>
           <h1 class="rq-hero__title">request a quote</h1>
         </div>
@@ -141,6 +141,16 @@ import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba
 
   .rq-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .rq-hero__breadcrumb a.rq-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .rq-hero__breadcrumb a.rq-hero__breadcrumb--dim:hover,
+  .rq-hero__breadcrumb a.rq-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .rq-hero__title {

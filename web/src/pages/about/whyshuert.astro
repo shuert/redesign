@@ -85,7 +85,7 @@ const features = [
       <div class="page-grid ws-hero__grid">
         <div class="ws-hero__left">
           <p class="ws-hero__breadcrumb">
-            <span class="ws-hero__breadcrumb--dim">HOME&ensp;/&ensp;ABOUT&ensp;/&ensp;</span>WHY SHUERT
+            <a href="/" class="ws-hero__breadcrumb--dim">HOME</a><span class="ws-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/about" class="ws-hero__breadcrumb--dim">ABOUT</a><span class="ws-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>WHY SHUERT
           </p>
           <h1 class="detail-xl text-white ws-hero__title">shuert<br />advantage</h1>
         </div>
@@ -327,6 +327,16 @@ const features = [
 
   .ws-hero__breadcrumb--dim {
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .ws-hero__breadcrumb a.ws-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ws-hero__breadcrumb a.ws-hero__breadcrumb--dim:hover,
+  .ws-hero__breadcrumb a.ws-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .ws-hero__title {
