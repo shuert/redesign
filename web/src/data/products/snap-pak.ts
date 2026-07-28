@@ -149,7 +149,7 @@ export const snapPak: ProductPageData = {
         metric: '762 × 737 mm — 2286 × 1238 mm',
       },
       img: relatedUniPakIi,
-      href: '/products/uni-pak-ii',
+      href: '/products/uni-pak-II',
     },
   ],
   quoteTitle:

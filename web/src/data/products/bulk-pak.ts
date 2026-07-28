@@ -121,7 +121,7 @@ export const bulkPak: ProductPageData = {
       name: 'uni-pak',
       size: { imperial: '29”x23” — 90”x48”', metric: '737 × 584 mm — 2286 × 1219 mm' },
       img: relatedUniPak,
-      href: '/products/unipak',
+      href: '/products/uni-pak',
     },
     {
       name: 'bulk-pak',

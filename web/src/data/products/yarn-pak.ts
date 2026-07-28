@@ -225,7 +225,7 @@ export const yarnPak: ProductPageData = {
       name: 'uni-pak',
       size: sizeRange,
       img: relatedUniPak,
-      href: '/products/unipak',
+      href: '/products/uni-pak',
     },
   ],
   quoteTitle:
