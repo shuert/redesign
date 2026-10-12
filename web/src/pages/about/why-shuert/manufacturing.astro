@@ -123,10 +123,8 @@ const advantages: Advantage[] = [
     <div class="container">
       <div class="mf-list">
         {
-          advantages.map((item, i) => (
-            <>
-              {i === 1 && <div class="mf-rule" aria-hidden="true" />}
-              <article class:list={['mf-row', { 'mf-row--solo': !item.means }]} data-reveal-group>
+          advantages.map((item) => (
+            <article class:list={['mf-row', { 'mf-row--solo': !item.means }]} data-reveal-group>
                 <div class:list={['mf-row__media', { 'mf-row__media--bottom': item.fit === 'bottom', 'mf-row__media--cad': item.fit === 'cad' }]}>
                   <img
                     src={item.image.src}
@@ -173,7 +171,6 @@ const advantages: Advantage[] = [
                   </>
                 )}
               </article>
-            </>
           ))
         }
       </div>
@@ -317,16 +314,6 @@ const advantages: Advantage[] = [
 
   .mf-list > .mf-row + .mf-row {
     margin-top: clamp(2rem, 3.36vw, 58px);
-  }
-
-  .mf-rule {
-    height: 0;
-    margin: clamp(1rem, 1.68vw, 29px) calc(var(--grid-margin) * -1);
-    border-top: 2px dashed #aaa;
-  }
-
-  .mf-rule + .mf-row {
-    margin-top: clamp(1rem, 1.68vw, 29px);
   }
 
   .mf-row {
