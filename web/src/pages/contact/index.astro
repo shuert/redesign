@@ -1,10 +1,15 @@
 ---
+import { getImage } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import heroImg from '../../assets/contact/245624c7253b02d89996388c0c6276de1f6916a2.png';
 import locImg1 from '../../assets/contact/fd5389ffdf5abc87db6180ec2ad180bdb2b74e7d.png';
 import locImg2 from '../../assets/contact/b871b35a38f37fc4df733f44372a9191d74c1ac0.png';
 import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const loc1Opt = await getImage({ src: locImg1, width: 1800, format: 'webp', quality: 80 });
+const loc2Opt = await getImage({ src: locImg2, width: 1800, format: 'webp', quality: 80 });
 ---
 
 <Mainlayout title="Contact">
@@ -12,11 +17,11 @@ import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748
   <section class="ct-hero">
     <div class="ct-hero__bg" aria-hidden="true">
       <img
-        src={heroImg.src}
+        src={heroOpt.src}
         alt=""
         class="ct-hero__img"
-        width={heroImg.width}
-        height={heroImg.height}
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -48,11 +53,11 @@ import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748
       <div class="ct-loc__images page-grid">
         <div class="ct-loc__img-wrap ct-loc__img-wrap--left">
           <img
-            src={locImg1.src}
+            src={loc1Opt.src}
             alt="Shuert headquarters and production facility"
             class="ct-loc__img"
-            width={locImg1.width}
-            height={locImg1.height}
+            width={loc1Opt.attributes.width}
+            height={loc1Opt.attributes.height}
             loading="lazy"
             decoding="async"
           />
@@ -60,11 +65,11 @@ import formImg from '../../assets/contact/60c26e97b304b786a121896cb8a9ba9c10e748
         </div>
         <div class="ct-loc__img-wrap ct-loc__img-wrap--right">
           <img
-            src={locImg2.src}
+            src={loc2Opt.src}
             alt="Shuert fulfillment center"
             class="ct-loc__img"
-            width={locImg2.width}
-            height={locImg2.height}
+            width={loc2Opt.attributes.width}
+            height={loc2Opt.attributes.height}
             loading="lazy"
             decoding="async"
           />

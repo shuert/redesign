@@ -1,24 +1,24 @@
 ---
+import { getImage } from 'astro:assets';
 import AboutLayout from '../../layouts/AboutLayout.astro';
 import ReachOut from '../../components/ReachOut.astro';
 import heroImg from '../../assets/about/whoweare/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
-import introImg from '../../assets/about/whoweare/Rectangle 28.png';
-import pillar1 from '../../assets/about/whoweare/Rectangle 18.png';
-import pillar2 from '../../assets/about/whoweare/Rectangle 29.png';
-import pillar3 from '../../assets/about/whoweare/Rectangle 30.png';
-import pillar4 from '../../assets/about/whoweare/Rectangle 31.png';
+import introImg from '../../assets/about/whoweare/intro-team.png';
+import pillar1 from '../../assets/about/whoweare/pillar-experimentation.png';
+import pillar2 from '../../assets/about/whoweare/pillar-open-problem-solving.png';
+import pillar3 from '../../assets/about/whoweare/pillar-shared-ownership.png';
+import pillar4 from '../../assets/about/whoweare/pillar-continuous-learning.png';
 import innovationBg from '../../assets/about/whoweare/40x48_Uni-Pak_Isometric_v01 4.png';
 import worldsBestBg from '../../assets/about/whoweare/40x48_Uni-Pak_Isometric_v01 3.png';
 import reachOutImg from '../../assets/about/whoweare/Rectangle 28-1.png';
 import globeImg from '../../assets/about/whoweare/global-presence-globe.png';
 import playIcon from '../../assets/capabilities/42208bd656b84eb6378eaaeb7657c54f8badc043.svg?url';
-import tlOriginalBldg from '../../assets/about/whoweare/history-original-bldg.png';
-import tlBwBldg from '../../assets/about/whoweare/history-bw-bldg.png';
-import tlGarrison from '../../assets/about/whoweare/history-garrison-sign.png';
-import tlGroup from '../../assets/about/whoweare/history-group.png';
-import tlConveyor from '../../assets/about/whoweare/history-conveyor.png';
-import tlTeam from '../../assets/about/whoweare/history-team.png';
-import tlWarehouseWide from '../../assets/about/whoweare/history-warehouse-wide.png';
+import tlFoundation from '../../assets/about/whoweare/history-bw-bldg.png';
+import tlFactoryFloor from '../../assets/about/whoweare/history-factory-floor.png';
+import tlUnipak from '../../assets/about/whoweare/history-unipak-forklift.png';
+import tlProductionLine from '../../assets/about/whoweare/history-production-line.png';
+import tlPalletDetail from '../../assets/about/whoweare/history-pallet-detail.png';
+import tlScandinavia from '../../assets/about/whoweare/history-scandinavia-pallets.png';
 
 const values = [
   {
@@ -48,6 +48,7 @@ const pillars = [
     img: pillar1,
     tag: 'Experimentation',
     desc: 'We test ideas, learn quickly, and refine through iteration to develop better solutions.',
+    focus: '46.9% center',
   },
   {
     img: pillar2,
@@ -58,6 +59,7 @@ const pillars = [
     img: pillar3,
     tag: 'Shared Ownership',
     desc: 'We take responsibility for outcomes across teams, stepping in to lend a hand wherever needed to move work forward.',
+    focus: 'right center',
   },
   {
     img: pillar4,
@@ -66,61 +68,76 @@ const pillars = [
   },
 ];
 
-// Timeline events: 7 cards alternating sm/lg/sm/lg/sm/lg/sm
+// One card per decade, in the same order as `decades`.
 const timeline = [
   {
     size: 'sm',
     decade: '1970s',
-    img: tlOriginalBldg,
+    img: tlFoundation,
+    fit: 'fill',
     label: 'The Foundation: Hands-On Problem Solving',
     desc: 'We began as a small tooling business, working closely with companies like Jerad Products, Cadillac Products, and Oakland Plastics. From the start, we focused on solving the problems others could not\u2014developing practical solutions through hands-on collaboration that would become the foundation of how we operate.',
   },
   {
     size: 'lg',
-    decade: '1970s',
-    img: tlBwBldg,
+    decade: '1980s',
+    img: tlFactoryFloor,
     label: 'The Shift: From Tooling to Manufacturing',
     desc: 'As we worked alongside our customers, we recognized the limitations of the manufacturing technologies behind existing material handling systems\u2014and the opportunity to improve them. To overcome them, we expanded into manufacturing\u2014embracing twin-sheet thermoforming and helping develop early sequentially fed processes that enabled stronger, more efficient designs.',
   },
   {
     size: 'sm',
-    decade: '1980s',
-    img: tlGarrison,
+    decade: '1990s',
+    img: tlUnipak,
+    focus: 'center bottom',
     label: 'The Breakthrough: A New Kind of Shipping System',
     desc: 'When the industry needed a more efficient shipping container, Shuert invented one: the Uni-Pak. A first-of-its-kind design, it combined a twin-sheet thermoformed pallet and top with a heavy-duty corrugated sleeve, secured by our patented slide-lock mechanism. The result was a durable, reusable alternative to traditional, limited-life packaging systems.',
   },
   {
     size: 'lg',
-    decade: '1990s',
-    img: tlGarrison,
+    decade: '2000s',
+    img: tlProductionLine,
     label: 'The Leap: Scaling Innovation for High-Volume Demand',
     desc: 'As demand grew from high-volume users like the U.S. Postal Service and the grocery industry, we rethought how these systems were made. Our proprietary in-line process combines extrusion, thermoforming, trimming, and assembly into a single continuous operation\u2014delivering the consistency, speed, and scale required for widespread adoption.',
   },
   {
     size: 'sm',
-    decade: '2000s',
-    img: tlGroup,
+    decade: '2010s',
+    img: tlPalletDetail,
     label: 'The Standard: Engineering the Modern Pallet',
     desc: 'We took pallet performance further with the development of the rackable Uni-Pallet. Featuring a proprietary anti-skid surface and enabled by a high-output manufacturing process\u2014producing [X units] with a cycle time of [X seconds]\u2014it delivered consistent, repeatable performance at scale, setting the foundation for widespread adoption of reusable material handling systems.',
   },
   {
     size: 'lg',
-    decade: '2010s',
-    img: tlConveyor,
+    decade: '2020s',
+    img: tlScandinavia,
     label: 'The Proof: Adopted at Scale',
     desc: 'As reusable systems became more widely adopted, our solutions expanded into global markets. The rackable Uni-Pallet saw widespread use across Scandinavia, where today it supports a significant share of food distribution\u2014demonstrating the long-term value and reliability of systems built to perform.',
-  },
-  {
-    size: 'sm',
-    decade: '2020s',
-    img: tlWarehouseWide,
-    label: 'Lorem Ipsum Dolor',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },
 ];
 
 const decades = ['1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
 const TIMELINE_INITIAL_INDEX = 0;
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const introOpt = await getImage({ src: introImg, width: 1800, format: 'webp', quality: 80 });
+const innovationOpt = await getImage({ src: innovationBg, width: 2400, format: 'webp', quality: 80 });
+const worldsBestOpt = await getImage({ src: worldsBestBg, width: 2400, format: 'webp', quality: 80 });
+const globeOpt = await getImage({ src: globeImg, width: 2400, format: 'webp', quality: 80 });
+
+const pillarsOpt = await Promise.all(
+  pillars.map(async (p) => ({
+    ...p,
+    img: await getImage({ src: p.img, width: 1100, format: 'webp', quality: 80 }),
+  })),
+);
+
+const timelineOpt = await Promise.all(
+  timeline.map(async (item) => ({
+    ...item,
+    img: await getImage({ src: item.img, width: 1800, format: 'webp', quality: 80 }),
+  })),
+);
 ---
 
 <AboutLayout title="Who We Are" current="who-we-are">
@@ -128,11 +145,11 @@ const TIMELINE_INITIAL_INDEX = 0;
   <section class="wwa-hero">
     <div class="wwa-hero__bg" aria-hidden="true">
       <img
-        src={heroImg.src}
+        src={heroOpt.src}
         alt=""
         class="wwa-hero__img"
-        width={heroImg.width}
-        height={heroImg.height}
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -159,10 +176,10 @@ const TIMELINE_INITIAL_INDEX = 0;
     <div class="container">
       <div class="page-grid wwa-intro__grid">
         <div class="wwa-intro__media">
-          <img src={introImg.src} alt="Shuert team gathering" width={introImg.width} height={introImg.height} />
+          <img src={introOpt.src} alt="Two Shuert team members in the shop" width={introOpt.attributes.width} height={introOpt.attributes.height} />
         </div>
-        <div class="wwa-intro__copy">
-          <h2 class="wwa-intro__heading reveal">
+        <div class="wwa-intro__copy reveal">
+          <h2 class="wwa-intro__heading">
             Since 1971, we have built our business around a simple idea: we invent solutions.
           </h2>
           <p class="wwa-intro__text">
@@ -206,17 +223,24 @@ const TIMELINE_INITIAL_INDEX = 0;
   <!-- ─────────── PROCESS PILLARS ─────────── -->
   <section class="wwa-pillars">
     <div class="container">
-      <div class="wwa-pillars__head">
+      <div class="wwa-pillars__head reveal">
         <p class="label wwa-pillars__eyebrow">PROCESS PILLARS</p>
-        <h2 class="wwa-pillars__heading reveal">
+        <h2 class="wwa-pillars__heading">
           When practiced consistently, our values shape how we operate every day:
         </h2>
       </div>
       <div class="wwa-pillars__grid">
-        {pillars.map((p) => (
+        {pillarsOpt.map((p) => (
           <article class="wwa-pillars__card">
             <div class="wwa-pillars__media">
-              <img src={p.img.src} alt={p.tag} width={p.img.width} height={p.img.height} loading="lazy" />
+              <img
+                src={p.img.src}
+                alt={p.tag}
+                width={p.img.attributes.width}
+                height={p.img.attributes.height}
+                loading="lazy"
+                style={p.focus ? `object-position: ${p.focus}` : undefined}
+              />
               <span class="wwa-pillars__tag">{p.tag}</span>
             </div>
             <p class="wwa-pillars__desc">{p.desc}</p>
@@ -230,11 +254,11 @@ const TIMELINE_INITIAL_INDEX = 0;
   <section class="wwa-innovation">
     <div class="wwa-innovation__bg" aria-hidden="true">
       <img
-        src={innovationBg.src}
+        src={innovationOpt.src}
         alt=""
         class="wwa-innovation__img"
-        width={innovationBg.width}
-        height={innovationBg.height}
+        width={innovationOpt.attributes.width}
+        height={innovationOpt.attributes.height}
         loading="lazy"
         decoding="async"
       />
@@ -245,8 +269,8 @@ const TIMELINE_INITIAL_INDEX = 0;
         <div class="wwa-image-fade__cream wwa-image-fade__cream--bottom"></div>
       </div>
     </div>
-    <div class="container wwa-innovation__content">
-      <h2 class="detail-xl text-white wwa-innovation__title reveal">innovation<br />drives<br />momentum.</h2>
+    <div class="container wwa-innovation__content reveal">
+      <h2 class="detail-xl text-white wwa-innovation__title">innovation<br />drives<br />momentum.</h2>
       <p class="wwa-innovation__text text-white">
         Since 1971, innovation has defined how we solve problems. The Shuert team holds 52 patents for original designs
         and technologies, and has engineered and tooled thousands of custom solutions—each developed through close
@@ -265,7 +289,7 @@ const TIMELINE_INITIAL_INDEX = 0;
   >
     <div class="wwa-timeline__rail" id="wwa-timeline-rail">
       <div class="wwa-timeline__track" data-tl-track>
-        {timeline.map((item, i) => (
+        {timelineOpt.map((item, i) => (
           <article
             class:list={['wwa-timeline__card', `wwa-timeline__card--${item.size}`, { 'is-active': i === TIMELINE_INITIAL_INDEX }]}
             data-tl-card
@@ -274,7 +298,14 @@ const TIMELINE_INITIAL_INDEX = 0;
           >
             <div class="wwa-timeline__card-label-top">{item.label}</div>
             <div class="wwa-timeline__card-img">
-              <img src={item.img.src} alt={item.label} width={item.img.width} height={item.img.height} loading="lazy" />
+              <img
+                src={item.img.src}
+                alt={item.label}
+                width={item.img.attributes.width}
+                height={item.img.attributes.height}
+                loading="lazy"
+                style={item.focus || item.fit ? `object-fit: ${item.fit ?? 'cover'}; object-position: ${item.focus ?? 'center'}` : undefined}
+              />
             </div>
             <div class="wwa-timeline__card-label-bottom">{item.label}</div>
             <p class="wwa-timeline__card-desc">{item.desc}</p>
@@ -292,6 +323,7 @@ const TIMELINE_INITIAL_INDEX = 0;
       </div>
       <div class="wwa-timeline__line" aria-hidden="true">
         <span class="wwa-timeline__line-track"></span>
+        <span class="wwa-timeline__line-active" data-tl-indicator></span>
         {decades.map((d) => (
           <button type="button" class:list={['wwa-timeline__dot', { 'is-active': d === timeline[TIMELINE_INITIAL_INDEX].decade }]} data-tl-dot={d} aria-label={d}></button>
         ))}
@@ -303,11 +335,11 @@ const TIMELINE_INITIAL_INDEX = 0;
   <section class="wwa-best">
     <div class="wwa-best__bg" aria-hidden="true">
       <img
-        src={worldsBestBg.src}
+        src={worldsBestOpt.src}
         alt=""
         class="wwa-best__img"
-        width={worldsBestBg.width}
-        height={worldsBestBg.height}
+        width={worldsBestOpt.attributes.width}
+        height={worldsBestOpt.attributes.height}
         loading="lazy"
         decoding="async"
       />
@@ -327,19 +359,19 @@ const TIMELINE_INITIAL_INDEX = 0;
   <section class="wwa-global">
     <div class="wwa-global__map" aria-hidden="true">
       <img
-        src={globeImg.src}
+        src={globeOpt.src}
         alt=""
         class="wwa-global__map-img"
-        width={globeImg.width}
-        height={globeImg.height}
+        width={globeOpt.attributes.width}
+        height={globeOpt.attributes.height}
         loading="lazy"
         decoding="async"
       />
     </div>
     <div class="container wwa-global__inner">
-      <div class="wwa-global__head">
+      <div class="wwa-global__head reveal">
         <p class="label wwa-global__eyebrow">OUR EFFORTS</p>
-        <h2 class="wwa-global__heading reveal">Global Presence</h2>
+        <h2 class="wwa-global__heading">Global Presence</h2>
         <p class="wwa-global__lead">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -390,7 +422,7 @@ const TIMELINE_INITIAL_INDEX = 0;
 
   // ── Timeline: swipe carousel + autoplay + decade indicators ──
   (function () {
-    const AUTOPLAY_MS = 5000;
+    const AUTOPLAY_MS = 8000;
     const INITIAL_INDEX = 0;
     const rail = document.getElementById('wwa-timeline-rail') as HTMLElement | null;
     const section = document.getElementById('wwa-timeline');
@@ -409,6 +441,7 @@ const TIMELINE_INITIAL_INDEX = 0;
     let scrollEndTimer = 0;
     let isInteracting = false;
     let isInView = false;
+    let userScrolled = false;
 
     function nearestIndex() {
       const railRect = rail!.getBoundingClientRect();
@@ -432,6 +465,25 @@ const TIMELINE_INITIAL_INDEX = 0;
       cards.forEach((c, i) => c.classList.toggle('is-active', i === index));
       years.forEach((y) => y.classList.toggle('is-active', y.getAttribute('data-tl-year') === decade));
       dots.forEach((d) => d.classList.toggle('is-active', d.getAttribute('data-tl-dot') === decade));
+      positionIndicator();
+    }
+
+    // Red segment under the active dot; Figma sizes it at 250px of the 270px dot spacing.
+    const indicator = document.querySelector<HTMLElement>('[data-tl-indicator]');
+    function positionIndicator() {
+      if (!indicator) return;
+      const dot = dots.find((d) => d.classList.contains('is-active'));
+      if (!dot) return;
+      const spacing = dots.length > 1 ? dots[1].offsetLeft - dots[0].offsetLeft : 0;
+      const first = !indicator.classList.contains('is-ready');
+      if (first) indicator.style.transition = 'none';
+      indicator.style.width = `${spacing * (250 / 270)}px`;
+      indicator.style.left = `${dot.offsetLeft + dot.offsetWidth / 2}px`;
+      if (first) {
+        void indicator.offsetWidth;
+        indicator.style.transition = '';
+      }
+      indicator.classList.add('is-ready');
     }
 
     function scrollOffsetFor(card: HTMLElement) {
@@ -440,14 +492,56 @@ const TIMELINE_INITIAL_INDEX = 0;
       return cardRect.left - railRect.left - (railRect.width - cardRect.width) / 2;
     }
 
-    function scrollToIndex(index: number, behavior: ScrollBehavior = 'smooth') {
+    // Native smooth scrollTo is unreliable on a mandatory scroll-snap container
+    // (it can stall or snap back), so animate scrollLeft with snapping disabled.
+    const SCROLL_MS = 650;
+    let animRaf = 0;
+
+    function isAnimating() {
+      return animRaf !== 0 || rail!.classList.contains('is-animating');
+    }
+
+    function cancelAnimation() {
+      cancelAnimationFrame(animRaf);
+      animRaf = 0;
+      rail!.classList.remove('is-animating');
+    }
+
+    function animateScrollTo(target: number, instant = false) {
+      cancelAnimation();
+      window.clearTimeout(scrollEndTimer);
+      cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      const max = rail!.scrollWidth - rail!.clientWidth;
+      const end = Math.max(0, Math.min(max, target));
+      const start = rail!.scrollLeft;
+      if (instant || reduceMotion || Math.abs(end - start) < 1) {
+        rail!.classList.add('is-animating');
+        rail!.scrollLeft = end;
+        requestAnimationFrame(() => rail!.classList.remove('is-animating'));
+        return;
+      }
+      rail!.classList.add('is-animating');
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const t = Math.min(1, (now - t0) / SCROLL_MS);
+        const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        rail!.scrollLeft = start + (end - start) * eased;
+        if (t < 1) {
+          animRaf = requestAnimationFrame(step);
+        } else {
+          animRaf = 0;
+          rail!.classList.remove('is-animating');
+        }
+      };
+      animRaf = requestAnimationFrame(step);
+    }
+
+    function scrollToIndex(index: number, instant = false) {
       const i = ((index % cards.length) + cards.length) % cards.length;
       const card = cards[i];
       if (!card) return;
-      rail!.scrollTo({
-        left: rail!.scrollLeft + scrollOffsetFor(card),
-        behavior: reduceMotion ? 'auto' : behavior,
-      });
+      animateScrollTo(rail!.scrollLeft + scrollOffsetFor(card), instant);
       setActive(i);
     }
 
@@ -464,35 +558,42 @@ const TIMELINE_INITIAL_INDEX = 0;
       }, AUTOPLAY_MS);
     }
 
-    function pauseAutoplay(ms = AUTOPLAY_MS) {
-      stopAutoplay();
+    // After user interaction, restart the countdown so the next slide is a full interval away.
+    function pauseAutoplay() {
       window.clearTimeout(resumeTimer);
-      if (!isInView) return;
-      resumeTimer = window.setTimeout(() => {
-        if (!isInteracting && isInView) startAutoplay();
-      }, ms);
+      startAutoplay();
     }
 
     // Track active card as the user scrolls/swipes, then restart the timer once settled.
     rail.addEventListener(
       'scroll',
       () => {
+        // The animation already set the target card active.
+        if (isAnimating()) return;
         if (!scrollRaf) {
           scrollRaf = requestAnimationFrame(() => {
             scrollRaf = 0;
-            setActive(nearestIndex());
+            if (!isAnimating()) setActive(nearestIndex());
           });
         }
         window.clearTimeout(scrollEndTimer);
         scrollEndTimer = window.setTimeout(() => {
+          if (isAnimating()) return;
           setActive(nearestIndex());
-          if (isInView) pauseAutoplay();
+          // Only a user-driven scroll should push back the next autoplay step;
+          // the trailing scroll events from our own animation must not.
+          if (userScrolled) {
+            userScrolled = false;
+            if (isInView) pauseAutoplay();
+          }
         }, 200);
       },
       { passive: true }
     );
 
-    window.addEventListener('resize', () => setActive(nearestIndex()), { passive: true });
+    window.addEventListener('resize', () => {
+      if (!isAnimating()) setActive(nearestIndex());
+    }, { passive: true });
 
     const goToDecade = (decade: string) => {
       const targetIndex = cards.findIndex((c) => c.getAttribute('data-tl-decade') === decade);
@@ -520,8 +621,17 @@ const TIMELINE_INITIAL_INDEX = 0;
     let dragStartScroll = 0;
     let dragged = false;
 
+    const onUserScrollStart = () => {
+      userScrolled = true;
+      cancelAnimation();
+    };
+    rail.addEventListener('wheel', onUserScrollStart, { passive: true });
+    rail.addEventListener('touchstart', onUserScrollStart, { passive: true });
+    rail.addEventListener('keydown', onUserScrollStart);
+
     rail.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'mouse') return;
+      cancelAnimation();
       isDown = true;
       dragged = false;
       dragStartX = e.clientX;
@@ -564,10 +674,6 @@ const TIMELINE_INITIAL_INDEX = 0;
     );
     rail.addEventListener('dragstart', (e) => e.preventDefault());
 
-    section.addEventListener('mouseenter', stopAutoplay);
-    section.addEventListener('mouseleave', () => {
-      if (!isInteracting && isInView) startAutoplay();
-    });
     section.addEventListener('focusin', stopAutoplay);
     section.addEventListener('focusout', () => {
       window.setTimeout(() => {
@@ -592,7 +698,7 @@ const TIMELINE_INITIAL_INDEX = 0;
     visibility.observe(section);
 
     requestAnimationFrame(() => {
-      scrollToIndex(INITIAL_INDEX, 'auto');
+      scrollToIndex(INITIAL_INDEX, true);
     });
   })();
 </script>
@@ -1034,6 +1140,11 @@ const TIMELINE_INITIAL_INDEX = 0;
     cursor: grab;
   }
 
+  .wwa-timeline__rail.is-animating {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
   .wwa-timeline__rail.is-dragging {
     cursor: grabbing;
     scroll-behavior: auto;
@@ -1049,7 +1160,9 @@ const TIMELINE_INITIAL_INDEX = 0;
     display: flex;
     align-items: flex-start;
     gap: 40px;
-    padding: 0 calc(50vw - 446px);
+    /* Inset is half the viewport minus half the narrower card, so the first
+       and last cards can snap to center. */
+    padding: 0 calc(50vw - clamp(220px, 19.8vw, 342.5px));
     width: max-content;
   }
 
@@ -1177,6 +1290,23 @@ const TIMELINE_INITIAL_INDEX = 0;
     height: 1px;
     background: var(--c-black);
     transform: translateY(-50%);
+  }
+
+  .wwa-timeline__line-active {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--c-red) 20%, var(--c-red) 80%, transparent);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: left 0.65s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease;
+  }
+
+  .wwa-timeline__line-active.is-ready {
+    opacity: 1;
   }
 
   .wwa-timeline__dot {
@@ -1353,6 +1483,15 @@ const TIMELINE_INITIAL_INDEX = 0;
     transform: translateY(0);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   /* ================================================================
      TABLET (≤ 1024px)
      ================================================================ */
@@ -1435,7 +1574,7 @@ const TIMELINE_INITIAL_INDEX = 0;
     }
     .wwa-timeline__track {
       gap: 24px;
-      padding: 0 var(--grid-margin);
+      padding: 0 calc(50vw - clamp(160px, 30vw, 280px));
     }
     .wwa-timeline__card--lg {
       width: clamp(420px, 75vw, 720px);
@@ -1536,6 +1675,7 @@ const TIMELINE_INITIAL_INDEX = 0;
     }
     .wwa-timeline__track {
       gap: 16px;
+      padding: 0 15vw;
     }
     .wwa-timeline__card--lg {
       width: 80vw;

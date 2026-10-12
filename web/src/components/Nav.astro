@@ -1,7 +1,11 @@
 ---
+import { getImage } from 'astro:assets';
 import logoSrc from '../assets/nav/logo.svg';
 import customSolutionsImg from '../assets/nav/customsolutions.png';
 import featuredProductImg from '../assets/nav/uni-directional-pallet.png';
+
+const customSolutionsOpt = await getImage({ src: customSolutionsImg, width: 1100, format: 'webp', quality: 80 });
+const featuredProductOpt = await getImage({ src: featuredProductImg, width: 1100, format: 'webp', quality: 80 });
 ---
 
 <div class="nav-wrapper" id="nav-wrapper">
@@ -72,12 +76,12 @@ import featuredProductImg from '../assets/nav/uni-directional-pallet.png';
 
           <div class="nav__mega-cards">
             <a href="/custom-solutions" class="nav__mega-card">
-              <img class="nav__mega-card-img" src={customSolutionsImg.src} alt="" width={customSolutionsImg.width} height={customSolutionsImg.height} />
+              <img class="nav__mega-card-img" src={customSolutionsOpt.src} alt="" width={customSolutionsOpt.attributes.width} height={customSolutionsOpt.attributes.height} />
               <span class="nav__mega-card-overlay" aria-hidden="true"></span>
               <span class="nav__mega-card-label">custom solutions</span>
             </a>
             <a href="/products/uni-directional-pallet" class="nav__mega-card">
-              <img class="nav__mega-card-img" src={featuredProductImg.src} alt="" width={featuredProductImg.width} height={featuredProductImg.height} />
+              <img class="nav__mega-card-img" src={featuredProductOpt.src} alt="" width={featuredProductOpt.attributes.width} height={featuredProductOpt.attributes.height} />
               <span class="nav__mega-card-overlay" aria-hidden="true"></span>
               <span class="nav__mega-card-badge">Featured Product</span>
               <span class="nav__mega-card-label">uni-directional pallet</span>

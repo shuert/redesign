@@ -135,7 +135,7 @@ const properties: Property[] = [
 
   <section class="ms-spec">
     <div class="container">
-      <div class="ms-spec__intro">
+      <div class="ms-spec__intro reveal">
         <div class="ms-spec__head">
           <p class="label ms-spec__eyebrow">Material Spec</p>
           <h2 class="ms-spec__title">Why HMW-HDPE</h2>
@@ -216,7 +216,7 @@ const properties: Property[] = [
   <section class="ms-prime">
     <div class="container">
       <div class="ms-prime__grid">
-        <div class="ms-prime__copy">
+        <div class="ms-prime__copy reveal">
           <h2 class="ms-prime__title">Why we use prime material</h2>
           <p class="ms-prime__body">
             Consistent performance starts with consistent inputs. We prioritize prime (virgin) material because its uniformity is what makes reliable, repeatable performance possible under repeated handling and transport. Where recycled content makes sense, we use it deliberately&mdash;favoring post-industrial material, including scrap recovered from our own manufacturing process, over post-consumer streams that can introduce variability from mixed sources and prior degradation. The result is tight control over material properties and responsible material use, with performance that holds up across every unit and throughout the life of the system.
@@ -245,6 +245,24 @@ const properties: Property[] = [
     imageCrop={{ width: '283.9%', height: '144.66%', left: '-87.9%', top: '-37.08%' }}
   />
 </AboutLayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
 
 <script>
   (function () {
@@ -617,6 +635,28 @@ const properties: Property[] = [
 
     .ms-spec__copy p + p {
       margin-top: 24px;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 

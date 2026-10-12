@@ -4,7 +4,7 @@ import Mainlayout from '../../layouts/Mainlayout.astro';
 import ReachOut from '../../components/ReachOut.astro';
 
 import heroImg from '../../assets/sustainability/2b1c7fecc62f5fca81aed1dd6ddb8c826af6c0e6.png';
-import circularImg from '../../assets/sustainability/867dcdb3ca76699e1313b9b98e946cfe78b7d078.png';
+import circularImg from '../../assets/sustainability/circular-ecosystem.png';
 import news1Img from '../../assets/sustainability/29c0feead284fde4f7b53eb75874ee93ae01ac74.png';
 import news2Img from '../../assets/sustainability/67aa266474344f49969b27d5c427e2bf992cf32d.png';
 import news3Img from '../../assets/sustainability/2136dc7a51c79d241f9ab02830f8a2561bd6181b.png';
@@ -20,7 +20,7 @@ import arrowDownIcon from '../../assets/sustainability/7130bc65c3074ac9d2a540bd8
 import arrowRightIcon from '../../assets/sustainability/d58370a5254402baa86cccccda6ec1a84a25ab0a.svg?url';
 
 const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
-const circularOpt = await getImage({ src: circularImg, width: 1400, format: 'webp', quality: 85 });
+const circularOpt = await getImage({ src: circularImg, width: 916, format: 'webp', quality: 90 });
 const epdOpt = await getImage({ src: epdBannerImg, width: 2400, format: 'webp', quality: 80 });
 const statsOpt = await getImage({ src: statsBgImg, width: 1600, format: 'webp', quality: 80 });
 const driversOpt = await getImage({ src: driversImg, width: 1800, format: 'webp', quality: 80 });
@@ -130,7 +130,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
   <!-- Approach: Built to Last -->
   <section class="su-approach">
     <div class="container">
-      <div class="su-approach__intro page-grid">
+      <div class="su-approach__intro page-grid reveal">
         <div class="su-approach__intro-left">
           <p class="label su-approach__eyebrow">APPROACH</p>
           <h2 class="su-approach__title">Built to Last</h2>
@@ -144,14 +144,14 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
         <div class="su-approach__diagram">
           <img
             src={circularOpt.src}
-            alt="Circular ecosystem diagram: Design, Make, Use, Collect, Transform, Reuse"
+            alt="Circular ecosystem: Shuert, the market, and the manufacturer connected in a loop"
             width={circularOpt.attributes.width}
             height={circularOpt.attributes.height}
             loading="lazy"
             decoding="async"
           />
         </div>
-        <div class="su-approach__copy">
+        <div class="su-approach__copy reveal">
           <h3 class="su-approach__copy-title">Circular Ecosystem</h3>
           <div class="su-approach__copy-body">
             <p>
@@ -228,7 +228,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
   <!-- Lifecycle case -->
   <section class="su-lifecycle" id="lifecycle-results">
     <div class="container">
-      <div class="su-lifecycle__intro page-grid">
+      <div class="su-lifecycle__intro page-grid reveal">
         <div class="su-lifecycle__intro-left">
           <p class="label su-lifecycle__eyebrow">OUR EFFORTS</p>
           <h2 class="su-lifecycle__title">The Lifecycle Case for Plastic Pallets</h2>
@@ -365,7 +365,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
             decoding="async"
           />
         </div>
-        <div class="su-feature__copy">
+        <div class="su-feature__copy reveal">
           <h3 class="su-feature__title">
             Key Drivers of Environmental<br />Performance
           </h3>
@@ -385,7 +385,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
       </article>
 
       <article class="su-feature su-feature--reverse">
-        <div class="su-feature__copy">
+        <div class="su-feature__copy reveal">
           <h3 class="su-feature__title">Repairs</h3>
           <div class="su-feature__body">
             <p>
@@ -420,7 +420,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
             decoding="async"
           />
         </div>
-        <div class="su-feature__copy">
+        <div class="su-feature__copy reveal">
           <h3 class="su-feature__title">Inspections</h3>
           <div class="su-feature__body">
             <p>
@@ -628,15 +628,12 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
     border-radius: 14px;
     aspect-ratio: 924 / 662;
     display: grid;
-    place-items: center;
     overflow: hidden;
-    padding: clamp(1.5rem, 3vw, 54px) clamp(1rem, 2vw, 40px);
   }
 
   .su-approach__diagram img {
     width: 100%;
-    height: auto;
-    max-height: 100%;
+    height: 100%;
     object-fit: contain;
   }
 
@@ -1261,7 +1258,8 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
+    .reveal,
+    .reveal--visible {
       opacity: 1;
       transform: none;
       transition: none;

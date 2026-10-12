@@ -1,9 +1,12 @@
 ---
+import { getImage } from 'astro:assets';
 import AboutLayout from '../../../layouts/AboutLayout.astro';
 import ReachOut from '../../../components/ReachOut.astro';
 import heroImg from '../../../assets/about/whyshuert/hero.png';
 import introImg from '../../../assets/about/whyshuert/intro.png';
-import pillarImg from '../../../assets/about/whyshuert/video-still.png';
+import durableImg from '../../../assets/about/whyshuert/durable.png';
+import versatileImg from '../../../assets/about/whyshuert/versatile.png';
+import costEffectiveImg from '../../../assets/about/whyshuert/cost-effective.png';
 import videoStill from '../../../assets/about/whyshuert/video-still.png';
 import productsImg from '../../../assets/about/whyshuert/products.png';
 import materialImg from '../../../assets/about/whyshuert/video-still.png';
@@ -16,18 +19,20 @@ import playIconLg from '../../../assets/about/whyshuert/play-icon-lg.svg?url';
 const pillars = [
   {
     tag: 'durable',
-    img: pillarImg,
-    desc: 'HDPE\u2019s linear, minimally branched molecular structure allows tighter packing and higher crystallinity, resulting in greater strength and stiffness for durable, reusable products. Twin-sheet thermoforming further enhances structural integrity\u2014creating double-walled designs with rigidity, load-bearing capacity, and impact resistance compared to other technologies. When damage occurs, components can be repaired rather than replaced, extending service life and reducing waste.',
+    img: durableImg,
+    desc: 'HMW-HDPE copolymer\u2019s linear, minimally branched molecular structure allows tighter packing and higher crystallinity, resulting in greater strength and stiffness for durable, reusable products. Twin-sheet thermoforming further enhances structural integrity\u2014creating double-walled designs with rigidity, load-bearing capacity, and impact resistance compared to other technologies. When damage occurs, components can be repaired rather than replaced, extending service life and reducing waste.',
   },
   {
     tag: 'versatile',
-    img: pillarImg,
+    img: versatileImg,
+    frame: 'width: 138.04%; height: 106.05%; left: -13.14%; top: -6.05%;',
     desc: 'Shuert products support a high degree of versatility through both fully custom solutions and configurable product lines. Interior dunnage can be engineered to secure, separate, and protect specific parts, while integrated identification features enable tracking and process control within material handling systems. This approach allows packaging to be adapted across applications and updated as requirements evolve, without compromising structural performance or system compatibility.',
   },
   {
     tag: 'cost-effective',
-    img: pillarImg,
-    desc: 'Shuert products deliver strong economic performance through lightweight construction, high load-to-weight ratios, and space-efficient designs engineered to maximize pallet load density and cube density across shipments. These design characteristics improve how efficiently product weight is carried (payload efficiency) and space is utilized (cube utilization), reducing freight and storage requirements. At the same time, durable, reusable structures extend service life and limit the need for repeated asset investment, lowering total cost over time. The result is a transport and handling solution designed to contain costs as effectively as it contains product.',
+    img: costEffectiveImg,
+    frame: 'width: 130.16%; height: 100%; left: -5.94%; top: 0;',
+    desc: 'Shuert products deliver strong economic performance through lightweight construction, high load-to-weight ratios, and space-efficient designs engineered to maximize pallet load density and cube density across shipments. These design characteristics improve how efficiently product weight is carried (payload efficiency) and space is utilized (cube utilization), reducing freight and storage requirements. At the same time, durable, reusable structures extend service life and limit the need for repeated asset investment, lowering total cost of ownership over time. The result is a transport and handling solution designed to contain costs as effectively as it contains product.',
   },
 ] as const;
 
@@ -65,6 +70,24 @@ const features = [
     descSize: 'sm' as const,
   },
 ] as const;
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const introOpt = await getImage({ src: introImg, width: 1800, format: 'webp', quality: 80 });
+const videoOpt = await getImage({ src: videoStill, width: 2400, format: 'webp', quality: 80 });
+
+const pillarsOpt = await Promise.all(
+  pillars.map(async (p) => ({
+    ...p,
+    img: await getImage({ src: p.img, width: 1400, format: 'webp', quality: 80 }),
+  })),
+);
+
+const featuresOpt = await Promise.all(
+  features.map(async (f) => ({
+    ...f,
+    img: await getImage({ src: f.img, width: 1800, format: 'webp', quality: 80 }),
+  })),
+);
 ---
 
 <AboutLayout title="Shuert Advantage" current="why-shuert">
@@ -72,11 +95,11 @@ const features = [
   <section class="ws-hero">
     <div class="ws-hero__bg" aria-hidden="true">
       <img
-        src={heroImg.src}
+        src={heroOpt.src}
         alt=""
         class="ws-hero__img"
-        width={heroImg.width}
-        height={heroImg.height}
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -104,15 +127,15 @@ const features = [
       <div class="page-grid ws-intro">
         <div class="ws-intro__media">
           <img
-            src={introImg.src}
+            src={introOpt.src}
             alt="Shuert engineer reviewing technical designs at a workstation"
-            width={introImg.width}
-            height={introImg.height}
+            width={introOpt.attributes.width}
+            height={introOpt.attributes.height}
             loading="lazy"
             decoding="async"
           />
         </div>
-        <div class="ws-intro__copy">
+        <div class="ws-intro__copy reveal">
           <p class="ws-intro__text">
             Our people are our greatest asset. Every individual plays a critical role, bringing unique experience and
             perspective to the challenges we solve together. Many members of our team have extensive tenures, building deep
@@ -131,16 +154,18 @@ const features = [
 
       <div class="ws-pillars">
         {
-          pillars.map((p) => (
+          pillarsOpt.map((p) => (
             <article class="ws-pillars__card">
               <div class="ws-pillars__media">
                 <img
                   src={p.img.src}
                   alt=""
-                  width={p.img.width}
-                  height={p.img.height}
+                  width={p.img.attributes.width}
+                  height={p.img.attributes.height}
                   loading="lazy"
                   decoding="async"
+                  class:list={{ 'ws-pillars__img--framed': 'frame' in p }}
+                  style={'frame' in p ? p.frame : undefined}
                 />
                 <span class="ws-pillars__tag">{p.tag}</span>
               </div>
@@ -156,11 +181,11 @@ const features = [
   <section class="ws-video">
     <div class="ws-video__bg" aria-hidden="true">
       <img
-        src={videoStill.src}
+        src={videoOpt.src}
         alt=""
         class="ws-video__img"
-        width={videoStill.width}
-        height={videoStill.height}
+        width={videoOpt.attributes.width}
+        height={videoOpt.attributes.height}
         loading="lazy"
         decoding="async"
       />
@@ -175,15 +200,15 @@ const features = [
   <section class="ws-features">
     <div class="container">
       {
-        features.map((f, i) => (
+        featuresOpt.map((f, i) => (
           <article class:list={['ws-row page-grid', { 'ws-row--reverse': i % 2 !== 0 }]}>
             <div class="ws-row__img-wrap">
               <img
                 src={f.img.src}
                 alt={f.title}
                 class="ws-row__img"
-                width={f.img.width}
-                height={f.img.height}
+                width={f.img.attributes.width}
+                height={f.img.attributes.height}
                 loading="lazy"
                 decoding="async"
               />
@@ -413,6 +438,11 @@ const features = [
     object-fit: cover;
   }
 
+  .ws-pillars__img--framed {
+    position: absolute;
+    max-width: none;
+  }
+
   .ws-pillars__tag {
     position: absolute;
     left: 23px;
@@ -586,6 +616,15 @@ const features = [
   .reveal--visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   /* ================================================================

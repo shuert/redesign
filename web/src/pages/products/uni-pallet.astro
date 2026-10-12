@@ -33,7 +33,7 @@ const generations = [
 <ProductLayout product={uniPallet}>
   <section class="up-gen" slot="after-options" aria-labelledby="up-gen-title">
     <div class="container">
-      <div class="up-gen__intro">
+      <div class="up-gen__intro reveal">
         <header>
           <p class="up-gen__eyebrow">Generations</p>
           <h2 class="up-gen__title" id="up-gen-title">Decades of Innovation, Built Into Every Uni-Pallet</h2>
@@ -74,7 +74,7 @@ const generations = [
             />
             <p class="up-gen__tag">{generations[0].tag}</p>
           </div>
-          <div class="up-gen__body">
+          <div class="up-gen__body reveal">
             <p>At 17 lbs., Gen 1 established the foundation for Uni-Pallet.</p>
             <p>
               It demonstrated that a lightweight pallet could deliver the structural strength and durability required
@@ -96,7 +96,7 @@ const generations = [
             />
             <p class="up-gen__tag">{generations[1].tag}</p>
           </div>
-          <div class="up-gen__body">
+          <div class="up-gen__body reveal">
             <p>Gen 2 marked a fundamental shift in how Uni-Pallet achieved strength.</p>
             <p>
               We eliminated steel reinforcement and replaced it with an engineered plastic structure, building
@@ -127,7 +127,7 @@ const generations = [
             />
             <p class="up-gen__tag">{generations[2].tag}</p>
           </div>
-          <div class="up-gen__body">
+          <div class="up-gen__body reveal">
             <p>The pallet continued to evolve with the market.</p>
             <p>
               As multi-pallet handling became more common, it required use of the 48-inch direction, creating the need
@@ -147,6 +147,24 @@ const generations = [
     </div>
   </section>
 </ProductLayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
 
 <style>
   .up-gen {
@@ -276,6 +294,28 @@ const generations = [
     .up-gen__tag {
       left: 16px;
       bottom: 16px;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>

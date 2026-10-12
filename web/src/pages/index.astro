@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import Mainlayout from '../layouts/Mainlayout.astro';
 import ExploreHoverCard from '../components/ExploreHoverCard.astro';
 import ReachOut from '../components/ReachOut.astro';
@@ -41,51 +42,53 @@ const ART_W = 1727;
 const ART_H = 1248;
 const SWPF_SIZE = 668.432;
 
-const marketDesc =
-  'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.';
-
 const markets = [
-  { name: 'Automotive', icon: iconAutomotive, iw: 36, ih: 27, desc: marketDesc },
-  { name: 'Agriculture', icon: iconAgriculture, iw: 35, ih: 35, desc: marketDesc },
-  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 28, ih: 35, desc: marketDesc },
-  { name: 'Construction', icon: iconConstruction, iw: 49, ih: 34, desc: marketDesc },
-  { name: 'E-Commerce', icon: iconEcommerce, iw: 50, ih: 35, desc: marketDesc },
-  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 34, ih: 34, desc: marketDesc },
-  { name: 'Government', icon: iconGovernment, iw: 36, ih: 34, desc: marketDesc },
-  { name: 'Grocery', icon: iconGrocery, iw: 34, ih: 35, desc: marketDesc },
-  { name: 'Military', icon: iconMilitary, iw: 28, ih: 34, desc: marketDesc },
-  { name: 'Pharmaceutical/Medical', icon: iconPharmaceutical, iw: 22, ih: 34, desc: marketDesc },
-  { name: 'Textiles', icon: iconTextiles, iw: 26, ih: 33, desc: marketDesc },
+  { name: 'Automotive', icon: iconAutomotive, iw: 36, ih: 27 },
+  { name: 'Agriculture', icon: iconAgriculture, iw: 35, ih: 35 },
+  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 28, ih: 35 },
+  { name: 'Construction', icon: iconConstruction, iw: 49, ih: 34 },
+  { name: 'E-Commerce', icon: iconEcommerce, iw: 50, ih: 35 },
+  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 34, ih: 34 },
+  { name: 'Government', icon: iconGovernment, iw: 36, ih: 34 },
+  { name: 'Grocery', icon: iconGrocery, iw: 34, ih: 35 },
+  { name: 'Military', icon: iconMilitary, iw: 28, ih: 34 },
+  { name: 'Pharmaceutical/Medical', icon: iconPharmaceutical, iw: 22, ih: 34 },
+  { name: 'Textiles', icon: iconTextiles, iw: 26, ih: 33 },
 ];
 
+const showcaseGridOpt = await getImage({ src: showcaseGridImg, width: 2400, format: 'webp', quality: 80 });
+
 /** Figma Frame 155 (2003:8154) product positions on 1727×1248 artboard */
-const showcaseProducts = [
-  { id: 'uni-case', name: 'uni-case', href: '/products/uni-case', left: 562.72, top: -26.9, flip: false, image: swpfUniCase },
-  { id: 'yarn-pak', name: 'yarn-pak', href: '/products/yarn-pak', left: 789.52, top: 110.41, flip: false, image: swpfYarnPak },
-  { id: 'battery-rak', name: 'battery-rak', href: '/products/battery-pak', left: 1058.57, top: 254.47, flip: true, image: swpfBatteryRak },
-  { id: 'module-pak', name: 'module-pak', href: '/products/module-pak', left: 259.04, top: 49.38, flip: false, image: swpfModulePak },
-  { id: 'uni-pak-ii', name: 'uni-pak II', href: '/products/uni-pak-II', left: 433.33, top: 147.38, flip: false, image: swpfUniPakIi },
-  { id: 'uni-pak', name: 'uni-pak', href: '/products/uni-pak', left: 608.49, top: 253.3, flip: false, image: swpfUniPak },
-  { id: 'snap-pak', name: 'snap-pak', href: '/products/snap-pak', left: 773.38, top: 357.75, flip: false, image: swpfSnapPak },
-  { id: 'bulk-pak', name: 'bulk-pak', href: '/products/bulk-pak', left: 947.66, top: 455.75, flip: false, image: swpfBulkPak },
-  { id: 'pro-pak', name: 'pro-pak', href: '/products/pro-pak', left: 48.17, top: 134.12, flip: false, image: swpfProPak },
-  { id: 'reman-pak', name: 'reman-pak', href: '/products/reman-pak', left: 183.43, top: 212.16, flip: false, image: swpfRemanPak },
-  { id: 'battery-shell', name: 'battery-shell', href: '#', left: 327.78, top: 307.23, flip: false, image: swpfBatteryShell },
-  { id: 'uni-rak', name: 'uni-rak', href: '/products/uni-rak', left: 548.23, top: 432.64, flip: true, image: swpfUniRak },
-  { id: 'axle-pak', name: 'axle-pak', href: '/products/axel-pak', left: 785.37, top: 559.5, flip: false, image: swpfAxlePak },
-  { id: 'terra-road', name: 'terra-road', href: '#', left: 1.33, top: 342.96, flip: true, image: swpfTerraRoad },
-  { id: 'uni-directional', name: 'uni-directional', href: '/products/uni-directional-pallet', left: 183.82, top: 463.97, flip: false, image: swpfUniDirectional },
-  { id: 'uni-pallet', name: 'uni-pallet', href: '/products/uni-pallet', left: 301.18, top: 532.03, flip: false, image: swpfUniPallet },
-  { id: 'perimeter-base', name: 'perimeter-base', href: '/products/perimeter-base-pallet', left: 436.64, top: 607.25, flip: false, image: swpfPerimeterBase },
-].map((p) => ({
-  ...p,
-  style: {
-    left: `${(p.left / ART_W) * 100}%`,
-    top: `${(p.top / ART_H) * 100}%`,
-    width: `${(SWPF_SIZE / ART_W) * 100}%`,
-    height: `${(SWPF_SIZE / ART_H) * 100}%`,
-  },
-}));
+const showcaseProducts = await Promise.all(
+  [
+    { id: 'uni-case', name: 'uni-case', href: '/products/uni-case', left: 562.72, top: -26.9, flip: false, image: swpfUniCase },
+    { id: 'yarn-pak', name: 'yarn-pak', href: '/products/yarn-pak', left: 789.52, top: 110.41, flip: false, image: swpfYarnPak },
+    { id: 'battery-rak', name: 'battery-rak', href: '/products/battery-pak', left: 1058.57, top: 254.47, flip: true, image: swpfBatteryRak },
+    { id: 'module-pak', name: 'module-pak', href: '/products/module-pak', left: 259.04, top: 49.38, flip: false, image: swpfModulePak },
+    { id: 'uni-pak-ii', name: 'uni-pak II', href: '/products/uni-pak-II', left: 433.33, top: 147.38, flip: false, image: swpfUniPakIi },
+    { id: 'uni-pak', name: 'uni-pak', href: '/products/uni-pak', left: 608.49, top: 253.3, flip: false, image: swpfUniPak },
+    { id: 'snap-pak', name: 'snap-pak', href: '/products/snap-pak', left: 773.38, top: 357.75, flip: false, image: swpfSnapPak },
+    { id: 'bulk-pak', name: 'bulk-pak', href: '/products/bulk-pak', left: 947.66, top: 455.75, flip: false, image: swpfBulkPak },
+    { id: 'pro-pak', name: 'pro-pak', href: '/products/pro-pak', left: 48.17, top: 134.12, flip: false, image: swpfProPak },
+    { id: 'reman-pak', name: 'reman-pak', href: '/products/reman-pak', left: 183.43, top: 212.16, flip: false, image: swpfRemanPak },
+    { id: 'battery-shell', name: 'battery-shell', href: '#', left: 327.78, top: 307.23, flip: false, image: swpfBatteryShell },
+    { id: 'uni-rak', name: 'uni-rak', href: '/products/uni-rak', left: 548.23, top: 432.64, flip: true, image: swpfUniRak },
+    { id: 'axle-pak', name: 'axle-pak', href: '/products/axel-pak', left: 785.37, top: 559.5, flip: false, image: swpfAxlePak },
+    { id: 'terra-road', name: 'terra-road', href: '#', left: 1.33, top: 342.96, flip: true, image: swpfTerraRoad },
+    { id: 'uni-directional', name: 'uni-directional', href: '/products/uni-directional-pallet', left: 183.82, top: 463.97, flip: false, image: swpfUniDirectional },
+    { id: 'uni-pallet', name: 'uni-pallet', href: '/products/uni-pallet', left: 301.18, top: 532.03, flip: false, image: swpfUniPallet },
+    { id: 'perimeter-base', name: 'perimeter-base', href: '/products/perimeter-base-pallet', left: 436.64, top: 607.25, flip: false, image: swpfPerimeterBase },
+  ].map(async (p) => ({
+    ...p,
+    image: await getImage({ src: p.image, width: 1800, format: 'webp', quality: 80 }),
+    style: {
+      left: `${(p.left / ART_W) * 100}%`,
+      top: `${(p.top / ART_H) * 100}%`,
+      width: `${(SWPF_SIZE / ART_W) * 100}%`,
+      height: `${(SWPF_SIZE / ART_H) * 100}%`,
+    },
+  })),
+);
 
 /** Back-to-front stagger along the isometric layout (top → bottom, then left → right) */
 const showcaseRevealOrder = Object.fromEntries(
@@ -156,11 +159,11 @@ const showcaseRevealOrder = Object.fromEntries(
   >
     <div class="showcase__grid-bg" aria-hidden="true">
       <img
-        src={showcaseGridImg.src}
+        src={showcaseGridOpt.src}
         alt=""
         class="showcase__grid-img"
-        width={showcaseGridImg.width}
-        height={showcaseGridImg.height}
+        width={showcaseGridOpt.attributes.width}
+        height={showcaseGridOpt.attributes.height}
         loading="lazy"
         decoding="async"
       />
@@ -183,8 +186,8 @@ const showcaseRevealOrder = Object.fromEntries(
               src={product.image.src}
               alt=""
               class="showcase__product-img"
-              width={product.image.width}
-              height={product.image.height}
+              width={product.image.attributes.width}
+              height={product.image.attributes.height}
               loading="lazy"
               decoding="async"
               draggable="false"
@@ -255,7 +258,6 @@ const showcaseRevealOrder = Object.fromEntries(
               />
               <h3 class="markets-cell__name">{market.name}</h3>
             </div>
-            <p class="markets-cell__desc">{market.desc}</p>
           </article>
         ))}
       </div>
@@ -974,8 +976,7 @@ const showcaseRevealOrder = Object.fromEntries(
     flex-direction: column;
     align-items: flex-start;
     box-sizing: border-box;
-    min-height: 14rem;
-    padding: 1.5625rem 2.0625rem 3.25rem 0.1875rem;
+    padding: 1.5625rem 2.0625rem 1.75rem 0.1875rem;
     border-right: 1px solid #2d2d2d;
     border-bottom: 1px solid #2d2d2d;
   }
@@ -1001,7 +1002,6 @@ const showcaseRevealOrder = Object.fromEntries(
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
-    margin-bottom: 1.5rem;
   }
 
   .markets-cell__icon {

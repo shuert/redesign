@@ -1,12 +1,10 @@
 ---
+import { getImage } from 'astro:assets';
 import AboutLayout from '../../layouts/AboutLayout.astro';
 import ReachOut from '../../components/ReachOut.astro';
 import heroImg from '../../assets/about/careers/9d36c932f523a740b4e616018c32e8cf6807c960.png';
 import introImg from '../../assets/about/careers/acb7f6fdfb8cc0bbaeea7fa9d84f57f60b4aef04.png';
 import cultureImg from '../../assets/about/careers/88f968946579208751b9a57c1d41fcd085dfb40a.png';
-import avatarAdam from '../../assets/about/careers/4626be44b284b8b1ee6284f743bcc3a42a902da1.png';
-import avatarFawaaz1 from '../../assets/about/careers/e3a1b1cac1bdf2b1d67ac45543b814862b0858b6.png';
-import avatarFawaaz2 from '../../assets/about/careers/ba96183393ff9a64923b8099b9d32083d5b2f315.png';
 import reachOutImg from '../../assets/about/careers/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 import clubSeal from '../../assets/about/careers/e3e7bf0f46c7de2b8c55c36c156b2d9edb65f4bc.svg';
 
@@ -60,26 +58,27 @@ const clubNames = [
 const testimonials = [
   {
     name: 'Adam Rigg',
-    role: 'JOB TITLE',
-    avatar: avatarAdam,
+    role: 'Maintenance',
     quote:
       'What I like most about working here is the opportunity to apply my industrial maintenance skills while continuing to learn and grow every day. I appreciate being part of an environment that challenges me to solve problems, improve equipment reliability, and develop new technical abilities. I\u2019m grateful for the experience, teamwork, and opportunities this job provides to expand my knowledge and contribute in a meaningful way.',
   },
   {
-    name: 'Fawaaz Abdulmaged',
-    role: 'JOB TITLE',
-    avatar: avatarFawaaz1,
+    name: 'Fawwaz Abdulmaged',
+    role: 'Setup Technician',
     quote:
       'I like the work environment the most. Everyone is supportive and respectful, and I\u2019ve learned a lot while working here. I also appreciate the teamwork and the opportunity to improve my skills every day.',
   },
   {
-    name: 'Fawaaz Abdulmaged',
-    role: 'JOB TITLE',
-    avatar: avatarFawaaz2,
+    name: 'Sharon Hammond',
+    role: 'Purchasing',
     quote:
-      'Shuert is a good place to work because the team is supportive, the environment is positive, and there are good opportunities to learn and grow. I also appreciate the respect between employees and the focus on teamwork and quality work.',
+      'Knowing that we are all valued and important to the growth of the company. Knowing that honesty and transparency is provided by leaders, and that there is an open-door policy for any concerns we have.',
   },
 ] as const;
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const introOpt = await getImage({ src: introImg, width: 1800, format: 'webp', quality: 80 });
+const cultureOpt = await getImage({ src: cultureImg, width: 1800, format: 'webp', quality: 80 });
 ---
 
 <AboutLayout title="Careers" current="careers">
@@ -87,11 +86,11 @@ const testimonials = [
   <section class="c-hero">
     <div class="c-hero__bg" aria-hidden="true">
       <img
-        src={heroImg.src}
+        src={heroOpt.src}
         alt=""
         class="c-hero__img"
-        width={heroImg.width}
-        height={heroImg.height}
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -115,15 +114,15 @@ const testimonials = [
       <div class="page-grid careers-intro__grid">
         <div class="careers-intro__media">
           <img
-            src={introImg.src}
+            src={introOpt.src}
             alt="Shuert team gathered on the production floor"
-            width={introImg.width}
-            height={introImg.height}
+            width={introOpt.attributes.width}
+            height={introOpt.attributes.height}
             loading="lazy"
             decoding="async"
           />
         </div>
-        <div class="careers-intro__copy">
+        <div class="careers-intro__copy reveal">
           <div class="careers-intro__text">
             <p>
               We&apos;re proud to be family-owned, but family has never been limited to ownership. At Shuert Technologies,
@@ -146,7 +145,7 @@ const testimonials = [
   <section class="careers-culture">
     <div class="container">
       <div class="page-grid careers-culture__grid">
-        <div class="careers-culture__left">
+        <div class="careers-culture__left reveal">
           <p class="label careers-section-label">OUR CULTURE</p>
           <h2 class="careers-h3">Working at Shuert</h2>
 
@@ -185,10 +184,10 @@ const testimonials = [
 
         <div class="careers-culture__media">
           <img
-            src={cultureImg.src}
+            src={cultureOpt.src}
             alt="Shuert team at a company family picnic"
-            width={cultureImg.width}
-            height={cultureImg.height}
+            width={cultureOpt.attributes.width}
+            height={cultureOpt.attributes.height}
             loading="lazy"
             decoding="async"
           />
@@ -218,7 +217,7 @@ const testimonials = [
             ))}
           </div>
         </div>
-        <div class="careers-club__copy">
+        <div class="careers-club__copy reveal">
           <h2 class="careers-club__heading" id="careers-club-heading">20 Year Club</h2>
           <p class="careers-club__text">
             Where people stay, contribute, and belong.<br />
@@ -239,20 +238,11 @@ const testimonials = [
   <section class="careers-testimonials">
     <div class="container">
       <p class="label careers-section-label">TESTIMONIALS</p>
-      <h2 class="careers-h3 careers-h3--sm">What Our Team Thinks</h2>
+      <h2 class="careers-h3">What Our Team Thinks</h2>
       <div class="page-grid careers-testimonials__grid">
         {
           testimonials.map((t) => (
             <article class="careers-testimonial">
-              <img
-                src={t.avatar.src}
-                alt=""
-                class="careers-testimonial__avatar"
-                width={127}
-                height={127}
-                loading="lazy"
-                decoding="async"
-              />
               <h3>{t.name}</h3>
               <p class="careers-testimonial__role">{t.role}</p>
               <p class="careers-testimonial__text">{t.quote}</p>
@@ -269,6 +259,24 @@ const testimonials = [
   />
 
 </AboutLayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
 
 <script>
 
@@ -465,6 +473,8 @@ const testimonials = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Source photo has a baked-in blur on the left and right edges. */
+    transform: scale(1.5);
   }
 
   .careers-intro__copy {
@@ -520,8 +530,8 @@ const testimonials = [
     color: var(--c-black);
   }
 
-  .careers-h3--sm {
-    margin-top: 15px;
+  .careers-testimonials .careers-h3 {
+    font-weight: var(--w-light);
   }
 
   .careers-culture__grid {
@@ -799,21 +809,11 @@ const testimonials = [
   }
 
   .careers-testimonials__grid {
-    margin-top: 84px;
-    gap: 28px 20px;
+    margin-top: 61px;
   }
 
   .careers-testimonial {
     grid-column: span 4;
-  }
-
-  .careers-testimonial__avatar {
-    width: 127px;
-    height: 127px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 28px;
-    display: block;
   }
 
   .careers-testimonial h3 {
@@ -935,5 +935,27 @@ const testimonials = [
       line-height: 1.2;
     }
 
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 </style>

@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
 import ReachOut from '../../components/ReachOut.astro';
@@ -107,6 +108,15 @@ const capabilities: Capability[] = [
     recycling: true,
   },
 ];
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+
+const optimized = await Promise.all(
+  capabilities.map(async (cap) => ({
+    ...cap,
+    img: await getImage({ src: cap.img, width: 1800, format: 'webp', quality: 80 }),
+  })),
+);
 ---
 
 <Mainlayout title="Capabilities">
@@ -114,11 +124,11 @@ const capabilities: Capability[] = [
   <section class="c-hero">
     <div class="c-hero__bg" aria-hidden="true">
       <img
-        src={heroImg.src}
+        src={heroOpt.src}
         alt=""
         class="c-hero__img"
-        width={heroImg.width}
-        height={heroImg.height}
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
         loading="eager"
         decoding="async"
       />
@@ -143,7 +153,7 @@ const capabilities: Capability[] = [
   <!-- Capabilities -->
   <section class="c-body">
     <div class="container">
-      <div class="c-intro page-grid">
+      <div class="c-intro page-grid reveal">
         <div class="c-intro__left">
           <p class="label c-intro__eyebrow">VERTICALLY INTEGRATED</p>
           <h2 class="c-intro__title">From Concept to Production</h2>
@@ -155,15 +165,15 @@ const capabilities: Capability[] = [
     </div>
 
     <div class="container c-body__rows">
-      {capabilities.map((cap, i) => (
+      {optimized.map((cap, i) => (
         <article class:list={['c-row page-grid', { 'c-row--reverse': i % 2 !== 0 }]}>
           <div class="c-row__img-wrap">
             <img
               src={cap.img.src}
               alt={cap.title}
               class="c-row__img"
-              width={cap.img.width}
-              height={cap.img.height}
+              width={cap.img.attributes.width}
+              height={cap.img.attributes.height}
               loading="lazy"
               decoding="async"
             />
@@ -555,6 +565,15 @@ const capabilities: Capability[] = [
   .reveal--visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   /* ================================================================

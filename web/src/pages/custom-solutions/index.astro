@@ -83,7 +83,7 @@ const customProducts = await Promise.all(
   <!-- Intro -->
   <section class="cs-intro">
     <div class="container">
-      <div class="cs-intro__grid page-grid">
+      <div class="cs-intro__grid page-grid reveal">
         <div class="cs-intro__left">
           <p class="label cs-intro__eyebrow">PROCESS</p>
           <h2 class="cs-intro__title">Start with the Problem</h2>
@@ -263,6 +263,24 @@ const customProducts = await Promise.all(
     imageCrop={{ width: '283.9%', height: '180.77%', left: '-87.9%', top: '-46.34%' }}
   />
 </Mainlayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
 
 <script>
   (function () {
@@ -1040,6 +1058,28 @@ const customProducts = await Promise.all(
 
     .cs-featured {
       height: clamp(360px, 90vw, 520px);
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>

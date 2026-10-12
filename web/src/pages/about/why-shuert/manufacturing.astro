@@ -109,7 +109,7 @@ const advantages: Advantage[] = [
 
   <section class="mf-body">
     <div class="container">
-      <div class="mf-intro">
+      <div class="mf-intro reveal">
         <div class="mf-intro__head">
           <p class="label mf-intro__eyebrow">Process</p>
           <h2 class="mf-intro__title">Advantages of Twin-Sheet Thermoforming</h2>
@@ -126,7 +126,7 @@ const advantages: Advantage[] = [
           advantages.map((item, i) => (
             <>
               {i === 1 && <div class="mf-rule" aria-hidden="true" />}
-              <article class:list={['mf-row', { 'mf-row--solo': !item.means }]}>
+              <article class:list={['mf-row', { 'mf-row--solo': !item.means }]} data-reveal-group>
                 <div class:list={['mf-row__media', { 'mf-row__media--bottom': item.fit === 'bottom', 'mf-row__media--cad': item.fit === 'cad' }]}>
                   <img
                     src={item.image.src}
@@ -137,7 +137,7 @@ const advantages: Advantage[] = [
                     decoding="async"
                   />
                 </div>
-                <div class="mf-row__copy">
+                <div class="mf-row__copy reveal">
                   <h3 class="mf-row__title">{item.title}</h3>
                   {item.paragraphs.map((paragraph) => (
                     <p class="mf-row__body">{paragraph}</p>
@@ -159,7 +159,7 @@ const advantages: Advantage[] = [
                 {item.means && (
                   <>
                     <div class="mf-row__rule" aria-hidden="true" />
-                    <div class="mf-row__aside">
+                    <div class="mf-row__aside reveal">
                       <p class="label mf-row__aside-label">What this means</p>
                       <ul class="mf-points">
                         {item.means.map((point) => (
@@ -189,6 +189,39 @@ const advantages: Advantage[] = [
     imageCrop={{ width: '283.9%', height: '144.66%', left: '-87.9%', top: '-37.08%' }}
   />
 </AboutLayout>
+
+<script>
+  const groups = new Set<Element>();
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const group = entry.target.closest('[data-reveal-group]');
+          if (group && entry.target === group) {
+            group.querySelectorAll('.reveal').forEach((el) => el.classList.add('reveal--visible'));
+          } else {
+            entry.target.classList.add('reveal--visible');
+          }
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 },
+    );
+    reveals.forEach((el) => {
+      const group = el.closest('[data-reveal-group]');
+      if (group) {
+        if (!groups.has(group)) {
+          groups.add(group);
+          observer.observe(group);
+        }
+      } else {
+        observer.observe(el);
+      }
+    });
+  }
+</script>
 
 <style>
   .mf-hero {
@@ -449,6 +482,28 @@ const advantages: Advantage[] = [
     .mf-intro__copy {
       font-size: 18px;
       line-height: 24px;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>
