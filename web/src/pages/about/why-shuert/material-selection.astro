@@ -1,0 +1,631 @@
+---
+import { getImage } from 'astro:assets';
+import AboutLayout from '../../../layouts/AboutLayout.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import inertImg from '../../../assets/about/whyshuert/materialselection/e37d5d1e08463613bb8fd953a51eeb78b822900d.png';
+import longevityImg from '../../../assets/about/whyshuert/materialselection/4d2a94631b075f3996feef15da6fa263a862e230.png';
+import tensileImg from '../../../assets/about/whyshuert/materialselection/e6069401cb66300e87447826f6076c46878f72f5.png';
+import rigidityImg from '../../../assets/about/whyshuert/materialselection/6778840fc3996e6f9b034d77eb1f48ba861e762f.png';
+import resilienceImg from '../../../assets/about/whyshuert/materialselection/3016a156d1de1fba22684c2bc648b1149fbb350d.png';
+import toughnessImg from '../../../assets/about/whyshuert/materialselection/b1e5a1c621f20c437621e3056bd15c976195bf51.png';
+import impactImg from '../../../assets/about/whyshuert/materialselection/f1c07b49b3f438d0e3391c5f304ff47ba0478a50.png';
+import ratioImg from '../../../assets/about/whyshuert/materialselection/69b71fbd2f8013514aaf9ce4133f6cc324368e41.png';
+import pelletsImg from '../../../assets/about/whyshuert/materialselection/195b071f9604678d2800d2b3ec591496468b810a.png';
+import formImg from '../../../assets/about/whyshuert/materialselection/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
+
+const inertOpt = await getImage({ src: inertImg, width: 2800, format: 'webp', quality: 80 });
+const longevityOpt = await getImage({ src: longevityImg, width: 1024, format: 'webp', quality: 80 });
+const tensileOpt = await getImage({ src: tensileImg, width: 2800, format: 'webp', quality: 80 });
+const rigidityOpt = await getImage({ src: rigidityImg, width: 2800, format: 'webp', quality: 80 });
+const resilienceOpt = await getImage({ src: resilienceImg, width: 2800, format: 'webp', quality: 80 });
+const toughnessOpt = await getImage({ src: toughnessImg, width: 2800, format: 'webp', quality: 80 });
+const impactOpt = await getImage({ src: impactImg, width: 2800, format: 'webp', quality: 80 });
+const ratioOpt = await getImage({ src: ratioImg, width: 2400, format: 'webp', quality: 80 });
+const pelletsOpt = await getImage({ src: pelletsImg, width: 1800, format: 'webp', quality: 80 });
+
+type OptImage = { src: string; attributes: { width: number; height: number } };
+
+type Property = {
+  title: string;
+  body: readonly [string, string];
+  image: OptImage | null;
+  alt: string;
+  frame?: { width: string; left: string };
+};
+
+const properties: Property[] = [
+  {
+    title: 'Inert & Non-Toxic',
+    image: inertOpt,
+    alt: 'Close-up of a smooth gray plastic surface with a round opening',
+    body: [
+      'HDPE’s molecular structure is chemically stable and non-reactive, with no mobile additives that migrate under normal conditions.',
+      'What this means in practice: It is suitable for applications where cleanliness and material stability are required, without introducing risk of contamination.',
+    ],
+  },
+  {
+    title: 'Longevity & Residual Value',
+    image: longevityOpt,
+    alt: 'Shuert trailer with stacked black reusable pallets at the loading dock',
+    body: [
+      'The strong carbon–carbon backbone and resistance to chemical and environmental degradation allow the material to maintain performance over time.',
+      'What this means in practice: Products retain their structural integrity across extended use, supporting long service life and preserving residual material value.',
+    ],
+  },
+  {
+    title: 'Tensile Strength',
+    image: tensileOpt,
+    alt: 'Close-up of a black pallet deck and reinforcing ribs',
+    body: [
+      'High molecular weight results in longer polymer chains and greater molecular chain entanglement, which increases resistance to chain slippage and separation under load.',
+      'What this means in practice: The material can withstand significant tensile forces during lifting and handling without failure.',
+    ],
+  },
+  {
+    title: 'Rigidity (Stiffness)',
+    image: rigidityOpt,
+    alt: 'Corner of stacked black containers with a yellow cap and metal fastener',
+    frame: { width: '177.78%', left: '-77.8%' },
+    body: [
+      'The linear molecular structure enables tighter chain packing and higher crystallinity (more ordered regions), which increases resistance to deformation under load.',
+      'What this means in practice: Structures resist deflection, improving stability during stacking, racking, and transport.',
+    ],
+  },
+  {
+    title: 'Resilience (Elastic Recovery)',
+    image: resilienceOpt,
+    alt: 'Close-up of a thick formed plastic rim',
+    frame: { width: '177.78%', left: '-67.28%' },
+    body: [
+      'Molecular chain entanglement allows the material to undergo reversible deformation, enabling it to absorb applied forces and return to its original shape when the load is removed.',
+      'What this means in practice: The material recovers from repeated stresses without permanent deformation, maintaining performance over time.',
+    ],
+  },
+  {
+    title: 'Toughness (Total Energy Absorption)',
+    image: toughnessOpt,
+    alt: 'Gray pallet underside with ribs, slots, and locating features',
+    frame: { width: '177.78%', left: '-55.11%' },
+    body: [
+      'The combination of entangled amorphous regions and reinforcing crystalline domains enables the material to absorb and distribute a high total amount of energy before failure.',
+      'What this means in practice: The material resists cracking and fracture under sustained or extreme loading conditions.',
+    ],
+  },
+  {
+    title: 'Impact Resistance (Dynamic Loading)',
+    image: impactOpt,
+    alt: 'Edge profile of a thin formed plastic deck',
+    frame: { width: '177.78%', left: '-71.59%' },
+    body: [
+      'Under sudden loading, entangled molecular chains allow energy to be distributed throughout the structure, while crystalline regions help resist crack initiation and propagation.',
+      'What this means in practice: Products can withstand drops, collisions, and abrupt handling without cracking or shattering, reducing damage and replacement frequency.',
+    ],
+  },
+  {
+    title: 'High Strength-to-Weight Ratio',
+    image: ratioOpt,
+    alt: 'Shredded plastic regrind moving through processing equipment',
+    frame: { width: '144.59%', left: '-20.39%' },
+    body: [
+      'Efficient chain packing and semi-crystalline structure provide structural strength without excessive material mass.',
+      'What this means in practice: Lighter products improve ergonomics and reduce transportation weight while still supporting demanding payloads.',
+    ],
+  },
+  {
+    title: 'Thermal Stability',
+    image: null,
+    alt: '',
+    body: [
+      'The semi-crystalline structure allows the material to maintain mechanical properties across a broad temperature range, with crystalline regions providing dimensional stability and amorphous regions contributing to toughness.',
+      'What this means in practice: It resists brittleness in cold environments and softening at elevated temperatures, ensuring consistent performance.',
+    ],
+  },
+];
+---
+
+<AboutLayout title="Material Selection" current="why-shuert">
+  <section class="ms-hero">
+    <div class="ms-hero__content container">
+      <p class="ms-hero__breadcrumb">
+        <a href="/" class="ms-hero__breadcrumb--dim">HOME</a><span class="ms-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/about/why-shuert" class="ms-hero__breadcrumb--dim">SHUERT ADVANTAGE</a><span class="ms-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>MATERIAL SELECTION
+      </p>
+      <h1 class="ms-hero__title">material selection</h1>
+    </div>
+  </section>
+
+  <section class="ms-spec">
+    <div class="container">
+      <div class="ms-spec__intro">
+        <div class="ms-spec__head">
+          <p class="label ms-spec__eyebrow">Material Spec</p>
+          <h2 class="ms-spec__title">Why HMW-HDPE</h2>
+        </div>
+        <div class="ms-spec__copy">
+          <p>
+            High-molecular-weight high-density polyethylene (HMW-HDPE) derives its performance from its molecular structure. Its long hydrocarbon chains (high molecular weight) create a high degree of molecular chain entanglement, while its linear structure (low branching) allows chains to align and pack into more ordered, crystalline regions.
+          </p>
+          <p>
+            Together, these structural characteristics produce a semi-crystalline material with a balanced combination of strength, stiffness, and the ability to absorb, distribute, and recover from applied forces&mdash;enabling reliable performance under repeated handling, loading, and environmental exposure.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="ms-spec__lower">
+        <div class="ms-spec__media" data-ms-media>
+          {
+            properties.map((item, i) => item.image && (
+              <img
+                class:list={[
+                  'ms-spec__photo',
+                  item.frame ? 'ms-spec__photo--frame' : 'ms-spec__photo--cover',
+                  { 'is-active': i === 0 },
+                ]}
+                src={item.image.src}
+                alt={item.alt}
+                width={item.image.attributes.width}
+                height={item.image.attributes.height}
+                style={item.frame ? `width: ${item.frame.width}; left: ${item.frame.left};` : undefined}
+                data-ms-photo={i}
+                aria-hidden={i === 0 ? undefined : 'true'}
+                loading="eager"
+                decoding="async"
+              />
+            ))
+          }
+        </div>
+
+        <div class="ms-accordion" data-ms-accordion>
+          {
+            properties.map((item, i) => (
+              <div class="ms-accordion__item" data-photo={item.image ? i : undefined}>
+                <button
+                  type="button"
+                  class="ms-accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls={`ms-accordion-panel-${i}`}
+                  id={`ms-accordion-trigger-${i}`}
+                  data-accordion-trigger
+                >
+                  <span class="ms-accordion__title">{item.title}</span>
+                  <span class="ms-accordion__icon" aria-hidden="true" />
+                </button>
+                <div
+                  class="ms-accordion__panel"
+                  id={`ms-accordion-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`ms-accordion-trigger-${i}`}
+                  data-accordion-panel
+                >
+                  <div class="ms-accordion__panel-inner">
+                    {item.body?.map((paragraph) => (
+                      <p class="ms-accordion__body">{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+                <div class="ms-accordion__rule" aria-hidden="true" />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ms-prime">
+    <div class="container">
+      <div class="ms-prime__grid">
+        <div class="ms-prime__copy">
+          <h2 class="ms-prime__title">Why we use prime material</h2>
+          <p class="ms-prime__body">
+            Consistent performance starts with consistent inputs. We prioritize prime (virgin) material because its uniformity is what makes reliable, repeatable performance possible under repeated handling and transport. Where recycled content makes sense, we use it deliberately&mdash;favoring post-industrial material, including scrap recovered from our own manufacturing process, over post-consumer streams that can introduce variability from mixed sources and prior degradation. The result is tight control over material properties and responsible material use, with performance that holds up across every unit and throughout the life of the system.
+          </p>
+        </div>
+        <div class="ms-prime__media">
+          <img
+            src={pelletsOpt.src}
+            alt="Black plastic resin pellets"
+            width={pelletsOpt.attributes.width}
+            height={pelletsOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <LeadForm
+    variant="info"
+    image={formImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+    title="Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque."
+    imageRatio="789 / 871"
+    imageCrop={{ width: '283.9%', height: '144.66%', left: '-87.9%', top: '-37.08%' }}
+  />
+</AboutLayout>
+
+<script>
+  (function () {
+    const root = document.querySelector('[data-ms-accordion]');
+    if (!root) return;
+
+    const items = Array.from(root.querySelectorAll('.ms-accordion__item'));
+    const photos = Array.from(document.querySelectorAll('[data-ms-photo]'));
+
+    function setPhoto(id: string) {
+      photos.forEach((photo) => {
+        const active = photo.getAttribute('data-ms-photo') === id;
+        photo.classList.toggle('is-active', active);
+        if (active) photo.removeAttribute('aria-hidden');
+        else photo.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    function setOpen(target: Element | null) {
+      items.forEach((item) => {
+        const trigger = item.querySelector('[data-accordion-trigger]');
+        const open = target !== null && item === target;
+        item.classList.toggle('is-open', open);
+        if (trigger instanceof HTMLButtonElement) {
+          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+      });
+      const photoId = target?.getAttribute('data-photo');
+      if (photoId) setPhoto(photoId);
+    }
+
+    items.forEach((item) => {
+      const trigger = item.querySelector('[data-accordion-trigger]');
+      trigger?.addEventListener('click', () => {
+        if (item.classList.contains('is-open')) {
+          setOpen(null);
+          return;
+        }
+        setOpen(item);
+      });
+    });
+  })();
+</script>
+
+<style>
+  .ms-hero {
+    background: var(--c-black);
+    height: clamp(280px, 50vw, 392px);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .ms-hero__content {
+    padding-bottom: clamp(1.5rem, 3.3vw, 57px);
+  }
+
+  .ms-hero__breadcrumb {
+    margin: 0 0 clamp(1.25rem, 2.6vw, 45px);
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .ms-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .ms-hero__breadcrumb a.ms-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ms-hero__breadcrumb a.ms-hero__breadcrumb--dim:hover,
+  .ms-hero__breadcrumb a.ms-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .ms-hero__title {
+    margin: 0;
+    font: var(--w-semibold) clamp(2.5rem, 4.28vw, 74px) / 1 var(--ff-s);
+    text-transform: lowercase;
+    color: var(--c-white);
+  }
+
+  .ms-spec,
+  .ms-prime {
+    background: var(--c-sec-1);
+  }
+
+  .ms-spec__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 730fr) minmax(0, 779fr);
+    column-gap: clamp(1.5rem, 4.6vw, 79px);
+    align-items: start;
+    padding-top: clamp(3.5rem, 6.13vw, 106px);
+    padding-bottom: clamp(2.5rem, 3.94vw, 68px);
+  }
+
+  .ms-spec__head,
+  .ms-spec__copy,
+  .ms-spec__media,
+  .ms-accordion,
+  .ms-prime__copy,
+  .ms-prime__media {
+    min-width: 0;
+  }
+
+  .ms-spec__head {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ms-spec__eyebrow {
+    margin: 0;
+    color: var(--c-sec-3);
+  }
+
+  .ms-spec__title,
+  .ms-prime__title {
+    margin: 0;
+    font: var(--w-light) clamp(1.5rem, 1.74vw, 30px) / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .ms-spec__copy p {
+    margin: 0;
+    max-width: 779px;
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .ms-spec__copy p + p {
+    margin-top: 26px;
+  }
+
+  .ms-spec__lower {
+    display: grid;
+    grid-template-columns: minmax(0, 789fr) minmax(0, 731fr);
+    column-gap: clamp(1.5rem, 4.5vw, 78px);
+    align-items: start;
+    padding-top: clamp(2.5rem, 3.94vw, 68px);
+  }
+
+  .ms-spec__media {
+    position: relative;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #222;
+  }
+
+  .ms-spec__photo {
+    position: absolute;
+    top: 0;
+    display: block;
+    height: 100%;
+    max-width: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .ms-spec__photo.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .ms-spec__photo--cover {
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .ms-prime__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ms-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: clamp(1.5rem, 3.36vw, 58px);
+  }
+
+  .ms-accordion__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ms-accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .ms-accordion__title {
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .ms-accordion:has(.ms-accordion__item.is-open) .ms-accordion__item:not(.is-open) .ms-accordion__title {
+    opacity: 0.2;
+  }
+
+  .ms-accordion__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 41px;
+    background: var(--c-sec-2);
+  }
+
+  .ms-accordion__icon::before,
+  .ms-accordion__icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: var(--c-black);
+    transform: translate(-50%, -50%);
+  }
+
+  .ms-accordion__icon::before {
+    width: 12px;
+    height: 1px;
+  }
+
+  .ms-accordion__icon::after {
+    width: 1px;
+    height: 12px;
+    transition: opacity 0.3s ease;
+  }
+
+  .ms-accordion__item.is-open .ms-accordion__icon::after {
+    opacity: 0;
+  }
+
+  .ms-accordion__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    max-width: 648px;
+    transition: grid-template-rows 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .ms-accordion__item.is-open .ms-accordion__panel {
+    grid-template-rows: 1fr;
+  }
+
+  .ms-accordion__panel-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .ms-accordion__body {
+    margin: 0;
+    padding-top: 12px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .ms-accordion__body + .ms-accordion__body {
+    padding-top: 22px;
+  }
+
+  .ms-accordion__item:not(.is-open) .ms-accordion__body {
+    opacity: 0;
+  }
+
+  .ms-accordion__rule {
+    width: 100%;
+    height: 0;
+    margin-top: 12px;
+    border-top: 1px solid var(--c-sec-3);
+  }
+
+  .ms-accordion__trigger:focus-visible {
+    outline: 2px solid var(--c-black);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .ms-prime {
+    padding: clamp(3rem, 7.93vw, 137px) 0 clamp(3rem, 7.5vw, 130px);
+  }
+
+  .ms-prime__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 577fr) minmax(0, 923fr);
+    column-gap: clamp(1.5rem, 5.7vw, 98px);
+    align-items: center;
+  }
+
+  .ms-prime__copy {
+    padding-left: clamp(0px, 3.36vw, 58px);
+  }
+
+  .ms-prime__body {
+    margin: 35px 0 0;
+    max-width: 519px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .ms-prime__media {
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 923 / 662;
+  }
+
+  @media (min-width: 1728px) {
+    .ms-spec__intro {
+      grid-template-columns: 730px 779px;
+      column-gap: 79px;
+    }
+
+    .ms-spec__lower {
+      grid-template-columns: 789px 731px;
+      column-gap: 78px;
+    }
+
+    .ms-prime__grid {
+      grid-template-columns: 577px 923px;
+      column-gap: 98px;
+    }
+  }
+
+  @media (max-width: 64rem) {
+    .ms-spec__intro,
+  .ms-spec__lower,
+  .ms-prime__grid {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+    }
+
+    .ms-spec__copy p,
+  .ms-prime__body {
+      max-width: none;
+    }
+
+    .ms-accordion {
+      margin-top: 0;
+    }
+
+    .ms-prime__copy {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .ms-spec__copy p {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .ms-spec__copy p + p {
+      margin-top: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ms-accordion__panel,
+    .ms-accordion__title,
+    .ms-accordion__icon::after,
+    .ms-spec__photo {
+      transition: none;
+    }
+  }
+</style>

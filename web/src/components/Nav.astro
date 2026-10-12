@@ -1,7 +1,7 @@
 ---
 import logoSrc from '../assets/nav/logo.svg';
 import customSolutionsImg from '../assets/nav/customsolutions.png';
-import featuredProductImg from '../assets/nav/featuredproduct.png';
+import featuredProductImg from '../assets/nav/uni-directional-pallet.png';
 ---
 
 <div class="nav-wrapper" id="nav-wrapper">
@@ -76,11 +76,11 @@ import featuredProductImg from '../assets/nav/featuredproduct.png';
               <span class="nav__mega-card-overlay" aria-hidden="true"></span>
               <span class="nav__mega-card-label">custom solutions</span>
             </a>
-            <a href="/products" class="nav__mega-card">
+            <a href="/products/uni-directional-pallet" class="nav__mega-card">
               <img class="nav__mega-card-img" src={featuredProductImg.src} alt="" width={featuredProductImg.width} height={featuredProductImg.height} />
               <span class="nav__mega-card-overlay" aria-hidden="true"></span>
               <span class="nav__mega-card-badge">Featured Product</span>
-              <span class="nav__mega-card-label">new product name</span>
+              <span class="nav__mega-card-label">uni-directional pallet</span>
             </a>
           </div>
         </div>
@@ -88,10 +88,10 @@ import featuredProductImg from '../assets/nav/featuredproduct.png';
         <section class="nav__mega-col nav__mega-explore" id="nav-mega-explore">
           <h2 class="nav__mega-heading">Explore More</h2>
           <ul class="nav__mega-list" role="list">
-            <li><a href="/about/whyshuert" class="nav__mega-link">Why Shuert</a></li>
+            <li><a href="/about/why-shuert" class="nav__mega-link">Shuert Advantage</a></li>
             <li><a href="/markets" class="nav__mega-link">Markets</a></li>
             <li><a href="/custom-solutions" class="nav__mega-link">Custom Solutions</a></li>
-            <li><a href="/sustainability" class="nav__mega-link">Sustainability</a></li>
+            <li><a href="/about/sustainability" class="nav__mega-link">Sustainability</a></li>
             <li><a href="/about/careers" class="nav__mega-link">Careers</a></li>
           </ul>
         </section>
@@ -106,7 +106,7 @@ import featuredProductImg from '../assets/nav/featuredproduct.png';
           <li><a href="/capabilities" class="nav__mega-link">Capabilities</a></li>
           <li><a href="/markets" class="nav__mega-link">Markets</a></li>
           <li><a href="/custom-solutions" class="nav__mega-link">Custom Solutions</a></li>
-          <li><a href="/sustainability" class="nav__mega-link">Sustainability</a></li>
+          <li><a href="/about/sustainability" class="nav__mega-link">Sustainability</a></li>
           <li><a href="/about/careers" class="nav__mega-link">Careers</a></li>
           <li><a href="/about" class="nav__mega-link">About</a></li>
           <li><a href="/contact" class="nav__mega-link">Contact</a></li>
@@ -125,10 +125,17 @@ import featuredProductImg from '../assets/nav/featuredproduct.png';
   }
 
   .nav {
-    background: var(--c-blackbg);
+    background-color: rgb(0 0 0 / 0.8);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-radius: var(--r-img);
     width: 100%;
     overflow: hidden;
+    transition: background-color 0.35s ease;
+  }
+
+  .nav-wrapper--open .nav {
+    background-color: var(--c-black);
   }
 
   .nav__bar {
@@ -632,11 +639,39 @@ import featuredProductImg from '../assets/nav/featuredproduct.png';
       return window.matchMedia('(max-width: 52rem)').matches;
     }
 
+    /* Freeze the page in place. overflow:hidden / scrollTo(0) both jump iOS to the top. */
+    let scrollLocked = false;
+    let lockedScrollY = 0;
+
+    function lockPageScroll() {
+      if (scrollLocked) return;
+      lockedScrollY = window.scrollY || document.documentElement.scrollTop;
+      scrollLocked = true;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${lockedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    }
+
+    function unlockPageScroll() {
+      if (!scrollLocked) return;
+      const y = lockedScrollY;
+      scrollLocked = false;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      const root = document.documentElement;
+      const previous = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      window.scrollTo(0, y);
+      root.style.scrollBehavior = previous;
+    }
+
     function open() {
-      if (isMobile()) {
-        window.scrollTo({ top: 0 });
-        document.body.style.overflow = 'hidden';
-      }
+      if (isMobile()) lockPageScroll();
       wrapper.classList.add('nav-wrapper--open');
       btn.setAttribute('aria-expanded', 'true');
       syncExploreAlign();
@@ -647,12 +682,10 @@ import featuredProductImg from '../assets/nav/featuredproduct.png';
       btn.setAttribute('aria-expanded', 'false');
       if (isMobile()) {
         setTimeout(() => {
-          if (!wrapper.classList.contains('nav-wrapper--open')) {
-            document.body.style.overflow = '';
-          }
+          if (!wrapper.classList.contains('nav-wrapper--open')) unlockPageScroll();
         }, 350);
       } else {
-        document.body.style.overflow = '';
+        unlockPageScroll();
       }
     }
 

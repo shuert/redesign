@@ -1,6 +1,281 @@
 ---
-import Mainlayout from '../../layouts/Mainlayout.astro';
+import { getImage } from 'astro:assets';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import { uniPallet } from '../../data/products/uni-pallet';
+
+import gen1 from '../../assets/product/unipallet/aa4c71cf6fd121cfe04e6f4f44658228fc24d3dc.png';
+import gen2 from '../../assets/product/unipallet/b51c849a126306442c7c8125b31b939b6c012f92.png';
+import gen3 from '../../assets/product/unipallet/3646f31f282e3bd4dc653ab0a340337a03b2361c.png';
+
+const generationImages = await Promise.all(
+  [gen1, gen2, gen3].map((img) => getImage({ src: img, width: 1100, format: 'webp', quality: 80 })),
+);
+
+const generations = [
+  {
+    tag: 'generation 1',
+    alt: 'Generation 1 Uni-Pallet',
+    image: generationImages[0],
+  },
+  {
+    tag: 'generation 2',
+    alt: 'Generation 2 Uni-Pallet',
+    image: generationImages[1],
+  },
+  {
+    tag: 'generation 3',
+    alt: 'Generation 3 Uni-Pallet',
+    image: generationImages[2],
+  },
+];
 ---
 
-<Mainlayout title="Uni-Pallet">
-</Mainlayout>
+<ProductLayout product={uniPallet}>
+  <section class="up-gen" slot="after-options" aria-labelledby="up-gen-title">
+    <div class="container">
+      <div class="up-gen__intro">
+        <header>
+          <p class="up-gen__eyebrow">Generations</p>
+          <h2 class="up-gen__title" id="up-gen-title">Decades of Innovation, Built Into Every Uni-Pallet</h2>
+        </header>
+        <div class="up-gen__lead">
+          <p>We Invent Solutions. And we do it knowing the work is never finished.</p>
+          <p>
+            For us, innovation isn’t a single breakthrough—it’s the result of steady, deliberate progress over time. It
+            starts by observing how our products move through real environments: how they’re handled, where they’re
+            pushed, and the evolving challenges our customers face every day.
+          </p>
+          <p>
+            From there, we question, test, and refine—again and again—until each design performs in the conditions it’s
+            built for. Every iteration is shaped by real-world use, direct feedback, and the shared experience of the
+            people who build, use, and support our products.
+          </p>
+          <p>
+            We don't separate innovation from daily work; we build it in—through curiosity, experimentation, and
+            continuous refinement.
+          </p>
+          <p>
+            The Uni-Pallet reflects that process. Across four generations of design, each version responds to real-world
+            material handling demands—improving performance through what we’ve learned over time.
+          </p>
+        </div>
+      </div>
+
+      <div class="up-gen__grid">
+        <article class="up-gen__card">
+          <div class="up-gen__media">
+            <img
+              src={generations[0].image.src}
+              alt={generations[0].alt}
+              width={generations[0].image.attributes.width}
+              height={generations[0].image.attributes.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="up-gen__tag">{generations[0].tag}</p>
+          </div>
+          <div class="up-gen__body">
+            <p>At 17 lbs., Gen 1 established the foundation for Uni-Pallet.</p>
+            <p>
+              It demonstrated that a lightweight pallet could deliver the structural strength and durability required
+              for demanding distribution applications. From the start, steel reinforcement provided the necessary
+              strength while letting us validate the lightweight concept.
+            </p>
+          </div>
+        </article>
+
+        <article class="up-gen__card">
+          <div class="up-gen__media">
+            <img
+              src={generations[1].image.src}
+              alt={generations[1].alt}
+              width={generations[1].image.attributes.width}
+              height={generations[1].image.attributes.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="up-gen__tag">{generations[1].tag}</p>
+          </div>
+          <div class="up-gen__body">
+            <p>Gen 2 marked a fundamental shift in how Uni-Pallet achieved strength.</p>
+            <p>
+              We eliminated steel reinforcement and replaced it with an engineered plastic structure, building
+              structural performance directly into the pallet.
+            </p>
+            <p class="up-gen__label">Key advancements included:</p>
+            <ul>
+              <li>A 45-degree corner design to better deflect impact and reduce corner damage under repeated handling</li>
+              <li>A shock-absorbing perimeter that significantly reduced side splitting during fork truck handling</li>
+              <li>Directional structural reinforcement concentrated in the 40" direction</li>
+            </ul>
+            <p>
+              This directional reinforcement came from field observation: pallets were predominantly handled along the
+              short side. In response, the pallet was redesigned to place structural strength where it was most needed.
+            </p>
+          </div>
+        </article>
+
+        <article class="up-gen__card">
+          <div class="up-gen__media">
+            <img
+              src={generations[2].image.src}
+              alt={generations[2].alt}
+              width={generations[2].image.attributes.width}
+              height={generations[2].image.attributes.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="up-gen__tag">{generations[2].tag}</p>
+          </div>
+          <div class="up-gen__body">
+            <p>The pallet continued to evolve with the market.</p>
+            <p>
+              As multi-pallet handling became more common, it required use of the 48-inch direction, creating the need
+              for consistent structural performance regardless of pallet orientation.
+            </p>
+            <p class="up-gen__label">Key advancements included:</p>
+            <ul>
+              <li>A raised diamond surface to improve load stability</li>
+              <li>Structural reinforcement in both the 40" and 48" directions</li>
+            </ul>
+            <p>
+              This redesign ensured consistent load distribution and performance regardless of handling orientation.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  .up-gen {
+    background: var(--c-sec-1);
+    padding-bottom: 150px;
+  }
+
+  .up-gen__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 809px) minmax(0, 789px);
+    justify-content: space-between;
+    column-gap: 80px;
+  }
+
+  .up-gen__eyebrow {
+    margin: 0;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-sec-3);
+  }
+
+  .up-gen__title {
+    margin: 15px 0 0;
+    max-width: 472px;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .up-gen__lead {
+    max-width: 654px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .up-gen__lead p,
+  .up-gen__body p,
+  .up-gen__body ul {
+    margin: 0;
+  }
+
+  .up-gen__lead p + p,
+  .up-gen__body p + p,
+  .up-gen__body p + ul,
+  .up-gen__body ul + p {
+    margin-top: 22px;
+  }
+
+  .up-gen__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 21px;
+    margin-top: 113px;
+  }
+
+  .up-gen__media {
+    position: relative;
+    aspect-ratio: 519 / 380;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #efece7;
+  }
+
+  .up-gen__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .up-gen__tag {
+    position: absolute;
+    left: 23px;
+    bottom: 21px;
+    margin: 0;
+    padding: 6px 18px;
+    border-radius: 25px;
+    background: var(--c-black);
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+  }
+
+  .up-gen__body {
+    margin-top: 27px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .up-gen__label {
+    font-weight: var(--w-medium);
+  }
+
+  .up-gen__body ul {
+    padding-left: 1.25em;
+    list-style: disc;
+  }
+
+  @media (max-width: 64rem) {
+    .up-gen {
+      padding-bottom: 80px;
+    }
+
+    .up-gen__intro {
+      grid-template-columns: 1fr;
+      row-gap: 28px;
+      column-gap: 0;
+    }
+
+    .up-gen__title {
+      max-width: none;
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    .up-gen__lead {
+      max-width: none;
+    }
+
+    .up-gen__grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      margin-top: 56px;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .up-gen__tag {
+      left: 16px;
+      bottom: 16px;
+    }
+  }
+</style>

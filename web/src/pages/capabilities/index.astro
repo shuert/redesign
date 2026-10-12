@@ -1,26 +1,111 @@
 ---
+import type { ImageMetadata } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
+import ReachOut from '../../components/ReachOut.astro';
 import heroImg from '../../assets/capabilities/d0898f74e6a17d8157762d57261d2b429feb1f29.png';
-import reachOutImg from '../../assets/capabilities/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import reachOutImg from '../../assets/capabilities/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 import playIcon from '../../assets/capabilities/42208bd656b84eb6378eaaeb7657c54f8badc043.svg?url';
 
 import img01 from '../../assets/capabilities/cb3b6eafff44df7558209d756b6695b8aba566e1.png';
 import img02 from '../../assets/capabilities/a6d9ba3ad0c7d6f3ebaac9ecad6d00dfd962098b.png';
 import img03 from '../../assets/capabilities/04896979f7eaa8c7c63cacdad52dff39383582b7.png';
 import img04 from '../../assets/capabilities/0480e4649dac68afe571e55ee77e5c481440aef4.png';
+import img05 from '../../assets/capabilities/Rectangle 31.png';
 import img06 from '../../assets/capabilities/cd6fd03d8db6e3678c1a0acaf59d04ac6dffabdb.png';
-import img07 from '../../assets/capabilities/2b1c7fecc62f5fca81aed1dd6ddb8c826af6c0e6.png';
+import img07 from '../../assets/capabilities/51397d888bd35118acfaf303ace464ec4fcf87c1.png';
+import img08 from '../../assets/capabilities/2b1c7fecc62f5fca81aed1dd6ddb8c826af6c0e6.png';
 
-const placeholderDesc = 'Lorem ipsum dolor sit amet consectetur. Ut purus non urna sagittis scelerisque eu. Sem a amet viverra lectus egestas sed nibh amet facilisis. Tincidunt ullamcorper vulputate id nisi ut massa. Blandit pharetra a nibh nunc arcu. Potenti feugiat tellus libero maecenas. Arcu vitae feugiat et commodo tincidunt lorem. Mattis diam a varius vitae libero. Curabitur ut urna aliquam mauris. Enim condimentum scelerisque maecenas sagittis orci amet arcu amet. Sed nulla convallis sodales lacus tincidunt sagittis. Dictum purus maecenas nulla lectus vitae sed pharetra auctor tristique. Tellus cras volutpat ut sapien hendrerit.';
+type Capability = {
+  num: string;
+  title: string;
+  img: ImageMetadata;
+  paragraphs: string[];
+  capacity?: string[];
+  recycling?: boolean;
+};
 
-const capabilities = [
-  { num: '01', title: 'Design & Engineering', img: img01, desc: placeholderDesc },
-  { num: '02', title: 'Testing', img: img02, desc: placeholderDesc },
-  { num: '03', title: 'Tooling', img: img03, desc: placeholderDesc },
-  { num: '04', title: 'Extrusion', img: img04, desc: placeholderDesc },
-  { num: '05', title: 'Thermoforming', img: heroImg, desc: placeholderDesc },
-  { num: '06', title: 'Injection Molding', img: img06, desc: placeholderDesc },
-  { num: '07', title: 'Recycling', img: img07, desc: placeholderDesc },
+const capabilities: Capability[] = [
+  {
+    num: '01',
+    title: 'Design & Engineering',
+    img: img01,
+    paragraphs: [
+      "Hey, what's your problem is a simple question, but it's where every project starts. Shipping and material handling challenges are never identical—products, processes, environments, and performance requirements all shape what the solution needs to do. So we start with your problem and build from there. It's how we've delivered more than 2,000 unique designs with our partners, combining the right technology with hands-on experience under one roof.",
+    ],
+  },
+  {
+    num: '02',
+    title: 'Prototyping',
+    img: img02,
+    paragraphs: [
+      'Prototyping lets us validate design concepts before committing to production tooling. Once a concept is approved, we produce two wood patterns in parallel: one to fabricate prototype components and one to develop the aluminum tooling used in production. Prototypes are evaluated for form, fit, and function at our testing facility, where iterations are refined on-site before the design is finalized.',
+      'This parallel approach keeps prototype validation and full-scale manufacturing in step, minimizing the gap between design intent and production reality.',
+    ],
+  },
+  {
+    num: '03',
+    title: 'Tool Fabrication',
+    img: img03,
+    paragraphs: [
+      'Our in-house tool fabrication lets us build the production tooling needed to manufacture components at scale, so every part is formed consistently and to specification. Once concepts are finalized, wood patterns go to the foundry to be cast in aluminum. The castings are then fabricated, machined, and assembled into completed molds, along with any auxiliary tooling needed to support forming and improve part quality.',
+      'Building effective tooling takes both craftsmanship and technical skill. Toolmakers must be proficient in metal fabrication while also understanding how tool construction influences heat transfer, material draw, and part formation during thermoforming. The result is molds built not just to specification, but to perform reliably in production.',
+    ],
+  },
+  {
+    num: '04',
+    title: 'Extrusion',
+    img: img04,
+    paragraphs: [
+      'Extrusion converts raw thermoplastic into the continuous sheet used in our thermoforming, and producing it in-house gives us control from raw material through part formation. Material is fed into a single-screw extruder, melted and blended to a uniform consistency, then extruded through a die and sized, cooled, and cut to specification.',
+      'This lets us hold critical specifications like thickness, density, and material distribution, ensuring predictable behavior during forming. The result is consistent input material that directly drives part performance, repeatability, and long-term durability.',
+    ],
+    capacity: [
+      '10 high-capacity extrusion lines',
+      'Over 200 million pounds of thermoplastic processed annually',
+      '12 material silos supporting railcar delivery and pneumatic distribution to production lines',
+    ],
+  },
+  {
+    num: '05',
+    title: 'Thermoforming',
+    img: img05,
+    paragraphs: [
+      'Thermoforming is the primary process we use to produce reusable packaging systems. We support both single-sheet and twin-sheet forming, with a focus on twin-sheet where structural performance is critical. In twin-sheet forming, two heated sheets are formed against matched molds and fused at defined contact points (knitting), creating a single hollow structure with internal features.',
+      'Strength comes from the separation between surfaces rather than solid mass, increasing rigidity without adding material thickness. The result is a lightweight, load-bearing, impact-resistant structure built for consistent performance and long service life.',
+    ],
+    capacity: [
+      '17 thermoforming lines dedicated to high-volume output',
+      '140,000 annual production hours across continuous 24/7 operations',
+      '6-8 million components annually, converting extruded sheet into precision-formed reusable parts',
+    ],
+  },
+  {
+    num: '06',
+    title: 'Injection Molding',
+    img: img06,
+    paragraphs: [
+      'Injection molding lets us produce small, high-volume components that integrate with and enhance our thermoformed structures. Thermoplastic is melted and injected under pressure into a closed mold, where it cools and solidifies into its final shape.',
+      'These components add functional features such as slide locks, Klips (Shuert-branded fasteners), and RFID tag holders that support assembly, handling, and system integration. The result is a more complete, application-specific solution with consistency across every component.',
+    ],
+    capacity: ['4 injection molding lines'],
+  },
+  {
+    num: '07',
+    title: 'Sleeve Fabrication',
+    img: img07,
+    paragraphs: [
+      'Sleeve fabrication allows us to convert polypropylene boardstock into sleeves that integrate with our pallet and cover, forming a complete packaging system—the Uni-Pak.',
+      'Each sleeve is die-cut to the required container height and the pallet and cover footprints, ensuring a precise fit within the system. Creasing defines the sleeve’s geometry by forming the vertical corners, while welding joins the two ends to create a continuous, durable structure.',
+      'Custom print options are available to align with customer branding, along with the integration of additional features and fittings to support specific application requirements.',
+    ],
+  },
+  {
+    num: '08',
+    title: 'Recycling',
+    img: img08,
+    paragraphs: [],
+    recycling: true,
+  },
 ];
 ---
 
@@ -45,12 +130,7 @@ const capabilities = [
           <p class="c-hero__breadcrumb">
             <a href="/" class="c-hero__breadcrumb--dim">HOME</a><span class="c-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>CAPABILITIES
           </p>
-          <h1 class="detail-xl text-white">capabilities</h1>
-        </div>
-        <div class="c-hero__right">
-          <p class="c-hero__desc text-white">
-            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
-          </p>
+          <h1 class="detail-xl text-white c-hero__title">capabilities</h1>
         </div>
       </div>
       <a class="c-hero__watch" href="#" aria-label="Watch video">
@@ -63,6 +143,18 @@ const capabilities = [
   <!-- Capabilities -->
   <section class="c-body">
     <div class="container">
+      <div class="c-intro page-grid">
+        <div class="c-intro__left">
+          <p class="label c-intro__eyebrow">VERTICALLY INTEGRATED</p>
+          <h2 class="c-intro__title">From Concept to Production</h2>
+        </div>
+        <p class="c-intro__desc">
+          On our 20-acre campus are 470 thousand sqft of office, production, and warehousing space to support management, research and development, extrusion, thermoforming, sleeve, and assembly operations – with capacity for continued expansion as demand grows.
+        </p>
+      </div>
+    </div>
+
+    <div class="container c-body__rows">
       {capabilities.map((cap, i) => (
         <article class:list={['c-row page-grid', { 'c-row--reverse': i % 2 !== 0 }]}>
           <div class="c-row__img-wrap">
@@ -81,51 +173,54 @@ const capabilities = [
               <span class="c-row__number">{cap.num}</span>
               <h2 class="c-row__title">{cap.title}</h2>
             </div>
-            <p class="c-row__desc">{cap.desc}</p>
+
+            {cap.recycling ? (
+              <div class="c-row__desc c-row__desc--rich">
+                <p>
+                  All Shuert products are fully recyclable and can be reprocessed multiple times without significant material degradation—offering a zero-waste alternative to single-use formats. Our 150,000 pounds per day of recycling capacity supports continuous reprocessing across our manufacturing operations.
+                </p>
+                <p>
+                  <strong>Post-Consumer Recycling.</strong> Through our buyback program, we compensate customers for their retired Shuert products. Recovered packaging is reprocessed and reintroduced into production, closing the loop so reclaimed material becomes the basis for the next generation of products.
+                </p>
+                <p class="c-row__subhead">Customer benefits include:</p>
+                <ul class="c-row__bullets">
+                  <li>Reduced waste disposal fees</li>
+                  <li>Freed-up warehouse space</li>
+                  <li>Direct payment for retired products</li>
+                </ul>
+                <p>
+                  <strong>Post-Industrial Recycling.</strong> We recycle the waste generated within our own operations—diverting it from landfills through on-site collection and processing—and blend the reclaimed material with virgin resin to maintain the performance and consistency our products require.
+                </p>
+              </div>
+            ) : (
+              <div class="c-row__desc">
+                {cap.paragraphs.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+            )}
+
+            {cap.capacity && (
+              <div class="c-row__capacity">
+                <p class="c-row__capacity-label">Capacity:</p>
+                <ul class="c-row__capacity-list">
+                  {cap.capacity.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </article>
       ))}
     </div>
   </section>
 
-  <!-- Reach Out -->
-  <section class="c-reach-out">
-    <div class="container c-reach-out__inner">
-      <div class="c-reach-out__grid">
-        <div class="c-reach-out__content">
-          <p class="label c-reach-out__eyebrow">REACH OUT</p>
-          <h2 class="c-reach-out__title text-white reveal">
-            Stay in the loop on all<br />
-            things Shuert, from product updates to exhibitions we're attending.
-          </h2>
-          <form class="c-reach-out__form" aria-label="Email updates">
-            <div class="c-reach-out__field">
-              <input
-                type="email"
-                class="c-reach-out__input"
-                placeholder="Email Address"
-                autocomplete="email"
-                inputmode="email"
-                aria-label="Email address"
-              />
-              <button type="submit" class="c-reach-out__submit">Submit</button>
-            </div>
-          </form>
-        </div>
-        <div class="c-reach-out__media">
-          <img
-            src={reachOutImg.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="c-reach-out__img"
-            width={reachOutImg.width}
-            height={reachOutImg.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReachOut
+    image={reachOutImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+  />
+
 </Mainlayout>
 
 <script>
@@ -145,10 +240,6 @@ const capabilities = [
     reveals.forEach((el) => observer.observe(el));
   }
 
-  const form = document.querySelector('.c-reach-out__form');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
 </script>
 
 <style>
@@ -192,7 +283,7 @@ const capabilities = [
     height: 100%;
     display: flex;
     align-items: flex-end;
-    padding-bottom: clamp(1.5rem, 3.18vw, 55px);
+    padding-bottom: clamp(1.5rem, 3.18vw, 60px);
   }
 
   .c-hero__grid {
@@ -201,7 +292,7 @@ const capabilities = [
   }
 
   .c-hero__left {
-    grid-column: 1 / 9;
+    grid-column: 1 / 11;
   }
 
   .c-hero__breadcrumb {
@@ -226,25 +317,17 @@ const capabilities = [
     color: rgba(255, 255, 255, 0.75);
   }
 
-  .c-hero__left .detail-xl {
+  .c-hero__title {
     margin: 0;
-  }
-
-  .c-hero__right {
-    grid-column: 9 / -1;
-  }
-
-  .c-hero__desc {
-    margin: 0;
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    max-width: 520px;
+    /* Pull text slightly left to match Figma optical baseline (59 vs 65) */
+    margin-left: -6px;
   }
 
   /* WATCH button */
   .c-hero__watch {
     position: absolute;
     right: var(--grid-margin);
-    bottom: clamp(100px, 9.6vw, 166px);
+    bottom: clamp(1.5rem, 3.18vw, 60px);
     display: flex;
     align-items: center;
     gap: 17px;
@@ -276,14 +359,50 @@ const capabilities = [
   .c-body {
     position: relative;
     background: var(--c-sec-1);
-    padding: 77px 0;
+    padding: 65px 0 77px;
+  }
+
+  /* ================================================================
+     INTRO (before first capability)
+     ================================================================ */
+  .c-intro {
+    align-items: start;
+  }
+
+  .c-intro__left {
+    grid-column: 1 / 7;
+  }
+
+  .c-intro__eyebrow {
+    margin: 0;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .c-intro__title {
+    margin: 15px 0 0;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+    letter-spacing: 0;
+  }
+
+  .c-intro__desc {
+    grid-column: 7 / -1;
+    margin: 0;
+    font: var(--w-light) 25px / 32px var(--ff-r);
+    color: var(--c-black);
+    max-width: 779px;
+  }
+
+  .c-body__rows {
+    margin-top: 100px;
   }
 
   /* ================================================================
      CAPABILITY ROW
      ================================================================ */
   .c-row {
-    align-items: start;
+    align-items: center;
   }
 
   .c-row + .c-row {
@@ -310,10 +429,10 @@ const capabilities = [
   .c-row__text {
     grid-column: 8 / -1;
     padding-left: 55px;
-    padding-top: 122px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
 
   /* --- Reversed (even): text left, image right --- */
@@ -344,124 +463,82 @@ const capabilities = [
 
   .c-row__title {
     margin: 0;
-    font-family: var(--ff-r);
-    font-weight: 650;
-    font-size: 30px;
-    line-height: 33px;
+    font: var(--w-light) 30px / 33px var(--ff-r);
     color: var(--c-black);
     letter-spacing: 0;
   }
 
   .c-row__desc {
-    margin: 39px 0 0;
-    font: var(--w-light) 20px / 26px var(--ff-r);
-    color: var(--c-black);
+    margin: 30px 0 0;
     max-width: 519px;
-  }
-
-  /* ================================================================
-     REACH OUT
-     ================================================================ */
-  .c-reach-out {
-    position: relative;
-    background: #1b1b1b;
-    padding: 73px 0 73px;
-    box-sizing: border-box;
-  }
-
-  .c-reach-out__grid {
-    display: grid;
-    align-items: start;
-    max-width: 1598px;
-    margin-inline: auto;
-  }
-
-  .c-reach-out__eyebrow {
-    margin: 0 0 49px;
-    color: rgba(255, 255, 255, 0.35);
-    letter-spacing: 1.54px;
-  }
-
-  .c-reach-out__title {
-    margin: 0;
-    max-width: 654px;
-    font-family: var(--ff-r);
-    font-weight: var(--w-medium);
-    font-size: clamp(1.75rem, 2.8vw, 48px);
-    line-height: 56px;
-    letter-spacing: 0;
-  }
-
-  .c-reach-out__form {
-    margin-top: 336px;
-    max-width: 654px;
-  }
-
-  .c-reach-out__field {
     display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    height: 65px;
-    padding: 0 8px 0 25px;
-    background: var(--c-black);
-    border: 1px solid #2c2c2c;
-    border-radius: 14px;
+    flex-direction: column;
+    gap: 22px;
   }
 
-  .c-reach-out__input {
-    flex: 1;
-    min-width: 0;
-    height: 22px;
-    border: 0;
-    background: transparent;
-    color: var(--c-white);
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    padding: 0;
-    outline: none;
-  }
-
-  .c-reach-out__input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .c-reach-out__submit {
-    flex-shrink: 0;
-    box-sizing: border-box;
+  .c-row__desc p {
     margin: 0;
-    min-width: 89px;
-    height: 50px;
-    padding: 15px 18px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
     color: var(--c-black);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    cursor: pointer;
   }
 
-  .c-reach-out__submit:hover {
-    opacity: 0.92;
+  .c-row__desc strong {
+    font-weight: var(--w-semibold);
   }
 
-  .c-reach-out__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
+  .c-row__subhead {
+    margin: 0;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
   }
 
-  .c-reach-out__media {
-    width: 100%;
-    max-width: 789px;
-    aspect-ratio: 789 / 691;
-    border-radius: 14px;
-    overflow: hidden;
+  .c-row__bullets {
+    margin: 0;
+    padding: 0 0 0 1.25em;
+    list-style: disc;
   }
 
-  .c-reach-out__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 52% 42%;
+  .c-row__bullets li {
+    font: var(--w-light) 12px / 16px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .c-row__capacity {
+    margin-top: 32px;
+    max-width: 519px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .c-row__capacity-label {
+    margin: 0;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  .c-row__capacity-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .c-row__capacity-list li {
+    position: relative;
+    padding-left: 26px;
+    font: var(--w-light) 12px / 16px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .c-row__capacity-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   /* ================================================================
@@ -481,40 +558,6 @@ const capabilities = [
   }
 
   /* ================================================================
-     DESKTOP (≥ 1728px)
-     ================================================================ */
-  @media (min-width: 1728px) {
-    .c-reach-out__title {
-      font-size: 48px;
-      line-height: 56px;
-    }
-
-    .c-reach-out__grid {
-      grid-template-columns: 654px 789px;
-      column-gap: 155px;
-    }
-
-    .c-reach-out__media {
-      width: 789px;
-      max-width: none;
-    }
-  }
-
-  /* ================================================================
-     WIDE DESKTOP (1025px – 1727px)
-     ================================================================ */
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .c-reach-out__grid {
-      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 8.9vw, 155px);
-    }
-
-    .c-reach-out__form {
-      margin-top: clamp(4rem, 19.5vw, 336px);
-    }
-  }
-
-  /* ================================================================
      TABLET (≤ 1024px)
      ================================================================ */
   @media (max-width: 64rem) {
@@ -524,25 +567,30 @@ const capabilities = [
 
     .c-hero__left {
       grid-column: 1 / -1;
-      padding-bottom: 0;
-    }
-
-    .c-hero__right {
-      grid-column: 1 / -1;
-      margin-top: 1.25rem;
-    }
-
-    .c-hero__desc {
-      max-width: none;
     }
 
     .c-hero__watch {
-      bottom: clamp(80px, 12vw, 140px);
+      bottom: clamp(1.5rem, 4vw, 60px);
     }
 
-    /* Capability rows: stack vertically */
     .c-body {
       padding: 48px 0;
+    }
+
+    .c-intro__left,
+    .c-intro__desc {
+      grid-column: 1 / -1;
+    }
+
+    .c-intro__desc {
+      margin-top: 1.25rem;
+      max-width: none;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .c-body__rows {
+      margin-top: 56px;
     }
 
     .c-row + .c-row {
@@ -577,52 +625,9 @@ const capabilities = [
     }
 
     .c-row__desc {
-      font-size: 18px;
-      line-height: 24px;
       max-width: none;
     }
 
-    /* Reach Out */
-    .c-reach-out {
-      padding: 3.5rem 0 4rem;
-    }
-
-    .c-reach-out__eyebrow {
-      margin-bottom: 1.25rem;
-    }
-
-    .c-reach-out__title {
-      max-width: none;
-      line-height: 1.2;
-    }
-
-    .c-reach-out__form {
-      margin-top: 2rem;
-      max-width: none;
-    }
-
-    .c-reach-out__field {
-      height: auto;
-      min-height: 65px;
-      flex-wrap: wrap;
-      padding: 10px 10px 10px 20px;
-    }
-
-    .c-reach-out__submit {
-      height: 48px;
-      min-width: auto;
-    }
-
-    .c-reach-out__grid {
-      grid-template-columns: 1fr;
-      gap: 2.25rem;
-      max-width: none;
-    }
-
-    .c-reach-out__media {
-      max-width: 36rem;
-      margin-inline: auto;
-    }
   }
 
   /* ================================================================
@@ -639,7 +644,7 @@ const capabilities = [
     }
 
     .c-hero__watch {
-      bottom: clamp(60px, 10vw, 100px);
+      bottom: clamp(1.5rem, 4vw, 60px);
       gap: 12px;
     }
 
@@ -650,6 +655,20 @@ const capabilities = [
 
     .c-body {
       padding: 32px 0;
+    }
+
+    .c-intro__title {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    .c-intro__desc {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .c-body__rows {
+      margin-top: 40px;
     }
 
     .c-row + .c-row {
@@ -674,9 +693,17 @@ const capabilities = [
     }
 
     .c-row__desc {
+      margin-top: 16px;
+      gap: 16px;
+    }
+
+    .c-row__desc p {
       font-size: 16px;
       line-height: 22px;
-      margin-top: 16px;
+    }
+
+    .c-row__capacity {
+      margin-top: 24px;
     }
   }
 </style>

@@ -1,8 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
-import MultiSelect from '../../components/MultiSelect.astro';
-import { PRODUCT_OPTIONS } from '../../data/formOptions';
+import LeadForm from '../../components/LeadForm.astro';
 
 import arrowLeft from '../../assets/product/shared/arrow-left.svg?url';
 import arrowRight from '../../assets/product/shared/arrow-right.svg?url';
@@ -23,7 +22,7 @@ import modulePakImg from '../../assets/product/custom/8a3ddf1c3913dddbff2427e7e4
 import uniCaseImg from '../../assets/product/custom/454084480a055ddddae249d65a9d63552f1b760d.png';
 
 import ctaImg from '../../assets/product/custom/04896979f7eaa8c7c63cacdad52dff39383582b7.png';
-import quoteImg from '../../assets/product/custom/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import quoteImg from '../../assets/product/custom/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 
 const aboutText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -33,7 +32,6 @@ const loremCard =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
 
 const heroOpt = await getImage({ src: heroBg, width: 2400, format: 'webp', quality: 80 });
-const quoteOpt = await getImage({ src: quoteImg, width: 2400, format: 'webp', quality: 80 });
 const ctaOpt = await getImage({ src: ctaImg, width: 2400, format: 'webp', quality: 80 });
 
 const gallery = await Promise.all(
@@ -49,8 +47,6 @@ const gallery = await Promise.all(
     thumb: await getImage({ src: t.img, width: 240, format: 'webp', quality: 75 }),
   })),
 );
-const productMain = gallery[0].full;
-
 const customProducts = await Promise.all(
   [
     {
@@ -132,15 +128,18 @@ const customProducts = await Promise.all(
   <!-- Overview: gallery + about -->
   <section class="cp-overview">
     <div class="cp-overview__media">
-      <img
-        id="cp-gallery-main"
-        src={productMain.src}
-        alt="Custom product render"
-        width={productMain.attributes.width}
-        height={productMain.attributes.height}
-        loading="eager"
-        decoding="async"
-      />
+      {gallery.map((t, i) => (
+        <img
+          src={t.full.src}
+          alt={t.alt}
+          width={t.full.attributes.width}
+          height={t.full.attributes.height}
+          class:list={['cp-gallery__full', { 'is-active': i === 0 }]}
+          loading="eager"
+          decoding="async"
+          aria-hidden={i === 0 ? undefined : 'true'}
+        />
+      ))}
     </div>
 
     <button type="button" class="cp-gallery__nav cp-gallery__nav--prev" aria-label="Previous image">
@@ -155,7 +154,6 @@ const customProducts = await Promise.all(
         <button
           type="button"
           class:list={['cp-gallery__thumb', { 'is-active': i === 0 }]}
-          data-src={t.full.src}
           aria-label={t.alt}
         >
           <img
@@ -243,86 +241,29 @@ const customProducts = await Promise.all(
     </div>
   </section>
 
-  <!-- Request a Quote -->
-  <section class="cp-quote" id="request-a-quote">
-    <div class="container">
-      <div class="cp-quote__layout">
-        <div class="cp-quote__form-side">
-          <p class="cp-eyebrow cp-quote__eyebrow">REQUEST A QUOTE</p>
-          <h2 class="cp-quote__title">
-            Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque.
-          </h2>
-          <form class="cp-quote__form" aria-label="Request a quote">
-            <div class="cp-quote__row cp-quote__row--half">
-              <div class="cp-quote__field">
-                <label class="cp-quote__label" for="cp-first">FIRST NAME</label>
-                <input id="cp-first" type="text" class="cp-quote__input" placeholder="First" autocomplete="given-name" />
-              </div>
-              <div class="cp-quote__field">
-                <label class="cp-quote__label" for="cp-last">LAST NAME</label>
-                <input id="cp-last" type="text" class="cp-quote__input" placeholder="Last" autocomplete="family-name" />
-              </div>
-            </div>
-            <div class="cp-quote__field">
-              <label class="cp-quote__label" for="cp-company">COMPANY NAME</label>
-              <input id="cp-company" type="text" class="cp-quote__input" placeholder="Company" autocomplete="organization" />
-            </div>
-            <div class="cp-quote__field">
-              <label class="cp-quote__label" for="cp-email">EMAIL</label>
-              <input id="cp-email" type="email" class="cp-quote__input" placeholder="Email" autocomplete="email" />
-            </div>
-            <div class="cp-quote__row cp-quote__row--half">
-              <div class="cp-quote__field">
-                <label class="cp-quote__label" for="cp-phone">PHONE</label>
-                <input id="cp-phone" type="tel" class="cp-quote__input" placeholder="Phone" autocomplete="tel" />
-              </div>
-              <div class="cp-quote__field">
-                <label class="cp-quote__label" for="cp-qty">QUANTITY</label>
-                <input id="cp-qty" type="text" class="cp-quote__input" placeholder="Quantity" />
-              </div>
-            </div>
-            <div class="cp-quote__field">
-              <label class="cp-quote__label" for="cp-products-of-interest">PRODUCTS OF INTEREST</label>
-              <MultiSelect
-                id="cp-products-of-interest"
-                name="productsOfInterest"
-                options={PRODUCT_OPTIONS}
-                placeholder="Select products…"
-              />
-            </div>
-            <div class="cp-quote__field">
-              <label class="cp-quote__label" for="cp-notes">ANY OTHER QUESTIONS?</label>
-              <textarea id="cp-notes" class="cp-quote__input cp-quote__textarea" placeholder="Additional Info"></textarea>
-            </div>
-            <button type="submit" class="cp-quote__submit">Submit</button>
-          </form>
-        </div>
-        <div class="cp-quote__media">
-          <img
-            src={quoteOpt.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="cp-quote__img"
-            width={quoteOpt.attributes.width}
-            height={quoteOpt.attributes.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <LeadForm
+    variant="quote"
+    image={quoteImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+    title="Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque."
+    imageRatio="789 / 937"
+  />
+
 </Mainlayout>
 
 <script>
-  const main = document.getElementById('cp-gallery-main') as HTMLImageElement | null;
+  const frames = Array.from(document.querySelectorAll<HTMLImageElement>('.cp-gallery__full'));
   const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('.cp-gallery__thumb'));
   let galleryIndex = 0;
 
   function selectThumb(i: number) {
-    if (!thumbs.length || !main) return;
+    if (!thumbs.length || !frames.length) return;
     galleryIndex = (i + thumbs.length) % thumbs.length;
-    const src = thumbs[galleryIndex].dataset.src;
-    if (src) main.src = src;
+    frames.forEach((img, idx) => {
+      const active = idx === galleryIndex;
+      img.classList.toggle('is-active', active);
+      img.toggleAttribute('aria-hidden', !active);
+    });
     thumbs.forEach((t, idx) => t.classList.toggle('is-active', idx === galleryIndex));
   }
 
@@ -330,9 +271,6 @@ const customProducts = await Promise.all(
   document.querySelector('.cp-gallery__nav--prev')?.addEventListener('click', () => selectThumb(galleryIndex - 1));
   document.querySelector('.cp-gallery__nav--next')?.addEventListener('click', () => selectThumb(galleryIndex + 1));
 
-  document.querySelector('.cp-quote__form')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
 </script>
 
 <style>
@@ -476,10 +414,18 @@ const customProducts = await Promise.all(
     z-index: 1;
   }
 
-  .cp-overview__media img {
+  .cp-gallery__full {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+  }
+
+  .cp-gallery__full.is-active {
+    opacity: 1;
+    z-index: 1;
   }
 
   .cp-gallery__nav {
@@ -739,138 +685,6 @@ const customProducts = await Promise.all(
     color: var(--c-white);
   }
 
-  /* ============================== QUOTE ============================== */
-  .cp-quote {
-    background: #1b1b1b;
-    padding: clamp(3rem, 4.8vw, 83px) 0 clamp(3rem, 4.2vw, 73px);
-  }
-
-  .cp-quote__layout {
-    display: grid;
-    align-items: start;
-  }
-
-  .cp-quote__eyebrow {
-    margin: 0 0 31px;
-    color: var(--c-white);
-  }
-
-  .cp-quote__title {
-    margin: 0 0 59px;
-    max-width: 654px;
-    font: var(--w-light) clamp(1.5rem, 1.8vw, 30px) / 33px var(--ff-r);
-    color: var(--c-white);
-  }
-
-  .cp-quote__form {
-    display: flex;
-    flex-direction: column;
-    gap: 23px;
-  }
-
-  .cp-quote__row--half {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .cp-quote__label {
-    display: block;
-    margin-bottom: 14px;
-    font: var(--w-bold) 14px / 14px var(--ff-s);
-    letter-spacing: 1.54px;
-    text-transform: uppercase;
-    color: var(--c-white);
-  }
-
-  .cp-quote__input {
-    display: block;
-    width: 100%;
-    height: 44px;
-    padding: 0 18px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    color: var(--c-white);
-    font: 400 16px / 22px var(--ff-r);
-    outline: none;
-    box-sizing: border-box;
-  }
-
-  .cp-quote__input:focus {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
-  }
-
-  .cp-quote__input::placeholder {
-    color: rgba(255, 255, 255, 0.36);
-  }
-
-  .cp-quote__textarea {
-    height: 106px;
-    padding: 18px;
-    resize: none;
-  }
-
-  .cp-quote__submit {
-    align-self: flex-start;
-    padding: 15px 18px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    color: var(--c-white);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .cp-quote__submit:hover {
-    opacity: 0.85;
-  }
-
-  .cp-quote__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
-  }
-
-  .cp-quote__media {
-    border-radius: 14px;
-    overflow: hidden;
-    margin-top: -17px;
-  }
-
-  .cp-quote__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* ============================== DESKTOP ≥ 1728 ============================== */
-  @media (min-width: 1728px) {
-    .cp-quote__layout {
-      grid-template-columns: 695px 789px;
-      column-gap: 114px;
-    }
-
-    .cp-quote__media {
-      width: 789px;
-      max-width: none;
-      aspect-ratio: 789 / 937;
-    }
-  }
-
-  /* ============================== WIDE 1025–1727 ============================== */
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .cp-quote__layout {
-      grid-template-columns: minmax(0, 695fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 7vw, 114px);
-    }
-
-    .cp-quote__media {
-      aspect-ratio: 789 / 937;
-    }
-  }
-
   /* ============================== TABLET ≤ 1024 ============================== */
   @media (max-width: 64rem) {
     .cp-header {
@@ -965,21 +779,6 @@ const customProducts = await Promise.all(
       font-size: 16px;
       line-height: 22px;
     }
-
-    .cp-quote__layout {
-      grid-template-columns: 1fr;
-      row-gap: 2.5rem;
-    }
-
-    .cp-quote__media {
-      margin-top: 0;
-      max-width: 600px;
-      aspect-ratio: 789 / 937;
-    }
-
-    .cp-quote__title {
-      margin-bottom: 2rem;
-    }
   }
 
   /* ============================== MOBILE ≤ 768 ============================== */
@@ -1044,14 +843,6 @@ const customProducts = await Promise.all(
       left: 20px;
       right: 20px;
       bottom: 24px;
-    }
-
-    .cp-quote__row--half {
-      grid-template-columns: 1fr;
-    }
-
-    .cp-quote__form {
-      gap: 18px;
     }
   }
 </style>

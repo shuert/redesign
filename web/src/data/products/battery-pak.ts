@@ -16,7 +16,7 @@ import relatedModulePak from '../../assets/product/batterypak/8a3ddf1c3913dddbff
 import relatedUniPakIi from '../../assets/product/batterypak/1f33178a0228a5eee17d27db2787893e839ba77b.png';
 import relatedAxlePak from '../../assets/product/batterypak/56e5e0488ca1226ecb15ba61951c49ae13582380.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '29” x 23”  —  90” x 48”',
@@ -91,7 +91,7 @@ export const batteryPak: ProductPageData = {
       desc: 'A footprint that aligns with container dimensions, improving cube utilization during storage and transport.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

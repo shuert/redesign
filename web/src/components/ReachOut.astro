@@ -1,0 +1,284 @@
+---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  image: ImageMetadata;
+  imageAlt: string;
+}
+
+const { image, imageAlt } = Astro.props;
+const imageOpt = await getImage({ src: image, width: 1600, format: 'webp', quality: 80 });
+---
+
+<section class="reach-out" aria-labelledby="reach-out-heading">
+  <div class="container">
+    <div class="reach-out__grid">
+      <div class="reach-out__content">
+        <p class="label reach-out__eyebrow">Reach out</p>
+        <h2 id="reach-out-heading" class="reach-out__title text-white">
+          Stay in the loop on all<br />
+          things Shuert, from product updates to exhibitions we’re attending.
+        </h2>
+        <form class="reach-out__form" data-reach-out aria-label="Email updates">
+          <input type="hidden" name="source" value={Astro.url.pathname} />
+          <div class="reach-out__field">
+            <input
+              type="email"
+              id="reach-out-email"
+              name="email"
+              class="reach-out__input"
+              placeholder="Email Address"
+              autocomplete="email"
+              inputmode="email"
+              aria-label="Email address"
+            />
+            <button type="submit" class="reach-out__submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="reach-out__media">
+        <img
+          src={imageOpt.src}
+          alt={imageAlt}
+          class="reach-out__img"
+          width={imageOpt.attributes.width}
+          height={imageOpt.attributes.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('form[data-reach-out]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  });
+
+  const titles = document.querySelectorAll('.reach-out__title');
+  if (titles.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 },
+    );
+    titles.forEach((el) => observer.observe(el));
+  }
+</script>
+
+<style>
+  .reach-out {
+    position: relative;
+    z-index: 2;
+    background: #1b1b1b;
+    padding: 97px 0;
+    box-sizing: border-box;
+  }
+
+  .reach-out__grid {
+    display: grid;
+    align-items: start;
+    max-width: 1598px;
+    margin-inline: auto;
+  }
+
+  .reach-out__eyebrow {
+    margin: 0 0 64px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1.54px;
+  }
+
+  .reach-out__title {
+    margin: 0;
+    max-width: 674px;
+    font-family: var(--ff-r);
+    font-weight: var(--w-light);
+    font-size: var(--h3);
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .reach-out__title {
+      opacity: 0;
+      transform: translateY(60px);
+      transition:
+        opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reach-out__title.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reach-out__form {
+    margin-top: 336px;
+    max-width: 654px;
+  }
+
+  .reach-out__field {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 65px;
+    padding: 0 8px 0 25px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 14px;
+  }
+
+  .reach-out__input {
+    flex: 1;
+    min-width: 0;
+    height: 22px;
+    border: 0;
+    background: transparent;
+    color: var(--c-white);
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    padding: 0;
+    outline: none;
+  }
+
+  .reach-out__input::placeholder {
+    color: var(--c-white);
+  }
+
+  .reach-out__submit {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 89px;
+    height: 50px;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--c-white);
+    color: var(--c-black);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+  }
+
+  .reach-out__submit:hover {
+    opacity: 0.92;
+  }
+
+  .reach-out__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .reach-out__media {
+    width: 100%;
+    max-width: 789px;
+    aspect-ratio: 789 / 691;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .reach-out__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 42%;
+  }
+
+  @media (min-width: 64.01rem) {
+    .reach-out__grid {
+      align-items: stretch;
+      grid-template-columns: minmax(0, 674fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 7.8vw, 135px);
+    }
+
+    .reach-out__content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .reach-out__form {
+      margin-top: auto;
+    }
+  }
+
+  @media (min-width: 1728px) {
+    .reach-out__grid {
+      grid-template-columns: 674px 789px;
+      column-gap: 135px;
+    }
+
+    .reach-out__media {
+      width: 789px;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 64rem) {
+    .reach-out {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .reach-out__eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    .reach-out__title {
+      max-width: none;
+    }
+
+    .reach-out__form {
+      margin-top: 2rem;
+      max-width: none;
+    }
+
+    .reach-out__field {
+      height: auto;
+      min-height: 65px;
+      flex-wrap: wrap;
+      padding: 10px 10px 10px 20px;
+    }
+
+    .reach-out__submit {
+      height: 48px;
+      min-width: auto;
+    }
+
+    .reach-out__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      max-width: none;
+    }
+
+    .reach-out__media {
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .reach-out {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .reach-out__field {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .reach-out__submit {
+      width: 100%;
+    }
+  }
+</style>

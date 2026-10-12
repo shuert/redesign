@@ -1,0 +1,1409 @@
+---
+import { getImage } from 'astro:assets';
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import ReachOut from '../../components/ReachOut.astro';
+
+import heroImg from '../../assets/sustainability/2b1c7fecc62f5fca81aed1dd6ddb8c826af6c0e6.png';
+import circularImg from '../../assets/sustainability/867dcdb3ca76699e1313b9b98e946cfe78b7d078.png';
+import news1Img from '../../assets/sustainability/29c0feead284fde4f7b53eb75874ee93ae01ac74.png';
+import news2Img from '../../assets/sustainability/67aa266474344f49969b27d5c427e2bf992cf32d.png';
+import news3Img from '../../assets/sustainability/2136dc7a51c79d241f9ab02830f8a2561bd6181b.png';
+import epdBannerImg from '../../assets/sustainability/85331bec7d0ac395c87259c636f3b0c7a7f93e2e.png';
+import statsBgImg from '../../assets/sustainability/c3dec68fe17e3211b5d828f9cae8466d0b8e88ef.png';
+import driversImg from '../../assets/sustainability/8f0ab7b6a38251e847e6866d5a0909f4cfdc455c.png';
+import repairsImg from '../../assets/sustainability/63de1bc7c9aec49488fabe299c98980178d6f6da.png';
+import inspectionsImg from '../../assets/sustainability/feadd0c1312b90f0dd2436dd0af5c8e4e0cb4e79.png';
+import reachOutImg from '../../assets/sustainability/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
+
+import playIcon from '../../assets/sustainability/42208bd656b84eb6378eaaeb7657c54f8badc043.svg?url';
+import arrowDownIcon from '../../assets/sustainability/7130bc65c3074ac9d2a540bd8be3b07ebb8458db.svg?url';
+import arrowRightIcon from '../../assets/sustainability/d58370a5254402baa86cccccda6ec1a84a25ab0a.svg?url';
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const circularOpt = await getImage({ src: circularImg, width: 1400, format: 'webp', quality: 85 });
+const epdOpt = await getImage({ src: epdBannerImg, width: 2400, format: 'webp', quality: 80 });
+const statsOpt = await getImage({ src: statsBgImg, width: 1600, format: 'webp', quality: 80 });
+const driversOpt = await getImage({ src: driversImg, width: 1800, format: 'webp', quality: 80 });
+const repairsOpt = await getImage({ src: repairsImg, width: 1800, format: 'webp', quality: 80 });
+const inspectionsOpt = await getImage({ src: inspectionsImg, width: 1800, format: 'webp', quality: 80 });
+
+const newsArticles = await Promise.all(
+  [
+    {
+      source: 'name of source',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      href: '#',
+      image: news1Img,
+    },
+    {
+      source: 'name of source',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      href: '#',
+      image: news2Img,
+    },
+    {
+      source: 'name of source',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      href: '#',
+      image: news3Img,
+    },
+  ].map(async (article) => ({
+    ...article,
+    image: await getImage({ src: article.image, width: 1100, format: 'webp', quality: 80 }),
+  })),
+);
+
+/** Chart scale: ±2 kg CO2-eq. Positive = above zero, negative = below. */
+const chartStages = [
+  {
+    label: 'production',
+    code: 'A1 - A4',
+    wood: -1.21,
+    woodLabel: '-1.21',
+    plastic: 0.5,
+    plasticLabel: '0.50',
+  },
+  {
+    label: 'use',
+    code: 'B1',
+    wood: 0.33,
+    woodLabel: '0.33',
+    plastic: 0.2,
+    plasticLabel: '0.20',
+  },
+  {
+    label: 'maintenance',
+    code: 'B2',
+    wood: 0.67,
+    woodLabel: '0.67',
+    plastic: 0.06,
+    plasticLabel: '0.06',
+  },
+  {
+    label: 'end-of-life',
+    code: 'C',
+    wood: 1.59,
+    woodLabel: '1.59',
+    plastic: 0.15,
+    plasticLabel: '0.15',
+  },
+] as const;
+
+const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
+---
+
+<Mainlayout title="Sustainability">
+  <!-- Hero -->
+  <section class="su-hero">
+    <div class="su-hero__bg" aria-hidden="true">
+      <img
+        src={heroOpt.src}
+        alt=""
+        class="su-hero__img"
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="su-hero__gradient"></div>
+    </div>
+    <div class="su-hero__content container">
+      <div class="page-grid su-hero__grid">
+        <div class="su-hero__left">
+          <p class="su-hero__breadcrumb">
+            <a href="/" class="su-hero__breadcrumb--dim">HOME</a>
+            <span class="su-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>
+            <a href="/about" class="su-hero__breadcrumb--dim">ABOUT</a>
+            <span class="su-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>
+            SUSTAINABILITY
+          </p>
+          <h1 class="detail-xl text-white su-hero__title">sustainability</h1>
+        </div>
+      </div>
+      <a class="su-hero__watch" href="#" aria-label="Watch video">
+        <span class="su-hero__watch-label">WATCH</span>
+        <img src={playIcon} alt="" width="50" height="50" class="su-hero__watch-icon" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Approach: Built to Last -->
+  <section class="su-approach">
+    <div class="container">
+      <div class="su-approach__intro page-grid">
+        <div class="su-approach__intro-left">
+          <p class="label su-approach__eyebrow">APPROACH</p>
+          <h2 class="su-approach__title">Built to Last</h2>
+        </div>
+        <p class="su-approach__lede">
+          Sustainability is easier to claim than to measure. At Shuert, we've come to believe that the real environmental case for a product isn't made by what it's manufactured from—it's made by how it performs over its full life cycle, in real-world systems, at scale.
+        </p>
+      </div>
+
+      <div class="su-approach__split">
+        <div class="su-approach__diagram">
+          <img
+            src={circularOpt.src}
+            alt="Circular ecosystem diagram: Design, Make, Use, Collect, Transform, Reuse"
+            width={circularOpt.attributes.width}
+            height={circularOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="su-approach__copy">
+          <h3 class="su-approach__copy-title">Circular Ecosystem</h3>
+          <div class="su-approach__copy-body">
+            <p>
+              Most delivery systems waste more than they return. Smart Retur (SR) is replacing that model with a circular one—purchasing, pooling, collecting, repairing, and recirculating pallets across Scandinavian supply chains through a fully managed pooling system.
+            </p>
+            <p>
+              Reusable packaging makes the model possible. The format is what makes it perform. That's why Smart Retur standardizes on the Uni-Pallet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="su-news">
+    <div class="container">
+      <header class="su-news__head">
+        <p class="label su-news__eyebrow">NEWS</p>
+        <h2 class="su-news__title">What the Industry is Saying</h2>
+      </header>
+
+      <div class="su-news__grid">
+        {newsArticles.map((article) => (
+          <article class="su-news-card">
+            <div class="su-news-card__media">
+              <img
+                src={article.image.src}
+                alt=""
+                width={article.image.attributes.width}
+                height={article.image.attributes.height}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="su-news-card__badge">{article.source}</span>
+            </div>
+            <p class="su-news-card__body">{article.body}</p>
+            <a class="su-news-card__link" href={article.href}>
+              <span>READ FULL ARTICLE</span>
+              <img src={arrowRightIcon} alt="" width="12" height="8" />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EPD banner -->
+  <section class="su-epd">
+    <div class="container">
+      <div class="su-epd__panel">
+        <img
+          src={epdOpt.src}
+          alt=""
+          class="su-epd__img"
+          width={epdOpt.attributes.width}
+          height={epdOpt.attributes.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="su-epd__gradient" aria-hidden="true"></div>
+        <span class="su-epd__badge">Wood Vs Plastic</span>
+        <p class="su-epd__text">
+          In 2023, an EPD (Environmental Product Declaration) of Shuert’s Uni-Directional 1,200 mm x 800 mm and the wood Euro Pallet 1,200 mm x 800 mm was conducted, examining both products’ environmental performance through their entire life cycle when used in the Smart Retur ecosystem within Norway on a per loop basis.
+        </p>
+        <a class="su-epd__cta" href="#lifecycle-results">
+          <span>see the results</span>
+          <img src={arrowDownIcon} alt="" width="50" height="50" class="su-epd__cta-icon" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifecycle case -->
+  <section class="su-lifecycle" id="lifecycle-results">
+    <div class="container">
+      <div class="su-lifecycle__intro page-grid">
+        <div class="su-lifecycle__intro-left">
+          <p class="label su-lifecycle__eyebrow">OUR EFFORTS</p>
+          <h2 class="su-lifecycle__title">The Lifecycle Case for Plastic Pallets</h2>
+        </div>
+        <p class="su-lifecycle__lede">
+          In a pooled, high-reuse system like Smart Retur, plastic pallets can deliver lower CO₂ per loop—driven by their physical design, which enables higher reuse, fewer handling events, and more efficient logistics.
+        </p>
+      </div>
+
+      <div class="su-lifecycle__data">
+        <div class="su-chart" aria-labelledby="su-chart-title">
+          <div class="su-chart__head">
+            <h3 class="su-chart__title" id="su-chart-title">stage-by-stage breakdown</h3>
+            <div class="su-chart__legend">
+              <span class="su-chart__pill su-chart__pill--wood">Wood Pallets</span>
+              <span class="su-chart__pill su-chart__pill--plastic">Plastic Pallets</span>
+            </div>
+          </div>
+
+          <div class="su-chart__plot">
+            <div class="su-chart__y" aria-hidden="true">
+              <span class="su-chart__unit">kg CO<sub>2</sub>-eq</span>
+              {yTicks.map((tick) => (
+                <span
+                  class="su-chart__tick"
+                  style={`--tick:${((2 - tick) / 4) * 100}%`}
+                >
+                  {tick === 0.5 ? '+.5' : tick === -0.5 ? '-.5' : tick > 0 ? `+${tick}` : `${tick}`}
+                </span>
+              ))}
+            </div>
+
+            <div class="su-chart__grid" aria-hidden="true">
+              {yTicks.map((tick) => (
+                <span
+                  class:list={['su-chart__grid-line', { 'su-chart__grid-line--zero': tick === 0 }]}
+                  style={`--tick:${((2 - tick) / 4) * 100}%`}
+                />
+              ))}
+            </div>
+
+            <div class="su-chart__cols" role="list">
+              {chartStages.map((stage) => (
+                <div class="su-chart__col" role="listitem">
+                  <div class="su-chart__bars">
+                    <div
+                      class:list={[
+                        'su-chart__bar',
+                        'su-chart__bar--wood',
+                        stage.wood < 0 ? 'su-chart__bar--neg' : 'su-chart__bar--pos',
+                      ]}
+                      style={`--val:${Math.abs(stage.wood)}`}
+                    >
+                      <span class="su-chart__val">{stage.woodLabel}</span>
+                    </div>
+                    <div
+                      class:list={[
+                        'su-chart__bar',
+                        'su-chart__bar--plastic',
+                        stage.plastic < 0 ? 'su-chart__bar--neg' : 'su-chart__bar--pos',
+                      ]}
+                      style={`--val:${Math.abs(stage.plastic)}`}
+                    >
+                      <span class="su-chart__val">{stage.plasticLabel}</span>
+                    </div>
+                  </div>
+                  <div class="su-chart__xlabel">
+                    <span class="su-chart__xlabel-main">{stage.label}</span>
+                    <span class="su-chart__xlabel-code">{stage.code}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <aside class="su-stat">
+          <img
+            src={statsOpt.src}
+            alt=""
+            class="su-stat__img"
+            width={statsOpt.attributes.width}
+            height={statsOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="su-stat__overlay" aria-hidden="true"></div>
+          <div class="su-stat__totals">
+            <div class="su-stat__total">
+              <p class="su-stat__total-label">WOOD PALLET — TOTAL</p>
+              <p class="su-stat__total-value">
+                <span>1.3 - 1.4</span>
+                <span class="su-stat__total-unit">kg CO2-eq per loop</span>
+              </p>
+            </div>
+            <div class="su-stat__divider" aria-hidden="true"></div>
+            <div class="su-stat__total">
+              <p class="su-stat__total-label">PLASTIC PALLET — TOTAL</p>
+              <p class="su-stat__total-value">
+                <span>0.9 - 1.0</span>
+                <span class="su-stat__total-unit">kg CO2-eq per loop</span>
+              </p>
+            </div>
+          </div>
+          <div class="su-stat__main">
+            <p class="su-stat__pct">~35%</p>
+            <p class="su-stat__sub">lower lifecycle emissions per loop</p>
+            <p class="su-stat__body">
+              Based on published Environmental Product Declaration (EPD) data, a reusable plastic pallet emits roughly half the CO-equivalent of a traditional wood pallet over its full lifecycle.
+            </p>
+          </div>
+          <div class="su-stat__disclaimer">
+            <p class="su-stat__disclaimer-label">DISCLAIMER</p>
+            <p class="su-stat__disclaimer-body">
+              Data is sourced from a third-party-verified and registered document aligned with international standards. Results depend on operational assumptions such as the number of loops (lifetime), transport distances, and repair and inspection rates.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature rows -->
+  <section class="su-features">
+    <div class="container">
+      <article class="su-feature">
+        <div class="su-feature__media">
+          <img
+            src={driversOpt.src}
+            alt="Industrial manufacturing equipment"
+            width={driversOpt.attributes.width}
+            height={driversOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="su-feature__copy">
+          <h3 class="su-feature__title">
+            Key Drivers of Environmental<br />Performance
+          </h3>
+          <div class="su-feature__body">
+            <p>
+              Plastic pallets are lighter than wood pallets, which reduces transported mass per trip and can lower fuel consumption in transport-intensive systems.
+            </p>
+            <p>
+              <strong>Smart Retur Plastic Pallet:</strong> 15 kg<br />
+              <strong>EUR Pallet:</strong> 25 kg
+            </p>
+            <p>
+              Plastic pallets are more durable and require fewer repairs and inspections, which reduces handling steps, transport movements, and associated emissions.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="su-feature su-feature--reverse">
+        <div class="su-feature__copy">
+          <h3 class="su-feature__title">Repairs</h3>
+          <div class="su-feature__body">
+            <p>
+              We repair crates and pallets whenever possible instead of replacing them. Reuse and longevity are at the core of a circular economy, and repair is one of our key sustainability priorities. Here's how often repair is actually needed, by pallet type:
+            </p>
+            <p>
+              <strong>Smart Retur Plastic Pallet:</strong> 1% of incoming pallets need repair<br />
+              <strong>EUR Pallet:</strong> 30% of incoming pallets need repair
+            </p>
+          </div>
+        </div>
+        <div class="su-feature__media">
+          <img
+            src={repairsOpt.src}
+            alt="Technician repairing a plastic packaging component"
+            width={repairsOpt.attributes.width}
+            height={repairsOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <article class="su-feature">
+        <div class="su-feature__media">
+          <img
+            src={inspectionsOpt.src}
+            alt="Stack of reusable plastic pallets"
+            width={inspectionsOpt.attributes.width}
+            height={inspectionsOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="su-feature__copy">
+          <h3 class="su-feature__title">Inspections</h3>
+          <div class="su-feature__body">
+            <p>
+              A longer service life (i.e., more loops per pallet) allows production impacts to be distributed over more uses, reducing the CO2 footprint per-loop.
+            </p>
+            <p>
+              <strong>Smart Retur Plastic Pallet:</strong> 20% of pallets inspected per loop<br />
+              <strong>EUR Pallet:</strong> 100% of pallets inspected per loop
+            </p>
+            <p>
+              Plastic pallets are made from HDPE and are recyclable at end-of-life, enabling material recovery and energy recovery and reducing the need for virgin material production.
+            </p>
+            <p>
+              <strong>Smart Retur Plastic Pallet:</strong> 100 loops per pallet<br />
+              <strong>EUR Pallet:</strong> 24 loops per pallet
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <ReachOut
+    image={reachOutImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+  />
+
+</Mainlayout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+</script>
+
+<style>
+  /* ================================================================
+     HERO
+     ================================================================ */
+  .su-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .su-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .su-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -17.19%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .su-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0, 0, 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgb(0, 0, 0) 100%);
+  }
+
+  .su-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: clamp(1.5rem, 3.18vw, 60px);
+  }
+
+  .su-hero__grid {
+    align-items: end;
+    width: 100%;
+  }
+
+  .su-hero__left {
+    grid-column: 1 / 11;
+  }
+
+  .su-hero__breadcrumb {
+    margin: 0 0 29px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .su-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .su-hero__breadcrumb a.su-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .su-hero__breadcrumb a.su-hero__breadcrumb--dim:hover,
+  .su-hero__breadcrumb a.su-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .su-hero__title {
+    margin: 0;
+    /* Pull text slightly left to match Figma optical baseline (59 vs 65) */
+    margin-left: -6px;
+  }
+
+  .su-hero__watch {
+    position: absolute;
+    right: var(--grid-margin);
+    bottom: clamp(1.5rem, 3.18vw, 60px);
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    text-decoration: none;
+    color: var(--c-white);
+    z-index: 2;
+  }
+
+  .su-hero__watch-label {
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+  }
+
+  .su-hero__watch-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .su-hero__watch:hover .su-hero__watch-icon {
+    opacity: 0.75;
+  }
+
+  /* ================================================================
+     APPROACH
+     ================================================================ */
+  .su-approach {
+    background: var(--c-sec-1);
+    padding: 65px 0 100px;
+  }
+
+  .su-approach__intro {
+    align-items: start;
+    margin-bottom: 80px;
+  }
+
+  .su-approach__intro-left {
+    grid-column: 1 / 7;
+  }
+
+  .su-approach__eyebrow {
+    margin: 0;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .su-approach__title {
+    margin: 15px 0 0;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-approach__lede {
+    grid-column: 7 / -1;
+    margin: 0;
+    font: var(--w-light) 25px / 32px var(--ff-r);
+    color: var(--c-black);
+    max-width: 779px;
+  }
+
+  .su-approach__split {
+    display: grid;
+    grid-template-columns: minmax(0, 924fr) minmax(0, 519fr);
+    gap: clamp(2rem, 4.3vw, 74px);
+    align-items: center;
+  }
+
+  .su-approach__diagram {
+    background: var(--c-white);
+    border-radius: 14px;
+    aspect-ratio: 924 / 662;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: clamp(1.5rem, 3vw, 54px) clamp(1rem, 2vw, 40px);
+  }
+
+  .su-approach__diagram img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .su-approach__copy-title {
+    margin: 0 0 35px;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-approach__copy-body {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .su-approach__copy-body p {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  /* ================================================================
+     NEWS
+     ================================================================ */
+  .su-news {
+    background: var(--c-sec-1);
+    padding: 0 0 100px;
+  }
+
+  .su-news__head {
+    margin-bottom: 48px;
+  }
+
+  .su-news__eyebrow {
+    margin: 0;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .su-news__title {
+    margin: 15px 0 0;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-news__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.2vw, 37px);
+  }
+
+  .su-news-card__media {
+    position: relative;
+    aspect-ratio: 519 / 380;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .su-news-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .su-news-card__badge {
+    position: absolute;
+    left: 23px;
+    bottom: 21px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    border-radius: 25px;
+    background: var(--c-black);
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+  }
+
+  .su-news-card__body {
+    margin: 27px 0 0;
+    max-width: 454px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-news-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 27px;
+    text-decoration: none;
+    color: var(--c-black);
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+  }
+
+  .su-news-card__link img {
+    width: 12px;
+    height: 8px;
+  }
+
+  .su-news-card__link:hover {
+    opacity: 0.7;
+  }
+
+  /* ================================================================
+     EPD BANNER
+     ================================================================ */
+  .su-epd {
+    background: var(--c-sec-1);
+    padding: 0 0 100px;
+  }
+
+  .su-epd__panel {
+    position: relative;
+    aspect-ratio: 1597 / 662;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .su-epd__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .su-epd__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 28%, rgb(0, 0, 0) 100%);
+  }
+
+  .su-epd__badge {
+    position: absolute;
+    top: 45px;
+    left: 39px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    border-radius: 25px;
+    background: var(--c-black);
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+  }
+
+  .su-epd__text {
+    position: absolute;
+    left: 36px;
+    bottom: 33px;
+    z-index: 1;
+    margin: 0;
+    max-width: 877px;
+    font: var(--w-light) clamp(1rem, 1.45vw, 25px) / 1.28 var(--ff-r);
+    color: #f7f5f2;
+  }
+
+  .su-epd__cta {
+    position: absolute;
+    right: 39px;
+    bottom: 33px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    text-decoration: none;
+    color: #f7f5f2;
+  }
+
+  .su-epd__cta span {
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+  }
+
+  .su-epd__cta-icon {
+    width: 50px;
+    height: 50px;
+    transform: rotate(-90deg);
+    transition: opacity 0.2s ease;
+  }
+
+  .su-epd__cta:hover .su-epd__cta-icon {
+    opacity: 0.75;
+  }
+
+  /* ================================================================
+     LIFECYCLE
+     ================================================================ */
+  .su-lifecycle {
+    background: var(--c-sec-1);
+    padding: 0 0 100px;
+  }
+
+  .su-lifecycle__intro {
+    align-items: start;
+    margin-bottom: 60px;
+  }
+
+  .su-lifecycle__intro-left {
+    grid-column: 1 / 7;
+  }
+
+  .su-lifecycle__eyebrow {
+    margin: 0;
+    color: var(--c-sec-3);
+    letter-spacing: 1.54px;
+  }
+
+  .su-lifecycle__title {
+    margin: 15px 0 0;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-lifecycle__lede {
+    grid-column: 7 / -1;
+    margin: 0;
+    font: var(--w-light) 25px / 32px var(--ff-r);
+    color: var(--c-black);
+    max-width: 779px;
+  }
+
+  .su-lifecycle__data {
+    display: grid;
+    grid-template-columns: minmax(0, 733fr) minmax(0, 789fr);
+    gap: clamp(1.5rem, 3vw, 45px);
+    align-items: stretch;
+  }
+
+  /* Chart */
+  .su-chart {
+    min-width: 0;
+  }
+
+  .su-chart__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 28px;
+  }
+
+  .su-chart__title {
+    margin: 0;
+    max-width: 339px;
+    font: 600 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-black);
+  }
+
+  .su-chart__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;
+  }
+
+  .su-chart__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    border-radius: 25px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+  }
+
+  .su-chart__pill--wood {
+    background: #d4cec6;
+  }
+
+  .su-chart__pill--plastic {
+    background: #d12539;
+  }
+
+  .su-chart__plot {
+    position: relative;
+    height: 620px;
+    padding-left: 56px;
+    padding-bottom: 70px;
+  }
+
+  .su-chart__y {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 70px;
+    width: 56px;
+  }
+
+  .su-chart__unit {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    font: var(--w-light) 12px / 16px var(--ff-r);
+    color: var(--c-black);
+    white-space: nowrap;
+  }
+
+  .su-chart__unit sub {
+    font-size: 7.74px;
+    vertical-align: baseline;
+    position: relative;
+    bottom: -0.15em;
+  }
+
+  .su-chart__tick {
+    position: absolute;
+    top: var(--tick);
+    right: 8px;
+    transform: translateY(-50%);
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  .su-chart__grid {
+    position: absolute;
+    left: 56px;
+    right: 0;
+    top: 0;
+    bottom: 70px;
+  }
+
+  .su-chart__grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--tick);
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  .su-chart__grid-line--zero {
+    background: rgba(0, 0, 0, 0.28);
+  }
+
+  .su-chart__cols {
+    position: absolute;
+    left: 56px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .su-chart__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .su-chart__bars {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .su-chart__bar {
+    --h: calc(var(--val) / 4 * 100%);
+    position: absolute;
+    width: clamp(28px, 4.2vw, 42.5px);
+    height: var(--h);
+  }
+
+  .su-chart__bar--wood {
+    left: calc(50% - clamp(30px, 4.6vw, 46px));
+    background: #d4cec6;
+  }
+
+  .su-chart__bar--plastic {
+    left: calc(50% + 2px);
+    background: #d12539;
+  }
+
+  .su-chart__bar--pos {
+    bottom: 50%;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .su-chart__bar--neg {
+    top: 50%;
+    border-radius: 0 0 14px 14px;
+  }
+
+  .su-chart__val {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-black);
+  }
+
+  .su-chart__bar--pos .su-chart__val {
+    bottom: calc(100% + 6px);
+  }
+
+  .su-chart__bar--neg .su-chart__val {
+    top: calc(100% + 6px);
+  }
+
+  .su-chart__xlabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 18px;
+    text-align: center;
+  }
+
+  .su-chart__xlabel-main {
+    font: 600 20px / 22px var(--ff-s);
+    letter-spacing: -0.5px;
+    color: var(--c-black);
+  }
+
+  .su-chart__xlabel-code {
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-sec-3);
+  }
+
+  /* Stat card */
+  .su-stat {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 789px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px 36px;
+    color: var(--c-white);
+  }
+
+  .su-stat__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .su-stat__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 54.7%, rgb(0, 0, 0) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  }
+
+  .su-stat__totals,
+  .su-stat__main,
+  .su-stat__disclaimer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .su-stat__totals {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .su-stat__divider {
+    width: 1px;
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .su-stat__total-label {
+    margin: 0 0 8px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+  }
+
+  .su-stat__total-value {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    font: 600 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+  }
+
+  .su-stat__total-unit {
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    letter-spacing: 0;
+  }
+
+  .su-stat__main {
+    text-align: center;
+    padding: 48px 20px;
+  }
+
+  .su-stat__pct {
+    margin: 0;
+    font: 600 clamp(4rem, 11.5vw, 200px) / 0.9 var(--ff-s);
+    letter-spacing: 0;
+  }
+
+  .su-stat__sub {
+    margin: 18px 0 0;
+    font: 600 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+  }
+
+  .su-stat__body {
+    margin: 20px auto 0;
+    max-width: 461px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+  }
+
+  .su-stat__disclaimer {
+    text-align: center;
+  }
+
+  .su-stat__disclaimer-label {
+    margin: 0 0 11px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+  }
+
+  .su-stat__disclaimer-body {
+    margin: 0 auto;
+    max-width: 665px;
+    font: var(--w-light) 12px / 16px var(--ff-r);
+  }
+
+  /* ================================================================
+     FEATURE ROWS
+     ================================================================ */
+  .su-features {
+    background: var(--c-sec-1);
+    padding: 0 0 120px;
+  }
+
+  .su-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 924fr) minmax(0, 519fr);
+    gap: clamp(2rem, 4.3vw, 74px);
+    align-items: center;
+  }
+
+  .su-feature + .su-feature {
+    margin-top: 140px;
+  }
+
+  .su-feature--reverse {
+    grid-template-columns: minmax(0, 519fr) minmax(0, 924fr);
+  }
+
+  .su-feature__media {
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 924 / 662;
+    background: #222;
+  }
+
+  .su-feature__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .su-feature__title {
+    margin: 0 0 30px;
+    font: var(--w-light) 30px / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-feature__body {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    max-width: 519px;
+  }
+
+  .su-feature__body p {
+    margin: 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .su-feature__body strong {
+    font-weight: 700;
+  }
+
+  /* ================================================================
+     REVEAL
+     ================================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ================================================================
+     RESPONSIVE
+     ================================================================ */
+  @media (max-width: 64rem) {
+    .su-hero {
+      height: clamp(420px, 55vw, 640px);
+    }
+
+    .su-hero__left {
+      grid-column: 1 / -1;
+    }
+
+    .su-hero__watch {
+      bottom: clamp(1.5rem, 4vw, 60px);
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .su-approach__split,
+    .su-lifecycle__data,
+    .su-feature,
+    .su-feature--reverse,
+    .su-news__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .su-feature--reverse .su-feature__copy {
+      order: 1;
+    }
+
+    .su-feature--reverse .su-feature__media {
+      order: 0;
+    }
+
+    .su-chart__plot {
+      height: 520px;
+    }
+
+    .su-stat {
+      min-height: 640px;
+    }
+
+    .su-epd__cta {
+      position: static;
+      margin: 24px 0 0;
+      justify-content: flex-end;
+    }
+
+    .su-epd__text {
+      position: static;
+      padding: 120px 24px 24px;
+    }
+
+    .su-epd__panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      aspect-ratio: auto;
+      min-height: 420px;
+    }
+
+    .su-epd__badge {
+      top: 24px;
+      left: 24px;
+    }
+
+    .su-feature + .su-feature {
+      margin-top: 80px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .su-approach,
+    .su-news,
+    .su-epd,
+    .su-lifecycle {
+      padding-bottom: 64px;
+    }
+
+    .su-approach__intro,
+    .su-lifecycle__intro {
+      margin-bottom: 40px;
+    }
+
+    .su-approach__intro-left,
+    .su-approach__lede,
+    .su-lifecycle__intro-left,
+    .su-lifecycle__lede {
+      grid-column: 1 / -1;
+    }
+
+    .su-approach__lede,
+    .su-lifecycle__lede {
+      margin-top: 24px;
+    }
+
+    .su-chart__head {
+      flex-direction: column;
+    }
+
+    .su-chart__plot {
+      height: 440px;
+      padding-left: 44px;
+    }
+
+    .su-chart__xlabel-main {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .su-stat {
+      min-height: 0;
+      padding: 24px 20px 28px;
+    }
+
+    .su-stat__totals {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .su-stat__divider {
+      width: 100%;
+      height: 1px;
+    }
+
+    .su-stat__pct {
+      font-size: clamp(4.5rem, 22vw, 120px);
+    }
+
+    .su-stat__sub {
+      font-size: 22px;
+      line-height: 26px;
+    }
+
+    .su-features {
+      padding-bottom: 72px;
+    }
+  }
+</style>

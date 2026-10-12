@@ -16,7 +16,7 @@ import relatedUniPak from '../../assets/product/bulkpak/6324929b6ffd966af7a2778e
 import relatedBulkPak from '../../assets/product/bulkpak/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
 import relatedSnapPak from '../../assets/product/bulkpak/42abb03618e39d7822c880009fe09f28262fea42.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 export const bulkPak: ProductPageData = {
   title: 'Bulk-Pak',
@@ -95,7 +95,7 @@ export const bulkPak: ProductPageData = {
       desc: 'A sleeve design that extends into pallet leg openings, transferring vertical loads through the corners to improve stacking strength and load distribution.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

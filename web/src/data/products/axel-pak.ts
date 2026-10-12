@@ -13,7 +13,7 @@ import relatedProPak from '../../assets/product/axelpak/962bc5dea41b9cb8605e747b
 import relatedYarnPak from '../../assets/product/axelpak/e9c3bad29049bc104caa12c3c1df6a909ac3c3d7.png';
 import relatedBatteryRak from '../../assets/product/axelpak/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '29” x 23”  —  90” x 48”',
@@ -73,7 +73,7 @@ export const axelPak: ProductPageData = {
       desc: 'Integrated channels that guide and support forklift tines during entry, improving alignment and stability during handling and transport.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

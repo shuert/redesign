@@ -16,7 +16,7 @@ import relatedProPak from '../../assets/product/yarnpak/962bc5dea41b9cb8605e747b
 import relatedAxlePak from '../../assets/product/yarnpak/56e5e0488ca1226ecb15ba61951c49ae13582380.png';
 import relatedUniPak from '../../assets/product/yarnpak/6324929b6ffd966af7a2778ee189f60b599310e9.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '29” x 23”  —  90” x 48”',
@@ -87,7 +87,7 @@ export const yarnPak: ProductPageData = {
       desc: 'A design that enables compatibility with conveyor-based material handling systems, maintaining stable and consistent movement during transport.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

@@ -1,9 +1,8 @@
 ---
 import { getImage } from 'astro:assets';
 import Mainlayout from './Mainlayout.astro';
-import MultiSelect from '../components/MultiSelect.astro';
+import LeadForm from '../components/LeadForm.astro';
 import type { ProductPageData } from '../data/products/types';
-import { PRODUCT_OPTIONS } from '../data/formOptions';
 
 import regMark from '../assets/product/shared/reg-mark.svg?url';
 import arrowLeft from '../assets/product/shared/arrow-left.svg?url';
@@ -11,6 +10,7 @@ import arrowRight from '../assets/product/shared/arrow-right.svg?url';
 import downloadIcon from '../assets/product/shared/download.svg?url';
 import rowDownloadIcon from '../assets/product/shared/row-download.svg?url';
 import playIcon from '../assets/product/shared/play-icon.svg?url';
+import articleArrow from '../assets/sustainability/d58370a5254402baa86cccccda6ec1a84a25ab0a.svg?url';
 
 interface Props {
   product: ProductPageData;
@@ -21,7 +21,12 @@ const { product } = Astro.props;
 const {
   title,
   name,
+  nameLines,
   showRegMark = true,
+  featuresEyebrow = 'PRODUCT',
+  attributesEyebrow = 'PRODUCT',
+  attributesTitle = 'Attributes',
+  optionsEyebrow = 'OPTIONS',
   crumbLabel,
   headerDims,
   headerBg,
@@ -33,6 +38,7 @@ const {
   optionCols,
   systemDataRows,
   systemData,
+  stories,
   related,
   quoteTitle,
   quoteImage,
@@ -41,8 +47,9 @@ const {
   requestQuoteHref = '#request-a-quote',
 } = product;
 
-const FEATURES_AUTOPLAY_MS = product.attributesAutoplayMs ?? 3000;
+const FEATURES_AUTOPLAY_MS = product.attributesAutoplayMs ?? 6000;
 const hasSystemData = Boolean(systemData?.rows?.length || systemDataRows?.length);
+const systemDownloads = systemData?.showDownloads !== false;
 
 /** Display widths (~2x retina) — masters stay in assets; only derivatives ship to the browser */
 const headerBgOpt = await getImage({ src: headerBg, width: 2400, format: 'webp', quality: 80 });
@@ -54,8 +61,6 @@ const gallery = await Promise.all(
     thumb: await getImage({ src: t.img, width: 240, format: 'webp', quality: 75 }),
   })),
 );
-const productMain = gallery[0].full;
-
 const featuresOpt = await Promise.all(
   features.map(async (f) => ({
     tag: f.tag,
@@ -73,10 +78,29 @@ const relatedOpt = await Promise.all(
   })),
 );
 
-const quoteImageOpt = await getImage({ src: quoteImage, width: 2400, format: 'webp', quality: 80 });
-
 const videoPosterOpt = video
   ? await getImage({ src: video.poster, width: 1920, format: 'webp', quality: 80 })
+  : null;
+
+const storiesOpt = stories
+  ? {
+      eyebrow: stories.eyebrow,
+      title: stories.title,
+      articles: await Promise.all(
+        stories.articles.map(async (article) => ({
+          source: article.source,
+          body: article.body,
+          href: article.href,
+          crop: article.crop,
+          img: await getImage({
+            src: article.img,
+            width: article.crop ? 1400 : 1100,
+            format: 'webp',
+            quality: 80,
+          }),
+        })),
+      ),
+    }
   : null;
 
 function cellText(cell: string | { imperial: string; metric: string }): string {
@@ -108,7 +132,21 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
         <a href="/" class="bp-header__crumb-dim">HOME</a><span class="bp-header__crumb-dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/products" class="bp-header__crumb-dim">ALL PRODUCTS</a><span class="bp-header__crumb-dim" aria-hidden="true">&ensp;/&ensp;</span>{crumbLabel}
       </p>
       <h1 class="bp-header__title detail-xl text-white">
-        {name}{showRegMark && <img src={regMark} alt="" class="bp-header__reg" width="18" height="23" />}
+        {
+          nameLines?.length ? (
+            <span>
+              {nameLines.map((line, i) => (
+                <>
+                  {i > 0 && <br />}
+                  {line}
+                </>
+              ))}
+            </span>
+          ) : (
+            name
+          )
+        }
+        {showRegMark && <img src={regMark} alt="" class="bp-header__reg" width="18" height="23" />}
       </h1>
 
       {
@@ -133,15 +171,18 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
   <!-- ============================== OVERVIEW ============================== -->
   <section class="bp-overview">
     <div class="bp-overview__media">
-      <img
-        id="bp-gallery-main"
-        src={productMain.src}
-        alt={`${title} product render`}
-        width={productMain.attributes.width}
-        height={productMain.attributes.height}
-        loading="eager"
-        decoding="async"
-      />
+      {gallery.map((t, i) => (
+        <img
+          src={t.full.src}
+          alt={t.alt}
+          width={t.full.attributes.width}
+          height={t.full.attributes.height}
+          class:list={['bp-gallery__full', { 'is-active': i === 0 }]}
+          loading="eager"
+          decoding="async"
+          aria-hidden={i === 0 ? undefined : 'true'}
+        />
+      ))}
     </div>
 
     <button type="button" class="bp-gallery__nav bp-gallery__nav--prev" aria-label="Previous image">
@@ -153,7 +194,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 
     <div class="bp-gallery__thumbs" role="tablist" aria-label="Product views">
       {gallery.map((t, i) => (
-        <button type="button" class:list={['bp-gallery__thumb', { 'is-active': i === 0 }]} data-src={t.full.src} aria-label={t.alt}>
+        <button type="button" class:list={['bp-gallery__thumb', { 'is-active': i === 0 }]} aria-label={t.alt}>
           <img src={t.thumb.src} alt="" width={t.thumb.attributes.width} height={t.thumb.attributes.height} loading="lazy" decoding="async" />
         </button>
       ))}
@@ -178,7 +219,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     <div class="container">
       <div class="page-grid bp-product-features__grid">
         <header class="bp-product-features__heading">
-          <p class="bp-eyebrow bp-eyebrow--dim">PRODUCT</p>
+          <p class="bp-eyebrow bp-eyebrow--dim">{featuresEyebrow}</p>
           <h2 class="bp-section__title">Features</h2>
         </header>
 
@@ -238,8 +279,8 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
   >
     <div class="container">
       <header class="bp-section__head bp-section__head--attributes">
-        <p class="bp-eyebrow bp-eyebrow--dim">PRODUCT</p>
-        <h2 class="bp-section__title">Attributes</h2>
+        <p class="bp-eyebrow bp-eyebrow--dim">{attributesEyebrow}</p>
+        <h2 class="bp-section__title">{attributesTitle}</h2>
       </header>
     </div>
 
@@ -322,7 +363,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
   >
     <div class="container">
       <header class="bp-section__head bp-section__head--options">
-        <p class="bp-eyebrow bp-eyebrow--dim">OPTIONS</p>
+        <p class="bp-eyebrow bp-eyebrow--dim">{optionsEyebrow}</p>
         <h2 class="bp-section__title">Flexible to Fit Your Needs</h2>
       </header>
       <div class="bp-options__grid">
@@ -338,6 +379,8 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
       </div>
     </div>
   </section>
+
+  <slot name="after-options" />
 
   <!-- ============================== VIDEO (optional, after Options) ============================== -->
   {
@@ -369,7 +412,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 
   {
     systemData && systemData.rows.length > 0 && (
-      <section class="bp-system">
+      <section class="bp-system" id="system-data">
         <div class="container">
           <header class="bp-section__head bp-section__head--system">
             <p class="bp-eyebrow bp-eyebrow--dim">PRODUCT</p>
@@ -377,13 +420,13 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
           </header>
 
           <div
-            class="bp-system__table bp-system__table--flex"
+            class:list={['bp-system__table', 'bp-system__table--flex', { 'bp-system__table--plain': !systemDownloads }]}
             role="table"
             aria-label={`${title} system data`}
             style={`--bp-system-cols: ${systemData.columns.length}`}
           >
             <div class="bp-system__head" role="row">
-              <div class="bp-system__dl-col" aria-hidden="true"></div>
+              {systemDownloads && <div class="bp-system__dl-col" aria-hidden="true"></div>}
               {systemData.columns.map((col) => (
                 <div class="bp-system__cell bp-system__cell--label" role="columnheader">
                   {col}
@@ -394,11 +437,13 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
               const label = row.downloadLabel ?? cellText(row.cells[0] ?? '');
               return (
                 <div class:list={['bp-system__row', { 'is-highlight': row.highlight }]} role="row">
-                  <div class="bp-system__dl-col">
-                    <a class="bp-system__dl" href="#" aria-label={`Download data sheet for ${label}`}>
-                      <img src={rowDownloadIcon} alt="" width="22" height="22" />
-                    </a>
-                  </div>
+                  {systemDownloads && (
+                    <div class="bp-system__dl-col">
+                      <a class="bp-system__dl" href="#" aria-label={`Download data sheet for ${label}`}>
+                        <img src={rowDownloadIcon} alt="" width="22" height="22" />
+                      </a>
+                    </div>
+                  )}
                   {row.cells.map((cell) =>
                     cellIsPair(cell) ? (
                       <div
@@ -427,7 +472,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 
   {
     !systemData && systemDataRows && systemDataRows.length > 0 && (
-      <section class="bp-system">
+      <section class="bp-system" id="system-data">
         <div class="container">
           <header class="bp-section__head bp-section__head--system">
             <p class="bp-eyebrow bp-eyebrow--dim">PRODUCT</p>
@@ -502,6 +547,47 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     )
   }
 
+  {
+    storiesOpt && (
+      <section class="bp-stories" aria-label={storiesOpt.title}>
+        <div class="container">
+          <header class="bp-stories__head">
+            <p class="bp-eyebrow bp-eyebrow--dim">{storiesOpt.eyebrow}</p>
+            <h2 class="bp-section__title">{storiesOpt.title}</h2>
+          </header>
+          <div class="bp-stories__grid">
+            {storiesOpt.articles.map((article) => (
+              <article class="bp-story">
+                <div class="bp-story__media">
+                  <img
+                    src={article.img.src}
+                    alt=""
+                    width={article.img.attributes.width}
+                    height={article.img.attributes.height}
+                    loading="lazy"
+                    decoding="async"
+                    class:list={{ 'is-cropped': Boolean(article.crop) }}
+                    style={
+                      article.crop
+                        ? `width:${article.crop.width};height:${article.crop.height};left:${article.crop.left};top:${article.crop.top}`
+                        : undefined
+                    }
+                  />
+                  <span class="bp-story__badge">{article.source}</span>
+                </div>
+                <p class="bp-story__body">{article.body}</p>
+                <a class="bp-story__link" href={article.href}>
+                  <span>Read full article</span>
+                  <img src={articleArrow} alt="" width="12" height="8" />
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- ============================== OTHER SIMILAR PRODUCTS ============================== -->
   <section class="bp-related">
     <div class="container">
@@ -547,87 +633,32 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     </div>
   </section>
 
-  <!-- ============================== REQUEST A QUOTE ============================== -->
-  <section class="bp-quote" id="request-a-quote">
-    <div class="container">
-      <div class="bp-quote__grid">
-        <div class="bp-quote__left">
-          <p class="bp-eyebrow">REQUEST A QUOTE</p>
-          <h2 class="bp-quote__title">
-            {quoteTitle}
-          </h2>
+  <LeadForm
+    variant="quote"
+    image={quoteImage}
+    imageAlt="Forklift moving stacked reusable pallets in a warehouse"
+    title={quoteTitle}
+    imageRatio="789 / 937"
+    imageCrop={{ width: '283.9%', height: 'auto', left: '-87.9%', top: '-34.47%' }}
+    imageFirstOnNarrow
+  />
 
-          <form class="bp-form" aria-label="Request a quote">
-            <div class="bp-form__row">
-              <div class="bp-field">
-                <label class="bp-label" for="bp-first">FIRST NAME</label>
-                <input id="bp-first" class="bp-input" type="text" placeholder="First" autocomplete="given-name" />
-              </div>
-              <div class="bp-field">
-                <label class="bp-label" for="bp-last">LAST NAME</label>
-                <input id="bp-last" class="bp-input" type="text" placeholder="Last" autocomplete="family-name" />
-              </div>
-            </div>
-
-            <div class="bp-field">
-              <label class="bp-label" for="bp-company">COMPANY NAME</label>
-              <input id="bp-company" class="bp-input" type="text" placeholder="Company" autocomplete="organization" />
-            </div>
-
-            <div class="bp-field">
-              <label class="bp-label" for="bp-email">EMAIL</label>
-              <input id="bp-email" class="bp-input" type="email" placeholder="Email" autocomplete="email" />
-            </div>
-
-            <div class="bp-form__row">
-              <div class="bp-field">
-                <label class="bp-label" for="bp-phone">PHONE</label>
-                <input id="bp-phone" class="bp-input" type="tel" placeholder="Phone" autocomplete="tel" />
-              </div>
-              <div class="bp-field">
-                <label class="bp-label" for="bp-qty">QUANTITY</label>
-                <input id="bp-qty" class="bp-input" type="number" min="0" placeholder="Quantity" />
-              </div>
-            </div>
-
-            <div class="bp-field">
-              <label class="bp-label" for="bp-products-of-interest">PRODUCTS OF INTEREST</label>
-              <MultiSelect
-                id="bp-products-of-interest"
-                name="productsOfInterest"
-                options={PRODUCT_OPTIONS}
-                placeholder="Select products…"
-              />
-            </div>
-
-            <div class="bp-field">
-              <label class="bp-label" for="bp-notes">ANY OTHER QUESTIONS?</label>
-              <textarea id="bp-notes" class="bp-input bp-textarea" placeholder="Additional Info"></textarea>
-            </div>
-
-            <button type="submit" class="bp-btn bp-btn--dark bp-form__submit">Submit</button>
-          </form>
-        </div>
-
-        <div class="bp-quote__media">
-          <img src={quoteImageOpt.src} alt="Forklift moving stacked reusable pallets in a warehouse" width={quoteImageOpt.attributes.width} height={quoteImageOpt.attributes.height} loading="lazy" decoding="async" />
-        </div>
-      </div>
-    </div>
-  </section>
 </Mainlayout>
 
 <script>
   // ---- Product gallery thumbnail switching ----
-  const main = document.getElementById('bp-gallery-main') as HTMLImageElement | null;
+  const frames = Array.from(document.querySelectorAll<HTMLImageElement>('.bp-gallery__full'));
   const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('.bp-gallery__thumb'));
   let galleryIndex = 0;
 
   function selectThumb(i: number) {
-    if (!thumbs.length || !main) return;
+    if (!thumbs.length || !frames.length) return;
     galleryIndex = (i + thumbs.length) % thumbs.length;
-    const src = thumbs[galleryIndex].dataset.src;
-    if (src) main.src = src;
+    frames.forEach((img, idx) => {
+      const active = idx === galleryIndex;
+      img.classList.toggle('is-active', active);
+      img.toggleAttribute('aria-hidden', !active);
+    });
     thumbs.forEach((t, idx) => t.classList.toggle('is-active', idx === galleryIndex));
   }
 
@@ -723,8 +754,6 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     });
   })();
 
-  // ---- Prevent demo form submit ----
-  document.querySelector('.bp-form')?.addEventListener('submit', (e) => e.preventDefault());
 </script>
 
 <script
@@ -977,6 +1006,16 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 </script>
 
 <style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+  }
+
   .bp {
     background: var(--c-sec-1);
   }
@@ -1195,10 +1234,18 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     z-index: 1;
   }
 
-  .bp-overview__media img {
+  .bp-gallery__full {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+  }
+
+  .bp-gallery__full.is-active {
+    opacity: 1;
+    z-index: 1;
   }
 
   /* arrows: y center = image center (345/821) */
@@ -1356,12 +1403,12 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
   .bp-accordion__title {
     font: var(--w-light) 20px / 26px var(--ff-r);
     color: var(--c-black);
-    opacity: 0.2;
+    opacity: 1;
     transition: opacity 0.3s ease;
   }
 
-  .bp-accordion__item.is-open .bp-accordion__title {
-    opacity: 1;
+  .bp-accordion:has(.bp-accordion__item.is-open) .bp-accordion__item:not(.is-open) .bp-accordion__title {
+    opacity: 0.2;
   }
 
   .bp-accordion__icon {
@@ -1508,7 +1555,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
   .bp-feat__gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0.5) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0.75) 100%);
     z-index: 1;
   }
 
@@ -1532,9 +1579,9 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     bottom: 24px;
     z-index: 2;
     margin: 0;
-    max-width: 782px;
-    width: calc(100% - 70px);
-    font: var(--w-light) 25px / 32px var(--ff-r);
+    width: 60%;
+    max-width: min(560px, calc(100% - 70px));
+    font: var(--w-light) var(--p-lg) / var(--lh-loose) var(--ff-r);
     color: var(--c-sec-1);
   }
 
@@ -1674,7 +1721,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
   }
 
   .bp-swiper__dot-grow-fill--animating {
-    animation: bp-dot-progress var(--bp-autoplay-ms, 3000ms) linear forwards;
+    animation: bp-dot-progress var(--bp-autoplay-ms, 6000ms) linear forwards;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1773,6 +1820,11 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     grid-template-columns: 50px repeat(var(--bp-system-cols, 4), minmax(0, 1fr));
   }
 
+  .bp-system__table--plain.bp-system__table--flex .bp-system__head,
+  .bp-system__table--plain.bp-system__table--flex .bp-system__row {
+    grid-template-columns: repeat(var(--bp-system-cols, 3), minmax(0, 1fr));
+  }
+
   .bp-system__head {
     margin-bottom: 16px;
     padding: 0 8px;
@@ -1820,7 +1872,6 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     width: 22px;
     height: 22px;
   }
-
 
   /* ============================== VIDEO (optional, after Options) ============================== */
   .bp-video {
@@ -1874,6 +1925,83 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 
   .bp-video__play[hidden] {
     display: none;
+  }
+
+  /* ============================== STORIES ============================== */
+  .bp-stories {
+    background: var(--c-sec-1);
+    padding-top: 150px;
+  }
+
+  .bp-stories__head {
+    margin-bottom: 69px;
+  }
+
+  .bp-stories__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.2vw, 37px);
+  }
+
+  .bp-story__media {
+    position: relative;
+    aspect-ratio: 519 / 380;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .bp-story__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .bp-story__media img.is-cropped {
+    position: absolute;
+    max-width: none;
+  }
+
+  .bp-story__badge {
+    position: absolute;
+    left: 23px;
+    bottom: 21px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 18px;
+    border-radius: 25px;
+    background: var(--c-black);
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+  }
+
+  .bp-story__body {
+    margin: 27px 0 0;
+    max-width: 454px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .bp-story__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 27px;
+    text-decoration: none;
+    color: var(--c-black);
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+  }
+
+  .bp-story__link img {
+    width: 12px;
+    height: 8px;
+  }
+
+  .bp-story__link:hover {
+    opacity: 0.7;
   }
 
   /* ============================== RELATED ============================== */
@@ -1986,105 +2114,7 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     z-index: 1;
   }
 
-  /* ============================== REQUEST A QUOTE ============================== */
-  .bp-quote {
-    background: #1b1b1b;
-    padding: 66px 0 70px;
-  }
-
-  .bp-quote__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 695px) minmax(0, 789px);
-    gap: 114px;
-    align-items: start;
-  }
-
-  .bp-quote__left .bp-eyebrow {
-    color: var(--c-white);
-    margin-top: 3px;
-  }
-
-  .bp-quote__title {
-    margin: 49px 0 0;
-    max-width: 654px;
-    font: var(--w-medium) 30px / 33px var(--ff-r);
-    color: var(--c-white);
-    letter-spacing: 0;
-  }
-
-  .bp-form {
-    margin-top: 84px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
-
-  .bp-form__row {
-    display: grid;
-    grid-template-columns: 347fr 332fr;
-    gap: 16px;
-  }
-
-  .bp-field {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .bp-label {
-    margin: 0 0 14px;
-    font: var(--w-bold) 14px / 14px var(--ff-s);
-    letter-spacing: 1.54px;
-    text-transform: uppercase;
-    color: var(--c-white);
-  }
-
-  .bp-input {
-    width: 100%;
-    box-sizing: border-box;
-    min-height: 44px;
-    padding: 11px 18px;
-    background: var(--c-black);
-    border: 1px solid var(--c-black);
-    border-radius: 8px;
-    color: var(--c-white);
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    outline: none;
-  }
-
-  .bp-input::placeholder {
-    color: rgba(255, 255, 255, 0.36);
-  }
-
-  .bp-input:focus {
-    border-color: rgba(255, 255, 255, 0.4);
-  }
-
-  .bp-textarea {
-    min-height: 106px;
-    resize: vertical;
-  }
-
-  .bp-form__submit {
-    align-self: flex-start;
-    margin-top: 6px;
-  }
-
-  .bp-quote__media {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    aspect-ratio: 789 / 937;
-  }
-
-  /* Figma crop of the 3840x2160 source: w 283.9%, left -87.9%, top -34.47% */
-  .bp-quote__media img {
-    position: absolute;
-    width: 283.9%;
-    height: auto;
-    max-width: none;
-    left: -87.9%;
-    top: -34.47%;
-  }
+  /* Quote image crop is set on LeadForm (w 283.9%, left -87.9%, top -34.47%). */
 
   /* ============================== RESPONSIVE ============================== */
   @media (max-width: 64rem) {
@@ -2092,12 +2122,23 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
       height: clamp(420px, 55vw, 540px);
     }
 
+    .bp-header__inner {
+      min-width: 0;
+    }
+
+    .bp-header__title {
+      min-width: 0;
+      max-width: 100%;
+    }
+
     .bp-header__meta {
       position: static;
       margin-top: 20px;
       justify-content: space-between;
       width: 100%;
-      gap: 16px;
+      min-width: 0;
+      gap: 12px 16px;
+      flex-wrap: wrap;
     }
 
     .bp-toggle {
@@ -2115,7 +2156,8 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     }
 
     .bp-overview__media {
-      position: static;
+      position: relative;
+      left: auto;
       width: min(560px, 100%);
       margin-inline: auto;
     }
@@ -2135,12 +2177,24 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 
     .bp-gallery__thumbs {
       position: static;
-      justify-content: center;
+      left: auto;
+      top: auto;
+      width: min(560px, 100%);
+      margin-inline: auto;
       margin-top: 16px;
+      justify-content: center;
+      gap: 12px;
     }
 
     .bp-gallery__thumb {
-      width: 90px;
+      flex: 1 1 0;
+      width: auto;
+      max-width: 110px;
+      min-width: 0;
+    }
+
+    .bp-gallery__thumb img {
+      object-fit: contain;
     }
 
     .bp-about {
@@ -2207,12 +2261,6 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
       min-height: 320px;
     }
 
-    .bp-feat__desc {
-      font-size: 20px;
-      line-height: 26px;
-      max-width: 420px;
-    }
-
     .bp-features {
       padding-bottom: 56px;
     }
@@ -2233,6 +2281,25 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     .bp-system__table--flex .bp-system__row {
       grid-template-columns: 36px repeat(var(--bp-system-cols, 4), minmax(120px, 1fr));
       min-width: calc(36px + var(--bp-system-cols, 4) * 140px);
+    }
+
+    .bp-system__table--plain.bp-system__table--flex .bp-system__head,
+    .bp-system__table--plain.bp-system__table--flex .bp-system__row {
+      grid-template-columns: repeat(var(--bp-system-cols, 3), minmax(120px, 1fr));
+      min-width: calc(var(--bp-system-cols, 3) * 140px);
+    }
+
+    .bp-stories {
+      padding-top: 56px;
+    }
+
+    .bp-stories__head {
+      margin-bottom: 40px;
+    }
+
+    .bp-stories__grid {
+      grid-template-columns: 1fr;
+      max-width: 519px;
     }
 
     .bp-system__table {
@@ -2256,33 +2323,125 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     .bp-related__cta {
       margin-top: 48px;
     }
-
-    .bp-quote__grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .bp-quote__media {
-      max-width: 600px;
-      order: -1;
-    }
-
-    .bp-form {
-      margin-top: 40px;
-    }
   }
 
   @media (max-width: 48rem) {
-    .bp-form__row {
-      grid-template-columns: 1fr;
+    /* Figma M - Product hero (402×439): crumb, 48px name, dims + unit toggle on one row */
+    .bp-header {
+      height: clamp(420px, 109.2vw, 480px);
+      min-height: 0;
     }
 
-    .bp-gallery__thumb {
-      width: 72px;
+    .bp-header__img {
+      object-position: center bottom;
+    }
+
+    .bp-header__gradient {
+      background: linear-gradient(222.63deg, rgba(0, 0, 0, 0) 44.508%, rgb(0, 0, 0) 100%);
+    }
+
+    .bp-header__inner {
+      height: 100%;
+      min-height: 0;
+      padding-bottom: 19px;
+    }
+
+    .bp-header__crumb {
+      margin-bottom: 18px;
+      font-size: 10px;
+      line-height: 10px;
+      letter-spacing: 1.1px;
     }
 
     .bp-header__title {
-      line-height: 0.92;
+      gap: 0;
+      margin-bottom: 33px;
+      font-size: 48px;
+      line-height: 0.75;
+    }
+
+    .bp-header__reg {
+      width: 18px;
+      height: 19px;
+      margin-top: 2px;
+      margin-left: -5px;
+    }
+
+    .bp-header__meta {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0;
+      gap: 16px;
+    }
+
+    .bp-header__dims {
+      flex: 1 1 auto;
+      min-width: 0;
+      font: var(--w-bold) 12px / 12px var(--ff-s);
+      letter-spacing: 1.32px;
+      text-transform: uppercase;
+    }
+
+    .bp-header .bp-toggle {
+      flex: 0 0 auto;
+      height: 49px;
+      padding: 0 8px;
+      gap: 9px;
+      border-radius: 14px;
+    }
+
+    .bp-header .bp-toggle__btn {
+      padding: 6px 18px;
+      border-radius: 8px;
+      line-height: 20px;
+    }
+
+    /* Let long descriptions grow the card so they stay below the tag. */
+    .bp-feat {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-height: 320px;
+    }
+
+    .bp-feat::before {
+      content: "";
+      flex: 1 0 88px;
+    }
+
+    .bp-feat img,
+    .bp-feat__gradient {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bp-feat__gradient {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0.75) 100%);
+    }
+
+    .bp-feat__desc {
+      position: relative;
+      left: auto;
+      bottom: auto;
+      width: auto;
+      max-width: none;
+      flex: 0 0 auto;
+      margin: 0 35px 24px;
+    }
+
+    .bp-gallery__thumbs {
+      width: 100%;
+      margin-top: 14px;
+      gap: 12px;
+    }
+
+    .bp-gallery__thumb {
+      max-width: 78.5px;
     }
   }
 </style>

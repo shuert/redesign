@@ -20,7 +20,7 @@ import relatedBulkPak from '../../assets/product/unipak/fcd48ab930f8cb1811837741
 import relatedSnapPak from '../../assets/product/unipak/42abb03618e39d7822c880009fe09f28262fea42.png';
 
 import videoPoster from '../../assets/product/unipak/15cb59f98f68de15e42f349656b61c3e3c4ecbb0.png';
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '29”x23” — 90”x48”',
@@ -106,7 +106,7 @@ export const uniPak: ProductPageData = {
       desc: 'A sleeve design consisting of separable sections that allow partial removal for easier access while maintaining structural performance.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
@@ -258,6 +258,6 @@ export const uniPak: ProductPageData = {
     poster: videoPoster,
     label: 'Uni-Pak product video',
   },
-  technicalSheetHref: '#',
+  technicalSheetHref: '#system-data',
   requestQuoteHref: '#request-a-quote',
 };

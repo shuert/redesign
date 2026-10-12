@@ -15,7 +15,7 @@ import relatedYarnPak from '../../assets/product/propak/e9c3bad29049bc104caa12c3
 import relatedAxlePak from '../../assets/product/propak/56e5e0488ca1226ecb15ba61951c49ae13582380.png';
 import relatedBatteryRak from '../../assets/product/propak/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '29” x 23”  —  90” x 48”',
@@ -77,7 +77,7 @@ export const proPak: ProductPageData = {
       desc: 'A structure that withstands repeated use without significant degradation in performance.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

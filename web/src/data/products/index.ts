@@ -10,3 +10,6 @@ export { uniPak } from './uni-pak';
 export { uniPakIi } from './uni-pak-ii';
 export { modulePak } from './module-pak';
 export { snapPak } from './snap-pak';
+export { uniDirectionalPallet } from './uni-directional-pallet';
+export { perimeterBasePallet } from './perimeter-base-pallet';
+export { uniPallet } from './uni-pallet';

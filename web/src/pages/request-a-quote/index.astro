@@ -1,8 +1,7 @@
 ---
 import Mainlayout from '../../layouts/Mainlayout.astro';
-import MultiSelect from '../../components/MultiSelect.astro';
-import { MARKET_OPTIONS, PRODUCT_OPTIONS } from '../../data/formOptions';
-import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import LeadForm from '../../components/LeadForm.astro';
+import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 ---
 
 <Mainlayout title="Request a Quote">
@@ -25,88 +24,14 @@ import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba
     </div>
   </section>
 
-  <!-- Form + Image -->
-  <section class="rq-form">
-    <div class="container">
-      <div class="rq-form__layout">
-        <div class="rq-form__side">
-          <p class="rq-form__eyebrow label">REQUEST A QUOTE</p>
-          <form class="rq-form__fields" aria-label="Request a quote">
-            <div class="rq-form__row rq-form__row--half">
-              <div class="rq-form__field">
-                <label class="rq-form__label">FIRST NAME</label>
-                <input type="text" class="rq-form__input" placeholder="First" />
-              </div>
-              <div class="rq-form__field">
-                <label class="rq-form__label">LAST NAME</label>
-                <input type="text" class="rq-form__input" placeholder="Last" />
-              </div>
-            </div>
-            <div class="rq-form__field">
-              <label class="rq-form__label">COMPANY NAME</label>
-              <input type="text" class="rq-form__input" placeholder="Company" />
-            </div>
-            <div class="rq-form__field">
-              <label class="rq-form__label">EMAIL</label>
-              <input type="email" class="rq-form__input" placeholder="Email" />
-            </div>
-            <div class="rq-form__row rq-form__row--half">
-              <div class="rq-form__field">
-                <label class="rq-form__label">PHONE</label>
-                <input type="tel" class="rq-form__input" placeholder="Phone" />
-              </div>
-              <div class="rq-form__field">
-                <label class="rq-form__label">QUANTITY</label>
-                <input type="text" class="rq-form__input" placeholder="Quantity" />
-              </div>
-            </div>
-            <div class="rq-form__field">
-              <label class="rq-form__label" for="products-of-interest">PRODUCTS OF INTEREST</label>
-              <MultiSelect
-                id="products-of-interest"
-                name="productsOfInterest"
-                options={PRODUCT_OPTIONS}
-                placeholder="Select products…"
-              />
-            </div>
-            <div class="rq-form__field">
-              <label class="rq-form__label" for="market">MARKET</label>
-              <MultiSelect
-                id="market"
-                name="market"
-                options={MARKET_OPTIONS}
-                placeholder="Select markets…"
-              />
-            </div>
-            <div class="rq-form__field rq-form__field--last">
-              <label class="rq-form__label">ANY OTHER QUESTIONS?</label>
-              <textarea class="rq-form__input rq-form__textarea" placeholder="Additional Info"></textarea>
-            </div>
-            <button type="submit" class="rq-form__submit">Submit</button>
-          </form>
-        </div>
-        <div class="rq-form__media">
-          <img
-            src={formImg.src}
-            alt="Forklift operating among stacked Shuert reusable pallets in a warehouse"
-            class="rq-form__img"
-            width={formImg.width}
-            height={formImg.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <LeadForm
+    variant="quote"
+    image={formImg}
+    imageAlt="Forklift operating among stacked Shuert reusable pallets in a warehouse"
+    showMarket
+    imageRatio="789 / 860"
+  />
 </Mainlayout>
-
-<script>
-  const form = document.querySelector('.rq-form__fields');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
-</script>
 
 <style>
   /* ================================================================
@@ -172,146 +97,12 @@ import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba
     max-width: 520px;
   }
 
-  /* ================================================================
-     FORM SECTION
-     ================================================================ */
-  .rq-form {
-    background: #1b1b1b;
-    padding: clamp(3rem, 4.8vw, 83px) 0 clamp(3rem, 4.34vw, 75px);
-  }
-
-  .rq-form__layout {
-    display: grid;
-    align-items: start;
-  }
-
-  .rq-form__eyebrow {
-    margin: 0 0 clamp(2rem, 2.6vw, 45px);
-    color: var(--c-white);
-    letter-spacing: 1.54px;
-  }
-
-  .rq-form__fields {
-    display: flex;
-    flex-direction: column;
-    gap: 23px;
-  }
-
-  .rq-form__row--half {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .rq-form__label {
-    display: block;
-    margin-bottom: 14px;
-    font: var(--w-bold) 14px / 14px var(--ff-s);
-    letter-spacing: 1.54px;
-    text-transform: uppercase;
-    color: var(--c-white);
-  }
-
-  .rq-form__input {
-    display: block;
-    width: 100%;
-    height: 44px;
-    padding: 0 18px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    color: var(--c-white);
-    font: 400 16px / 22px var(--ff-r);
-    outline: none;
-    box-sizing: border-box;
-  }
-
-  .rq-form__input:focus {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
-  }
-
-  .rq-form__input::placeholder {
-    color: rgba(255, 255, 255, 0.36);
-  }
-
-  .rq-form__textarea {
-    height: 106px;
-    padding: 18px;
-    resize: none;
-  }
-
-  /* ---- Submit ---- */
-
-  .rq-form__submit {
-    align-self: flex-start;
-    padding: 15px 18px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    color: var(--c-white);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .rq-form__submit:hover {
-    opacity: 0.85;
-  }
-
-  .rq-form__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
-  }
-
-  /* ---- Image ---- */
-
-  .rq-form__media {
-    border-radius: 14px;
-    overflow: hidden;
-    margin-top: -17px;
-  }
-
-  .rq-form__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 48% 40%;
-    display: block;
-  }
-
-  /* ================================================================
-     DESKTOP (≥ 1728px)
-     ================================================================ */
   @media (min-width: 1728px) {
-    .rq-form__layout {
-      grid-template-columns: 710px 789px;
-      column-gap: 99px;
-    }
-
-    .rq-form__media {
-      width: 789px;
-      max-width: none;
-      aspect-ratio: 789 / 860;
+    .rq-hero__content {
+      max-width: 1728px;
     }
   }
 
-  /* ================================================================
-     WIDE DESKTOP (1025px – 1727px)
-     ================================================================ */
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .rq-form__layout {
-      grid-template-columns: minmax(0, 710fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 6.4vw, 99px);
-    }
-
-    .rq-form__media {
-      aspect-ratio: 789 / 860;
-    }
-  }
-
-  /* ================================================================
-     TABLET (≤ 1024px)
-     ================================================================ */
   @media (max-width: 64rem) {
     .rq-hero__left {
       grid-column: 1 / -1;
@@ -327,41 +118,11 @@ import formImg from '../../assets/request-a-quote/60c26e97b304b786a121896cb8a9ba
     .rq-hero__desc {
       max-width: none;
     }
-
-    .rq-form {
-      padding: 3rem 0 3.5rem;
-    }
-
-    .rq-form__layout {
-      grid-template-columns: 1fr;
-      row-gap: 2.5rem;
-    }
-
-    .rq-form__media {
-      margin-top: 0;
-      max-width: 600px;
-      aspect-ratio: 789 / 860;
-    }
-
-    .rq-form__eyebrow {
-      margin-bottom: 1.75rem;
-    }
   }
 
-  /* ================================================================
-     MOBILE (≤ 768px)
-     ================================================================ */
   @media (max-width: 48rem) {
     .rq-hero {
       padding-top: 110px;
-    }
-
-    .rq-form__row--half {
-      grid-template-columns: 1fr;
-    }
-
-    .rq-form__fields {
-      gap: 18px;
     }
   }
 </style>

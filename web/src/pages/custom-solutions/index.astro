@@ -1,0 +1,1045 @@
+---
+import { getImage } from 'astro:assets';
+import Mainlayout from '../../layouts/Mainlayout.astro';
+import LeadForm from '../../components/LeadForm.astro';
+
+import arrowLeft from '../../assets/product/shared/arrow-left.svg?url';
+import arrowRight from '../../assets/product/shared/arrow-right.svg?url';
+
+import heroImg from '../../assets/customdesign/24e212d3d402d304ef0243e59b66dc51892b3ecb.png';
+import processImg from '../../assets/customdesign/cb3b6eafff44df7558209d756b6695b8aba566e1.png';
+import featuredImg from '../../assets/customdesign/d8ba8f305f352b31e5f584ef79fdbb42583df0fd.png';
+import uniRakImg from '../../assets/customdesign/64c1ebff21662b97d2badc576764e2beb665d3d0.png';
+import terraRoadImg from '../../assets/customdesign/c25cf16ea6bf49b562af48467ba1e375c9120fbb.png';
+import batteryShellImg from '../../assets/customdesign/a2fba7307a268376e5965c15eed34f5f050db60e.png';
+import formImg from '../../assets/customdesign/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
+
+const sizeRange = '29” x 23”  —  90” x 48”';
+
+const processSlides = [
+  {
+    id: 'collaboration',
+    tab: 'Collaboration',
+    title: 'Collaboration',
+    body: `The companies we work with know their products, processes, and challenges better than anyone—where things break down, where inefficiencies live, and what they're trying to achieve. That insight is where our work begins, not where it ends. We trust that our partners know what they want; our job is to figure out what they need. So we dig deeper—asking the right questions, testing boundaries, and uncovering possibilities that aren't obvious at the start. Pairing their understanding of the application with our experience in design and material handling, we arrive at solutions that aren't just aligned with the need, but engineered to perform.`,
+  },
+  {
+    id: 'expertise',
+    tab: 'Expertise',
+    title: 'Expertise',
+    body: `Decades of designing and manufacturing reusable packaging systems give us a practical understanding of what works—and what fails—in real supply chains. From material selection and structural design to handling, stacking, and return logistics, we apply that experience to every project. The result is packaging engineered for the full life of the system, not just the first shipment.`,
+  },
+  {
+    id: 'technology',
+    tab: 'Technology',
+    title: 'Technology',
+    body: `Our vertically integrated campus brings design, tooling, extrusion, thermoforming, and recycling under one roof. Twin-sheet thermoforming and in-house toolmaking let us control geometry, strength, and consistency from concept through production—so custom solutions scale with the same precision as our standard product lines.`,
+  },
+];
+
+const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
+const processOpt = await getImage({ src: processImg, width: 1800, format: 'webp', quality: 80 });
+const featuredOpt = await getImage({ src: featuredImg, width: 2400, format: 'webp', quality: 80 });
+
+const customProducts = await Promise.all(
+  [
+    { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak', crop: 'uni-rak' as const },
+    { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#', crop: 'terra-road' as const },
+    { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#', crop: 'battery-shell' as const },
+  ].map(async (p) => ({
+    ...p,
+    image: await getImage({ src: p.image, width: 1400, format: 'webp', quality: 80 }),
+  })),
+);
+---
+
+<Mainlayout title="Custom Solutions">
+  <!-- Hero -->
+  <section class="cs-hero">
+    <div class="cs-hero__bg" aria-hidden="true">
+      <img
+        src={heroOpt.src}
+        alt=""
+        class="cs-hero__img"
+        width={heroOpt.attributes.width}
+        height={heroOpt.attributes.height}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="cs-hero__gradient"></div>
+    </div>
+    <div class="cs-hero__content container">
+      <p class="cs-hero__breadcrumb">
+        <a href="/" class="cs-hero__breadcrumb--dim">HOME</a>
+        <span class="cs-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>
+        CUSTOM SOLUTIONS
+      </p>
+      <h1 class="cs-hero__title detail-xl text-white">
+        hey, what’s your<br />problem?
+      </h1>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="cs-intro">
+    <div class="container">
+      <div class="cs-intro__grid page-grid">
+        <div class="cs-intro__left">
+          <p class="label cs-intro__eyebrow">PROCESS</p>
+          <h2 class="cs-intro__title">Start with the Problem</h2>
+        </div>
+        <p class="cs-intro__body">
+          It's a simple question, but it's where every project starts. Shipping and material handling challenges are never identical—products, processes, environments, and performance requirements all shape what the solution needs to do. So we start with your problem and build from there. It's how we've delivered more than 2,000 unique designs with our partners, combining the right technology with hands-on experience under one roof.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process tabs / carousel -->
+  <section
+    class="cs-process"
+    id="cs-process-carousel"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Custom solutions process"
+    style="--cs-autoplay-ms: 3000ms"
+  >
+    <div class="container">
+      <div class="cs-process__layout">
+        <div class="cs-process__media">
+          <img
+            src={processOpt.src}
+            alt="CAD rendering of a custom packaging design"
+            width={processOpt.attributes.width}
+            height={processOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="cs-process__panel">
+          <div class="cs-process__tabs" role="tablist" aria-label="Process steps">
+            {processSlides.map((slide, i) => (
+              <button
+                type="button"
+                class:list={['cs-process__tab', { 'is-active': i === 0 }]}
+                role="tab"
+                id={`cs-tab-${slide.id}`}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-controls={`cs-panel-${slide.id}`}
+                data-cs-tab={i}
+              >
+                {slide.tab}
+              </button>
+            ))}
+            <span class="cs-process__tab-track" aria-hidden="true"></span>
+            <span class="cs-process__tab-indicator" data-cs-indicator aria-hidden="true"></span>
+          </div>
+
+          <div class="cs-process__slides" aria-live="polite">
+            {processSlides.map((slide, i) => (
+              <div
+                class:list={['cs-process__slide', { 'is-active': i === 0 }]}
+                role="tabpanel"
+                id={`cs-panel-${slide.id}`}
+                aria-labelledby={`cs-tab-${slide.id}`}
+                data-cs-slide={i}
+                hidden={i !== 0}
+              >
+                <h3 class="cs-process__slide-title">{slide.title}</h3>
+                <p class="cs-process__slide-body">{slide.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="cs-process__controls">
+            <div class="cs-process__nav">
+              <button type="button" class="cs-process__nav-btn" data-cs-prev aria-label="Previous step">
+                <img src={arrowLeft} alt="" width="50" height="50" />
+              </button>
+              <button type="button" class="cs-process__nav-btn" data-cs-next aria-label="Next step">
+                <img src={arrowRight} alt="" width="50" height="50" />
+              </button>
+            </div>
+            <div class="cs-process__dots" role="presentation" data-cs-dots>
+              <div class="cs-process__dots-row">
+                {processSlides.map((slide, i) => (
+                  <button
+                    type="button"
+                    class="cs-process__dot-slot"
+                    aria-label={`${slide.tab} slide`}
+                    data-cs-slot={i}
+                  >
+                    <div class:list={['cs-process__dot-grow', { 'is-active': i === 0 }]}>
+                      <span class="cs-process__dot-grow-fill" data-cs-grow-fill></span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="cs-quote" aria-label="Quote">
+    <div class="container cs-quote__inner">
+      <blockquote class="cs-quote__text">
+        “Trust they know what they want, not what they need.”
+      </blockquote>
+      <cite class="cs-quote__cite">Lyle Shuert</cite>
+    </div>
+  </section>
+
+  <!-- Featured product -->
+  <section class="cs-featured">
+    <div class="cs-featured__bg" aria-hidden="true">
+      <img
+        src={featuredOpt.src}
+        alt=""
+        class="cs-featured__img"
+        width={featuredOpt.attributes.width}
+        height={featuredOpt.attributes.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="cs-featured__card">
+      <p class="cs-featured__eyebrow">PRODUCT</p>
+      <h2 class="cs-featured__title">battery-rak</h2>
+      <p class="cs-featured__eyebrow cs-featured__eyebrow--desc">PRODUCT</p>
+      <p class="cs-featured__desc">
+        Lightweight, durable, and cost-effective solution to replace traditional bulky and expensive steel racks.
+      </p>
+    </div>
+  </section>
+
+  <!-- Custom products grid -->
+  <section class="cs-products">
+    <div class="container">
+      <header class="cs-products__head">
+        <p class="label cs-products__eyebrow">CUSTOM PRODUCTS</p>
+        <h2 class="cs-products__title">Explore some of our custom solutions</h2>
+      </header>
+
+      <div class="cs-products__grid">
+        {customProducts.map((product) => (
+          <a class="cs-card" href={product.href}>
+            <div class:list={['cs-card__media', `cs-card__media--${product.crop}`]}>
+              <img
+                src={product.image.src}
+                alt={product.name}
+                width={product.image.attributes.width}
+                height={product.image.attributes.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="cs-card__info">
+              <h3 class="cs-card__name">{product.name}</h3>
+              <p class="cs-card__size">{product.size}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="cs-products__action">
+        <a href="/products" class="cs-btn">See All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request more information -->
+  <LeadForm
+    variant="info"
+    image={formImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+    title="Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque."
+    interestLabel="Market"
+    showComments={false}
+    imageRatio="789 / 697"
+    imageCrop={{ width: '283.9%', height: '180.77%', left: '-87.9%', top: '-46.34%' }}
+  />
+</Mainlayout>
+
+<script>
+  (function () {
+    const root = document.getElementById('cs-process-carousel');
+    if (!root) return;
+
+    const AUTOPLAY_MS = 3000;
+    const ANIM_NAME = 'cs-dot-progress';
+    const SHAPE_SETTLE_MS = 480;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    root.style.setProperty('--cs-autoplay-ms', `${AUTOPLAY_MS}ms`);
+
+    const tabs = Array.from(root.querySelectorAll('[data-cs-tab]'));
+    const slides = Array.from(root.querySelectorAll('[data-cs-slide]'));
+    const slots = Array.from(root.querySelectorAll('[data-cs-slot]'));
+    const indicator = root.querySelector('[data-cs-indicator]');
+    const n = tabs.length;
+    let index = 0;
+    let prevDotsIndex = -1;
+    let shapeTimer = 0;
+
+    function moveIndicator(i) {
+      const tab = tabs[i];
+      if (!tab || !indicator) return;
+      const parent = tab.parentElement;
+      if (!parent) return;
+      const parentRect = parent.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
+      indicator.style.width = `${tabRect.width}px`;
+      indicator.style.transform = `translateX(${tabRect.left - parentRect.left}px)`;
+    }
+
+    function refreshDots() {
+      const moved = prevDotsIndex >= 0 && prevDotsIndex !== index;
+      window.clearTimeout(shapeTimer);
+
+      slots.forEach((slot, i) => {
+        const grow = slot.querySelector('.cs-process__dot-grow');
+        const fill = slot.querySelector('[data-cs-grow-fill]');
+        if (grow) grow.classList.toggle('is-active', i === index);
+        if (fill) fill.classList.remove('cs-process__dot-grow-fill--animating');
+      });
+
+      const activeFill = slots[index]
+        ? slots[index].querySelector('[data-cs-grow-fill]')
+        : null;
+
+      const startFill = () => {
+        if (!activeFill || !(activeFill instanceof HTMLElement)) return;
+        if (reduceMotion) return;
+        void activeFill.offsetWidth;
+        activeFill.classList.add('cs-process__dot-grow-fill--animating');
+      };
+
+      if (moved && !reduceMotion) {
+        shapeTimer = window.setTimeout(startFill, SHAPE_SETTLE_MS);
+      } else {
+        requestAnimationFrame(startFill);
+      }
+
+      prevDotsIndex = index;
+    }
+
+    function goTo(i) {
+      if (!n) return;
+      index = (i + n) % n;
+
+      tabs.forEach((tab, idx) => {
+        const active = idx === index;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      slides.forEach((slide, idx) => {
+        const active = idx === index;
+        slide.classList.toggle('is-active', active);
+        slide.hidden = !active;
+      });
+
+      moveIndicator(index);
+      refreshDots();
+    }
+
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => goTo(i)));
+    slots.forEach((slot, i) => slot.addEventListener('click', () => goTo(i)));
+    root.querySelector('[data-cs-prev]')?.addEventListener('click', () => goTo(index - 1));
+    root.querySelector('[data-cs-next]')?.addEventListener('click', () => goTo(index + 1));
+
+    slots.forEach((slot, i) => {
+      const fill = slot.querySelector('[data-cs-grow-fill]');
+      fill?.addEventListener('animationend', (e) => {
+        if (!(e instanceof AnimationEvent)) return;
+        if (e.animationName !== ANIM_NAME) return;
+        if (i !== index) return;
+        goTo(index + 1);
+      });
+    });
+
+    goTo(0);
+    window.addEventListener('resize', () => moveIndicator(index));
+  })();
+
+</script>
+
+<style>
+  /* ============================== HERO ============================== */
+  .cs-hero {
+    position: relative;
+    height: clamp(500px, 46.4vw, 802px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .cs-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cs-hero__img {
+    position: absolute;
+    width: 100%;
+    height: 121.2%;
+    top: -17.94%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .cs-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 63.12%, rgb(0, 0, 0) 88.95%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0) 64.59%, rgb(0, 0, 0) 100%);
+  }
+
+  .cs-hero__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: clamp(2rem, 5.5vw, 60px);
+  }
+
+  .cs-hero__breadcrumb {
+    margin: 0 0 clamp(1.25rem, 2.5vw, 32px);
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .cs-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .cs-hero__breadcrumb a.cs-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .cs-hero__breadcrumb a.cs-hero__breadcrumb--dim:hover,
+  .cs-hero__breadcrumb a.cs-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .cs-hero__title {
+    margin: 0;
+    line-height: 0.91;
+    text-transform: none;
+  }
+
+  /* ============================== INTRO ============================== */
+  .cs-intro {
+    background: var(--c-sec-1);
+    padding-top: clamp(2.5rem, 4.5vw, 80px);
+  }
+
+  .cs-intro__left {
+    grid-column: 1 / 7;
+  }
+
+  .cs-intro__eyebrow {
+    margin: 0 0 15px;
+    color: var(--c-sec-3);
+  }
+
+  .cs-intro__title {
+    margin: 0;
+    font: var(--w-light) clamp(1.375rem, 1.8vw, 30px) / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .cs-intro__body {
+    grid-column: 7 / -1;
+    margin: 0;
+    font: var(--w-light) clamp(1.125rem, 1.5vw, 25px) / 32px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  /* ============================== PROCESS ============================== */
+  .cs-process {
+    background: var(--c-sec-1);
+    padding: 100px 0 clamp(3rem, 5.5vw, 100px);
+  }
+
+  .cs-process__layout {
+    display: grid;
+    gap: clamp(2rem, 4vw, 74px);
+    align-items: stretch;
+  }
+
+  .cs-process__media {
+    position: relative;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 924 / 662;
+    background: var(--c-black);
+  }
+
+  .cs-process__media img {
+    position: absolute;
+    width: 216.28%;
+    height: 169.81%;
+    left: -16.28%;
+    top: -30.98%;
+    max-width: none;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cs-process__panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .cs-process__tabs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+    padding-bottom: 24px;
+    flex-shrink: 0;
+  }
+
+  .cs-process__tab {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-black);
+    cursor: pointer;
+  }
+
+  .cs-process__tab.is-active {
+    color: var(--c-red);
+  }
+
+  .cs-process__tab-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #d9d4ce;
+  }
+
+  .cs-process__tab-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 102px;
+    background: var(--c-red);
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+
+  .cs-process__slides {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .cs-process__slide {
+    display: none;
+  }
+
+  .cs-process__slide.is-active {
+    display: block;
+  }
+
+  .cs-process__slide-title {
+    margin: 0 0 30px;
+    font: var(--w-light) clamp(1.375rem, 1.8vw, 30px) / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .cs-process__slide-body {
+    margin: 0;
+    max-width: 519px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .cs-process__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: auto;
+    max-width: 519px;
+    flex-shrink: 0;
+  }
+
+  .cs-process__nav {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0;
+  }
+
+  .cs-process__nav-btn {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .cs-process__nav-btn img {
+    width: 50px;
+    height: 50px;
+    display: block;
+  }
+
+  .cs-process__nav-btn:hover {
+    opacity: 0.85;
+  }
+
+  .cs-process__nav-btn:focus-visible {
+    outline: 2px solid var(--c-black);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  .cs-process__dots {
+    flex-shrink: 0;
+  }
+
+  .cs-process__dots-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 10px;
+  }
+
+  .cs-process__dot-slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .cs-process__dot-grow {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d9d4ce;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    transition:
+      width 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+      height 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+      border-radius 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .cs-process__dot-grow.is-active {
+    width: 60px;
+    height: 10px;
+    border-radius: 5px;
+  }
+
+  .cs-process__dot-grow-fill {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #000;
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .cs-process__dot-grow.is-active .cs-process__dot-grow-fill {
+    opacity: 1;
+  }
+
+  @keyframes cs-dot-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .cs-process__dot-grow-fill--animating {
+    animation: cs-dot-progress var(--cs-autoplay-ms, 3000ms) linear forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-process__dot-grow {
+      transition: none;
+    }
+
+    .cs-process__dot-grow-fill {
+      transition: none;
+    }
+
+    .cs-process__dot-grow-fill--animating {
+      animation: none !important;
+      transform: scaleX(1);
+    }
+  }
+
+  /* ============================== QUOTE ============================== */
+  .cs-quote {
+    background: var(--c-black);
+    padding: clamp(3rem, 5.5vw, 98px) 0;
+  }
+
+  .cs-quote__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .cs-quote__text {
+    margin: 0;
+    max-width: 939px;
+    font: var(--w-semibold) clamp(2rem, 4.5vw, 74px) / 1 var(--ff-s);
+    color: var(--c-white);
+  }
+
+  .cs-quote__cite {
+    font: var(--w-semibold) clamp(1.25rem, 1.8vw, 30px) / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-red);
+    font-style: normal;
+  }
+
+  /* ============================== FEATURED ============================== */
+  .cs-featured {
+    position: relative;
+    height: clamp(420px, 60vw, 1037px);
+    overflow: hidden;
+    background: var(--c-black);
+  }
+
+  .cs-featured__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .cs-featured__img {
+    position: absolute;
+    width: 106.69%;
+    height: 100%;
+    left: 0.01%;
+    top: 0;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .cs-featured__card {
+    position: absolute;
+    right: clamp(1.25rem, 3.8vw, 65px);
+    bottom: clamp(1.5rem, 4vw, 72px);
+    width: min(384px, calc(100% - 2.5rem));
+    padding: 28px 32px 28px;
+    box-sizing: border-box;
+    border-radius: var(--r-img);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(9.9px);
+    -webkit-backdrop-filter: blur(9.9px);
+  }
+
+  .cs-featured__eyebrow {
+    margin: 0 0 7px;
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-red);
+  }
+
+  .cs-featured__eyebrow--desc {
+    margin: 25px 0 10px;
+  }
+
+  .cs-featured__title {
+    margin: 0;
+    font: var(--w-semibold) 30px / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-sec-1);
+    text-transform: none;
+  }
+
+  .cs-featured__desc {
+    margin: 0;
+    font: var(--w-light) 12px / 16px var(--ff-r);
+    color: var(--c-sec-1);
+  }
+
+  /* ============================== PRODUCTS ============================== */
+  .cs-products {
+    background: var(--c-sec-1);
+    padding: clamp(3rem, 5.5vw, 117px) 0 clamp(3rem, 5vw, 90px);
+  }
+
+  .cs-products__head {
+    margin-bottom: clamp(2rem, 3.5vw, 60px);
+  }
+
+  .cs-products__eyebrow {
+    margin: 0 0 15px;
+    color: var(--c-sec-3);
+  }
+
+  .cs-products__title {
+    margin: 0;
+    font: var(--w-light) clamp(1.375rem, 1.8vw, 30px) / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .cs-products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cs-card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 530 / 588;
+    text-decoration: none;
+    color: inherit;
+    border-right: 2px solid #ebe7e3;
+  }
+
+  .cs-card:last-child {
+    border-right: none;
+  }
+
+  .cs-card__media {
+    position: relative;
+    flex: 538;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .cs-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  /* Figma crops for product renders */
+  .cs-card__media--uni-rak img {
+    position: absolute;
+    width: 161.89%;
+    height: 159.48%;
+    left: -25%;
+    top: -29.74%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .cs-card__media--terra-road img {
+    position: absolute;
+    width: 250%;
+    height: 250%;
+    left: -39.96%;
+    top: -75%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .cs-card__media--battery-shell img {
+    position: absolute;
+    width: 198.68%;
+    height: 195.72%;
+    left: -26.42%;
+    top: -47.86%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .cs-card:hover .cs-card__media img {
+    transform: scale(1.04);
+  }
+
+  .cs-card:hover .cs-card__media--uni-rak img,
+  .cs-card:hover .cs-card__media--terra-road img,
+  .cs-card:hover .cs-card__media--battery-shell img {
+    transform: none;
+  }
+
+  .cs-card__info {
+    flex: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 12px;
+    text-align: center;
+  }
+
+  .cs-card__name {
+    margin: 0;
+    font: var(--w-semibold) clamp(1.25rem, 1.8vw, 30px) / 32px var(--ff-s);
+    letter-spacing: -0.75px;
+    color: var(--c-black);
+    text-transform: none;
+  }
+
+  .cs-card__size {
+    margin: 9px 0 0;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+    white-space: pre;
+  }
+
+  .cs-products__action {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2rem, 3.5vw, 55px);
+  }
+
+  .cs-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    background: var(--c-black);
+    color: var(--c-white);
+    font: var(--w-medium) 16px / 1 var(--ff-r);
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .cs-btn:hover {
+    opacity: 0.88;
+  }
+
+  /* ============================== DESKTOP ≥ 1728 ============================== */
+  @media (min-width: 1728px) {
+    .cs-process__layout {
+      grid-template-columns: 924px 599px;
+      column-gap: 74px;
+    }
+  }
+
+  /* ============================== WIDE 1025–1727 ============================== */
+  @media (min-width: 64.01rem) and (max-width: 1727px) {
+    .cs-process__layout {
+      grid-template-columns: minmax(0, 924fr) minmax(0, 599fr);
+    }
+  }
+
+  /* ============================== TABLET ≤ 1024 ============================== */
+  @media (max-width: 64rem) {
+    .cs-intro__left,
+    .cs-intro__body {
+      grid-column: 1 / -1;
+    }
+
+    .cs-intro__body {
+      margin-top: 1.5rem;
+    }
+
+    .cs-process__layout {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .cs-process__tabs {
+      gap: 28px;
+      margin-bottom: 2.5rem;
+    }
+
+    .cs-process__slides {
+      flex: none;
+      justify-content: flex-start;
+    }
+
+    .cs-process__controls {
+      margin-top: 2.5rem;
+    }
+
+    .cs-products__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-card {
+      border-right: none;
+      border-bottom: 2px solid #ebe7e3;
+      aspect-ratio: auto;
+    }
+
+    .cs-card:last-child {
+      border-bottom: none;
+    }
+
+    .cs-card__media {
+      aspect-ratio: 530 / 538;
+    }
+
+    .cs-card__info {
+      padding: 18px 10px 32px;
+    }
+
+    .cs-featured__card {
+      right: 1.25rem;
+      left: 1.25rem;
+      width: auto;
+    }
+  }
+
+  /* ============================== MOBILE ≤ 768 ============================== */
+  @media (max-width: 48rem) {
+    .cs-hero {
+      height: clamp(360px, 80vw, 500px);
+    }
+
+    .cs-hero__img {
+      width: 160%;
+      left: -30%;
+    }
+
+    .cs-process__tabs {
+      gap: 20px;
+    }
+
+    .cs-quote__text {
+      line-height: 1.05;
+    }
+
+    .cs-featured {
+      height: clamp(360px, 90vw, 520px);
+    }
+  }
+</style>

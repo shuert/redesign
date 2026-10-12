@@ -15,7 +15,7 @@ import relatedYarnPak from '../../assets/product/remanpak/e9c3bad29049bc104caa12
 import relatedModulePak from '../../assets/product/remanpak/8a3ddf1c3913dddbff2427e7e435308c4d616728.png';
 import relatedUniCase from '../../assets/product/remanpak/454084480a055ddddae249d65a9d63552f1b760d.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '29” x 23”  —  90” x 48”',
@@ -97,7 +97,7 @@ export const remanPak: ProductPageData = {
       desc: 'A structure that withstands repeated use without significant degradation in performance.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

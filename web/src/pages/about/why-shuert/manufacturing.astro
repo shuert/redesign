@@ -1,0 +1,454 @@
+---
+import { getImage } from 'astro:assets';
+import AboutLayout from '../../../layouts/AboutLayout.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import strengthImg from '../../../assets/about/whyshuert/manufacturing/50d6eb91e9e6ae9801948edf36b7de044d89ae1e.png';
+import lightImg from '../../../assets/about/whyshuert/manufacturing/65238e7edd9abde69c6b6b3ed70eda4ad2813b6f.png';
+import toolingImg from '../../../assets/about/whyshuert/manufacturing/d3e97b13c3fafdaa79ffc44ca19ec7765fa0de19.png';
+import designImg from '../../../assets/about/whyshuert/manufacturing/cb3b6eafff44df7558209d756b6695b8aba566e1.png';
+import formImg from '../../../assets/about/whyshuert/manufacturing/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
+
+const strengthOpt = await getImage({ src: strengthImg, width: 1200, format: 'webp', quality: 80 });
+const lightOpt = await getImage({ src: lightImg, width: 1024, format: 'webp', quality: 80 });
+const toolingOpt = await getImage({ src: toolingImg, width: 1200, format: 'webp', quality: 80 });
+const designOpt = await getImage({ src: designImg, width: 2000, format: 'webp', quality: 80 });
+
+type Advantage = {
+  title: string;
+  image: { src: string; attributes: { width: number; height: number } };
+  alt: string;
+  fit: 'cover' | 'bottom' | 'cad';
+  paragraphs: readonly string[];
+  detail?: { lead: string; points: readonly string[] };
+  means?: readonly string[];
+};
+
+const advantages: Advantage[] = [
+  {
+    title: 'Engineered Structural Strength',
+    image: strengthOpt,
+    alt: 'Close-up of a black twin-sheet pallet edge and locating features',
+    fit: 'cover',
+    paragraphs: [
+      'Twin-sheet thermoforming enables the design of structurally efficient geometries by combining two formed sheets into a unified, load-bearing structure.',
+      'When knitted at strategic locations, these two sheets act similarly to an architectural box beam\u2014where strength is created by the separation of surfaces and the enclosed section between them, rather than by solid mass alone. Vertical knitting surfaces and reinforced perimeters allow loads to be distributed across the structure, increasing rigidity and resistance to deflection.',
+    ],
+    means: [
+      'High load-to-weight ratio, increasing load capacity without adding part weight',
+      'Efficient strength-to-gauge performance, delivering structural strength without increasing material thickness',
+      'Reduced deflection under load through structurally efficient, enclosed geometries',
+      'Load distributed across the structure rather than concentrated in a single plane',
+    ],
+  },
+  {
+    title: 'Lightweight Without Compromise',
+    image: lightOpt,
+    alt: 'Underside of a black twin-sheet pallet showing enclosed structural ribs',
+    fit: 'bottom',
+    paragraphs: [
+      'Twin-sheet thermoforming enables weight reduction through hollow, enclosed structures that maintain rigidity under load.',
+    ],
+    detail: {
+      lead: 'Additional process capabilities further contribute to weight efficiency:',
+      points: [
+        'Extrusion Flexibility. Each sheet can be extruded at a different gauge, allowing material to be specified based on the load requirements of each side of the part.',
+        'Material Redistribution Through Forming. During thermoforming, material is drawn across the geometry of the part, allowing it to be concentrated in critical load-bearing areas\u2014such as corners, radii, and contact points\u2014while remaining lighter in lower-stress regions.',
+      ],
+    },
+    means: [
+      'Lower overall part weight without sacrificing performance',
+      'More efficient use of material',
+      'Improved load capacity and handling',
+    ],
+  },
+  {
+    title: 'Cost-Effective Tooling',
+    image: toolingOpt,
+    alt: 'Precision machining of a metal thermoforming tool',
+    fit: 'cover',
+    paragraphs: [
+      'Twin-sheet thermoforming offers a practical alternative to higher-cost molding processes, especially for large or complex parts.',
+    ],
+    means: [
+      'Tooling costs typically significantly lower than injection or blow molding',
+      'Suitable for lower volumes and large-format parts',
+      'Production-capable tooling with shorter investment cycles',
+    ],
+  },
+  {
+    title: 'Design Flexibility and Process Versatility',
+    image: designOpt,
+    alt: 'CAD model of a pallet structure on a computer screen',
+    fit: 'cad',
+    paragraphs: [
+      'Twin-sheet thermoforming supports a wide range of functional and aesthetic design options without requiring major tooling changes.',
+    ],
+    detail: {
+      lead: 'This includes the ability to:',
+      points: [
+        'Integrate reinforcements or components between sheets (e.g., steel)',
+        'Create textured surfaces formed directly into the part through extrusion or mold etching',
+        'Adjust final part thickness by changing sheet gauge\u2014without modifying tooling.',
+        'Adjust designs as they evolve without the cost and delay of retooling.',
+      ],
+    },
+  },
+];
+
+---
+
+<AboutLayout title="Manufacturing" current="why-shuert">
+  <section class="mf-hero">
+    <div class="mf-hero__content container">
+      <p class="mf-hero__breadcrumb">
+        <a href="/" class="mf-hero__breadcrumb--dim">HOME</a><span class="mf-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/about" class="mf-hero__breadcrumb--dim">ABOUT</a><span class="mf-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span><a href="/about/why-shuert" class="mf-hero__breadcrumb--dim">SHUERT ADVANTAGE</a><span class="mf-hero__breadcrumb--dim" aria-hidden="true">&ensp;/&ensp;</span>MANUFACTURING
+      </p>
+      <h1 class="mf-hero__title">manufacturing</h1>
+    </div>
+  </section>
+
+  <section class="mf-body">
+    <div class="container">
+      <div class="mf-intro">
+        <div class="mf-intro__head">
+          <p class="label mf-intro__eyebrow">Process</p>
+          <h2 class="mf-intro__title">Advantages of Twin-Sheet Thermoforming</h2>
+        </div>
+        <p class="mf-intro__copy">
+          Twin-sheet thermoforming is a manufacturing process in which two heated plastic sheets are simultaneously formed against opposing mold surfaces&mdash;one male and one female&mdash;using vacuum to draw each sheet into shape. The formed sheets are then fused together at defined contact points within the tool through localized bonding, known as knitting, creating a single, unified structure with enclosed geometries and internal features.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="mf-list">
+        {
+          advantages.map((item, i) => (
+            <>
+              {i === 1 && <div class="mf-rule" aria-hidden="true" />}
+              <article class:list={['mf-row', { 'mf-row--solo': !item.means }]}>
+                <div class:list={['mf-row__media', { 'mf-row__media--bottom': item.fit === 'bottom', 'mf-row__media--cad': item.fit === 'cad' }]}>
+                  <img
+                    src={item.image.src}
+                    alt={item.alt}
+                    width={item.image.attributes.width}
+                    height={item.image.attributes.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="mf-row__copy">
+                  <h3 class="mf-row__title">{item.title}</h3>
+                  {item.paragraphs.map((paragraph) => (
+                    <p class="mf-row__body">{paragraph}</p>
+                  ))}
+                  {item.detail && (
+                    <>
+                      <p class="mf-row__lead">{item.detail.lead}</p>
+                      <ul class="mf-points mf-row__points">
+                        {item.detail.points.map((point) => (
+                          <li>
+                            <span aria-hidden="true">&mdash;</span>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </div>
+                {item.means && (
+                  <>
+                    <div class="mf-row__rule" aria-hidden="true" />
+                    <div class="mf-row__aside">
+                      <p class="label mf-row__aside-label">What this means</p>
+                      <ul class="mf-points">
+                        {item.means.map((point) => (
+                          <li>
+                            <span aria-hidden="true">&mdash;</span>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                )}
+              </article>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <LeadForm
+    variant="info"
+    image={formImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+    title="Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque."
+    imageRatio="789 / 871"
+    imageCrop={{ width: '283.9%', height: '144.66%', left: '-87.9%', top: '-37.08%' }}
+  />
+</AboutLayout>
+
+<style>
+  .mf-hero {
+    background: var(--c-black);
+    height: clamp(280px, 50vw, 392px);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .mf-hero__content {
+    padding-bottom: clamp(1.5rem, 3.3vw, 57px);
+  }
+
+  .mf-hero__breadcrumb {
+    margin: 0 0 clamp(1.25rem, 2.6vw, 45px);
+    font: var(--w-bold) 12px / 12px var(--ff-s);
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .mf-hero__breadcrumb--dim {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .mf-hero__breadcrumb a.mf-hero__breadcrumb--dim {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .mf-hero__breadcrumb a.mf-hero__breadcrumb--dim:hover,
+  .mf-hero__breadcrumb a.mf-hero__breadcrumb--dim:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .mf-hero__title {
+    margin: 0;
+    font: var(--w-semibold) clamp(2.5rem, 4.28vw, 74px) / 1 var(--ff-s);
+    text-transform: lowercase;
+    color: var(--c-white);
+  }
+
+  .mf-body {
+    background: var(--c-sec-1);
+    padding-bottom: clamp(3rem, 5.96vw, 103px);
+  }
+
+  .mf-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 571fr) minmax(0, 779fr);
+    column-gap: clamp(2rem, 14.35vw, 248px);
+    align-items: start;
+    padding-top: clamp(3.5rem, 6.13vw, 106px);
+    padding-bottom: clamp(2.5rem, 4.05vw, 70px);
+  }
+
+  .mf-intro__head,
+  .mf-intro__copy,
+  .mf-row__copy,
+  .mf-row__aside {
+    min-width: 0;
+  }
+
+  .mf-intro__head {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .mf-intro__eyebrow {
+    margin: 0;
+    color: var(--c-sec-3);
+  }
+
+  .mf-intro__title {
+    margin: 0;
+    max-width: 571px;
+    font: var(--w-light) clamp(1.5rem, 1.74vw, 30px) / 33px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .mf-intro__copy {
+    margin: 0;
+    max-width: 779px;
+    font: var(--w-light) 20px / 26px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .mf-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mf-list > .mf-row + .mf-row {
+    margin-top: clamp(2rem, 3.36vw, 58px);
+  }
+
+  .mf-rule {
+    height: 0;
+    margin: clamp(1rem, 1.68vw, 29px) calc(var(--grid-margin) * -1);
+    border-top: 2px dashed #aaa;
+  }
+
+  .mf-rule + .mf-row {
+    margin-top: clamp(1rem, 1.68vw, 29px);
+  }
+
+  .mf-row {
+    display: grid;
+    grid-template-columns: clamp(180px, 17.07vw, 295px) minmax(0, 7.97fr) 2px minmax(0, 3.24fr);
+    column-gap: clamp(1.25rem, 3.47vw, 60px);
+    align-items: start;
+  }
+
+  .mf-row--solo {
+    grid-template-columns: clamp(180px, 17.07vw, 295px) minmax(0, 1fr);
+  }
+
+  .mf-row__media {
+    position: relative;
+    border-radius: var(--r-img);
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #222;
+  }
+
+  .mf-row__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mf-row__media--bottom img {
+    object-position: bottom;
+  }
+
+  .mf-row__media--cad img {
+    position: absolute;
+    width: 296.13%;
+    height: 166.57%;
+    left: -32.85%;
+    top: -30.17%;
+    max-width: none;
+    object-fit: fill;
+  }
+
+  .mf-row__title {
+    margin: 0;
+    font: var(--w-semibold) 20px / 22px var(--ff-s);
+    letter-spacing: -0.5px;
+    color: var(--c-black);
+  }
+
+  .mf-row__body {
+    margin: 35px 0 0;
+    max-width: 774px;
+    font: var(--w-light) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .mf-row__body + .mf-row__body {
+    margin-top: 22px;
+  }
+
+  .mf-row__lead {
+    margin: 28px 0 0;
+    max-width: 569px;
+    font: var(--w-medium) 16px / 22px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .mf-row__points {
+    max-width: 487px;
+    margin-top: 14px;
+  }
+
+  .mf-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mf-points li {
+    display: grid;
+    grid-template-columns: 16px minmax(0, 1fr);
+    column-gap: 10px;
+    font: var(--w-light) 12px / 16px var(--ff-r);
+    color: var(--c-black);
+  }
+
+  .mf-row__rule {
+    align-self: stretch;
+    width: 2px;
+    min-height: 100%;
+    background: var(--c-sec-3);
+    justify-self: center;
+  }
+
+  .mf-row__aside-label {
+    margin: 0;
+    color: var(--c-sec-3);
+  }
+
+  .mf-row__aside .mf-points {
+    margin-top: 44px;
+  }
+
+  @media (min-width: 1728px) {
+    .mf-intro {
+      grid-template-columns: 571px 779px;
+      column-gap: 248px;
+    }
+
+    .mf-row:not(.mf-row--solo) {
+      grid-template-columns: 295px minmax(0, 797px) 2px 324px;
+      column-gap: 60px;
+    }
+
+    .mf-row--solo {
+      grid-template-columns: 295px minmax(0, 1fr);
+      column-gap: 60px;
+    }
+  }
+
+  @media (max-width: 64rem) {
+    .mf-intro,
+  .mf-row,
+  .mf-row--solo {
+      grid-template-columns: 1fr;
+      row-gap: 1.5rem;
+    }
+
+    .mf-intro__title,
+  .mf-intro__copy,
+  .mf-row__body,
+  .mf-row__lead {
+      max-width: none;
+    }
+
+    .mf-row__media {
+      width: min(100%, 420px);
+    }
+
+    .mf-row__rule {
+      display: none;
+    }
+
+    .mf-row__aside .mf-points {
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .mf-intro__copy {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+</style>

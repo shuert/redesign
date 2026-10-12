@@ -1,8 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import Mainlayout from '../../layouts/Mainlayout.astro';
-import MultiSelect from '../../components/MultiSelect.astro';
-import { PRODUCT_OPTIONS } from '../../data/formOptions';
+import LeadForm from '../../components/LeadForm.astro';
 import heroImg from '../../assets/product/index/064607540992bca96b018e8895ceb73ab9b9f54d.png';
 import uniPakImg from '../../assets/product/index/6324929b6ffd966af7a2778ee189f60b599310e9.png';
 import uniDirPalletImg from '../../assets/product/index/7ff131f8858a7b66c45784b5edc74c3a71e37ef2.png';
@@ -25,13 +24,12 @@ import modulePakImg from '../../assets/product/index/8a3ddf1c3913dddbff2427e7e43
 import terraRoadImg from '../../assets/product/index/c25cf16ea6bf49b562af48467ba1e375c9120fbb.png';
 import uniPakIiImg from '../../assets/product/index/1f33178a0228a5eee17d27db2787893e839ba77b.png';
 import customImg from '../../assets/product/index/5b12aa8d3d5dc5bb61774bd04c5ab8c85dbb0152.png';
-import quoteImg from '../../assets/product/index/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import quoteImg from '../../assets/product/index/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 
 const sizeRange = '29” x 23”  —  90” x 48”';
 const sizePallet = '48” x 78” x 36”';
 
 const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
-const quoteOpt = await getImage({ src: quoteImg, width: 2400, format: 'webp', quality: 80 });
 
 const products = await Promise.all(
   [
@@ -39,34 +37,37 @@ const products = await Promise.all(
     { name: 'uni-directional pallet', size: sizePallet, image: uniDirPalletImg, href: '/products/uni-directional-pallet' },
     { name: 'remanufacturing-systems', size: 'Systems for Remanufacturing Drivetrain Components', image: remanImg, href: '/products/reman-pak' },
     { name: 'uni-pallet', size: sizeRange, image: uniPalletImg, href: '/products/uni-pallet' },
-    { name: 'snap-pak', size: sizePallet, image: snapPakImg, href: '/products/snap-pak' },
+    { name: 'snap-pak', size: '41.25” x 39.75”', image: snapPakImg, href: '/products/snap-pak' },
     { name: 'battery-rak', size: sizePallet, image: batteryRakImg, href: '/products/battery-pak', crop: 'battery-rak' as const },
     { name: 'bulk-pak', size: sizeRange, image: bulkPakImg, href: '/products/bulk-pak' },
     { name: 'yarn-pak', size: sizeRange, image: yarnPakImg, href: '/products/yarn-pak' },
-    { name: 'axle-pak', size: sizeRange, image: axlePakImg, href: '/products/axel-pak' },
-    { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#' },
+    { name: 'axle-pak', size: sizeRange, image: axlePakImg, href: '/products/axel-pak', crop: 'axle-pak' as const },
+    { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#', crop: 'battery-shell' as const },
     { name: 'pro-pak', size: sizeRange, image: proPakImg, href: '/products/pro-pak' },
     { name: 'exair-pallet', size: sizeRange, image: exairPalletImg, href: '#' },
     { name: 'uni-pallet doubler', size: sizeRange, image: uniPalletDoublerImg, href: '#' },
     { name: 'sleeves', size: 'Request More Information', image: sleevesImg, href: '#' },
     { name: 'uni-case', size: sizeRange, image: uniCaseImg, href: '/products/uni-case' },
-    { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak' },
-    { name: 'perimeter-base pallet', size: sizeRange, image: perimeterBaseImg, href: '#' },
+    { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak', crop: 'uni-rak' as const },
+    { name: 'perimeter-base pallet', size: sizeRange, image: perimeterBaseImg, href: '/products/perimeter-base-pallet' },
     { name: 'module-pak', size: sizeRange, image: modulePakImg, href: '/products/module-pak' },
-    { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#' },
+    { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#', crop: 'terra-road' as const },
     { name: 'uni-pak II', size: sizeRange, image: uniPakIiImg, href: '/products/uni-pak-II' },
     { name: 'custom', size: sizeRange, image: customImg, href: '/products/custom' },
   ].map(async (product) => ({
     ...product,
-    // Battery-rak CSS crop zooms far in — keep more pixels for that card
+    // Cropped cards zoom well past the frame — keep more pixels
     image: await getImage({
       src: product.image,
-      width: product.crop === 'battery-rak' ? 1600 : 1100,
+      width: product.crop ? 1600 : 1100,
       format: 'webp',
       quality: 80,
     }),
   })),
 );
+
+// Hidden until the catalog grows enough to need filtering and size lines.
+const showCatalogChrome = false;
 
 const filters = [
   { label: 'Product' },
@@ -108,31 +109,32 @@ const filters = [
   </section>
 
   <div class="products-body">
-    <!-- Filters -->
-    <section class="p-filters">
-      <div class="container">
-        <div class="p-filters__bar">
-          <div class="p-filters__scroll">
-            <div class="p-filters__buttons">
-              {filters.map((filter) => (
-                <button class="p-filters__btn" type="button">
-                  <span>{filter.label}</span>
-                  <svg class="p-filters__chevron" width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.35 10L5 14.66L9.67 10" stroke="currentColor"/>
-                  </svg>
-                </button>
-              ))}
+    {showCatalogChrome && (
+      <section class="p-filters">
+        <div class="container">
+          <div class="p-filters__bar">
+            <div class="p-filters__scroll">
+              <div class="p-filters__buttons">
+                {filters.map((filter) => (
+                  <button class="p-filters__btn" type="button">
+                    <span>{filter.label}</span>
+                    <svg class="p-filters__chevron" width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.35 10L5 14.66L9.67 10" stroke="currentColor"/>
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div class="p-filters__actions">
+              <button class="p-filters__badge-btn" type="button" aria-label="3 active filters">
+                <span class="p-filters__badge-dot">3</span>
+              </button>
+              <button class="p-filters__reset" type="button">Reset Filters</button>
             </div>
           </div>
-          <div class="p-filters__actions">
-            <button class="p-filters__badge-btn" type="button" aria-label="3 active filters">
-              <span class="p-filters__badge-dot">3</span>
-            </button>
-            <button class="p-filters__reset" type="button">Reset Filters</button>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     <!-- Product Grid -->
     <section class="p-grid">
@@ -140,7 +142,7 @@ const filters = [
         <div class="p-grid__cells">
           {products.map((product) => (
             <a class="p-card" href={product.href}>
-              <div class:list={['p-card__img', { 'p-card__img--battery-rak': product.crop === 'battery-rak' }]}>
+              <div class:list={['p-card__img', product.crop && `p-card__img--${product.crop}`]}>
                 <img
                   src={product.image.src}
                   alt={product.name}
@@ -161,7 +163,7 @@ const filters = [
                     product.name
                   )}
                 </h3>
-                <p class="p-card__size">{product.size}</p>
+                {showCatalogChrome && <p class="p-card__size">{product.size}</p>}
               </div>
             </a>
           ))}
@@ -170,82 +172,14 @@ const filters = [
     </section>
   </div>
 
-  <!-- Request a Quote -->
-  <section class="p-quote">
-    <div class="container">
-      <div class="p-quote__layout">
-        <div class="p-quote__form-side">
-          <p class="p-quote__eyebrow label">REQUEST A QUOTE</p>
-          <h2 class="p-quote__title text-white">
-            Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque.
-          </h2>
-          <form class="p-quote__form" aria-label="Request a quote">
-            <div class="p-quote__row p-quote__row--half">
-              <div class="p-quote__field">
-                <label class="p-quote__label">FIRST NAME</label>
-                <input type="text" class="p-quote__input" placeholder="First" />
-              </div>
-              <div class="p-quote__field">
-                <label class="p-quote__label">LAST NAME</label>
-                <input type="text" class="p-quote__input" placeholder="Last" />
-              </div>
-            </div>
-            <div class="p-quote__field">
-              <label class="p-quote__label">COMPANY NAME</label>
-              <input type="text" class="p-quote__input" placeholder="Company" />
-            </div>
-            <div class="p-quote__field">
-              <label class="p-quote__label">EMAIL</label>
-              <input type="email" class="p-quote__input" placeholder="Email" />
-            </div>
-            <div class="p-quote__row p-quote__row--half">
-              <div class="p-quote__field">
-                <label class="p-quote__label">PHONE</label>
-                <input type="tel" class="p-quote__input" placeholder="Phone" />
-              </div>
-              <div class="p-quote__field">
-                <label class="p-quote__label">QUANTITY</label>
-                <input type="text" class="p-quote__input" placeholder="Quantity" />
-              </div>
-            </div>
-            <div class="p-quote__field">
-              <label class="p-quote__label" for="products-of-interest">PRODUCTS OF INTEREST</label>
-              <MultiSelect
-                id="products-of-interest"
-                name="productsOfInterest"
-                options={PRODUCT_OPTIONS}
-                placeholder="Select products…"
-              />
-            </div>
-            <div class="p-quote__field">
-              <label class="p-quote__label">ANY OTHER QUESTIONS?</label>
-              <textarea class="p-quote__input p-quote__textarea" placeholder="Additional Info"></textarea>
-            </div>
-            <button type="submit" class="p-quote__submit">Submit</button>
-          </form>
-        </div>
-        <div class="p-quote__media">
-          <img
-            src={quoteOpt.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="p-quote__img"
-            width={quoteOpt.attributes.width}
-            height={quoteOpt.attributes.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <LeadForm
+    variant="quote"
+    image={quoteImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+    title="Lorem ipsum dolor sit amet consectetur. Enim egestas elementum auctor cursus semper maecenas ipsum risus neque."
+    imageRatio="789 / 908"
+  />
 </Mainlayout>
-
-<script>
-  const form = document.querySelector('.p-quote__form');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
-</script>
 
 <style>
   /* ================================================================
@@ -498,21 +432,60 @@ const filters = [
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .p-card__img--battery-rak img {
+  .p-card__img--battery-rak img,
+  .p-card__img--axle-pak img,
+  .p-card__img--battery-shell img,
+  .p-card__img--uni-rak img,
+  .p-card__img--terra-road img {
     position: absolute;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .p-card__img--battery-rak img {
     width: 226.72%;
     height: 227.14%;
-    max-width: none;
     left: -28.39%;
     top: -63.57%;
-    object-fit: cover;
+  }
+
+  .p-card__img--axle-pak img {
+    width: 199.91%;
+    height: 197.68%;
+    left: -31.02%;
+    top: -48.84%;
+  }
+
+  .p-card__img--battery-shell img {
+    width: 198.68%;
+    height: 195.72%;
+    left: -26.42%;
+    top: -47.86%;
+  }
+
+  .p-card__img--uni-rak img {
+    width: 161.89%;
+    height: 159.48%;
+    left: -25%;
+    top: -29.74%;
+  }
+
+  .p-card__img--terra-road img {
+    width: 254.25%;
+    height: 250%;
+    left: -42.34%;
+    top: -75%;
   }
 
   .p-card:hover .p-card__img img {
     transform: scale(1.04);
   }
 
-  .p-card:hover .p-card__img--battery-rak img {
+  .p-card:hover .p-card__img--battery-rak img,
+  .p-card:hover .p-card__img--axle-pak img,
+  .p-card:hover .p-card__img--battery-shell img,
+  .p-card:hover .p-card__img--uni-rak img,
+  .p-card:hover .p-card__img--terra-road img {
     transform: none;
   }
 
@@ -521,7 +494,7 @@ const filters = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     text-align: center;
     padding: 0 10px;
   }
@@ -543,144 +516,6 @@ const filters = [
     font: var(--w-light) 16px / 22px var(--ff-r);
     color: var(--c-black);
     white-space: nowrap;
-  }
-
-  /* ================================================================
-     REQUEST A QUOTE
-     ================================================================ */
-  .p-quote {
-    background: #1b1b1b;
-    padding: clamp(3rem, 4.8vw, 83px) 0 clamp(3rem, 4.2vw, 73px);
-  }
-
-  .p-quote__layout {
-    display: grid;
-    align-items: start;
-  }
-
-  .p-quote__eyebrow {
-    margin: 0 0 31px;
-    color: var(--c-white);
-    letter-spacing: 1.54px;
-  }
-
-  .p-quote__title {
-    margin: 0 0 59px;
-    max-width: 654px;
-    font: var(--w-semibold) clamp(1.5rem, 1.8vw, 30px) / 33px var(--ff-r);
-  }
-
-  .p-quote__form {
-    display: flex;
-    flex-direction: column;
-    gap: 23px;
-  }
-
-  .p-quote__row--half {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .p-quote__label {
-    display: block;
-    margin-bottom: 14px;
-    font: var(--w-bold) 14px / 14px var(--ff-s);
-    letter-spacing: 1.54px;
-    text-transform: uppercase;
-    color: var(--c-white);
-  }
-
-  .p-quote__input {
-    display: block;
-    width: 100%;
-    height: 44px;
-    padding: 0 18px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    color: var(--c-white);
-    font: 400 16px / 22px var(--ff-r);
-    outline: none;
-    box-sizing: border-box;
-  }
-
-  .p-quote__input:focus {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
-  }
-
-  .p-quote__input::placeholder {
-    color: rgba(255, 255, 255, 0.36);
-  }
-
-  .p-quote__textarea {
-    height: 106px;
-    padding: 18px;
-    resize: none;
-  }
-
-  .p-quote__submit {
-    align-self: flex-start;
-    padding: 15px 18px;
-    background: var(--c-black);
-    border: none;
-    border-radius: 8px;
-    color: var(--c-white);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .p-quote__submit:hover {
-    opacity: 0.85;
-  }
-
-  .p-quote__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
-  }
-
-  .p-quote__media {
-    border-radius: 14px;
-    overflow: hidden;
-    margin-top: -17px;
-  }
-
-  .p-quote__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* ================================================================
-     DESKTOP LAYOUT (≥ 1728px)
-     ================================================================ */
-  @media (min-width: 1728px) {
-    .p-quote__layout {
-      grid-template-columns: 695px 789px;
-      column-gap: 114px;
-    }
-
-    .p-quote__media {
-      width: 789px;
-      max-width: none;
-      aspect-ratio: 789 / 908;
-    }
-  }
-
-  /* ================================================================
-     WIDE DESKTOP (1025px – 1727px)
-     ================================================================ */
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .p-quote__layout {
-      grid-template-columns: minmax(0, 695fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 7vw, 114px);
-    }
-
-    .p-quote__media {
-      aspect-ratio: 789 / 908;
-    }
   }
 
   /* ================================================================
@@ -729,21 +564,6 @@ const filters = [
     .p-card__size {
       white-space: normal;
     }
-
-    .p-quote__layout {
-      grid-template-columns: 1fr;
-      row-gap: 2.5rem;
-    }
-
-    .p-quote__media {
-      margin-top: 0;
-      max-width: 600px;
-      aspect-ratio: 789 / 908;
-    }
-
-    .p-quote__title {
-      margin-bottom: 2rem;
-    }
   }
 
   /* ================================================================
@@ -785,14 +605,6 @@ const filters = [
 
     .p-filters__actions {
       display: none;
-    }
-
-    .p-quote__row--half {
-      grid-template-columns: 1fr;
-    }
-
-    .p-quote__form {
-      gap: 18px;
     }
   }
 </style>

@@ -1,12 +1,14 @@
 ---
 import AboutLayout from '../../layouts/AboutLayout.astro';
+import ReachOut from '../../components/ReachOut.astro';
 import heroImg from '../../assets/about/careers/9d36c932f523a740b4e616018c32e8cf6807c960.png';
 import introImg from '../../assets/about/careers/acb7f6fdfb8cc0bbaeea7fa9d84f57f60b4aef04.png';
-import cultureImg from '../../assets/about/careers/0aaa54070576742e39b9fe8728b45ee73f715613.png';
+import cultureImg from '../../assets/about/careers/88f968946579208751b9a57c1d41fcd085dfb40a.png';
 import avatarAdam from '../../assets/about/careers/4626be44b284b8b1ee6284f743bcc3a42a902da1.png';
 import avatarFawaaz1 from '../../assets/about/careers/e3a1b1cac1bdf2b1d67ac45543b814862b0858b6.png';
 import avatarFawaaz2 from '../../assets/about/careers/ba96183393ff9a64923b8099b9d32083d5b2f315.png';
-import reachOutImg from '../../assets/about/careers/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import reachOutImg from '../../assets/about/careers/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
+import clubSeal from '../../assets/about/careers/e3e7bf0f46c7de2b8c55c36c156b2d9edb65f4bc.svg';
 
 const accordionItems = [
   {
@@ -184,7 +186,7 @@ const testimonials = [
         <div class="careers-culture__media">
           <img
             src={cultureImg.src}
-            alt=""
+            alt="Shuert team at a company family picnic"
             width={cultureImg.width}
             height={cultureImg.height}
             loading="lazy"
@@ -197,6 +199,14 @@ const testimonials = [
 
   <!-- ─────────── 20 YEAR CLUB ─────────── -->
   <section class="careers-club" aria-labelledby="careers-club-heading">
+    <img
+      class="careers-club__seal"
+      src={clubSeal.src}
+      alt=""
+      width="537"
+      height="537"
+      aria-hidden="true"
+    />
     <div class="careers-club__fade careers-club__fade--top" aria-hidden="true"></div>
     <div class="careers-club__fade careers-club__fade--bottom" aria-hidden="true"></div>
     <div class="container careers-club__inner">
@@ -253,49 +263,14 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ─────────── REACH OUT ─────────── -->
-  <section class="c-reach-out">
-    <div class="container c-reach-out__inner">
-      <div class="c-reach-out__grid">
-        <div class="c-reach-out__content">
-          <p class="label c-reach-out__eyebrow">REACH OUT</p>
-          <h2 class="c-reach-out__title text-white">
-            Stay in the loop on all<br />
-            things Shuert, from product updates to exhibitions we&apos;re attending.
-          </h2>
-          <form class="c-reach-out__form" aria-label="Email updates">
-            <div class="c-reach-out__field">
-              <input
-                type="email"
-                class="c-reach-out__input"
-                placeholder="Email Address"
-                autocomplete="email"
-                inputmode="email"
-                aria-label="Email address"
-              />
-              <button type="submit" class="c-reach-out__submit">Submit</button>
-            </div>
-          </form>
-        </div>
-        <div class="c-reach-out__media">
-          <img
-            src={reachOutImg.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="c-reach-out__img"
-            width={reachOutImg.width}
-            height={reachOutImg.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReachOut
+    image={reachOutImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+  />
+
 </AboutLayout>
 
 <script>
-  // Reach-out form (no-op submit)
-  document.querySelector('.c-reach-out__form')?.addEventListener('submit', (e) => e.preventDefault());
 
   // Accordion — one panel open at a time; click open item to close
   (function () {
@@ -559,20 +534,25 @@ const testimonials = [
   }
 
   .careers-culture__media {
+    position: relative;
     grid-column: 7 / -1;
     justify-self: end;
     width: 100%;
     max-width: 789px;
     aspect-ratio: 1;
-    border-radius: 14px;
+    border-radius: var(--r-img);
     overflow: hidden;
     margin-top: 62px;
   }
 
   .careers-culture__media img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: cover;
+    object-position: center;
   }
 
   .careers-accordion {
@@ -605,12 +585,12 @@ const testimonials = [
   .careers-accordion__title {
     font: var(--w-light) 20px / 26px var(--ff-r);
     color: var(--c-black);
-    opacity: 0.2;
+    opacity: 1;
     transition: opacity 0.3s ease;
   }
 
-  .careers-accordion__item.is-open .careers-accordion__title {
-    opacity: 1;
+  .careers-accordion:has(.careers-accordion__item.is-open) .careers-accordion__item:not(.is-open) .careers-accordion__title {
+    opacity: 0.2;
   }
 
   .careers-accordion__icon {
@@ -734,6 +714,20 @@ const testimonials = [
     background: linear-gradient(0deg, #efece7 5%, rgba(239, 236, 231, 0) 40%);
   }
 
+  .careers-club__seal {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    /* Figma Layer_1 is 537px at x=1251 on the 1728 frame, so 60px bleeds off the right. */
+    right: calc(-100% * 60 / 1728);
+    width: calc(100% * 537 / 1728);
+    height: auto;
+    aspect-ratio: 1;
+    transform: translateY(-50%);
+    pointer-events: none;
+    user-select: none;
+  }
+
   .careers-club__inner {
     position: relative;
     z-index: 1;
@@ -845,137 +839,6 @@ const testimonials = [
   }
 
   /* ================================================================
-     REACH OUT
-     ================================================================ */
-  .c-reach-out {
-    position: relative;
-    background: #1b1b1b;
-    padding: 73px 0;
-    box-sizing: border-box;
-  }
-
-  .c-reach-out__grid {
-    display: grid;
-    align-items: start;
-    max-width: 1598px;
-    margin-inline: auto;
-  }
-
-  .c-reach-out__eyebrow {
-    margin: 0 0 49px;
-    color: rgba(255, 255, 255, 0.35);
-    letter-spacing: 1.54px;
-  }
-
-  .c-reach-out__title {
-    margin: 0;
-    max-width: 654px;
-    font-family: var(--ff-r);
-    font-weight: var(--w-medium);
-    font-size: clamp(1.75rem, 2.72vw, 47px);
-    line-height: 1.19;
-    letter-spacing: 0;
-  }
-
-  .c-reach-out__form {
-    margin-top: 336px;
-    max-width: 654px;
-  }
-
-  .c-reach-out__field {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    height: 65px;
-    padding: 0 8px 0 25px;
-    background: var(--c-black);
-    border: 1px solid #2c2c2c;
-    border-radius: 14px;
-  }
-
-  .c-reach-out__input {
-    flex: 1;
-    min-width: 0;
-    height: 22px;
-    border: 0;
-    background: transparent;
-    color: var(--c-white);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    outline: none;
-  }
-
-  .c-reach-out__input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .c-reach-out__submit {
-    flex-shrink: 0;
-    box-sizing: border-box;
-    margin: 0;
-    border: 0;
-    min-width: 89px;
-    height: 50px;
-    padding: 15px 18px;
-    border-radius: 8px;
-    background: var(--c-white);
-    color: var(--c-black);
-    font: var(--w-medium) 16px / 1 var(--ff-r);
-    cursor: pointer;
-  }
-
-  .c-reach-out__submit:hover {
-    opacity: 0.92;
-  }
-
-  .c-reach-out__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
-  }
-
-  .c-reach-out__media {
-    width: 100%;
-    max-width: 789px;
-    aspect-ratio: 789 / 691;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .c-reach-out__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  @media (min-width: 1728px) {
-    .c-reach-out__title {
-      font-size: 47px;
-      line-height: 56px;
-    }
-
-    .c-reach-out__grid {
-      grid-template-columns: 654px 789px;
-      column-gap: 155px;
-    }
-
-    .c-reach-out__media {
-      width: 789px;
-      max-width: none;
-    }
-  }
-
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .c-reach-out__grid {
-      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 8.9vw, 155px);
-    }
-
-    .c-reach-out__form {
-      margin-top: clamp(4rem, 19.5vw, 336px);
-    }
-  }
-
-  /* ================================================================
      TABLET / MOBILE
      ================================================================ */
   @media (max-width: 64rem) {
@@ -1019,6 +882,15 @@ const testimonials = [
       padding: 64px 0;
     }
 
+    .careers-club__seal {
+      top: auto;
+      bottom: 6%;
+      right: -2%;
+      width: min(240px, 46vw);
+      max-width: none;
+      transform: none;
+    }
+
     .careers-club__names {
       height: 280px;
       margin-bottom: 40px;
@@ -1050,46 +922,6 @@ const testimonials = [
       margin-top: 36px;
     }
 
-    .c-reach-out {
-      padding: 3.5rem 0 4rem;
-    }
-
-    .c-reach-out__eyebrow {
-      margin-bottom: 1.25rem;
-    }
-
-    .c-reach-out__title {
-      max-width: none;
-      line-height: 1.2;
-    }
-
-    .c-reach-out__form {
-      margin-top: 2rem;
-      max-width: none;
-    }
-
-    .c-reach-out__field {
-      height: auto;
-      min-height: 65px;
-      flex-wrap: wrap;
-      padding: 10px 10px 10px 20px;
-    }
-
-    .c-reach-out__submit {
-      height: 48px;
-      min-width: auto;
-    }
-
-    .c-reach-out__grid {
-      grid-template-columns: 1fr;
-      gap: 2.25rem;
-      max-width: none;
-    }
-
-    .c-reach-out__media {
-      max-width: 36rem;
-      margin-inline: auto;
-    }
   }
 
   @media (max-width: 40rem) {
@@ -1103,24 +935,5 @@ const testimonials = [
       line-height: 1.2;
     }
 
-    .c-reach-out {
-      padding: 2.5rem 0 3rem;
-    }
-
-    .c-reach-out__title {
-      font-size: 1.5rem;
-    }
-
-    .c-reach-out__field {
-      flex-direction: column;
-      align-items: stretch;
-      height: auto;
-      padding: 12px;
-      gap: 10px;
-    }
-
-    .c-reach-out__submit {
-      width: 100%;
-    }
   }
 </style>

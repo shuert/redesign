@@ -1,5 +1,6 @@
 ---
 import AboutLayout from '../../layouts/AboutLayout.astro';
+import ReachOut from '../../components/ReachOut.astro';
 import heroImg from '../../assets/about/whoweare/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
 import introImg from '../../assets/about/whoweare/Rectangle 28.png';
 import pillar1 from '../../assets/about/whoweare/Rectangle 18.png';
@@ -174,7 +175,7 @@ const TIMELINE_INITIAL_INDEX = 0;
             could deliver greater long-term value. That understanding has kept us at the forefront of developing practical,
             engineered solutions that hold up in real-world applications.
           </p>
-          <a class="button button-glass wwa-intro__cta" href="/about/whyshuert">Shuert Advantage</a>
+          <a class="button button-glass wwa-intro__cta" href="/about/why-shuert">Shuert Advantage</a>
         </div>
       </div>
     </div>
@@ -362,44 +363,11 @@ const TIMELINE_INITIAL_INDEX = 0;
     </div>
   </section>
 
-  <!-- ─────────── REACH OUT ─────────── -->
-  <section class="c-reach-out">
-    <div class="container c-reach-out__inner">
-      <div class="c-reach-out__grid">
-        <div class="c-reach-out__content">
-          <p class="label c-reach-out__eyebrow">REACH OUT</p>
-          <h2 class="c-reach-out__title text-white reveal">
-            Stay in the loop on all<br />
-            things Shuert, from product updates to exhibitions we&apos;re attending.
-          </h2>
-          <form class="c-reach-out__form" aria-label="Email updates">
-            <div class="c-reach-out__field">
-              <input
-                type="email"
-                class="c-reach-out__input"
-                placeholder="Email Address"
-                autocomplete="email"
-                inputmode="email"
-                aria-label="Email address"
-              />
-              <button type="submit" class="c-reach-out__submit">Submit</button>
-            </div>
-          </form>
-        </div>
-        <div class="c-reach-out__media">
-          <img
-            src={reachOutImg.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="c-reach-out__img"
-            width={reachOutImg.width}
-            height={reachOutImg.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReachOut
+    image={reachOutImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+  />
+
 </AboutLayout>
 
 <script>
@@ -419,10 +387,6 @@ const TIMELINE_INITIAL_INDEX = 0;
     );
     reveals.forEach((el) => observer.observe(el));
   }
-
-  // ── Reach-out form (no-op submit) ──
-  const form = document.querySelector('.c-reach-out__form');
-  form?.addEventListener('submit', (e) => e.preventDefault());
 
   // ── Timeline: swipe carousel + autoplay + decade indicators ──
   (function () {
@@ -1374,97 +1338,6 @@ const TIMELINE_INITIAL_INDEX = 0;
   }
 
   /* ================================================================
-     REACH OUT (shared style from capabilities/careers)
-     ================================================================ */
-  .c-reach-out {
-    position: relative;
-    background: #1b1b1b;
-    padding: 73px 0;
-    box-sizing: border-box;
-  }
-
-  .c-reach-out__grid {
-    display: grid;
-    align-items: start;
-    max-width: 1598px;
-    margin-inline: auto;
-    grid-template-columns: 654px 789px;
-    column-gap: 155px;
-  }
-
-  .c-reach-out__eyebrow {
-    margin: 0 0 49px;
-    color: rgba(255, 255, 255, 0.35);
-    letter-spacing: 1.54px;
-  }
-
-  .c-reach-out__title {
-    margin: 0;
-    max-width: 654px;
-    font: var(--w-medium) 47px / 56px var(--ff-r);
-    color: var(--c-white);
-  }
-
-  .c-reach-out__form {
-    margin-top: 336px;
-    max-width: 654px;
-  }
-
-  .c-reach-out__field {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 65px;
-    padding: 0 8px 0 25px;
-    background: var(--c-black);
-    border: 1px solid #2c2c2c;
-    border-radius: 14px;
-  }
-
-  .c-reach-out__input {
-    flex: 1;
-    min-width: 0;
-    border: 0;
-    background: transparent;
-    color: var(--c-white);
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    outline: none;
-  }
-
-  .c-reach-out__input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .c-reach-out__submit {
-    flex-shrink: 0;
-    border: 0;
-    min-width: 89px;
-    height: 50px;
-    padding: 15px 18px;
-    border-radius: 8px;
-    background: var(--c-white);
-    color: var(--c-black);
-    font: var(--w-medium) 16px / 1 var(--ff-r);
-    cursor: pointer;
-  }
-
-  .c-reach-out__submit:hover {
-    opacity: 0.92;
-  }
-
-  .c-reach-out__media {
-    border-radius: 14px;
-    overflow: hidden;
-    aspect-ratio: 789 / 691;
-  }
-
-  .c-reach-out__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* ================================================================
      REVEAL ANIMATION
      ================================================================ */
   .reveal {
@@ -1609,27 +1482,6 @@ const TIMELINE_INITIAL_INDEX = 0;
       font-size: 60px;
     }
 
-    /* Reach out */
-    .c-reach-out {
-      padding: 56px 0;
-    }
-    .c-reach-out__grid {
-      grid-template-columns: 1fr;
-      gap: 34px;
-      max-width: none;
-    }
-    .c-reach-out__title {
-      font-size: clamp(1.75rem, 2.8vw, 48px);
-      line-height: 1.2;
-    }
-    .c-reach-out__form {
-      margin-top: 24px;
-      max-width: none;
-    }
-    .c-reach-out__media {
-      max-width: 36rem;
-      margin-inline: auto;
-    }
   }
 
   /* ================================================================

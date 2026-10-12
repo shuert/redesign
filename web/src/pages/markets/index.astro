@@ -1,27 +1,33 @@
 ---
 import Mainlayout from '../../layouts/Mainlayout.astro';
+import ReachOut from '../../components/ReachOut.astro';
 import heroImg from '../../assets/markets/Shuert_ProductPageHeaders_v01_Uni-Pak_v03 1.png';
-import reachOutImg from '../../assets/markets/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import reachOutImg from '../../assets/markets/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 
 import iconAutomotive from '../../assets/markets/7c61e96fd523fbfee58ef2dc967fb250ae0ac962.svg?url';
-import iconAgriculture from '../../assets/markets/e437b82618ada1bd3baea1071885d346ec78d1e1.svg?url';
-import iconAutomatedSystems from '../../assets/home/7850fb2d2eeabb768ee1c47c0e2307c7bbddb2da.svg?url';
-import iconConstruction from '../../assets/markets/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
-import iconEcommerce from '../../assets/markets/e599fe2c8709a6a434485eab6b63c610d1fe9613.svg?url';
-import iconFmcg from '../../assets/markets/499b89d1df290e0ae8c1f320fb7b23f10a622137.svg?url';
+import iconAgriculture from '../../assets/markets/499b89d1df290e0ae8c1f320fb7b23f10a622137.svg?url';
+import iconAutomatedSystems from '../../assets/markets/icons/de93fcfedcf03d5655e8db3a6ba6457c846a11dc.svg?url';
+import iconConstruction from '../../assets/markets/icons/5b22c06b70ec3036386d3d20b95af2bc8d4f059f.svg?url';
+import iconEcommerce from '../../assets/markets/icons/a7ed618908dc64519a79e4cbaf13b4c59f869d3c.svg?url';
+import iconFmcg from '../../assets/markets/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
+import iconGovernment from '../../assets/markets/icons/e72bc368592456ce65144abb508433e88f668788.svg?url';
+import iconGrocery from '../../assets/markets/icons/156977db49fe852098cad76b3150ba7163f5ede2.svg?url';
+import iconMilitary from '../../assets/markets/icons/4c09796fd555a39af27186dc1c245ea7636a60c4.svg?url';
+import iconPharmaceutical from '../../assets/markets/icons/2f46978f98a439d59b5bbde69dbe119eba1123ce.svg?url';
+import iconTextiles from '../../assets/markets/icons/514dc8e7a0da8562882f25c0a99b8eaee00342a8.svg?url';
 
 const markets = [
   { name: 'Automotive', icon: iconAutomotive, iw: 36, ih: 27, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Agriculture', icon: iconAgriculture, iw: 28, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Construction', icon: iconConstruction, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'E-Commerce', icon: iconEcommerce, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Government', icon: iconConstruction, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Grocery', icon: iconEcommerce, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Military', icon: iconFmcg, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Pharmaceutical/Medical', icon: iconConstruction, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
-  { name: 'Textiles', icon: iconEcommerce, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Agriculture', icon: iconAgriculture, iw: 35, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 28, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Construction', icon: iconConstruction, iw: 49, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'E-Commerce', icon: iconEcommerce, iw: 50, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 34, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Government', icon: iconGovernment, iw: 36, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Grocery', icon: iconGrocery, iw: 34, ih: 35, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Military', icon: iconMilitary, iw: 28, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Pharmaceutical/Medical', icon: iconPharmaceutical, iw: 22, ih: 34, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
+  { name: 'Textiles', icon: iconTextiles, iw: 26, ih: 33, desc: 'Lorem ipsum dolor sit amet consectetur. Eu condimentum at enim duis lectus pulvinar.' },
 ];
 ---
 
@@ -74,44 +80,11 @@ const markets = [
     </div>
   </section>
 
-  <!-- Reach Out -->
-  <section class="m-reach-out">
-    <div class="container m-reach-out__inner">
-      <div class="m-reach-out__grid">
-        <div class="m-reach-out__content">
-          <p class="label m-reach-out__eyebrow">REACH OUT</p>
-          <h2 class="m-reach-out__title text-white reveal">
-            Stay in the loop on all<br />
-            things Shuert, from product updates to exhibitions we're attending.
-          </h2>
-          <form class="m-reach-out__form" aria-label="Email updates">
-            <div class="m-reach-out__field">
-              <input
-                type="email"
-                class="m-reach-out__input"
-                placeholder="Email Address"
-                autocomplete="email"
-                inputmode="email"
-                aria-label="Email address"
-              />
-              <button type="submit" class="m-reach-out__submit">Submit</button>
-            </div>
-          </form>
-        </div>
-        <div class="m-reach-out__media">
-          <img
-            src={reachOutImg.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="m-reach-out__img"
-            width={reachOutImg.width}
-            height={reachOutImg.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReachOut
+    image={reachOutImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+  />
+
 </Mainlayout>
 
 <script>
@@ -131,10 +104,6 @@ const markets = [
     reveals.forEach((el) => observer.observe(el));
   }
 
-  const form = document.querySelector('.m-reach-out__form');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
 </script>
 
 <style>
@@ -306,111 +275,6 @@ const markets = [
   }
 
   /* ================================================================
-     REACH OUT
-     ================================================================ */
-  .m-reach-out {
-    position: relative;
-    background: #1b1b1b;
-    padding: 73px 0 73px;
-    box-sizing: border-box;
-  }
-
-  .m-reach-out__grid {
-    display: grid;
-    align-items: start;
-    max-width: 1598px;
-    margin-inline: auto;
-  }
-
-  .m-reach-out__eyebrow {
-    margin: 0 0 49px;
-    color: rgba(255, 255, 255, 0.35);
-    letter-spacing: 1.54px;
-  }
-
-  .m-reach-out__title {
-    margin: 0;
-    max-width: 654px;
-    font-family: var(--ff-r);
-    font-weight: var(--w-medium);
-    font-size: clamp(1.75rem, 2.8vw, 48px);
-    line-height: 56px;
-    letter-spacing: 0;
-  }
-
-  .m-reach-out__form {
-    margin-top: 336px;
-    max-width: 654px;
-  }
-
-  .m-reach-out__field {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    height: 65px;
-    padding: 0 8px 0 25px;
-    background: var(--c-black);
-    border: 1px solid #2c2c2c;
-    border-radius: 14px;
-  }
-
-  .m-reach-out__input {
-    flex: 1;
-    min-width: 0;
-    height: 22px;
-    border: 0;
-    background: transparent;
-    color: var(--c-white);
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    padding: 0;
-    outline: none;
-  }
-
-  .m-reach-out__input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .m-reach-out__submit {
-    flex-shrink: 0;
-    box-sizing: border-box;
-    margin: 0;
-    min-width: 89px;
-    height: 50px;
-    padding: 15px 18px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--c-white);
-    color: var(--c-black);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    cursor: pointer;
-  }
-
-  .m-reach-out__submit:hover {
-    opacity: 0.92;
-  }
-
-  .m-reach-out__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
-  }
-
-  .m-reach-out__media {
-    width: 100%;
-    max-width: 789px;
-    aspect-ratio: 789 / 691;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .m-reach-out__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 52% 42%;
-  }
-
-  /* ================================================================
      REVEAL ANIMATION
      ================================================================ */
   .reveal {
@@ -424,40 +288,6 @@ const markets = [
   .reveal--visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  /* ================================================================
-     DESKTOP (≥ 1728px)
-     ================================================================ */
-  @media (min-width: 1728px) {
-    .m-reach-out__title {
-      font-size: 48px;
-      line-height: 56px;
-    }
-
-    .m-reach-out__grid {
-      grid-template-columns: 654px 789px;
-      column-gap: 155px;
-    }
-
-    .m-reach-out__media {
-      width: 789px;
-      max-width: none;
-    }
-  }
-
-  /* ================================================================
-     WIDE DESKTOP (1025px – 1727px)
-     ================================================================ */
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .m-reach-out__grid {
-      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 8.9vw, 155px);
-    }
-
-    .m-reach-out__form {
-      margin-top: clamp(4rem, 19.5vw, 336px);
-    }
   }
 
   /* ================================================================
@@ -532,46 +362,6 @@ const markets = [
       line-height: 28px;
     }
 
-    .m-reach-out {
-      padding: 3.5rem 0 4rem;
-    }
-
-    .m-reach-out__eyebrow {
-      margin-bottom: 1.25rem;
-    }
-
-    .m-reach-out__title {
-      max-width: none;
-      line-height: 1.2;
-    }
-
-    .m-reach-out__form {
-      margin-top: 2rem;
-      max-width: none;
-    }
-
-    .m-reach-out__field {
-      height: auto;
-      min-height: 65px;
-      flex-wrap: wrap;
-      padding: 10px 10px 10px 20px;
-    }
-
-    .m-reach-out__submit {
-      height: 48px;
-      min-width: auto;
-    }
-
-    .m-reach-out__grid {
-      grid-template-columns: 1fr;
-      gap: 2.25rem;
-      max-width: none;
-    }
-
-    .m-reach-out__media {
-      max-width: 36rem;
-      margin-inline: auto;
-    }
   }
 
   /* ================================================================

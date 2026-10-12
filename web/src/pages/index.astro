@@ -1,17 +1,23 @@
 ---
 import Mainlayout from '../layouts/Mainlayout.astro';
 import ExploreHoverCard from '../components/ExploreHoverCard.astro';
+import ReachOut from '../components/ReachOut.astro';
 import heroVideo from '../assets/home/Shuert Hero.mp4?url';
 import showcaseGridImg from '../assets/home/showcase/442c4945dd362268b980a5ca97e20f26e7ebd454.png';
 import exploreCapabilitiesImg from '../assets/home/Rectangle 30.png';
 import exploreAboutImg from '../assets/home/Rectangle 29.png';
 import iconAutomotive from '../assets/markets/7c61e96fd523fbfee58ef2dc967fb250ae0ac962.svg?url';
-import iconAgriculture from '../assets/markets/e437b82618ada1bd3baea1071885d346ec78d1e1.svg?url';
-import iconAutomatedSystems from '../assets/home/7850fb2d2eeabb768ee1c47c0e2307c7bbddb2da.svg?url';
-import iconConstruction from '../assets/markets/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
-import iconEcommerce from '../assets/markets/e599fe2c8709a6a434485eab6b63c610d1fe9613.svg?url';
-import iconFmcg from '../assets/markets/499b89d1df290e0ae8c1f320fb7b23f10a622137.svg?url';
-import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
+import iconAgriculture from '../assets/markets/499b89d1df290e0ae8c1f320fb7b23f10a622137.svg?url';
+import iconAutomatedSystems from '../assets/markets/icons/de93fcfedcf03d5655e8db3a6ba6457c846a11dc.svg?url';
+import iconConstruction from '../assets/markets/icons/5b22c06b70ec3036386d3d20b95af2bc8d4f059f.svg?url';
+import iconEcommerce from '../assets/markets/icons/a7ed618908dc64519a79e4cbaf13b4c59f869d3c.svg?url';
+import iconFmcg from '../assets/markets/6fcc977319170cad548333e2c75f6119f095e1fe.svg?url';
+import iconGovernment from '../assets/markets/icons/e72bc368592456ce65144abb508433e88f668788.svg?url';
+import iconGrocery from '../assets/markets/icons/156977db49fe852098cad76b3150ba7163f5ede2.svg?url';
+import iconMilitary from '../assets/markets/icons/4c09796fd555a39af27186dc1c245ea7636a60c4.svg?url';
+import iconPharmaceutical from '../assets/markets/icons/2f46978f98a439d59b5bbde69dbe119eba1123ce.svg?url';
+import iconTextiles from '../assets/markets/icons/514dc8e7a0da8562882f25c0a99b8eaee00342a8.svg?url';
+import reachOutImg from '../assets/home/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
 
 import swpfUniCase from '../assets/home/showcase/4b170503a9b59eff640b0edc203460e636770be1.png';
 import swpfYarnPak from '../assets/home/showcase/8814d643574ff518056f6ce26f4edefd5d46a80e.png';
@@ -40,16 +46,16 @@ const marketDesc =
 
 const markets = [
   { name: 'Automotive', icon: iconAutomotive, iw: 36, ih: 27, desc: marketDesc },
-  { name: 'Agriculture', icon: iconAgriculture, iw: 28, ih: 35, desc: marketDesc },
-  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 35, ih: 35, desc: marketDesc },
-  { name: 'Construction', icon: iconConstruction, iw: 34, ih: 34, desc: marketDesc },
-  { name: 'E-Commerce', icon: iconEcommerce, iw: 34, ih: 35, desc: marketDesc },
-  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 35, ih: 35, desc: marketDesc },
-  { name: 'Government', icon: iconConstruction, iw: 34, ih: 34, desc: marketDesc },
-  { name: 'Grocery', icon: iconEcommerce, iw: 34, ih: 35, desc: marketDesc },
-  { name: 'Military', icon: iconFmcg, iw: 35, ih: 35, desc: marketDesc },
-  { name: 'Pharmaceutical/Medical', icon: iconConstruction, iw: 34, ih: 34, desc: marketDesc },
-  { name: 'Textiles', icon: iconEcommerce, iw: 34, ih: 35, desc: marketDesc },
+  { name: 'Agriculture', icon: iconAgriculture, iw: 35, ih: 35, desc: marketDesc },
+  { name: 'Automated Systems', icon: iconAutomatedSystems, iw: 28, ih: 35, desc: marketDesc },
+  { name: 'Construction', icon: iconConstruction, iw: 49, ih: 34, desc: marketDesc },
+  { name: 'E-Commerce', icon: iconEcommerce, iw: 50, ih: 35, desc: marketDesc },
+  { name: 'Fast Moving Consumer Goods', icon: iconFmcg, iw: 34, ih: 34, desc: marketDesc },
+  { name: 'Government', icon: iconGovernment, iw: 36, ih: 34, desc: marketDesc },
+  { name: 'Grocery', icon: iconGrocery, iw: 34, ih: 35, desc: marketDesc },
+  { name: 'Military', icon: iconMilitary, iw: 28, ih: 34, desc: marketDesc },
+  { name: 'Pharmaceutical/Medical', icon: iconPharmaceutical, iw: 22, ih: 34, desc: marketDesc },
+  { name: 'Textiles', icon: iconTextiles, iw: 26, ih: 33, desc: marketDesc },
 ];
 
 /** Figma Frame 155 (2003:8154) product positions on 1727×1248 artboard */
@@ -70,7 +76,7 @@ const showcaseProducts = [
   { id: 'terra-road', name: 'terra-road', href: '#', left: 1.33, top: 342.96, flip: true, image: swpfTerraRoad },
   { id: 'uni-directional', name: 'uni-directional', href: '/products/uni-directional-pallet', left: 183.82, top: 463.97, flip: false, image: swpfUniDirectional },
   { id: 'uni-pallet', name: 'uni-pallet', href: '/products/uni-pallet', left: 301.18, top: 532.03, flip: false, image: swpfUniPallet },
-  { id: 'perimeter-base', name: 'perimeter-base', href: '#', left: 436.64, top: 607.25, flip: false, image: swpfPerimeterBase },
+  { id: 'perimeter-base', name: 'perimeter-base', href: '/products/perimeter-base-pallet', left: 436.64, top: 607.25, flip: false, image: swpfPerimeterBase },
 ].map((p) => ({
   ...p,
   style: {
@@ -90,18 +96,21 @@ const showcaseRevealOrder = Object.fromEntries(
 ---
 
 <Mainlayout title="Home">
-  <section class="hero">
-    <div class="hero__bg" aria-hidden="true">
-      <video
-        class="hero__video"
-        src={heroVideo}
-        muted
-        playsinline
-        loop
-        autoplay
-        preload="auto"
-      ></video>
-      <div class="hero__gradient"></div>
+  <div class="hero-scroll">
+    <section class="hero">
+    <div class="hero__frame">
+      <div class="hero__media" aria-hidden="true">
+        <video
+          class="hero__video"
+          src={heroVideo}
+          muted
+          playsinline
+          loop
+          autoplay
+          preload="auto"
+        ></video>
+      </div>
+      <div class="hero__gradient" aria-hidden="true"></div>
     </div>
 
     <div class="hero__content container">
@@ -126,7 +135,8 @@ const showcaseRevealOrder = Object.fromEntries(
         </button>
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 
   <section class="statement">
     <div class="container">
@@ -165,7 +175,7 @@ const showcaseRevealOrder = Object.fromEntries(
             class:list={['showcase__product', product.flip && 'showcase__product--flip']}
             style={`left:${product.style.left};top:${product.style.top};width:${product.style.width};height:${product.style.height};z-index:${index + 1};--reveal-i:${showcaseRevealOrder[product.id] ?? index}`}
             data-product-id={product.id}
-            data-name={`${product.name}®`}
+            data-name={product.name}
             data-href={product.href}
             aria-label={`Explore ${product.name}`}
           >
@@ -185,7 +195,14 @@ const showcaseRevealOrder = Object.fromEntries(
       </div>
     </div>
 
-    <p class="showcase__side-label" data-side="left" hidden aria-hidden="true"></p>
+    <p class="showcase__side-label" data-side="left" hidden aria-hidden="true">
+      <span class="showcase__side-name"></span><svg class="showcase__reg" viewBox="0 5 17.56 17.6" aria-hidden="true" focusable="false">
+        <path
+          fill="currentColor"
+          d="M8.76 22.6C7.08 22.6 5.57333 22.2267 4.24 21.48C2.90667 20.7067 1.86667 19.6533 1.12 18.32C0.373333 16.96 0 15.4533 0 13.8C0 12.12 0.373333 10.6133 1.12 9.28C1.86667 7.92 2.90667 6.86667 4.24 6.12C5.57333 5.37333 7.08 5 8.76 5C10.44 5 11.9467 5.37333 13.28 6.12C14.6133 6.86667 15.6533 7.92 16.4 9.28C17.1733 10.6133 17.56 12.12 17.56 13.8C17.56 15.4533 17.1867 16.96 16.44 18.32C15.6933 19.6533 14.6533 20.7067 13.32 21.48C11.9867 22.2267 10.4667 22.6 8.76 22.6ZM8.76 20.8C10.0933 20.8 11.28 20.4933 12.32 19.88C13.3867 19.2667 14.2133 18.4267 14.8 17.36C15.3867 16.2933 15.68 15.1067 15.68 13.8C15.68 12.4667 15.3867 11.2667 14.8 10.2C14.2133 9.13333 13.3867 8.30667 12.32 7.72C11.28 7.13333 10.0933 6.84 8.76 6.84C7.42667 6.84 6.24 7.14667 5.2 7.76C4.16 8.34667 3.34667 9.17333 2.76 10.24C2.17333 11.28 1.88 12.4667 1.88 13.8C1.88 15.1067 2.17333 16.2933 2.76 17.36C3.34667 18.4267 4.16 19.2667 5.2 19.88C6.24 20.4933 7.42667 20.8 8.76 20.8ZM5.48 8.96H9.36C10.3467 8.96 11.12 9.21333 11.68 9.72C12.2667 10.2267 12.56 10.8933 12.56 11.72C12.56 12.2533 12.44 12.72 12.2 13.12C11.9867 13.4933 11.6933 13.76 11.32 13.92C11.64 14.1067 11.88 14.36 12.04 14.68C12.2 15 12.3067 15.4 12.36 15.88L12.6 18.4H10.76L10.52 16.16C10.4667 15.7333 10.3467 15.4267 10.16 15.24C9.97333 15.0533 9.68 14.96 9.28 14.96H7.4V18.4H5.48V8.96ZM9.2 13.28C9.70667 13.28 10.0667 13.16 10.28 12.92C10.52 12.68 10.64 12.36 10.64 11.96C10.64 11.56 10.52 11.24 10.28 11C10.0667 10.76 9.70667 10.64 9.2 10.64H7.4V13.28H9.2Z"
+        />
+      </svg>
+    </p>
 
     <p class="showcase__hint label">Hover to Explore</p>
   </section>
@@ -198,17 +215,18 @@ const showcaseRevealOrder = Object.fromEntries(
           image={exploreCapabilitiesImg}
           imageAlt="Forklift and CNC machine in Shuert manufacturing"
           eyebrow="Capabilities"
-          eyebrowVariant="plain"
+          eyebrowVariant="pill"
           title="End-to-end control through in-house capability."
           cta="Explore Our Capabilities"
         />
         <ExploreHoverCard
-          href="/about/whyshuert"
+          href="/about/why-shuert"
           image={exploreAboutImg}
           imageAlt="Team inspecting a wooden mold in the workshop"
           eyebrow="The Shuert Advantage"
           eyebrowVariant="pill"
-          title="From the start with material selection, we've never compromised the product."
+          title="From the start with material selection, we’ve never compromised the product."
+          titleWidth={60}
           cta="Learn About Shuert"
         />
       </div>
@@ -244,51 +262,17 @@ const showcaseRevealOrder = Object.fromEntries(
     </div>
   </section>
 
-  <section class="reach-out" aria-labelledby="reach-out-heading">
-    <div class="container reach-out__inner">
-      <div class="reach-out__grid">
-        <div class="reach-out__content">
-          <p class="label reach-out__eyebrow" style="color: rgba(255, 255, 255, 0.35);">Reach out</p>
-          <h2 id="reach-out-heading" class="reach-out__title text-white reveal">
-            Stay in the loop on all<br />
-            things Shuert, from product updates to exhibitions we’re attending.
-          </h2>
-          <form class="reach-out__form" aria-label="Email updates">
-            <div class="reach-out__field">
-              <input
-                type="email"
-                id="reach-out-email"
-                name="email"
-                class="reach-out__input"
-                placeholder="Email Address"
-                autocomplete="email"
-                inputmode="email"
-                aria-label="Email address"
-              />
-              <button type="submit" class="reach-out__submit">Submit</button>
-            </div>
-          </form>
-        </div>
-        <div class="reach-out__media">
-          <img
-            src={reachOutImg.src}
-            alt="Forklift and stacked reusable pallets in a Shuert warehouse"
-            class="reach-out__img"
-            width={reachOutImg.width}
-            height={reachOutImg.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <ReachOut
+    image={reachOutImg}
+    imageAlt="Forklift and stacked reusable pallets in a Shuert warehouse"
+  />
 </Mainlayout>
 
 <script>
-  const hero = document.querySelector('.hero');
-  const heroBg = document.querySelector('.hero__bg');
-  const heroContent = document.querySelector('.hero__content');
+  const heroScroll = document.querySelector('.hero-scroll');
+  const heroFrame = document.querySelector('.hero__frame');
+  const heroMedia = document.querySelector('.hero__media');
+  const heroText = document.querySelector('.hero__text');
   const heroVideoEl = document.querySelector('.hero__video');
 
   if (heroVideoEl instanceof HTMLVideoElement) {
@@ -304,30 +288,35 @@ const showcaseRevealOrder = Object.fromEntries(
     else heroVideoEl.addEventListener('loadedmetadata', startAtRandom, { once: true });
   }
 
-  if (hero && heroBg && heroContent) {
+  const reduceHeroMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (heroScroll instanceof HTMLElement && heroFrame instanceof HTMLElement && heroMedia instanceof HTMLElement && heroText instanceof HTMLElement && !reduceHeroMotion) {
     let currentBgY = 0;
     let targetBgY = 0;
     const ease = 0.06;
-
     const lerp = (a, b, t) => a + (b - a) * t;
-
-    const onScroll = () => {
-      const scrollY = window.scrollY;
-      const heroH = hero.offsetHeight;
-      const progress = Math.min(scrollY / heroH, 1);
-
-      targetBgY = scrollY * 0.15;
-      heroContent.style.opacity = String(1 - progress * 1.5);
-      heroContent.style.transform = `translateY(${scrollY * -0.3}px)`;
-    };
+    /* Stay fully opaque until the next section has nearly covered the text. */
+    const fadeStart = 0.34;
 
     const animate = () => {
+      const range = Math.max(heroScroll.offsetHeight - window.innerHeight, 1);
+      const scrolled = Math.min(Math.max(-heroScroll.getBoundingClientRect().top, 0), range);
+      const progress = scrolled / range;
+
+      heroFrame.style.height = `${(1 - progress) * window.innerHeight}px`;
+      /* Video travels up with the page, slower than the collapsing frame. */
+      targetBgY = -scrolled * 0.32;
+      /* Text rises ahead of the next section, which then covers it. */
+      heroText.style.transform = `translate3d(0, ${-scrolled * 0.5}px, 0)`;
+      const fade = progress <= fadeStart ? 1 : (1 - progress) / (1 - fadeStart);
+      heroText.style.opacity = String(fade);
+      heroText.style.pointerEvents = fade === 0 ? 'none' : '';
+
       currentBgY = lerp(currentBgY, targetBgY, ease);
-      heroBg.style.transform = `translateY(${currentBgY}px)`;
+      heroMedia.style.transform = `translate3d(0, ${currentBgY}px, 0)`;
       requestAnimationFrame(animate);
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
     animate();
   }
 
@@ -378,11 +367,6 @@ const showcaseRevealOrder = Object.fromEntries(
     revealObserver.observe(showcaseReveal);
   }
 
-  const reachOutForm = document.querySelector('.reach-out__form');
-  reachOutForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
-
   /* ── Product showcase (Figma 1581:1556 hover → navigate on click) ── */
   const showcase = document.querySelector('#product-showcase');
   if (showcase instanceof HTMLElement) {
@@ -409,7 +393,8 @@ const showcaseRevealOrder = Object.fromEntries(
 
     const placeSideLabel = (product) => {
       if (!(sideLabel instanceof HTMLElement) || !(product instanceof HTMLElement)) return;
-      sideLabel.textContent = product.getAttribute('data-name') || '';
+      const sideName = sideLabel.querySelector('.showcase__side-name');
+      if (sideName) sideName.textContent = product.getAttribute('data-name') || '';
 
       const stageEl = stage instanceof HTMLElement ? stage : showcase;
       const stageRect = stageEl.getBoundingClientRect();
@@ -556,6 +541,12 @@ const showcaseRevealOrder = Object.fromEntries(
 </script>
 
 <style>
+  /* One extra viewport of scroll collapses the hero. Matches the
+     negative margin on .statement so the next section rises into the gap. */
+  .hero-scroll {
+    height: 200dvh;
+  }
+
   .hero {
     position: sticky;
     top: 0;
@@ -567,10 +558,28 @@ const showcaseRevealOrder = Object.fromEntries(
     background: var(--c-black);
   }
 
-  /* ── Background video layer ── */
-  .hero__bg {
+  /* Video window. Height is driven by scroll so the frame collapses
+     while the headline stays free to move up and be covered. */
+  .hero__frame {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* ── Background video layer ──
+     Fixed to the viewport so the shrinking frame clips it instead of
+     scaling the footage. translateY is applied in the scroll loop. */
+  .hero__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
     pointer-events: none;
     will-change: transform;
   }
@@ -602,7 +611,6 @@ const showcaseRevealOrder = Object.fromEntries(
     height: 100%;
     display: flex;
     flex-direction: column;
-    will-change: transform, opacity;
   }
 
   .hero__grid {
@@ -617,6 +625,7 @@ const showcaseRevealOrder = Object.fromEntries(
     align-items: flex-start;
     gap: 3.5rem;
     max-width: 59.75rem;
+    will-change: transform, opacity;
   }
 
   .hero__subtitle {
@@ -652,8 +661,25 @@ const showcaseRevealOrder = Object.fromEntries(
   .statement {
     position: relative;
     z-index: 2;
+    margin-top: -100dvh;
     background: var(--c-black);
     padding: 235px 0 121px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll {
+      height: auto;
+    }
+
+    .hero {
+      position: relative;
+      height: 100dvh;
+    }
+
+    .statement {
+      z-index: 2;
+      margin-top: 0;
+    }
   }
 
   .statement__heading {
@@ -766,17 +792,26 @@ const showcaseRevealOrder = Object.fromEntries(
     z-index: 8;
     top: 50%;
     margin: 0;
-    max-width: min(38vw, 28rem);
     font-family: var(--ff-s);
     font-weight: var(--w-bold);
-    font-size: clamp(2.5rem, 7.5vw, 7rem);
+    font-size: clamp(2.125rem, 6.375vw, 5.95rem);
     line-height: 0.92;
     letter-spacing: -0.02em;
+    white-space: nowrap;
     color: var(--c-white);
     pointer-events: none;
     opacity: 0;
     transform: translateY(-50%);
     transition: opacity 0.28s ease;
+  }
+
+  /* Shentox draws ® as a boxed C. Use a circular mark, raised and smaller than the cap height. */
+  .showcase__reg {
+    display: inline-block;
+    width: 0.22em;
+    height: 0.22em;
+    margin-left: 0.04em;
+    vertical-align: 0.52em;
   }
 
   .showcase__side-label[data-side='left'] {
@@ -816,7 +851,8 @@ const showcaseRevealOrder = Object.fromEntries(
     position: absolute;
     z-index: 5;
     left: 50%;
-    bottom: clamp(1.25rem, 3vw, 2.5rem);
+    /* Figma 2003:8173: 168px above the 1248px frame bottom */
+    bottom: calc(168 / 1248 * 100%);
     transform: translateX(-50%);
     margin: 0;
     color: rgba(255, 255, 255, 0.35);
@@ -855,8 +891,7 @@ const showcaseRevealOrder = Object.fromEntries(
     }
 
     .showcase__side-label {
-      max-width: 46vw;
-      font-size: clamp(1.75rem, 9vw, 3rem);
+      font-size: clamp(1.49rem, 7.65vw, 2.55rem);
     }
 
     .showcase__side-label[data-side='left'] {
@@ -873,7 +908,8 @@ const showcaseRevealOrder = Object.fromEntries(
     position: relative;
     z-index: 2;
     background: var(--c-black);
-    padding: 3.5rem 0 1rem;
+    /* Figma Frame 172: cards start 66px below the showcase */
+    padding: 4.125rem 0 1rem;
   }
 
   .explore-pair__grid {
@@ -993,179 +1029,7 @@ const showcaseRevealOrder = Object.fromEntries(
     max-width: 20.75rem;
   }
 
-  /* ── Reach out / email (Figma 581:1601 — 1728×885 frame, inner 1598) ── */
-  .reach-out {
-    position: relative;
-    z-index: 2;
-    background: #1b1b1b;
-    padding: 97px 0;
-    box-sizing: border-box;
-  }
-
-  .reach-out__grid {
-    display: grid;
-    align-items: start;
-    max-width: 1598px;
-    margin-inline: auto;
-  }
-
-  .reach-out__eyebrow {
-    margin: 0 0 49px;
-    letter-spacing: 1.54px;
-  }
-
-  .reach-out__title {
-    margin: 0;
-    max-width: 654px;
-    font-family: var(--ff-r);
-    font-weight: var(--w-medium);
-    font-size: clamp(1.75rem, 2.8vw, 48px);
-    line-height: 1.167;
-    letter-spacing: 0;
-    min-height: 0;
-  }
-
-  .reach-out__form {
-    margin-top: 336px;
-    max-width: 654px;
-  }
-
-  .reach-out__field {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    height: 65px;
-    padding: 0 8px 0 25px;
-    background: var(--c-black);
-    border: 1px solid #2c2c2c;
-    border-radius: 14px;
-  }
-
-  .reach-out__input {
-    flex: 1;
-    min-width: 0;
-    height: 22px;
-    border: 0;
-    background: transparent;
-    color: var(--c-white);
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    padding: 0;
-    outline: none;
-  }
-
-  .reach-out__input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .reach-out__submit {
-    flex-shrink: 0;
-    box-sizing: border-box;
-    margin: 0;
-    min-width: 89px;
-    height: 50px;
-    padding: 15px 18px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--c-white);
-    color: var(--c-black);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-    cursor: pointer;
-  }
-
-  .reach-out__submit:hover {
-    opacity: 0.92;
-  }
-
-  .reach-out__submit:focus-visible {
-    outline: 2px solid var(--c-white);
-    outline-offset: 2px;
-  }
-
-  .reach-out__media {
-    width: 100%;
-    max-width: 789px;
-    aspect-ratio: 789 / 691;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .reach-out__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 52% 42%;
-  }
-
-  @media (min-width: 1728px) {
-    .reach-out__title {
-      font-size: 48px;
-      line-height: 56px;
-    }
-
-    .reach-out__grid {
-      grid-template-columns: 654px 789px;
-      column-gap: 155px;
-    }
-
-    .reach-out__media {
-      width: 789px;
-      max-width: none;
-    }
-  }
-
-  @media (min-width: 64.01rem) and (max-width: 1727px) {
-    .reach-out__grid {
-      grid-template-columns: minmax(0, 654fr) minmax(0, 789fr);
-      column-gap: clamp(2rem, 8.9vw, 155px);
-    }
-
-    .reach-out__form {
-      margin-top: clamp(4rem, 19.5vw, 336px);
-    }
-  }
-
   @media (max-width: 64rem) {
-    .reach-out {
-      padding: 3.5rem 0 4rem;
-    }
-
-    .reach-out__eyebrow {
-      margin-bottom: 1.25rem;
-    }
-
-    .reach-out__title {
-      max-width: none;
-      line-height: 1.2;
-    }
-
-    .reach-out__form {
-      margin-top: 2rem;
-      max-width: none;
-    }
-
-    .reach-out__field {
-      height: auto;
-      min-height: 65px;
-      flex-wrap: wrap;
-      padding: 10px 10px 10px 20px;
-    }
-
-    .reach-out__submit {
-      height: 48px;
-      min-width: auto;
-    }
-
-    .reach-out__grid {
-      grid-template-columns: 1fr;
-      gap: 2.25rem;
-      max-width: none;
-    }
-
-    .reach-out__media {
-      max-width: 36rem;
-      margin-inline: auto;
-    }
 
     .markets-grid {
       padding: 3.5rem 0 4.5rem;

@@ -1,0 +1,387 @@
+---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import MultiSelect from './MultiSelect.astro';
+import { MARKET_OPTIONS, PRODUCT_OPTIONS } from '../data/formOptions';
+
+interface ImageCrop {
+  width: string;
+  height: string;
+  left: string;
+  top: string;
+}
+
+interface Props {
+  /** Quote asks for quantity and products. Info asks for a market and optional comments. */
+  variant: 'quote' | 'info';
+  image: ImageMetadata;
+  imageAlt: string;
+  title?: string;
+  eyebrow?: string;
+  /** Anchor id. Defaults to request-a-quote or request-more-information. */
+  sectionId?: string;
+  /** Quote only. Adds the market multi-select. */
+  showMarket?: boolean;
+  /** Info only. Defaults to true. */
+  showComments?: boolean;
+  /** Info only. Label on the market field. */
+  interestLabel?: string;
+  titleWeight?: 'light' | 'medium' | 'semibold';
+  /** Minimum photo aspect ratio beside the fields, e.g. "789 / 871". The frame grows with the form when the fields are taller. */
+  imageRatio?: string;
+  imageCrop?: ImageCrop;
+  imagePosition?: string;
+  /** Stack the photo above the fields on tablet and mobile. */
+  imageFirstOnNarrow?: boolean;
+}
+
+const {
+  variant,
+  image,
+  imageAlt,
+  title,
+  eyebrow = variant === 'quote' ? 'Request a quote' : 'Request more information',
+  sectionId = variant === 'quote' ? 'request-a-quote' : 'request-more-information',
+  showMarket = false,
+  showComments = true,
+  interestLabel = 'Specific interest',
+  titleWeight = 'light',
+  imageRatio = '789 / 871',
+  imageCrop,
+  imagePosition = '48% 40%',
+  imageFirstOnNarrow = false,
+} = Astro.props;
+
+const imageOpt = await getImage({ src: image, width: 1600, format: 'webp', quality: 80 });
+const ariaLabel = variant === 'quote' ? 'Request a quote' : 'Request more information';
+const cropStyle = imageCrop
+  ? `--crop-w:${imageCrop.width};--crop-h:${imageCrop.height};--crop-l:${imageCrop.left};--crop-t:${imageCrop.top};`
+  : undefined;
+---
+
+<section
+  class:list={['lead-form', title && 'lead-form--titled', imageFirstOnNarrow && 'lead-form--media-first']}
+  id={sectionId}
+  style={`--lead-ratio:${imageRatio};--lead-img-position:${imagePosition};`}
+>
+  <div class="container">
+    <div class="lead-form__layout">
+      <div class="lead-form__side">
+        <p class="label lead-form__eyebrow">{eyebrow}</p>
+        {title && (
+          <p class:list={['lead-form__title', `lead-form__title--${titleWeight}`]}>{title}</p>
+        )}
+        <form class="lead-form__fields" data-lead-form={variant} aria-label={ariaLabel}>
+          <input type="hidden" name="formType" value={variant} />
+          <div class="lead-form__row">
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-first`}>First name</label>
+              <input id={`${sectionId}-first`} name="firstName" type="text" class="lead-form__input" placeholder="First" autocomplete="given-name" />
+            </div>
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-last`}>Last name</label>
+              <input id={`${sectionId}-last`} name="lastName" type="text" class="lead-form__input" placeholder="Last" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="lead-form__field">
+            <label class="lead-form__label" for={`${sectionId}-company`}>Company name</label>
+            <input id={`${sectionId}-company`} name="company" type="text" class="lead-form__input" placeholder="Company" autocomplete="organization" />
+          </div>
+          {variant === 'quote' ? (
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-email`}>Email</label>
+              <input id={`${sectionId}-email`} name="email" type="email" class="lead-form__input" placeholder="Email" autocomplete="email" />
+            </div>
+          ) : (
+            <div class="lead-form__row">
+              <div class="lead-form__field">
+                <label class="lead-form__label" for={`${sectionId}-email`}>Email</label>
+                <input id={`${sectionId}-email`} name="email" type="email" class="lead-form__input" placeholder="Email" autocomplete="email" />
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for={`${sectionId}-phone`}>Phone</label>
+                <input id={`${sectionId}-phone`} name="phone" type="tel" class="lead-form__input" placeholder="Phone" autocomplete="tel" />
+              </div>
+            </div>
+          )}
+          {variant === 'quote' && (
+            <div class="lead-form__row">
+              <div class="lead-form__field">
+                <label class="lead-form__label" for={`${sectionId}-phone`}>Phone</label>
+                <input id={`${sectionId}-phone`} name="phone" type="tel" class="lead-form__input" placeholder="Phone" autocomplete="tel" />
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for={`${sectionId}-quantity`}>Quantity</label>
+                <input id={`${sectionId}-quantity`} name="quantity" type="text" class="lead-form__input" placeholder="Quantity" inputmode="numeric" />
+              </div>
+            </div>
+          )}
+          {variant === 'quote' && (
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-products`}>Products of interest</label>
+              <MultiSelect
+                id={`${sectionId}-products`}
+                name="productsOfInterest"
+                options={PRODUCT_OPTIONS}
+                placeholder="Select products…"
+              />
+            </div>
+          )}
+          {(variant === 'info' || showMarket) && (
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-market`}>
+                {variant === 'info' ? interestLabel : 'Market'}
+              </label>
+              <MultiSelect
+                id={`${sectionId}-market`}
+                name="market"
+                options={MARKET_OPTIONS}
+                placeholder="Select markets…"
+              />
+            </div>
+          )}
+          {variant === 'quote' && (
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-notes`}>Any other questions?</label>
+              <textarea id={`${sectionId}-notes`} name="notes" class="lead-form__input lead-form__textarea" placeholder="Additional Info"></textarea>
+            </div>
+          )}
+          {variant === 'info' && showComments && (
+            <div class="lead-form__field">
+              <label class="lead-form__label" for={`${sectionId}-comments`}>Comments</label>
+              <textarea id={`${sectionId}-comments`} name="comments" class="lead-form__input lead-form__textarea lead-form__textarea--tall"></textarea>
+            </div>
+          )}
+          <button type="submit" class="lead-form__submit">Submit</button>
+        </form>
+      </div>
+      <div class="lead-form__media">
+        <img
+          src={imageOpt.src}
+          alt={imageAlt}
+          class:list={['lead-form__img', imageCrop && 'lead-form__img--crop']}
+          style={cropStyle}
+          width={imageOpt.attributes.width}
+          height={imageOpt.attributes.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Placeholder until the forms post to the backend.
+  document.querySelectorAll('form[data-lead-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
+
+<style>
+  .lead-form {
+    background: #1b1b1b;
+    padding: clamp(3rem, 4vw, 66px) 0 clamp(3rem, 4.2vw, 70px);
+  }
+
+  .lead-form__layout {
+    display: grid;
+    align-items: start;
+    row-gap: 2.5rem;
+  }
+
+  .lead-form__eyebrow {
+    margin: 0 0 clamp(2rem, 2.6vw, 45px);
+    color: var(--c-white);
+    letter-spacing: 1.54px;
+  }
+
+  .lead-form--titled .lead-form__eyebrow {
+    margin-bottom: 36px;
+  }
+
+  .lead-form__title {
+    margin: 0 0 clamp(2.5rem, 3.6vw, 63px);
+    max-width: 654px;
+    color: var(--c-white);
+    font: var(--w-light) clamp(1.375rem, 1.8vw, 30px) / 33px var(--ff-r);
+  }
+
+  .lead-form__title--medium {
+    font-weight: var(--w-medium);
+  }
+
+  .lead-form__title--semibold {
+    font-weight: var(--w-semibold);
+  }
+
+  .lead-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .lead-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .lead-form__label {
+    display: block;
+    margin-bottom: 14px;
+    font: var(--w-bold) 14px / 14px var(--ff-s);
+    letter-spacing: 1.54px;
+    text-transform: uppercase;
+    color: var(--c-white);
+  }
+
+  .lead-form__input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: 400 16px / 22px var(--ff-r);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .lead-form__input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .lead-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .lead-form__textarea {
+    height: 106px;
+    padding: 18px;
+    resize: none;
+  }
+
+  .lead-form__textarea--tall {
+    height: 148px;
+  }
+
+  .lead-form__submit {
+    align-self: flex-start;
+    padding: 15px 18px;
+    background: var(--c-black);
+    border: none;
+    border-radius: 8px;
+    color: var(--c-white);
+    font: var(--w-medium) 16px / normal var(--ff-r);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .lead-form__submit:hover {
+    opacity: 0.85;
+  }
+
+  .lead-form__submit:focus-visible {
+    outline: 2px solid var(--c-white);
+    outline-offset: 2px;
+  }
+
+  .lead-form__media {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: var(--lead-ratio, 789 / 871);
+    max-width: 600px;
+  }
+
+  .lead-form__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--lead-img-position, 48% 40%);
+    display: block;
+  }
+
+  .lead-form__img--crop {
+    width: var(--crop-w);
+    height: var(--crop-h);
+    left: var(--crop-l);
+    top: var(--crop-t);
+    max-width: none;
+  }
+
+  @media (min-width: 64.01rem) {
+    .lead-form__layout {
+      grid-template-columns: minmax(0, 695fr) minmax(0, 789fr);
+      column-gap: clamp(2rem, 7vw, 114px);
+      row-gap: 0;
+      align-items: stretch;
+    }
+
+    .lead-form__media {
+      max-width: none;
+      aspect-ratio: auto;
+    }
+
+    .lead-form__media::before {
+      content: "";
+      display: block;
+      width: 100%;
+      aspect-ratio: var(--lead-ratio, 789 / 871);
+    }
+
+    .lead-form__img,
+    .lead-form__img--crop {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      max-width: none;
+      object-fit: cover;
+    }
+  }
+
+  @media (min-width: 1728px) {
+    .lead-form__layout {
+      grid-template-columns: 695px 789px;
+      column-gap: 114px;
+      justify-content: center;
+    }
+
+    .lead-form__media {
+      width: 789px;
+    }
+  }
+
+  @media (max-width: 64rem) {
+    .lead-form--titled .lead-form__title {
+      margin-bottom: 2rem;
+    }
+
+    .lead-form--media-first .lead-form__media {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .lead-form__row {
+      grid-template-columns: 1fr;
+    }
+
+    .lead-form__fields {
+      gap: 18px;
+    }
+
+    .lead-form__title {
+      line-height: 34px;
+    }
+  }
+</style>

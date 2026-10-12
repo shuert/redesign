@@ -56,6 +56,8 @@ export type SystemDataFlexibleRow = {
 export type SystemDataTable = {
   columns: readonly string[];
   rows: readonly SystemDataFlexibleRow[];
+  /** Download icons in the leading column. Defaults to true. */
+  showDownloads?: boolean;
 };
 
 export type RelatedImageCrop = {
@@ -82,13 +84,38 @@ export type ProductVideo = {
   label?: string;
 };
 
+/** Customer-story card in the optional news band */
+export type ProductStory = {
+  source: string;
+  body: string;
+  href: string;
+  img: ImageMetadata;
+  crop?: RelatedImageCrop;
+};
+
+export type ProductStories = {
+  eyebrow: string;
+  title: string;
+  articles: readonly ProductStory[];
+};
+
 export type ProductPageData = {
   /** `<title>` / layout title */
   title: string;
   /** Lowercase display name in hero, e.g. `bulk-pak` */
   name: string;
+  /** When set, the hero name breaks across these lines (reg mark stays on the first line) */
+  nameLines?: readonly string[];
   /** Show ® mark next to name */
   showRegMark?: boolean;
+  /** Overrides the Features section eyebrow. Defaults to PRODUCT */
+  featuresEyebrow?: string;
+  /** Overrides the attributes carousel eyebrow. Defaults to PRODUCT */
+  attributesEyebrow?: string;
+  /** Overrides the attributes carousel title. Defaults to Attributes */
+  attributesTitle?: string;
+  /** Overrides the options section eyebrow. Defaults to OPTIONS */
+  optionsEyebrow?: string;
 
   crumbLabel: string;
   /** When set, shows dims + Imperial/Metric toggle in the hero */
@@ -108,6 +135,8 @@ export type ProductPageData = {
   systemDataRows?: SystemDataRow[];
   /** When set, renders a flexible multi-column System Data table (e.g. Pro-Pak) */
   systemData?: SystemDataTable;
+  /** News band between System Data and related products */
+  stories?: ProductStories;
   related: RelatedProduct[];
 
   quoteTitle: string;

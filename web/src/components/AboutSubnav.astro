@@ -9,7 +9,7 @@ const { current } = Astro.props;
 
 const links: { href: string; id: AboutSection; label: string }[] = [
   { href: '/about', id: 'who-we-are', label: 'Who We Are' },
-  { href: '/about/whyshuert', id: 'why-shuert', label: 'Why Shuert' },
+  { href: '/about/why-shuert', id: 'why-shuert', label: 'Shuert Advantage' },
   { href: '/about/careers', id: 'careers', label: 'Careers' },
 ];
 ---
@@ -43,7 +43,7 @@ const links: { href: string; id: AboutSection; label: string }[] = [
 
     function pathMatchHref(pathNorm, hrefNorm) {
       if (hrefNorm === '/about') return pathNorm === '/about';
-      return pathNorm === hrefNorm;
+      return pathNorm === hrefNorm || pathNorm.startsWith(hrefNorm + '/');
     }
 
     function setActiveFromLocation() {

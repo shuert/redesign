@@ -18,7 +18,7 @@ import relatedRemanPak from '../../assets/product/unicase/3028050f466102f5296e21
 import relatedBulkPak from '../../assets/product/unicase/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
 import relatedModulePak from '../../assets/product/unicase/8a3ddf1c3913dddbff2427e7e435308c4d616728.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 export const uniCase: ProductPageData = {
   title: 'Uni-Case',
@@ -106,7 +106,7 @@ export const uniCase: ProductPageData = {
       desc: 'A closure system that secures components in a fixed position, preventing unintended opening during handling and transport.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

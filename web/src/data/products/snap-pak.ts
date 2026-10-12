@@ -20,7 +20,7 @@ import relatedBulkPak from '../../assets/product/snappak/fcd48ab930f8cb181183774
 import relatedUniPakIi from '../../assets/product/snappak/1f33178a0228a5eee17d27db2787893e839ba77b.png';
 
 import videoPoster from '../../assets/product/snappak/ea0ee2c0725c11aa501a6e1652a3d8b171221b14.png';
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const sizeRange = {
   imperial: '48”x40” — 48”x45”',
@@ -118,7 +118,7 @@ export const snapPak: ProductPageData = {
       desc: 'A structure that minimizes mass, reducing handling effort and allowing a greater proportion of each shipment to consist of product.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],

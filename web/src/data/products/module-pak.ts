@@ -18,7 +18,7 @@ import relatedUniPak from '../../assets/product/modulepak/6324929b6ffd966af7a277
 import relatedBulkPak from '../../assets/product/modulepak/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
 import relatedUniPakIi from '../../assets/product/modulepak/1f33178a0228a5eee17d27db2787893e839ba77b.png';
 
-import quoteImage from '../../assets/product/shared/quote.png';
+import quoteImage from '../../assets/product/shared/quote.jpg';
 
 const uniPakSize = {
   imperial: '29”x23” — 90”x48”',
@@ -69,7 +69,7 @@ export const modulePak: ProductPageData = {
       desc: 'A system that uses interchangeable components, allowing individual parts to be replaced without replacing the entire system.',
     },
   ],
-  attributesAutoplayMs: 3000,
+  attributesAutoplayMs: 6000,
   optionCols: [
     ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
     ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
