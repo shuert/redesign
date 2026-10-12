@@ -87,8 +87,6 @@ const imageOpt = await getImage({ src: image, width: 1600, format: 'webp', quali
   .reach-out__grid {
     display: grid;
     align-items: start;
-    max-width: 1598px;
-    margin-inline: auto;
   }
 
   .reach-out__eyebrow {
@@ -181,7 +179,6 @@ const imageOpt = await getImage({ src: image, width: 1600, format: 'webp', quali
 
   .reach-out__media {
     width: 100%;
-    max-width: 789px;
     aspect-ratio: 789 / 691;
     border-radius: 14px;
     overflow: hidden;
@@ -208,18 +205,6 @@ const imageOpt = await getImage({ src: image, width: 1600, format: 'webp', quali
 
     .reach-out__form {
       margin-top: auto;
-    }
-  }
-
-  @media (min-width: 1728px) {
-    .reach-out__grid {
-      grid-template-columns: 674px 789px;
-      column-gap: 135px;
-    }
-
-    .reach-out__media {
-      width: 789px;
-      max-width: none;
     }
   }
 
@@ -256,7 +241,6 @@ const imageOpt = await getImage({ src: image, width: 1600, format: 'webp', quali
     .reach-out__grid {
       grid-template-columns: 1fr;
       gap: 2.25rem;
-      max-width: none;
     }
 
     .reach-out__media {

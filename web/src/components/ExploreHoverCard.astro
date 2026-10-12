@@ -54,7 +54,8 @@ const imageOpt = await getImage({ src: image, width: 1800, format: 'webp', quali
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: clamp(17.5rem, 42vw, 31.25rem);
+    /* Desktop cap matches Figma card height of 565px */
+    min-height: clamp(17.5rem, 42vw, 35.3125rem);
     border-radius: var(--r-img);
     overflow: hidden;
     color: inherit;
