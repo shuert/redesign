@@ -7,53 +7,38 @@ import uniPakImg from '../../assets/product/index/6324929b6ffd966af7a2778ee189f6
 import uniDirPalletImg from '../../assets/product/index/7ff131f8858a7b66c45784b5edc74c3a71e37ef2.png';
 import remanImg from '../../assets/product/index/3028050f466102f5296e21bd8f008072f3e5416e.png';
 import uniPalletImg from '../../assets/product/index/aa4c71cf6fd121cfe04e6f4f44658228fc24d3dc.png';
-import snapPakImg from '../../assets/product/index/7afa23b4d9678b5221bedf3bb5d58d68f36943e3.png';
+import snapPakImg from '../../assets/product/index/42abb03618e39d7822c880009fe09f28262fea42.png';
 import batteryRakImg from '../../assets/product/index/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
 import bulkPakImg from '../../assets/product/index/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
 import yarnPakImg from '../../assets/product/index/e9c3bad29049bc104caa12c3c1df6a909ac3c3d7.png';
 import axlePakImg from '../../assets/product/index/56e5e0488ca1226ecb15ba61951c49ae13582380.png';
-import batteryShellImg from '../../assets/product/index/a2fba7307a268376e5965c15eed34f5f050db60e.png';
 import proPakImg from '../../assets/product/index/962bc5dea41b9cb8605e747bfd0c533ce2a929fa.png';
-import exairPalletImg from '../../assets/product/index/6d491e071fc9a0e187d505a9422887387b2911e8.png';
-import uniPalletDoublerImg from '../../assets/product/index/ec9f80a540e1500371c3f3ed38b78e62b9077848.png';
-import sleevesImg from '../../assets/product/index/aa41e80d3b854437febc89d1bbb40ed82f5d740c.png';
 import uniCaseImg from '../../assets/product/index/454084480a055ddddae249d65a9d63552f1b760d.png';
-import uniRakImg from '../../assets/product/index/64c1ebff21662b97d2badc576764e2beb665d3d0.png';
 import perimeterBaseImg from '../../assets/product/index/ace628f106d3945cb72725dcdea147e2c7a6eff4.png';
 import modulePakImg from '../../assets/product/index/8a3ddf1c3913dddbff2427e7e435308c4d616728.png';
-import terraRoadImg from '../../assets/product/index/c25cf16ea6bf49b562af48467ba1e375c9120fbb.png';
 import uniPakIiImg from '../../assets/product/index/1f33178a0228a5eee17d27db2787893e839ba77b.png';
-import customImg from '../../assets/product/index/5b12aa8d3d5dc5bb61774bd04c5ab8c85dbb0152.png';
+import customImg from '../../assets/product/index/d8ec9aa0ba997787fbe189f4db1759a0816da03f.png';
 import quoteImg from '../../assets/product/index/60c26e97b304b786a121896cb8a9ba9c10e748e0.jpg';
-
-const sizeRange = '29” x 23”  —  90” x 48”';
-const sizePallet = '48” x 78” x 36”';
 
 const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
 
 const products = await Promise.all(
   [
-    { name: 'uni-pak', size: sizeRange, image: uniPakImg, href: '/products/uni-pak' },
-    { name: 'uni-directional pallet', size: sizePallet, image: uniDirPalletImg, href: '/products/uni-directional-pallet' },
-    { name: 'remanufacturing-systems', size: 'Systems for Remanufacturing Drivetrain Components', image: remanImg, href: '/products/reman-pak' },
-    { name: 'uni-pallet', size: sizeRange, image: uniPalletImg, href: '/products/uni-pallet' },
-    { name: 'snap-pak', size: '41.25” x 39.75”', image: snapPakImg, href: '/products/snap-pak' },
-    { name: 'battery-rak', size: sizePallet, image: batteryRakImg, href: '/products/battery-pak', crop: 'battery-rak' as const },
-    { name: 'bulk-pak', size: sizeRange, image: bulkPakImg, href: '/products/bulk-pak' },
-    { name: 'yarn-pak', size: sizeRange, image: yarnPakImg, href: '/products/yarn-pak' },
-    { name: 'axle-pak', size: sizeRange, image: axlePakImg, href: '/products/axel-pak', crop: 'axle-pak' as const },
-    { name: 'battery-shell', size: sizeRange, image: batteryShellImg, href: '#', crop: 'battery-shell' as const },
-    { name: 'pro-pak', size: sizeRange, image: proPakImg, href: '/products/pro-pak' },
-    { name: 'exair-pallet', size: sizeRange, image: exairPalletImg, href: '#' },
-    { name: 'uni-pallet doubler', size: sizeRange, image: uniPalletDoublerImg, href: '#' },
-    { name: 'sleeves', size: 'Request More Information', image: sleevesImg, href: '#' },
-    { name: 'uni-case', size: sizeRange, image: uniCaseImg, href: '/products/uni-case' },
-    { name: 'uni-rak', size: sizeRange, image: uniRakImg, href: '/products/uni-rak', crop: 'uni-rak' as const },
-    { name: 'perimeter-base pallet', size: sizeRange, image: perimeterBaseImg, href: '/products/perimeter-base-pallet' },
-    { name: 'module-pak', size: sizeRange, image: modulePakImg, href: '/products/module-pak' },
-    { name: 'terra-road', size: sizeRange, image: terraRoadImg, href: '#', crop: 'terra-road' as const },
-    { name: 'uni-pak II', size: sizeRange, image: uniPakIiImg, href: '/products/uni-pak-II' },
-    { name: 'custom', size: sizeRange, image: customImg, href: '/products/custom' },
+    { name: 'uni-pak', size: '29”x23” — 90”x48”', image: uniPakImg, href: '/products/uni-pak' },
+    { name: 'uni-pallet', size: '48”x40” — 48”x48”', image: uniPalletImg, href: '/products/uni-pallet' },
+    { name: 'uni-directional pallet', size: '600x800 — 800x1200', image: uniDirPalletImg, href: '/products/uni-directional-pallet' },
+    { name: 'axle-pak', size: 'Custom', image: axlePakImg, href: '/products/axel-pak', crop: 'axle-pak' as const },
+    { name: 'reman-pak', size: 'For Remanufactured Drivetrain Components', image: remanImg, href: '/products/reman-pak' },
+    { name: 'uni-pak II', size: '30”x29” — 90”x48.75”', image: uniPakIiImg, href: '/products/uni-pak-II' },
+    { name: 'pro-pak', size: '3x4 & 4x4', image: proPakImg, href: '/products/pro-pak' },
+    { name: 'perimeter-base pallet', size: '48”x45”', image: perimeterBaseImg, href: '/products/perimeter-base-pallet' },
+    { name: 'battery-rak', size: 'Custom', image: batteryRakImg, href: '/products/battery-pak', crop: 'battery-rak' as const },
+    { name: 'uni-case', size: 'Custom', image: uniCaseImg, href: '/products/uni-case' },
+    { name: 'bulk-pak', size: '48”x40” — 48”x45”', image: bulkPakImg, href: '/products/bulk-pak' },
+    { name: 'snap-pak', size: '41.25” x 39.75” +', image: snapPakImg, href: '/products/snap-pak' },
+    { name: 'module-pak', size: 'Custom', image: modulePakImg, href: '/products/module-pak' },
+    { name: 'yarn-pak', size: '44”x44” — 56”x45”', image: yarnPakImg, href: '/products/yarn-pak' },
+    { name: 'custom', size: 'Sized to Fit', image: customImg, href: '/products/custom', crop: 'custom' as const },
   ].map(async (product) => ({
     ...product,
     // Cropped cards zoom well past the frame — keep more pixels
@@ -101,7 +86,7 @@ const filters = [
         </div>
         <div class="p-hero__right">
           <p class="p-hero__desc text-white">
-            Lorem ipsum dolor sit amet consectetur. Donec gravida quam sit consequat eget dignissim. Tristique nibh tristique cum purus dictumst nec lorem magnis. Sed dolor odio arcu magna pellentesque sem.
+            Durable, cost-effective containers built for closed-loop systems—helping reduce total operating costs through improved shipping efficiency, storage utilization, product protection, and service life.
           </p>
         </div>
       </div>
@@ -434,47 +419,31 @@ const filters = [
 
   .p-card__img--battery-rak img,
   .p-card__img--axle-pak img,
-  .p-card__img--battery-shell img,
-  .p-card__img--uni-rak img,
-  .p-card__img--terra-road img {
+  .p-card__img--custom img {
     position: absolute;
     max-width: none;
     object-fit: cover;
   }
 
   .p-card__img--battery-rak img {
-    width: 226.72%;
-    height: 227.14%;
-    left: -28.39%;
-    top: -63.57%;
+    width: 213.8%;
+    height: 210.22%;
+    left: -13.99%;
+    top: -60.5%;
   }
 
   .p-card__img--axle-pak img {
-    width: 199.91%;
-    height: 197.68%;
-    left: -31.02%;
-    top: -48.84%;
+    width: 193.38%;
+    height: 190.15%;
+    left: -20.98%;
+    top: -45.07%;
   }
 
-  .p-card__img--battery-shell img {
-    width: 198.68%;
-    height: 195.72%;
-    left: -26.42%;
-    top: -47.86%;
-  }
-
-  .p-card__img--uni-rak img {
-    width: 161.89%;
-    height: 159.48%;
-    left: -25%;
-    top: -29.74%;
-  }
-
-  .p-card__img--terra-road img {
-    width: 254.25%;
-    height: 250%;
-    left: -42.34%;
-    top: -75%;
+  .p-card__img--custom img {
+    width: 185.26%;
+    height: 182.16%;
+    left: -13.71%;
+    top: -41.08%;
   }
 
   .p-card:hover .p-card__img img {
@@ -483,9 +452,7 @@ const filters = [
 
   .p-card:hover .p-card__img--battery-rak img,
   .p-card:hover .p-card__img--axle-pak img,
-  .p-card:hover .p-card__img--battery-shell img,
-  .p-card:hover .p-card__img--uni-rak img,
-  .p-card:hover .p-card__img--terra-road img {
+  .p-card:hover .p-card__img--custom img {
     transform: none;
   }
 
@@ -556,7 +523,8 @@ const filters = [
       border-bottom: 2px solid #ebe7e3;
     }
 
-    .p-card:nth-last-child(-n + 2) {
+    .p-card:last-child,
+    .p-card:nth-last-child(2):nth-child(odd) {
       border-bottom: none;
     }
 

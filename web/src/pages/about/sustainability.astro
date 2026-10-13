@@ -4,10 +4,10 @@ import Mainlayout from '../../layouts/Mainlayout.astro';
 import ReachOut from '../../components/ReachOut.astro';
 
 import heroImg from '../../assets/sustainability/2b1c7fecc62f5fca81aed1dd6ddb8c826af6c0e6.png';
-import circularImg from '../../assets/sustainability/circular-ecosystem.png';
-import news1Img from '../../assets/sustainability/29c0feead284fde4f7b53eb75874ee93ae01ac74.png';
-import news2Img from '../../assets/sustainability/67aa266474344f49969b27d5c427e2bf992cf32d.png';
-import news3Img from '../../assets/sustainability/2136dc7a51c79d241f9ab02830f8a2561bd6181b.png';
+import circularShuertImg from '../../assets/sustainability/circular-shuert.png';
+import circularMarketImg from '../../assets/sustainability/circular-market.png';
+import circularSourceImg from '../../assets/sustainability/circular-source.png';
+import circularArrow from '../../assets/sustainability/circular-arrow.svg?url';
 import epdBannerImg from '../../assets/sustainability/85331bec7d0ac395c87259c636f3b0c7a7f93e2e.png';
 import statsBgImg from '../../assets/sustainability/c3dec68fe17e3211b5d828f9cae8466d0b8e88ef.png';
 import driversImg from '../../assets/sustainability/8f0ab7b6a38251e847e6866d5a0909f4cfdc455c.png';
@@ -17,41 +17,18 @@ import reachOutImg from '../../assets/sustainability/60c26e97b304b786a121896cb8a
 
 import playIcon from '../../assets/sustainability/42208bd656b84eb6378eaaeb7657c54f8badc043.svg?url';
 import arrowDownIcon from '../../assets/sustainability/7130bc65c3074ac9d2a540bd8be3b07ebb8458db.svg?url';
-import arrowRightIcon from '../../assets/sustainability/d58370a5254402baa86cccccda6ec1a84a25ab0a.svg?url';
 
 const heroOpt = await getImage({ src: heroImg, width: 2400, format: 'webp', quality: 80 });
-const circularOpt = await getImage({ src: circularImg, width: 916, format: 'webp', quality: 90 });
+const [circularShuertOpt, circularMarketOpt, circularSourceOpt] = await Promise.all(
+  [circularShuertImg, circularMarketImg, circularSourceImg].map((src) =>
+    getImage({ src, width: 1024, format: 'webp', quality: 90 }),
+  ),
+);
 const epdOpt = await getImage({ src: epdBannerImg, width: 2400, format: 'webp', quality: 80 });
 const statsOpt = await getImage({ src: statsBgImg, width: 1600, format: 'webp', quality: 80 });
 const driversOpt = await getImage({ src: driversImg, width: 1800, format: 'webp', quality: 80 });
 const repairsOpt = await getImage({ src: repairsImg, width: 1800, format: 'webp', quality: 80 });
 const inspectionsOpt = await getImage({ src: inspectionsImg, width: 1800, format: 'webp', quality: 80 });
-
-const newsArticles = await Promise.all(
-  [
-    {
-      source: 'name of source',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      href: '#',
-      image: news1Img,
-    },
-    {
-      source: 'name of source',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      href: '#',
-      image: news2Img,
-    },
-    {
-      source: 'name of source',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      href: '#',
-      image: news3Img,
-    },
-  ].map(async (article) => ({
-    ...article,
-    image: await getImage({ src: article.image, width: 1100, format: 'webp', quality: 80 }),
-  })),
-);
 
 /** Chart scale: ±2 kg CO2-eq. Positive = above zero, negative = below. */
 const chartStages = [
@@ -82,10 +59,10 @@ const chartStages = [
   {
     label: 'end-of-life',
     code: 'C',
-    wood: 1.59,
-    woodLabel: '1.59',
-    plastic: 0.15,
-    plasticLabel: '0.15',
+    wood: 1.6,
+    woodLabel: '1.6',
+    plastic: 0.16,
+    plasticLabel: '0.16',
   },
 ] as const;
 
@@ -141,15 +118,51 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
       </div>
 
       <div class="su-approach__split">
-        <div class="su-approach__diagram">
+        <div
+          class="su-approach__diagram"
+          role="img"
+          aria-label="Circular ecosystem: Shuert, the market, and the manufacturer connected in a loop"
+        >
           <img
-            src={circularOpt.src}
-            alt="Circular ecosystem: Shuert, the market, and the manufacturer connected in a loop"
-            width={circularOpt.attributes.width}
-            height={circularOpt.attributes.height}
+            class="su-eco__building su-eco__building--shuert"
+            src={circularShuertOpt.src}
+            alt=""
+            width={circularShuertOpt.attributes.width}
+            height={circularShuertOpt.attributes.height}
             loading="lazy"
             decoding="async"
           />
+          <img
+            class="su-eco__building su-eco__building--market"
+            src={circularMarketOpt.src}
+            alt=""
+            width={circularMarketOpt.attributes.width}
+            height={circularMarketOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="su-eco__building su-eco__building--source"
+            src={circularSourceOpt.src}
+            alt=""
+            width={circularSourceOpt.attributes.width}
+            height={circularSourceOpt.attributes.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="su-eco__arrow su-eco__arrow--out" aria-hidden="true">
+            <span class="su-eco__arrow-art"><img src={circularArrow} alt="" /></span>
+          </span>
+          <span class="su-eco__arrow su-eco__arrow--back" aria-hidden="true">
+            <span class="su-eco__arrow-rot">
+              <span class="su-eco__arrow-art"><img src={circularArrow} alt="" /></span>
+            </span>
+          </span>
+          <span class="su-eco__arrow su-eco__arrow--forward" aria-hidden="true">
+            <span class="su-eco__arrow-rot">
+              <span class="su-eco__arrow-art"><img src={circularArrow} alt="" /></span>
+            </span>
+          </span>
         </div>
         <div class="su-approach__copy reveal">
           <h3 class="su-approach__copy-title">Circular Ecosystem</h3>
@@ -162,39 +175,6 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
             </p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- News -->
-  <section class="su-news">
-    <div class="container">
-      <header class="su-news__head">
-        <p class="label su-news__eyebrow">NEWS</p>
-        <h2 class="su-news__title">What the Industry is Saying</h2>
-      </header>
-
-      <div class="su-news__grid">
-        {newsArticles.map((article) => (
-          <article class="su-news-card">
-            <div class="su-news-card__media">
-              <img
-                src={article.image.src}
-                alt=""
-                width={article.image.attributes.width}
-                height={article.image.attributes.height}
-                loading="lazy"
-                decoding="async"
-              />
-              <span class="su-news-card__badge">{article.source}</span>
-            </div>
-            <p class="su-news-card__body">{article.body}</p>
-            <a class="su-news-card__link" href={article.href}>
-              <span>READ FULL ARTICLE</span>
-              <img src={arrowRightIcon} alt="" width="12" height="8" />
-            </a>
-          </article>
-        ))}
       </div>
     </div>
   </section>
@@ -320,7 +300,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
             <div class="su-stat__total">
               <p class="su-stat__total-label">WOOD PALLET — TOTAL</p>
               <p class="su-stat__total-value">
-                <span>1.3 - 1.4</span>
+                <span>1.39</span>
                 <span class="su-stat__total-unit">kg CO2-eq per loop</span>
               </p>
             </div>
@@ -328,13 +308,13 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
             <div class="su-stat__total">
               <p class="su-stat__total-label">PLASTIC PALLET — TOTAL</p>
               <p class="su-stat__total-value">
-                <span>0.9 - 1.0</span>
+                <span>0.92</span>
                 <span class="su-stat__total-unit">kg CO2-eq per loop</span>
               </p>
             </div>
           </div>
           <div class="su-stat__main">
-            <p class="su-stat__pct">~35%</p>
+            <p class="su-stat__pct">34%</p>
             <p class="su-stat__sub">lower lifecycle emissions per loop</p>
             <p class="su-stat__body">
               Based on published Environmental Product Declaration (EPD) data, a reusable plastic pallet emits roughly half the CO-equivalent of a traditional wood pallet over its full lifecycle.
@@ -624,17 +604,98 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
   }
 
   .su-approach__diagram {
+    position: relative;
     background: var(--c-white);
     border-radius: 14px;
     aspect-ratio: 924 / 662;
-    display: grid;
     overflow: hidden;
   }
 
-  .su-approach__diagram img {
+  .su-eco__building {
+    position: absolute;
+    width: calc(572 / 924 * 100%);
+    height: calc(572 / 662 * 100%);
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .su-eco__building--shuert {
+    left: calc(175 / 924 * 100%);
+    top: calc(-112 / 662 * 100%);
+  }
+
+  .su-eco__building--market {
+    left: calc(-55 / 924 * 100%);
+    top: calc(161.8468 / 662 * 100%);
+  }
+
+  .su-eco__building--source {
+    left: calc(407 / 924 * 100%);
+    top: calc(161.8468 / 662 * 100%);
+    object-position: bottom;
+  }
+
+  .su-eco__arrow {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .su-eco__arrow--out {
+    left: calc(699 / 924 * 100%);
+    top: calc(176 / 662 * 100%);
+    width: calc(68.205 / 924 * 100%);
+    height: calc(115.5 / 662 * 100%);
+  }
+
+  .su-eco__arrow--back {
+    left: calc(126 / 924 * 100%);
+    top: calc(181 / 662 * 100%);
+    width: calc(133.788 / 924 * 100%);
+    height: calc(112.498 / 662 * 100%);
+  }
+
+  .su-eco__arrow--forward {
+    left: calc(385 / 924 * 100%);
+    top: calc(503 / 662 * 100%);
+    width: calc(133.896 / 924 * 100%);
+    height: calc(121.115 / 662 * 100%);
+  }
+
+  .su-eco__arrow--back .su-eco__arrow-rot {
+    width: calc(68.205 / 133.788 * 100%);
+    height: calc(115.5 / 112.498 * 100%);
+    transform: rotate(-116.44deg);
+  }
+
+  .su-eco__arrow--forward .su-eco__arrow-rot {
+    width: calc(68.205 / 133.896 * 100%);
+    height: calc(115.5 / 121.115 * 100%);
+    transform: rotate(123.98deg);
+  }
+
+  .su-eco__arrow-rot {
+    position: relative;
+    flex: none;
+  }
+
+  .su-eco__arrow-art {
+    position: absolute;
+    inset: -0.82% -8.4% 0 -0.45%;
+  }
+
+  .su-eco__arrow--out .su-eco__arrow-art {
+    inset: -0.82% -8.4% 0 -0.45%;
+  }
+
+  .su-eco__arrow-art img {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    max-width: none;
   }
 
   .su-approach__copy-title {
@@ -653,91 +714,6 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
     margin: 0;
     font: var(--w-light) 16px / 22px var(--ff-r);
     color: var(--c-black);
-  }
-
-  /* ================================================================
-     NEWS
-     ================================================================ */
-  .su-news {
-    background: var(--c-sec-1);
-    padding: 0 0 100px;
-  }
-
-  .su-news__head {
-    margin-bottom: 48px;
-  }
-
-  .su-news__eyebrow {
-    margin: 0;
-    color: var(--c-sec-3);
-    letter-spacing: 1.54px;
-  }
-
-  .su-news__title {
-    margin: 15px 0 0;
-    font: var(--w-light) 30px / 33px var(--ff-r);
-    color: var(--c-black);
-  }
-
-  .su-news__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2.2vw, 37px);
-  }
-
-  .su-news-card__media {
-    position: relative;
-    aspect-ratio: 519 / 380;
-    border-radius: 14px;
-    overflow: hidden;
-    background: var(--c-black);
-  }
-
-  .su-news-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .su-news-card__badge {
-    position: absolute;
-    left: 23px;
-    bottom: 21px;
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 18px;
-    border-radius: 25px;
-    background: var(--c-black);
-    color: var(--c-white);
-    font: var(--w-medium) 16px / normal var(--ff-r);
-  }
-
-  .su-news-card__body {
-    margin: 27px 0 0;
-    max-width: 454px;
-    font: var(--w-light) 16px / 22px var(--ff-r);
-    color: var(--c-black);
-  }
-
-  .su-news-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 27px;
-    text-decoration: none;
-    color: var(--c-black);
-    font: var(--w-bold) 14px / 14px var(--ff-s);
-    letter-spacing: 1.54px;
-    text-transform: uppercase;
-  }
-
-  .su-news-card__link img {
-    width: 12px;
-    height: 8px;
-  }
-
-  .su-news-card__link:hover {
-    opacity: 0.7;
   }
 
   /* ================================================================
@@ -1287,8 +1263,7 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
     .su-approach__split,
     .su-lifecycle__data,
     .su-feature,
-    .su-feature--reverse,
-    .su-news__grid {
+    .su-feature--reverse {
       grid-template-columns: 1fr;
     }
 
@@ -1339,7 +1314,6 @@ const yTicks = [2, 1.5, 1, 0.5, 0, -0.5, -1, -1.5, -2] as const;
 
   @media (max-width: 720px) {
     .su-approach,
-    .su-news,
     .su-epd,
     .su-lifecycle {
       padding-bottom: 64px;
