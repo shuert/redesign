@@ -49,6 +49,10 @@ export const yarnPak: ProductPageData = {
       body: 'Yarn-Pak features a system comprised of a custom-fitted pallet, cover, and dividers that separate each layer of spools.',
     },
     {
+      title: 'Application-specific construction',
+      body: 'Yarn-Pak can be produced using single-skin or twin-sheet thermoformed components based on customer and application requirements. With single-skin components, stacked loads transfer from layer to layer through the spools. Twin-sheet components provide additional rigidity, allowing loads to be transferred through either the spools or the cones to accommodate specialized product-protection and handling requirements, including no-touch applications.',
+    },
+    {
       title: 'Custom-formed spool protection',
       body: 'Each component incorporates a molded surface design that creates a grid pattern of pockets specific to the spool profile. This geometry positions and cradles each unit from both the top and bottom, securing spools in place to prevent interaction, movement, and contamination during storage and transport, while maximizing packing density within the available footprint.',
     },
@@ -89,8 +93,8 @@ export const yarnPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   systemData: {
     columns: ['Size', 'Type', 'Cover Size', 'Divider', 'Pallet Size', 'Cone Type'],

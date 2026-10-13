@@ -51,6 +51,42 @@ export const modulePak: ProductPageData = {
       title: 'Integrated lightweight design',
       body: 'Designed for high-density, weight-sensitive applications, Module-Pak minimizes packaging weight to help maximize payload efficiency—supporting improved cube utilization in operations where weight limits are often the primary constraint.',
     },
+    {
+      title: 'Nestable tote return',
+      body: 'The totes follow the same approach—collapsible and nestable when not in use—helping reduce storage volume and improve return efficiency across the system.',
+    },
+    {
+      title: 'Multi-component container system',
+      body: 'Uni-Pak combines a twin-sheet thermoformed pallet, heavy-duty sleeve, and twin-sheet thermoformed cover into a single, integrated solution.',
+    },
+    {
+      title: 'Integrated locking mechanism',
+      body: 'The integrated slide-lock design secures the sleeve within the track of the pallet and cover, locking the components into a single, stable unit. This enables fast, tool-free assembly and disassembly—one container, one person, one minute—while eliminating the need for external containment and supporting ergonomic, consistent handling across operations.',
+    },
+    {
+      title: 'Knock-down return configuration',
+      body: 'Disengage the slide-lock, and the system knocks down efficiently into individual components for maximum space efficiency during storage and transport. Collapsible sleeves fold down, and pallets and covers nest, significantly reducing storage volume and improving space utilization and return ratios.',
+    },
+    {
+      title: 'Tube-cut sleeve',
+      body: 'The bottom of the sleeve is straight-cut and sits within the track of the pallet rather than extending into the pallet leg, increasing the internal dimensions (ID) in both length and width and providing additional usable space within the container.',
+    },
+    {
+      title: 'Minimized packaging weight',
+      body: 'Design efficiencies reduce the weight handled throughout the distribution cycle, supporting easier handling without sacrificing performance under load. Reinforcement through geometry rather than additional plastic provides the necessary rigidity while avoiding unnecessary mass.',
+    },
+    {
+      title: 'Custom internal dunnage',
+      body: 'Uni-Pak can be further customized with internal dunnage designed around the product and application. Options can include custom totes, internal trays for separating and organizing layers, and protective foam for cushioning and positioning, helping protect products, maintain organization, and improve packing and handling efficiency.',
+    },
+    {
+      title: 'Space Saver configuration',
+      body: 'The Space Saver configuration uses a dedicated pallet and cover, each with a lower profile than the pallet design used in the Mirror Image configuration. The reduced packaging height minimizes the space occupied by the container, making this configuration ideal for operations where storage and transportation space are limited.',
+    },
+    {
+      title: 'Mirror Image configuration',
+      body: 'The Mirror Image configuration uses the same pallet design for both the base and cover. The leg design allows the identical part to function in either orientation: upright or upside down. When upright, with the legs facing down, it functions as the pallet; when upside down, with the legs facing up, it functions as the cover. This interchangeable design reduces the number of unique packaging components required while simplifying inventory and system management.',
+    },
   ],
   attributes: [
     {
@@ -71,8 +107,8 @@ export const modulePak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   related: [
     {

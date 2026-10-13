@@ -32,7 +32,7 @@ export const uniCase: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT UNI-CASE',
   aboutText:
-    'Uni-Case is a reusable clamshell container system designed for the storage and transport of large-scale products in closed-loop systems. Engineered for the automotive industry, where part integrity and quality are critical, it provides a systems-based alternative to traditional steel racks while minimizing the indirect costs that drive total cost of ownership.',
+    'Uni-Case is a reusable hinged clamshell container system designed for the storage and transport of large-scale products in closed-loop systems. Engineered for the automotive industry, where part integrity and quality are critical, it provides a systems-based alternative to traditional steel racks while minimizing the indirect costs that drive total cost of ownership.',
   thumbnails: [
     { img: productMain, alt: 'Uni-Case product view 1' },
     { img: thumb2, alt: 'Uni-Case product view 2' },
@@ -41,7 +41,7 @@ export const uniCase: ProductPageData = {
   ],
   accordionItems: [
     {
-      title: 'Clamshell construction',
+      title: 'Hinged clamshell design',
       body: 'The system features a clamshell design comprised of a twin-sheet cover and pallet connected by a hinge mechanism. The design opens along a central axis, providing full access while protecting contents from dust and contamination when closed.',
     },
     {
@@ -67,6 +67,10 @@ export const uniCase: ProductPageData = {
     {
       title: 'Integrated lightweight design',
       body: 'Designed for high-density, weight-sensitive applications, Uni-Case minimizes packaging weight to help maximize payload efficiency—supporting improved cube utilization in operations where weight limits are often the primary constraint.',
+    },
+    {
+      title: 'Modular',
+      body: 'When the underlying part changes, the interior dunnage components can be removed and replaced with components designed to fit the updated part, eliminating the need to replace the entire container system.',
     },
   ],
   attributes: [
@@ -108,8 +112,8 @@ export const uniCase: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   related: [
     {

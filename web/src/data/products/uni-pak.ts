@@ -39,7 +39,7 @@ export const uniPak: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT UNI-PAK',
   aboutText:
-    'As the original sleeve-pack system introduced to the market—setting the standard for many of today’s designs—Uni-Pak is a reusable, collapsible container system designed for storage and transport in closed-loop systems. Engineered for operations where space constraints, return efficiency, and product protection are critical, it provides a systems-based alternative to wood pallets, corrugated boxes, fiber drums, nylon bags, and other limited-life returnable packaging.',
+    'As the original sleeve-pack system introduced to the market—setting the standard for many of today’s designs—Uni-Pak is a reusable, collapsible container system designed for storage and transport in closed-loop systems. Engineered for operations where space constraints, return efficiency, and product protection are critical, it provides a systems-based alternative to wood pallets, corrugated boxes, fiber drums, nylon bags, bulk boxes, and other limited-life returnable packaging.',
   thumbnails: [
     { img: productMain, alt: 'Uni-Pak product view 1' },
     { img: thumb2, alt: 'Uni-Pak product view 2' },
@@ -61,12 +61,24 @@ export const uniPak: ProductPageData = {
       body: 'Disengage the slide-lock, and the system knocks down efficiently into individual components for maximum space efficiency during storage and transport. Collapsible sleeves fold down, and pallets and covers nest, significantly reducing storage volume and improving space utilization and return ratios.',
     },
     {
-      title: 'Load-transferring structure',
-      body: 'Designed for dynamic distribution environments, the interaction between the sleeve and pallet allows loads to transfer evenly through the structure, supporting high stacking strength in demanding applications.',
+      title: 'Castled sleeve',
+      body: 'The bottom of the sleeve extends to the floor and nests into the pallet leg, allowing the sleeve to function as both a protective barrier and a load-transferring structure. In dynamic distribution environments, this interaction between the sleeve and pallet helps transfer loads evenly through the structure, supporting high stacking strength in demanding applications.',
     },
     {
-      title: 'Stacking interface',
-      body: 'Female details on the pallet, known as locators, engage with corresponding male features on the cover, enabling two containers to stack securely and align properly. This creates a stable, space-efficient unit for storage and transport.',
+      title: 'Minimized packaging weight',
+      body: 'Design efficiencies reduce the weight handled throughout the distribution cycle, supporting easier handling without sacrificing performance under load. Reinforcement through geometry rather than additional plastic provides the necessary rigidity while avoiding unnecessary mass.',
+    },
+    {
+      title: 'Custom internal dunnage',
+      body: 'Uni-Pak can be further customized with internal dunnage designed around the product and application. Options can include custom totes, internal trays for separating and organizing layers, and protective foam for cushioning and positioning, helping protect products, maintain organization, and improve packing and handling efficiency.',
+    },
+    {
+      title: 'Space Saver configuration',
+      body: 'The Space Saver configuration uses a dedicated pallet and cover, each with a lower profile than the pallet design used in the Mirror Image configuration. The reduced packaging height minimizes the space occupied by the container, making this configuration ideal for operations where storage and transportation space are limited.',
+    },
+    {
+      title: 'Mirror Image configuration',
+      body: 'The Mirror Image configuration uses the same pallet design for both the base and cover. The leg design allows the identical part to function in either orientation: upright or upside down. When upright, with the legs facing down, it functions as the pallet; when upside down, with the legs facing up, it functions as the cover. This interchangeable design reduces the number of unique packaging components required while simplifying inventory and system management.',
     },
   ],
   attributes: [
@@ -108,8 +120,8 @@ export const uniPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   systemDataRows: [
     {

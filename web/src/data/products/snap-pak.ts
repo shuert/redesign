@@ -49,19 +49,11 @@ export const snapPak: ProductPageData = {
   ],
   accordionItems: [
     {
-      title: 'Multi-component container system',
-      body: 'Snap-Pak combines a twin-sheet thermoformed pallet, heavy-duty sleeve, and twin-sheet thermoformed cover into a single, integrated solution.',
-    },
-    {
-      title: 'Knock-down return configuration',
-      body: 'Disengage the slide-lock, and the system knocks down efficiently into individual components for maximum space efficiency during storage and transport. Collapsible sleeves fold down, and pallets and covers nest, significantly reducing storage volume and improving space utilization and return ratios.',
-    },
-    {
       title: 'ULD-optimized footprint',
       body: 'Snap-Pak features footprints optimized for unit load devices (ULDs), improving cube utilization within standardized air freight configurations.',
     },
     {
-      title: 'Open cover design',
+      title: 'Optional open cover design',
       body: 'Its open cover design allows for quick loading of oversized or mixed cargo, including mailers, boxes, and irregular items.',
     },
     {
@@ -69,16 +61,36 @@ export const snapPak: ProductPageData = {
       body: 'The system’s patented passive locking mechanism “snaps” all components securely into place without active deployment. Under applied force, interlocking components secure the sleeve within the track of the pallet and cover, allowing for fast assembly and disassembly without additional hardware.',
     },
     {
+      title: 'Collapsible return configuration',
+      body: 'The system retains Uni-Pak’s collapsible, space-efficient design, supporting efficient return and storage in closed-loop systems.',
+    },
+    {
       title: 'Lightweight construction',
-      body: 'Its lightweight construction helps preserve available payload in weight-restricted environments.',
+      body: 'Its lightweight construction helps preserve available payload in weight-restricted environments, such as air freight.',
     },
     {
-      title: 'Load-transferring structure',
-      body: 'Designed for dynamic distribution environments, the interaction between the sleeve and pallet allows loads to transfer evenly through the structure, supporting high stacking strength in demanding applications.',
+      title: 'Multi-component container system',
+      body: 'Uni-Pak combines a twin-sheet thermoformed pallet, heavy-duty sleeve, and twin-sheet thermoformed cover into a single, integrated solution.',
     },
     {
-      title: 'Stacking interface',
-      body: 'Female details on the pallet, known as locators, engage with corresponding male features on the cover, enabling two containers to stack securely and align properly. This creates a stable, space-efficient unit for storage and transport.',
+      title: 'Knock-down return configuration',
+      body: 'Disengage the slide-lock, and the system knocks down efficiently into individual components for maximum space efficiency during storage and transport. Collapsible sleeves fold down, and pallets and covers nest, significantly reducing storage volume and improving space utilization and return ratios.',
+    },
+    {
+      title: 'Minimized packaging weight',
+      body: 'Design efficiencies reduce the weight handled throughout the distribution cycle, supporting easier handling without sacrificing performance under load. Reinforcement through geometry rather than additional plastic provides the necessary rigidity while avoiding unnecessary mass.',
+    },
+    {
+      title: 'Custom internal dunnage',
+      body: 'Uni-Pak can be further customized with internal dunnage designed around the product and application. Options can include custom totes, internal trays for separating and organizing layers, and protective foam for cushioning and positioning, helping protect products, maintain organization, and improve packing and handling efficiency.',
+    },
+    {
+      title: 'Space Saver configuration',
+      body: 'The Space Saver configuration uses a dedicated pallet and cover, each with a lower profile than the pallet design used in the Mirror Image configuration. The reduced packaging height minimizes the space occupied by the container, making this configuration ideal for operations where storage and transportation space are limited.',
+    },
+    {
+      title: 'Mirror Image configuration',
+      body: 'The Mirror Image configuration uses the same pallet design for both the base and cover. The leg design allows the identical part to function in either orientation: upright or upside down. When upright, with the legs facing down, it functions as the pallet; when upside down, with the legs facing up, it functions as the cover. This interchangeable design reduces the number of unique packaging components required while simplifying inventory and system management.',
     },
   ],
   attributes: [
@@ -120,8 +132,8 @@ export const snapPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   related: [
     {

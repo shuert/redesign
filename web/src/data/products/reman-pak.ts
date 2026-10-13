@@ -30,7 +30,7 @@ export const remanPak: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT REMAN-PAK',
   aboutText:
-    'Reman-Pak is a reusable clamshell container system originally designed to transport damaged—and later rebuilt—transmissions between suppliers and original equipment manufacturers (OEMs). Engineered for the automotive industry, it provides an alternative to steel racks and wood crates for applications where part protection and operational efficiency are both critical—and cannot be treated as tradeoffs.',
+    'Reman-Pak (for remanufactured drivetrain components) is a reusable clamshell container system originally designed to transport damaged—and later rebuilt—transmissions between dealerships and original equipment manufacturers (OEMs). Engineered for the automotive industry, it provides an alternative to steel racks and wood crates for applications where part protection and operational efficiency are both critical—and cannot be treated as trade-offs.',
   thumbnails: [
     { img: productMain, alt: 'Reman-Pak product view 1' },
     { img: thumb2, alt: 'Reman-Pak product view 2' },
@@ -99,8 +99,8 @@ export const remanPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   related: [
     {

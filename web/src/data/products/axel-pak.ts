@@ -28,7 +28,7 @@ export const axelPak: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT AXLE-PAK',
   aboutText:
-    'Axle-Pak is a reusable reverse clamshell container system originally designed to store and transport axle assemblies and driveline components between suppliers and original equipment manufacturers (OEMs). Engineered for the automotive industry, it provides a lightweight alternative to steel racks for applications where part protection and shipping efficiency are critical—helping customers maximize usable trailer space and shift more shipping capacity toward product, not packaging.',
+    'Axle-Tray is a multifunctional tray originally designed to store and transport axle assemblies and driveline components between suppliers and original equipment manufacturers (OEMs). Engineered for the automotive industry, it provides a lightweight alternative to steel racks for applications where part protection and shipping efficiency are critical—helping customers maximize usable trailer space and shift more shipping capacity toward product, not packaging.',
   thumbnails: [
     { img: productMain, alt: 'Axle-Pak product view 1' },
     { img: thumb2, alt: 'Axle-Pak product view 2' },
@@ -36,7 +36,7 @@ export const axelPak: ProductPageData = {
   ],
   accordionItems: [
     {
-      title: 'Reverse clamshell construction',
+      title: 'Dual-tray construction',
       body: 'The system features a reverse clamshell design in which two twin-sheet thermoformed trays are bonded together at opposing male details.',
     },
     {
@@ -75,8 +75,8 @@ export const axelPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   related: [
     {

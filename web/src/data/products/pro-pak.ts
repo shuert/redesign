@@ -34,7 +34,7 @@ export const proPak: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT PRO-PAK',
   aboutText:
-    'Pro-Pak is a reusable container system designed for the storage and transport of 20-pound cylinders in closed-loop systems. Engineered for Blue Rhino, where product protection, load stability, and regulatory compliance are critical, it provides a systems-based alternative to wood pallets and wire cages.',
+    'Pro-Pak is a reusable container system designed for the storage and transport of 20-pound cylinders in closed-loop systems. Engineered for propane cylinder exchange services, where product protection, load stability, and regulatory compliance are critical, it provides a systems-based alternative to wood pallets and wire cages.',
   thumbnails: [
     { img: productMain, alt: 'Pro-Pak product view 1' },
     { img: thumb2, alt: 'Pro-Pak product view 2' },
@@ -79,8 +79,8 @@ export const proPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   systemData: {
     columns: ['Name', 'Size', 'Type', 'Cover Size', 'Divider', 'Pallet Size', 'Cone Type'],

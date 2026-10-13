@@ -38,7 +38,7 @@ export const uniPakIi: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT UNI-PAK II',
   aboutText:
-    'As the original sleeve-pack system introduced to the market—setting the standard for many of today’s designs—Uni-Pak is a reusable, collapsible container system designed for storage and transport in closed-loop systems. Engineered for operations where space constraints, return efficiency, and product protection are critical, it provides a systems-based alternative to wood pallets, corrugated boxes, fiber drums, nylon bags, and other limited-life returnable packaging.',
+    'Uni-Pak II is a reusable, collapsible container system designed for storage and transport in closed-loop systems. Based on the Uni-Pak platform, it is engineered for operations where space constraints, return efficiency, and product protection are critical. Uni-Pak II features a Tri-Digitous® slide-lock and tube-cut sleeve that prioritize internal dimensions and maximize interior cube.',
   thumbnails: [
     { img: productMain, alt: 'Uni-Pak II product view 1' },
     { img: thumb2, alt: 'Uni-Pak II product view 2' },
@@ -59,12 +59,28 @@ export const uniPakIi: ProductPageData = {
       body: 'Disengage the slide-lock, and the system knocks down efficiently into individual components for maximum space efficiency during storage and transport. Collapsible sleeves fold down, and pallets and covers nest, significantly reducing storage volume and improving space utilization and return ratios.',
     },
     {
-      title: 'Load-transferring structure',
-      body: 'Designed for dynamic distribution environments, the interaction between the sleeve and pallet allows loads to transfer evenly through the structure, supporting high stacking strength in demanding applications.',
+      title: 'Tube-cut sleeve',
+      body: 'The bottom of the sleeve is straight-cut and sits within the track of the pallet rather than extending into the pallet leg, increasing the internal dimensions (ID) in both length and width and providing additional usable space within the container.',
     },
     {
-      title: 'Stacking interface',
-      body: 'Female details on the pallet, known as locators, engage with corresponding male features on the cover, enabling two containers to stack securely and align properly. This creates a stable, space-efficient unit for storage and transport.',
+      title: 'Minimized packaging weight',
+      body: 'Design efficiencies reduce the weight handled throughout the distribution cycle, supporting easier handling without sacrificing performance under load. Reinforcement through geometry rather than additional plastic provides the necessary rigidity while avoiding unnecessary mass.',
+    },
+    {
+      title: 'Custom internal dunnage',
+      body: 'Uni-Pak can be further customized with internal dunnage designed around the product and application. Options can include custom totes, internal trays for separating and organizing layers, and protective foam for cushioning and positioning, helping protect products, maintain organization, and improve packing and handling efficiency.',
+    },
+    {
+      title: 'Tridigidous slide lock',
+      body: 'Like the Uni-Pak slide-lock, the Tri-Digitous® slide-lock is integrated into the system and secures the sleeve within the track of the pallet and cover, locking the components into a single, stable unit. This configuration features a larger finger pull used to engage and disengage the lock, supporting fast, tool-free assembly and disassembly.',
+    },
+    {
+      title: 'Space Saver configuration',
+      body: 'The Space Saver configuration uses a dedicated pallet and cover, each with a lower profile than the pallet design used in the Mirror Image configuration. The reduced packaging height minimizes the space occupied by the container, making this configuration ideal for operations where storage and transportation space are limited.',
+    },
+    {
+      title: 'Mirror Image configuration',
+      body: 'The Mirror Image configuration uses the same pallet design for both the base and cover. The leg design allows the identical part to function in either orientation: upright or upside down. When upright, with the legs facing down, it functions as the pallet; when upside down, with the legs facing up, it functions as the cover. This interchangeable design reduces the number of unique packaging components required while simplifying inventory and system management.',
     },
   ],
   attributes: [
@@ -101,8 +117,8 @@ export const uniPakIi: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   systemDataRows: [
     {

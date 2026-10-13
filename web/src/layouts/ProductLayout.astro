@@ -785,6 +785,10 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     let shapeTimer = 0;
     let sliding = false;
     let ready = false;
+    let hoverPaused = false;
+    let holdPaused = false;
+    let tapPaused = false;
+    let lastTouchAt = 0;
     const SHAPE_SETTLE_MS = 480;
     var TRACK_EASE = 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)';
     var OPACITY_EASE = 'opacity 0.45s ease';
@@ -864,6 +868,10 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
       prevDotsIndex = realIndex;
     }
 
+    function syncAutoplayPause() {
+      root.classList.toggle('is-paused', hoverPaused || holdPaused || tapPaused);
+    }
+
     function go(delta) {
       if (sliding || !ready) return;
       var nextReal = (realIndex + delta + n) % n;
@@ -904,7 +912,10 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     if (viewport && track) {
       var dragging = false;
       var startX = 0;
+      var startY = 0;
       var dragDelta = 0;
+      var dragDeltaY = 0;
+      var activePointer = '';
       var THRESHOLD = 40;
 
       function applyDragOffset(px) {
@@ -917,26 +928,47 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
         if (!ready) return;
         if (e.button && e.button !== 0) return;
         dragging = true;
+        activePointer = e.pointerType || (e.touches ? 'touch' : 'mouse');
         startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
         dragDelta = 0;
+        dragDeltaY = 0;
         track.style.transition = 'none';
         viewport.style.cursor = 'grabbing';
+        if (activePointer === 'touch') {
+          lastTouchAt = Date.now();
+          holdPaused = true;
+          syncAutoplayPause();
+        }
       }
 
       function onMove(e) {
         if (!dragging) return;
         var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        var clientY = e.touches ? e.touches[0].clientY : e.clientY;
         dragDelta = clientX - startX;
+        dragDeltaY = clientY - startY;
         applyDragOffset(dragDelta);
       }
 
-      function onUp() {
+      function onUp(e) {
         if (!dragging) return;
         dragging = false;
         viewport.style.cursor = '';
-        if (Math.abs(dragDelta) > THRESHOLD) {
+        var pointerType = (e && e.pointerType) || activePointer;
+        var canceled = e && (e.type === 'pointercancel' || e.type === 'touchcancel' || e.type === 'pointerleave');
+        var swiped = Math.abs(dragDelta) > THRESHOLD;
+        var tapped = Math.abs(dragDelta) <= THRESHOLD && Math.abs(dragDeltaY) <= THRESHOLD;
+        holdPaused = false;
+
+        if (swiped) {
+          syncAutoplayPause();
           go(dragDelta < 0 ? 1 : -1);
         } else {
+          if (!canceled && pointerType === 'touch' && tapped) {
+            tapPaused = !tapPaused;
+          }
+          syncAutoplayPause();
           applyTransform(domIndex, true);
         }
       }
@@ -957,6 +989,25 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
       viewport.style.userSelect = 'none';
 
       viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+      /* Pause only while the pointer is over a slide image.
+         Touch taps toggle pause; a recent touch is ignored so mobile
+         doesn't get stuck on the synthetic mouseenter that follows a tap. */
+      var hoverCount = 0;
+      allSlideEls.forEach(function (slide) {
+        slide.addEventListener('mouseenter', function () {
+          if (Date.now() - lastTouchAt < 1000) return;
+          hoverCount += 1;
+          hoverPaused = true;
+          syncAutoplayPause();
+        });
+        slide.addEventListener('mouseleave', function () {
+          if (Date.now() - lastTouchAt < 1000) return;
+          hoverCount = Math.max(0, hoverCount - 1);
+          hoverPaused = hoverCount > 0;
+          syncAutoplayPause();
+        });
+      });
     }
 
     /* ---- Decode all images, then enable ---- */
@@ -1722,6 +1773,10 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
 
   .bp-swiper__dot-grow-fill--animating {
     animation: bp-dot-progress var(--bp-autoplay-ms, 6000ms) linear forwards;
+  }
+
+  .bp-features.is-paused .bp-swiper__dot-grow-fill--animating {
+    animation-play-state: paused;
   }
 
   @media (prefers-reduced-motion: reduce) {

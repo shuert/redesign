@@ -31,7 +31,7 @@ export const batteryPak: ProductPageData = {
   headerBg,
   aboutEyebrow: 'ABOUT BATTERY-RAK',
   aboutText:
-    'Battery-Pak is a reusable reverse clamshell pallet-tray originally designed to store and transport electric vehicle battery packs between suppliers and original equipment manufacturers (OEMs). Engineered for automotive programs seeking packaging that better aligns with the environmental intent of electric vehicle platforms, Battery-Pak provides a lightweight alternative to steel racks for applications where part protection and shipping efficiency are critical—helping customers maximize usable trailer space and shift more shipping capacity toward product, not packaging.',
+    'Battery-Tray is a reusable multifunctional tray originally designed to store and transport electric vehicle battery packs between suppliers and original equipment manufacturers (OEMs). Engineered for automotive programs seeking packaging that better aligns with the environmental intent of electric vehicle platforms, Battery-Tray provides a lightweight alternative to steel racks for applications where part protection and shipping efficiency are critical—helping customers maximize usable trailer space and shift more shipping capacity toward product, not packaging.',
   thumbnails: [
     { img: productMain, alt: 'Battery-Rak product view 1' },
     { img: thumb2, alt: 'Battery-Rak product view 2' },
@@ -40,7 +40,7 @@ export const batteryPak: ProductPageData = {
   ],
   accordionItems: [
     {
-      title: 'Reverse clamshell construction',
+      title: 'Dual-tray construction',
       body: 'The system features a reverse clamshell design in which two twin-sheet thermoformed trays are bonded together at opposing male details.',
     },
     {
@@ -93,8 +93,8 @@ export const batteryPak: ProductPageData = {
   ],
   attributesAutoplayMs: 6000,
   optionCols: [
-    ['Sheet Color', 'Stripe Color', 'Embossing', 'Fire Retardant', 'Pockets for Barcoding and RFID'],
-    ['White Stamping', 'Weight (dependent on load requirements)', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
+    ['Color', 'Stripe', 'Custom Branding', 'Pockets for Barcoding and RFID'],
+    ['Hot Stamping', 'Footprint', 'Drain Holes', 'Steel Reinforcement'],
   ],
   related: [
     {
