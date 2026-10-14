@@ -13,18 +13,11 @@ import featRackable from '../../assets/product/unidirectional/54a53c131c3eaff1ac
 import featConveyable from '../../assets/product/unidirectional/7a0f44b0e2d607a1dbe4f8962bbcd45a9a5da98d.png';
 import featDurable from '../../assets/product/unidirectional/ce81b45a1be058b338699f3ac6edd029dad6127e.png';
 
-import story1 from '../../assets/product/unidirectional/29c0feead284fde4f7b53eb75874ee93ae01ac74.png';
-import story2 from '../../assets/product/unidirectional/67aa266474344f49969b27d5c427e2bf992cf32d.png';
-import story3 from '../../assets/product/unidirectional/2136dc7a51c79d241f9ab02830f8a2561bd6181b.png';
-
 import relatedExair from '../../assets/product/unidirectional/6d491e071fc9a0e187d505a9422887387b2911e8.png';
 import relatedUniPallet from '../../assets/product/unidirectional/aa4c71cf6fd121cfe04e6f4f44658228fc24d3dc.png';
 import relatedPerimeter from '../../assets/product/unidirectional/ace628f106d3945cb72725dcdea147e2c7a6eff4.png';
 
 import quoteImage from '../../assets/product/unidirectional/60c26e97b304b786a121896cb8a9ba9c10e748e0.png';
-
-const storyBody =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
 
 export const uniDirectionalPallet: ProductPageData = {
   title: 'Uni-Directional Pallet',
@@ -143,27 +136,6 @@ export const uniDirectionalPallet: ProductPageData = {
           { imperial: '23.62" x 31.49" x 5.90"', metric: '600 × 800 × 150 mm' },
           { imperial: '18.51 lbs.', metric: '8.40 kg' },
         ],
-      },
-    ],
-  },
-  stories: {
-    eyebrow: 'NEWS',
-    title: 'See What Our Customers Say',
-    articles: [
-      { source: 'name of source', body: storyBody, href: '#', img: story1 },
-      {
-        source: 'name of source',
-        body: storyBody,
-        href: '#',
-        img: story2,
-        crop: { width: '138.04%', height: '106.05%', left: '-13.14%', top: '-6.05%' },
-      },
-      {
-        source: 'name of source',
-        body: storyBody,
-        href: '#',
-        img: story3,
-        crop: { width: '130.16%', height: '100%', left: '-5.94%', top: '0' },
       },
     ],
   },

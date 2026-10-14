@@ -40,6 +40,8 @@ export type SystemDataRow = {
   cover: UnitPair;
   pallet: UnitPair;
   highlight?: boolean;
+  /** Tear-sheet PDF. Rows without a sheet omit the download icon when any row in the table has one. */
+  sheetHref?: string;
 };
 
 /** Cell may be a fixed string or an imperial/metric pair */

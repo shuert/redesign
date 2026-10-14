@@ -27,6 +27,8 @@ const sizeRange = {
   metric: '737 × 584 mm — 2286 × 1219 mm',
 } as const;
 
+const tearSheet = (file: string) => `/downloads/${encodeURIComponent('Uni-Pak')}/${file}`;
+
 export const uniPak: ProductPageData = {
   title: 'Uni-Pak',
   name: 'uni-pak',
@@ -126,12 +128,14 @@ export const uniPak: ProductPageData = {
   systemDataRows: [
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_29x23_v01.pdf'),
       outside: { imperial: '29" x 23"', metric: '737 x 584 mm' },
       inside: { imperial: '26.94" x 20.94"', metric: '684 x 532 mm' },
       cover: { imperial: '4.68 lbs.', metric: '2.12 kg' },
       pallet: { imperial: '6.88 lbs.', metric: '3.12 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_36x29_v01.pdf'),
       outside: { imperial: '36" x 29"', metric: '914 x 737 mm' },
       inside: { imperial: '32.77" x 26.02"', metric: '832 x 661 mm' },
       cover: { imperial: '7.75 lbs.', metric: '3.52 kg' },
@@ -139,12 +143,14 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_52x36_v01.pdf'),
       outside: { imperial: '52" x 36"', metric: '1321 x 914 mm' },
       inside: { imperial: '49.52" x 33.52"', metric: '1258 x 851 mm' },
       cover: { imperial: '13.67 lbs.', metric: '6.20 kg' },
       pallet: { imperial: '20.74 lbs.', metric: '9.41 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_55x35_v01.pdf'),
       outside: { imperial: '55" x 35"', metric: '1397 x 889 mm' },
       inside: { imperial: '52.19" x 32.19"', metric: '1326 x 818 mm' },
       cover: { imperial: '13.51 lbs.', metric: '6.13 kg' },
@@ -152,12 +158,14 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_48x40_v01.pdf'),
       outside: { imperial: '48" x 40"', metric: '1219 x 1016 mm' },
       inside: { imperial: '45.315" x 37.315"', metric: '1151 x 948 mm' },
       cover: { imperial: '13.34 lbs.', metric: '6.05 kg' },
       pallet: { imperial: '21.27 lbs.', metric: '9.65 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_44x44_v01.pdf'),
       outside: { imperial: '44" x 44"', metric: '1118 x 1118 mm' },
       inside: { imperial: '41.4" x 41.4"', metric: '1052 x 1052 mm' },
       cover: { imperial: '14.2 lbs.', metric: '6.44 kg' },
@@ -165,12 +173,14 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_46x46_v01.pdf'),
       outside: { imperial: '46" x 46"', metric: '1168 x 1168 mm' },
       inside: { imperial: '43.4" x 43.4"', metric: '1102 x 1102 mm' },
       cover: { imperial: '15.46 lbs.', metric: '7.01 kg' },
       pallet: { imperial: '22.77 lbs.', metric: '10.33 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_48x45_v01.pdf'),
       outside: { imperial: '48" x 45"', metric: '1219 x 1143 mm' },
       inside: { imperial: '45.315" x 42.315"', metric: '1151 x 1075 mm' },
       cover: { imperial: '15.51 lbs.', metric: '7.03 kg' },
@@ -178,12 +188,14 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_57x48_v01.pdf'),
       outside: { imperial: '57" x 48"', metric: '1448 x 1219 mm' },
       inside: { imperial: '54.556" x 45.556"', metric: '1386 x 1157 mm' },
       cover: { imperial: '19.13 lbs.', metric: '8.68 kg' },
       pallet: { imperial: '28.94 lbs.', metric: '13.13 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_63x47-25_v01.pdf'),
       outside: { imperial: '63" x 47.25"', metric: '1600 x 1200 mm' },
       inside: { imperial: '60.16" x 44.375"', metric: '1528 x 1127 mm' },
       cover: { imperial: '22.03 lbs.', metric: '9.99 kg' },
@@ -191,6 +203,7 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_96x76_v01.pdf'),
       outside: { imperial: '96" x 76"', metric: '2438 x 1930 mm' },
       inside: { imperial: '93.315" x 73.315"', metric: '2370 x 1862 mm' },
       cover: { imperial: '54.9 lbs.', metric: '24.90 kg' },
@@ -210,6 +223,7 @@ export const uniPak: ProductPageData = {
       pallet: { imperial: '20.8 lbs.', metric: '9.43 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_1200x800_v01.pdf'),
       outside: { imperial: '1200mm x 800mm', metric: '1200 x 800 mm' },
       inside: { imperial: '44.40" x 28.65"', metric: '1128 x 728 mm' },
       cover: { imperial: '10.53 lbs.', metric: '4.78 kg' },
@@ -217,12 +231,14 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_1240x835_v01.pdf'),
       outside: { imperial: '1240mm x 835mm', metric: '1240 x 835 mm' },
       inside: { imperial: '47.56" x 31.62"', metric: '1208 x 803 mm' },
       cover: { imperial: '11.25 lbs.', metric: '5.10 kg' },
       pallet: { imperial: '16.9 lbs.', metric: '7.67 kg' },
     },
     {
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_1200x1000_v01.pdf'),
       outside: { imperial: '1200mm x 1000mm', metric: '1200 x 1000 mm' },
       inside: { imperial: '44.54" x 36.57"', metric: '1131 x 929 mm' },
       cover: { imperial: '13.07 lbs.', metric: '5.93 kg' },
@@ -230,6 +246,7 @@ export const uniPak: ProductPageData = {
     },
     {
       highlight: true,
+      sheetHref: tearSheet('Shuert_TearSheet_Uni-Pak_1600x1200_v01.pdf'),
       outside: { imperial: '1600mm x 1200mm', metric: '1600 x 1200 mm' },
       inside: { imperial: '60.16" x 44.38"', metric: '1528 x 1127 mm' },
       cover: { imperial: '20.19 lbs.', metric: '9.16 kg' },

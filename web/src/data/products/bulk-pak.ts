@@ -13,7 +13,7 @@ import featSlidelock from '../../assets/product/bulkpak/dc99178ae2ca5ece0c57995b
 import featCastling from '../../assets/product/bulkpak/12f92938ad4da8853a6ddcd6594f98d47cabb7f6.png';
 
 import relatedUniPak from '../../assets/product/bulkpak/6324929b6ffd966af7a2778ee189f60b599310e9.png';
-import relatedBulkPak from '../../assets/product/bulkpak/fcd48ab930f8cb18118377413ddb31102fbf6a8b.png';
+import relatedUniPakIi from '../../assets/product/unipakII/1f33178a0228a5eee17d27db2787893e839ba77b.png';
 import relatedSnapPak from '../../assets/product/bulkpak/42abb03618e39d7822c880009fe09f28262fea42.png';
 
 import quoteImage from '../../assets/product/shared/quote.jpg';
@@ -136,10 +136,10 @@ export const bulkPak: ProductPageData = {
       href: '/products/uni-pak',
     },
     {
-      name: 'bulk-pak',
-      size: { imperial: '48”x40” — 48”x45”', metric: '1219 × 1016 mm — 1219 × 1143 mm' },
-      img: relatedBulkPak,
-      href: '/products/bulk-pak',
+      name: 'uni-pak II',
+      size: { imperial: '30”x29” — 90”x48.75”', metric: '762 × 737 mm — 2286 × 1238 mm' },
+      img: relatedUniPakIi,
+      href: '/products/uni-pak-II',
     },
     {
       name: 'snap-pak',

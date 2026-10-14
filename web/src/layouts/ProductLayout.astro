@@ -50,6 +50,7 @@ const {
 const FEATURES_AUTOPLAY_MS = product.attributesAutoplayMs ?? 6000;
 const hasSystemData = Boolean(systemData?.rows?.length || systemDataRows?.length);
 const systemDownloads = systemData?.showDownloads !== false;
+const systemRowSheets = systemDataRows?.some((row) => row.sheetHref) ?? false;
 
 /** Display widths (~2x retina) — masters stay in assets; only derivatives ship to the browser */
 const headerBgOpt = await getImage({ src: headerBg, width: 2400, format: 'webp', quality: 80 });
@@ -491,16 +492,20 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
               systemDataRows.map((row) => (
                 <div class:list={['bp-system__row', { 'is-highlight': row.highlight }]} role="row">
                   <div class="bp-system__dl-col">
-                    <a
-                      class="bp-system__dl"
-                      href="#"
-                      data-unit-aria
-                      data-imperial={`Download data sheet for ${row.outside.imperial}`}
-                      data-metric={`Download data sheet for ${row.outside.metric}`}
-                      aria-label={`Download data sheet for ${row.outside.imperial}`}
-                    >
-                      <img src={rowDownloadIcon} alt="" width="22" height="22" />
-                    </a>
+                    {(row.sheetHref || !systemRowSheets) && (
+                      <a
+                        class="bp-system__dl"
+                        href={row.sheetHref ?? '#'}
+                        target={row.sheetHref ? '_blank' : undefined}
+                        rel={row.sheetHref ? 'noopener' : undefined}
+                        data-unit-aria
+                        data-imperial={`Download data sheet for ${row.outside.imperial}`}
+                        data-metric={`Download data sheet for ${row.outside.metric}`}
+                        aria-label={`Download data sheet for ${row.outside.imperial}`}
+                      >
+                        <img src={rowDownloadIcon} alt="" width="22" height="22" />
+                      </a>
+                    )}
                   </div>
                   <div
                     class="bp-system__cell"
@@ -615,14 +620,6 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
             </div>
             <div class="bp-related__text">
               <h3 class="bp-related__name">{r.name}</h3>
-              <p
-                class="bp-related__size"
-                data-unit-value
-                data-imperial={r.size.imperial}
-                data-metric={r.size.metric}
-              >
-                {r.size.imperial}
-              </p>
             </div>
           </a>
         ))}
@@ -2142,19 +2139,6 @@ function cellIsPair(cell: string | { imperial: string; metric: string }): cell i
     margin: 0;
     font: var(--w-semibold) 30px / 32px var(--ff-s);
     letter-spacing: -0.75px;
-    color: var(--c-black);
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  /* Size: inset-top 96.26% — Roobert Light 16/22 */
-  .bp-related__size {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 96.26%;
-    margin: 0;
-    font: var(--w-light) 16px / 22px var(--ff-r);
     color: var(--c-black);
     text-align: center;
     white-space: nowrap;

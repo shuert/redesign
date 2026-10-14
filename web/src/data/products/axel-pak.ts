@@ -9,16 +9,11 @@ import featMultipleFootprints from '../../assets/product/axelpak/0b6ec8553a52c5e
 import featStiffDeck from '../../assets/product/axelpak/e7beb0d11a3123131db8608e457ebd1019f4905c.png';
 import featForkTubes from '../../assets/product/axelpak/98dcf459a5e1a340f89867211e73b31e26d3395f.png';
 
-import relatedProPak from '../../assets/product/axelpak/962bc5dea41b9cb8605e747bfd0c533ce2a929fa.png';
-import relatedYarnPak from '../../assets/product/axelpak/e9c3bad29049bc104caa12c3c1df6a909ac3c3d7.png';
 import relatedBatteryRak from '../../assets/product/axelpak/4b9afdab783164ce504f12728e64bcfb848d21d2.png';
+import relatedUniRak from '../../assets/product/custom/d8ec9aa0ba997787fbe189f4db1759a0816da03f.png';
+import relatedUniCase from '../../assets/product/unicase/454084480a055ddddae249d65a9d63552f1b760d.png';
 
 import quoteImage from '../../assets/product/shared/quote.jpg';
-
-const sizeRange = {
-  imperial: '29” x 23”  —  90” x 48”',
-  metric: '737 × 584 mm — 2286 × 1219 mm',
-} as const;
 
 export const axelPak: ProductPageData = {
   title: 'Axle-Pak',
@@ -58,9 +53,9 @@ export const axelPak: ProductPageData = {
   ],
   attributes: [
     {
-      tag: 'Multiple Footprints',
+      tag: 'Fully Customizable',
       img: featMultipleFootprints,
-      desc: 'A design that is available in multiple footprint sizes, accommodating varying product dimensions and handling requirements.',
+      desc: 'Designed to accommodate specific product dimensions and handling requirements.',
     },
     {
       tag: 'Stiff Deck',
@@ -80,22 +75,22 @@ export const axelPak: ProductPageData = {
   ],
   related: [
     {
-      name: 'pro-pak',
-      size: sizeRange,
-      img: relatedProPak,
-      href: '/products/pro-pak',
-    },
-    {
-      name: 'yarn-pak',
-      size: sizeRange,
-      img: relatedYarnPak,
-      href: '/products/yarn-pak',
-    },
-    {
       name: 'battery-rak',
       size: { imperial: 'Made to Specification', metric: 'Made to Specification' },
       img: relatedBatteryRak,
       href: '/products/battery-pak',
+    },
+    {
+      name: 'uni-rak',
+      size: { imperial: 'Made to Specification', metric: 'Made to Specification' },
+      img: relatedUniRak,
+      href: '/products/uni-rak',
+    },
+    {
+      name: 'uni-case',
+      size: { imperial: 'Made to Specification', metric: 'Made to Specification' },
+      img: relatedUniCase,
+      href: '/products/uni-case',
     },
   ],
   quoteTitle:
